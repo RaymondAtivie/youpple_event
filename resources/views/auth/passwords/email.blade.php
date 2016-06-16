@@ -2,46 +2,71 @@
 
 <!-- Main Content -->
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
+    <!-- Inner Banner Start -->
+    <div class="cp-inner-banner">
+        <div class="container">
+            <div class="cp-inner-banner-outer">
+                <h2>Reset Your Password</h2>
+                <!--Breadcrumb Start-->
+                <ul class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li class="active">Reset Password</li>
+                </ul><!--Breadcrumb End-->
+            </div>
+        </div>
+    </div>
+    <!-- Inner Banner End -->
+
+    <style>
+    .has-error input{
+        border-bottom-color: red;
+    }
+    </style>
+
+    <!-- Main Content Start -->
+    <div class="cp-main-content">
+        <!--Signup Content Start-->
+        <section class="cp-signup-section pd-tb60">
+            <div class="container">
+
+                <!--Signup Form Start-->
+                <div class="cp-signup-form">
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" style="margin-bottom: 60px">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                    <form role="form" method="POST" action="{{ url('/events/password/email') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="row form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                                <div class="input-field">
+                                    <i class="fa fa-user prefix"></i>
+                                    <input type="email" required name="email" value="{{ old('email') }}" class="validate">
+                                    <label>Email Address</label>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong class="danger">{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
-                                </button>
+                            <div class="col-md-8 col-md-offset-2 col-sm-12">
+                                <div class="input-field btn-holder">
+                                    <button type="submit" class="btn-submit" value="Submit">
+                                        <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
+
             </div>
-        </div>
+        </section>
     </div>
-</div>
+
 @endsection

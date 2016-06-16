@@ -13,9 +13,10 @@
 
 Route::get('/', 'PagesController@index');
 
-Route::auth();
+// Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/about', 'PagesController@about');
 
 Route::group(['prefix'=>'events'], function(){
     Route::auth();

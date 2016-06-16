@@ -15,6 +15,9 @@ class ComposerServiceProvider extends ServiceProvider
     */
     public function boot()
     {
+        View::composer('auth.*', function($view){
+            $view->with(['pageType'=>'event']);
+        });
         View::composer('events.*', function($view)
         {
             $view->with(['pageType'=>'event']);

@@ -72,7 +72,7 @@
                   <a href="experties-details.html">Read More</a> </div>
               </div>
               <div class="cp-ex-title">
-                <h3><a href="/events/event/1">Event <?php echo $i ?></a></h3>
+                <h3><a href="/events/1">Event <?php echo $i ?></a></h3>
               </div>
             </div>
             <!-- item end -->
@@ -104,11 +104,11 @@
                   <p> <i class="fa fa-map-marker"></i> Abuja, Nigeria </p>
                   <hr />
                   <p> Conference dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                  <a href="/events/event/1">Read More</a>
+                  <a href="/events/1">Read More</a>
                 </div>
               </div>
               <div class="cp-ex-title">
-                <h3><a href="/events/event/1">Hire / Order</a></h3>
+                <h3><a href="/events/1">Hire / Order</a></h3>
               </div>
             </div><!-- item end -->
           </div>
