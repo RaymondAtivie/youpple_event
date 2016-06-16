@@ -10,25 +10,25 @@
         <!-- Css Files Start -->
 
         @if(isset($pageType))
-            <link href="/css/<?php echo $pageType ?>-style.css" rel="stylesheet">
-            <link href="/css/<?php echo $pageType ?>-color.css" rel="stylesheet">
+            <link href="{{ url('css/'.$pageType.'-style.css') }}" rel="stylesheet">
+            <link href="{{ url('css/'.$pageType.'-color.css') }}" rel="stylesheet">
         @else
-            <link href="/css/style.css" rel="stylesheet">
-            <link href="/css/color.css" rel="stylesheet">
+            <link href="{{ url('css/style.css') }}" rel="stylesheet">
+            <link href="{{ url('css/color.css') }}" rel="stylesheet">
         @endif
 
 
-        <link href="/css/bootstrap.css" rel="stylesheet">
-        <link href="/css/owl.carousel.css" rel="stylesheet">
-        <link href="/css/jquery.bxslider.css" rel="stylesheet">
-        <link href="/css/responsive.css" rel="stylesheet">
-        <link href="/css/prettyPhoto.css" rel="stylesheet">
-        <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
+        <link href="{{ url('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ url('css/owl.carousel.css') }}" rel="stylesheet">
+        <link href="{{ url('css/jquery.bxslider.css') }}" rel="stylesheet">
+        <link href="{{ url('css/responsive.css') }}" rel="stylesheet">
+        <link href="{{ url('css/prettyPhoto.css') }}" rel="stylesheet">
+        <link href="{{ url('css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ url('css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
 
 
         {{-- <link href="{{ elixir('css/all.css') }}" rel="stylesheet"> --}}
-        <link href="/css/all.css" rel="stylesheet">
+        <link href="{{ url('css/all.css') }}" rel="stylesheet">
 
 
         <!--Font Family Css Start-->
