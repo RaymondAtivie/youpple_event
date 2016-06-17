@@ -9,8 +9,8 @@
                 <h2>Login to Your Account</h2>
                 <!--Breadcrumb Start-->
                 <ul class="breadcrumb">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/events">Events</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('events') }}">Events</a></li>
                     <li class="active">Login</li>
                 </ul><!--Breadcrumb End-->
             </div>
@@ -31,7 +31,7 @@
             <div class="container">
                 <!--Signup Form Start-->
                 <div class="cp-signup-form">
-                    <form role="form" method="POST" action="{{ url('/events/login') }}">
+                    <form role="form" method="POST" action="{{ url('events/login') }}">
                         {{ csrf_field() }}
 
                         <div class="row form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -67,7 +67,7 @@
                                         <input type="checkbox" name="rememebr"> Keep me logged in
                                     </label>
                                     <label class="pull-right">
-                                        <a class="btn btn-link" href="{{ url('/events/password/reset') }}">Forgot Your Password?</a>
+                                        <a class="btn btn-link" href="{{ url('events/password/reset') }}">Forgot Your Password?</a>
                                     </label>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
-                                <strong class="login-btn">Don't have an Account? <a href="/events/register">Signup NOW</a></strong>
+                                <strong class="login-btn">Don't have an Account? <a href="{{ url('events/register') }}">Signup NOW</a></strong>
                             </div>
                         </div>
                     </form>

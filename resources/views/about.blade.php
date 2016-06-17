@@ -8,7 +8,7 @@
     <h2>About Youpple</h2>
         <!--Breadcrumb Start-->
         <ul class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="{{ url('index.html') }}">Home</a></li>
         <li class="active">About Us</li>
         </ul><!--Breadcrumb End-->
     </div>
@@ -29,7 +29,7 @@
               <h2>We Arrange Wold’s</h2>
               <strong>Most Celebrated Events</strong>
               <figure class="cp-about-img">
-                <img src="images/banner/about.jpg" style="width: 555px">
+                <img src="{{ url('images/banner/about.jpg') }}" style="width: 555px">
               </figure>
             </div>
           </div>
@@ -62,7 +62,7 @@
           <div class="col-md-3 col-sm-6">
             <!--Process Box Start-->
             <div class="cp-process-box">
-              <img src="/images/consult/consult_logo_small.png" style="height: 200px" />
+              <img src="{{ url('images/consult/consult_logo_small.png') }}" style="height: 200px" />
 
               <div class="cp-text">
                 <h3>Pple Consult</h3>
@@ -73,7 +73,7 @@
           <div class="col-md-3 col-sm-6">
             <!--Process Box Start-->
             <div class="cp-process-box">
-              <img src="/images/event/event_logo_small.png" style="height: 200px" />
+              <img src="{{ url('images/event/event_logo_small.png') }}" style="height: 200px" />
 
               <div class="cp-text">
                 <h3>Pple Events</h3>
@@ -84,7 +84,7 @@
           <div class="col-md-3 col-sm-6">
             <!--Process Box Start-->
             <div class="cp-process-box">
-              <img src="/images/fashion/fashion_logo_small.png" style="height: 200px" />
+              <img src="{{ url('images/fashion/fashion_logo_small.png') }}" style="height: 200px" />
               <div class="cp-text">
                 <h3>Pple Fashion</h3>
                 <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur.</p>
@@ -94,7 +94,7 @@
           <div class="col-md-3 col-sm-6">
             <!--Process Box Start-->
             <div class="cp-process-box">
-              <img src="/images/talk/talk_logo_small.png" style="height: 200px" />
+              <img src="{{ url('images/talk/talk_logo_small.png') }}" style="height: 200px" />
 
               <div class="cp-text">
                 <h3>Pple Talk</h3>
@@ -105,7 +105,7 @@
           <div class="col-md-3 col-md-offset-3 col-sm-6">
             <!--Process Box Start-->
             <div class="cp-process-box">
-              <img src="/images/technology/technology_logo_small.png" style="height: 200px" />
+              <img src="{{ url('images/technology/technology_logo_small.png') }}" style="height: 200px" />
               <div class="cp-text">
                 <h3>Pple Technology</h3>
                 <p>Voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
@@ -115,7 +115,7 @@
           <div class="col-md-3 col-sm-6">
             <!--Process Box Start-->
             <div class="cp-process-box">
-              <img src="/images/reformers/reformers_logo_small.png" style="height: 200px" />
+              <img src="{{ url('images/reformers/reformers_logo_small.png') }}" style="height: 200px" />
               <div class="cp-text">
                 <h3>Reformers Circle</h3>
                 <p>Voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
@@ -136,7 +136,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>Paul Anderson</h5>
                   <span>Eventco President</span>
@@ -146,7 +146,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>Eddy John</h5>
                   <span>Eventco President</span>
@@ -156,7 +156,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>Niky Bard</h5>
                   <span>Eventco President</span>
@@ -166,7 +166,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>John Doe</h5>
                   <span>Eventco President</span>
@@ -176,7 +176,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>John Doe</h5>
                   <span>Eventco President</span>
@@ -186,7 +186,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>Niky Barad</h5>
                   <span>Eventco President</span>
@@ -196,7 +196,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>John Doe</h5>
                   <span>Eventco President</span>
@@ -206,7 +206,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>John Doe</h5>
                   <span>Eventco President</span>
@@ -216,7 +216,7 @@
             <div class="item cp-clients-inner cp-clients-inner2">
                 <div class="cp-top">
                   <div class="cp-sm-thumb">
-                    <img src="images/test-sm-thumb.jpg" alt="">
+                    <img src="{{ url('images/test-sm-thumb.jpg') }}" alt="">
                   </div>
                   <h5>Alliay N</h5>
                   <span>Eventco President</span>
@@ -252,7 +252,7 @@
                 </ul>
               </div>
               <figure class="cp-thumb">
-                <img src="images/team-img-02.jpg" alt="">
+                <img src="{{ url('images/team-img-02.jpg') }}" alt="">
               </figure>
             </div><!--Team Item End-->
           </div>
@@ -271,7 +271,7 @@
                 </ul>
               </div>
               <figure class="cp-thumb">
-                <img src="images/team-img-01.jpg" alt="">
+                <img src="{{ url('images/team-img-01.jpg') }}" alt="">
               </figure>
             </div><!--Team Item End-->
           </div>
@@ -290,7 +290,7 @@
                 </ul>
               </div>
               <figure class="cp-thumb">
-                <img src="images/team-img-01.jpg" alt="">
+                <img src="{{ url('images/team-img-01.jpg') }}" alt="">
               </figure>
             </div><!--Team Item End-->
           </div>
@@ -309,7 +309,7 @@
         <div class="row" style="text-align: center">
             <?php for($i=0;$i<8;$i++){ ?>
             <div class="col-md-3 col-sm-6" style="padding: 10px">
-                <img style="height: inherit" src="images/test-sm-img-01.jpg" />
+                <img style="height: inherit" src="{{ url('images/test-sm-img-01.jpg') }}" />
             </div>
             <?php } ?>
         </div>
@@ -326,7 +326,7 @@
         <div class="row" style="text-align: center">
             <?php for($i=0;$i<8;$i++){ ?>
             <div class="col-md-3 col-sm-6" style="padding: 10px">
-                <img style="height: inherit" src="images/test-sm-img-01.jpg" />
+                <img style="height: inherit" src="{{ url('images/test-sm-img-01.jpg') }}" />
             </div>
             <?php } ?>
         </div>

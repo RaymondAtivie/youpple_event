@@ -334,7 +334,7 @@ To Glyphicons (http://glyphicons.com/) for the Halflings glyphs font */
                                         <div class="row" style="text-align: center">
                                             <?php for($i=1;$i<=6;$i++){ ?>
                                                 <div class="col-md-2 col-sm-6" style="padding: 10px">
-                                                    <img style="height: inherit; width: 100px" src="/images/logos/small_<?php echo $i ?>.png" />
+                                                    <img style="height: inherit; width: 100px" src="{{ url('images/logos/small_'.$i.'.png') }}" />
                                                 </div>
                                                 <?php } ?>
                                             </div>

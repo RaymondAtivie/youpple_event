@@ -1,12 +1,12 @@
  <!--Footer Content Start-->
   <footer class="cp-footer">
-    <div class="container">     
+    <div class="container">
 
       <!--Footer Copyright Start-->
       <div class="cp-copyright-row">
         <div class="row">
           <div class="col-md-4">
-            <p><a href="/">Youpple</a> &copy; 2015, All Rights Reserved</a></p>
+            <p><a href="{{ url('/') }}">Youpple</a> &copy; 2015, All Rights Reserved</a></p>
           </div>
           <div class="col-md-8" style="text-align: right">
             <p>
@@ -15,7 +15,7 @@
                 <a href="#">FAQ</a> &nbsp; &middot; &nbsp;
                 <a href="#">Terms of Use</a> &nbsp; &middot; &nbsp;
                 <a href="#">Privacy Policy</a> &nbsp; &middot; &nbsp;
-                <a href="#">Terms and Conditions</a> 
+                <a href="#">Terms and Conditions</a>
             </p>
           </div>
         </div>

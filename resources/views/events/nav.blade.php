@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-6">
                         <ul class="cp-top-social">
-                            <li> <a class="quote-btn" href="/events/create">Create Event</a> </li>
+                            <li> <a class="quote-btn" href="{{ url('events/create') }}">Create Event</a> </li>
                             <li> <a class="quote-btn" href="quote.html">Order Event Service</a> </li>
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="cp-logo"><a href="/"><img style="width: 80px" src="/images/event/event_logo_small.png" alt="Youpple"></a></div>
+                        <div class="cp-logo"><a href="/"><img style="width: 80px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple"></a></div>
                     </div>
                     <div class="col-md-9">
                         <nav class="navbar navbar-default">
@@ -44,8 +44,8 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="/home">Home</a></li>
-                                    <li><a href="/about">About</a></li>
+                                    <li><a href="{{ url('home') }}">Home</a></li>
+                                    <li><a href="{{ url('about') }}">About</a></li>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right">
                                     @if (!Auth::guest())
@@ -55,7 +55,7 @@
                                             </a>
 
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{{ url('/events/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                                <li><a href="{{ url('events/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                             </ul>
                                         </li>
                                     @else
@@ -65,7 +65,7 @@
                                             </a>
                                             <ul class="dropdown-menu" style="min-width: 400px; border: 1px solid green">
                                                 <li>
-                                                    <form action="{{ url('/events/login') }}" method="post">
+                                                    <form action="{{ url('events/login') }}" method="post">
                                                         {{ csrf_field() }}
                                                         <div style="padding: 20px" id="ajaxx">
 
@@ -107,7 +107,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="/events/register">Sign Up</a></li>
+                                        <li><a href="{{ url('events/register') }}">Sign Up</a></li>
                                     @endif
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right cp-search-basket">

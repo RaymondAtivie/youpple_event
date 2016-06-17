@@ -2,7 +2,7 @@
 
 @section('content')
 
-<link rel="stylesheet" href="/css/bootstrap-nav.css" />
+<link rel="stylesheet" href="{{ url('css/bootstrap-nav.css') }}" />
 <!-- Inner Banner Start -->
 <div class="cp-inner-banner">
     <div class="container">
@@ -10,8 +10,8 @@
             <h2>Create an Event</h2>
             <!--Breadcrumb Start-->
             <ul class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/events">Events</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li><a href="{{ url('events') }}">Events</a></li>
                 <li class="active">Create</li>
             </ul><!--Breadcrumb End-->
         </div>
@@ -30,7 +30,7 @@
 
 <!-- Main Content Start -->
 <div class="cp-main-content">
-    <form action="/events/create/package" method="POST">
+    <form action="{{ url('events/create/package') }}" method="POST">
 
         <!--Signup Content Start-->
         <section class="cp-signup-section pd-tb60">
