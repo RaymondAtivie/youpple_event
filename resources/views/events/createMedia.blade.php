@@ -109,7 +109,7 @@
     </div>
     <!-- Main Content End -->
 
-    <script src="/js/angular.min.js"></script>
+    <script src="{{ url('js/angular.min.js') }}"></script>
 @endsection
 
 @section('footer_scripts')

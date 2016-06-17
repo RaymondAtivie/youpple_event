@@ -94,7 +94,7 @@
 @endsection
 
 @section('footer_scripts')
-    <script src="/js/angular.min.js"></script>
+    <script src="{{ url('js/angular.min.js') }}"></script>
 
     <script>
     angular.module('eventApp', [])
