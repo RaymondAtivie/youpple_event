@@ -10,8 +10,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Models\Contestant;
 
 Route::get('/', 'PagesController@index');
+
+Route::get('api/vote/{contestant}', function(Contestant $contestant){
+    $contestant->increment('vote');
+    $contestant->save();
+
+    return $contestant;
+});
 
 // Route::auth();
 
@@ -23,7 +31,8 @@ Route::group(['prefix'=>'events'], function(){
 
     Route::get('/', 'EventsController@index');
     Route::get('/create', 'EventsController@showCreateEvent');
-    Route::any('/create/package', 'EventsController@showCreateEventPackage');
+    Route::post('/create', 'EventsController@storeEvent');
+    Route::get('/create/package', 'EventsController@showCreateEventPackage');
     Route::any('/create/media', 'EventsController@showCreateEventMedia');
     Route::any('/create/awards', 'EventsController@showCreateEventAwards');
     Route::any('/create/sponsors', 'EventsController@showCreateEventSponsors');

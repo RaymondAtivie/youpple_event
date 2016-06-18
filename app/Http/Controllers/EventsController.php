@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\EventFormRequest;
 
 class EventsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except("showEvent");
+    }
     public function index()
     {
         return view('events.event');
@@ -20,7 +24,18 @@ class EventsController extends Controller
 
     public function showCreateEvent()
     {
-        return view('events.create');
+        $eTypes = ['Fashion show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop', 'Seminar',
+        'Conference', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony', 'Burial Ceremony',
+        'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition', 'Award Ceremony', 'Road Trip', 'Naming Ceremony',
+        'Birthday Party', 'Contest', 'Coronation', 'Ordination', 'Others'];
+
+        return view('events.create', compact('eTypes'));
+    }
+
+    public function storeEvent(EventFormRequest $request)
+    {
+        Event::create($request->all());
+        // dd($request->all());
     }
 
     public function showCreateEventPackage()

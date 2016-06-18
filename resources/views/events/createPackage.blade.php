@@ -81,6 +81,7 @@
                                     <option>Conference Fee</option>
                                     <option>Modelling Fee</option>
                                     <option>Contest Fee</option>
+                                    <option>Others</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -89,11 +90,13 @@
                                     <div class="col-md-4">
                                         <select class="form-control">
                                             <option>Naira</option>
-                                            <option>Safer</option>
-                                            <option>US Dollars</option>
+                                            <option>CFA</option>
+                                            <option>USD</option>
                                             <option>Cedi</option>
                                             <option>Euro</option>
-                                            <option>GB Pound</option>
+                                            <option>GBP</option>
+                                            <option>SAR</option>
+                                            <option>Yuan</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4">

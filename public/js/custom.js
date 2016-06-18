@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    /* Owl Slider For Our Expetise 
+    /* Owl Slider For Our Expetise
     ======================================================*/
     if ($('.experties-slider').length) {
         $('.experties-slider').owlCarousel({
@@ -157,7 +157,7 @@ jQuery(document).ready(function ($) {
     }
 
 
-    /* Owl Slider For Testimonial Variation 2 
+    /* Owl Slider For Testimonial Variation 2
     ======================================================*/
     if ($('#cp-testimonial-slider2').length) {
         $('#cp-testimonial-slider2').owlCarousel({
@@ -390,9 +390,7 @@ jQuery(document).ready(function ($) {
 
     $(function () {
         $('#datetimepicker1').datetimepicker();
+            $('#datetimepicker2').datetimepicker();
     });
 
 });
-
-
-

@@ -31,6 +31,9 @@
             <div class="container">
                 <!--Signup Form Start-->
                 <div class="cp-signup-form">
+                    
+                    @include('inc/flash');
+
                     <form role="form" method="POST" action="{{ url('events/login') }}">
                         {{ csrf_field() }}
 

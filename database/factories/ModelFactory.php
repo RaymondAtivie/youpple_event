@@ -26,7 +26,9 @@ $factory->define(\App\Models\Event::class, function (Faker\Generator $faker) {
         'description' => $faker->text(),
         'user_id' => $faker->numberBetween(1, 5),
         'datetime' => $faker->dateTimeThisYear(),
+        'datetime_end' => $faker->dateTimeThisYear(),
         'venue' => serialize([$faker->sentence(), $faker->sentence()]),
+        'published' => $faker->randomElement(["true"]),
     ];
 });
 

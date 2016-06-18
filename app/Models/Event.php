@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $dates = ['datetime'];
+    protected $dates = ['datetime', 'datetime_end'];
 
     public function getVenueAttribute($venue)
     {

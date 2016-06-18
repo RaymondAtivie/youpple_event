@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 col-md-offset-3">
-                        <button type="button" ng-click="FC.duplicate()" class="btn btn-block btn-lg btn-default">Add another Logo</button>
+                        <button type="button" ng-click="FC.duplicate()" class="btn btn-block btn-lg btn-default">Add another Partner</button>
                     </div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-block btn-lg btn-submit">Next</button>

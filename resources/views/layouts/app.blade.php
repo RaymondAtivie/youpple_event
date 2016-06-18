@@ -25,6 +25,8 @@
         <link href="{{ url('css/prettyPhoto.css') }}" rel="stylesheet">
         <link href="{{ url('css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ url('css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
+        <link href="{{ url('css/toastr.min.css') }}" rel="stylesheet">
+        <link href="{{ url('css/select2.css') }}" rel="stylesheet">
 
 
         {{-- <link href="{{ elixir('css/all.css') }}" rel="stylesheet"> --}}
