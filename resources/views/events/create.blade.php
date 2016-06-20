@@ -52,9 +52,9 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="row pd-tb60">
                     <div class="col-md-6 col-md-offset-3">
+                        @include('inc/flash')
 
                         <h2>Basic information</h2>
                         <hr />
@@ -78,40 +78,35 @@
 
                         <div class="form-group">
                             <label>Event Type</label>
-                            <div class="cOptions">
+                            {!! Form::select('event_type[]', $eTypes, null, ['class'=>'form-control', 'id'=>'selectEvents', 'multiple']) !!}
+                            {{-- <div class="cOptions">
                                 <div class="row">
-                                    <select multiple class="form-control" id="selectEvents">
-                                    @foreach ($eTypes as $type)
-                                        <option>{{$type}}</option>
-                                    @endforeach
-                                    {{-- @foreach ($eTypes as $type)
-                                        <div class="col-md-4">
-                                            <label>
-                                                <input type="checkbox" name="event_type[]" value="{{$type}}"> {{$type}}
-                                            </label>
-                                        </div>
-                                    @endforeach --}}
-                                </select>
+                                    <select multiple name="event_type[]" class="form-control" id="selectEvents">
+                                        @foreach ($eTypes as $type)
+                                            <option>{{$type}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             @if($errors->has('event_type'))
                                 {!! $errors->first('event_type', "<p class='text-danger help'>:message</p>") !!}
                             @endif
                         </div>
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label>If others, Specify</label>
                             <input type="text" class="form-control" name="others" {{ old('others') }}  placeholder="Specify Others">
-                        </div> --}}
+                        </div>
                         <div class="form-group">
                             <label>Event Venue</label>
-                            <input type="text" class="form-control"  name="venue[]" {{ old('venue')[0] }} placeholder="Venue 1">
-                            <input type="text" class="form-control" name="venue[]" {{ old('venue')[1] }}  placeholder="Venue 2">
-                            @if($errors->has('venue'))
-                                {!! $errors->first('venue', "<p class='text-danger help'>:message</p>") !!}
+                            <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
+                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2">
+                            @if($errors->has('venue.0'))
+                                <p class='text-danger help'>At least one venue is needed</p>
                             @endif
                         </div>
-
+                        {{-- {{ var_dump($request->all()) }} --}}
+                        {{-- {{ var_dump($errors) }} --}}
                         <div class="form-group">
                             <label>Event Date and Time (Start)</label>
                             <div class='input-group date' id='datetimepicker1'>
@@ -119,10 +114,10 @@
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
-                                @if($errors->has('datetime'))
-                                    {!! $errors->first('datetime', "<p class='text-danger help'>:message</p>") !!}
-                                @endif
                             </div>
+                            @if($errors->has('datetime'))
+                                {!! $errors->first('datetime', "<p class='text-danger help'>:message</p>") !!}
+                            @endif
                             <br /><br />
                             <label>Event Date and Time (End)</label>
                             <div class='input-group date' id='datetimepicker2'>
@@ -130,10 +125,10 @@
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
-                                @if($errors->has('datetime_end'))
-                                    {!! $errors->first('datetime_end', "<p class='text-danger help'>:message</p>") !!}
-                                @endif
                             </div>
+                            @if($errors->has('datetime_end'))
+                                {!! $errors->first('datetime_end', "<p class='text-danger help'>:message</p>") !!}
+                            @endif
                         </div>
 
                     </div>
@@ -170,10 +165,14 @@
             $("#eventDescription").val(t);
         });
 
-        $("#selectEvents").select2({
-            placeholder: "Choose event type",
-            tags: true
+        var s2 = $("#selectEvents").select2({
+            placeholder: "Choose event type"
         });
+
+        @if(old("event_type"))
+            s2.val(['{!! implode("', '", old('event_type')) !!}']).trigger("change");
+        @endif
+
     });
     </script>
 @endsection

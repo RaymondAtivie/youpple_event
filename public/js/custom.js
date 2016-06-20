@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
     "use strict";
 
-	/* PrettyPhoto Script
+    /* PrettyPhoto Script
     ======================================================*/
     $('a[data-rel]').each(function () {
         $(this).attr('rel', $(this).data('rel'));
@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
     }
 
     /* Owl Slider For Banner 2
-   ======================================================*/
+    ======================================================*/
     if ($('#homev2-slider').length) {
         $('#homev2-slider').owlCarousel({
             loop: true,
@@ -90,7 +90,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-	/* Owl Slider For Our Upcoming Event
+    /* Owl Slider For Our Upcoming Event
     ======================================================*/
     if ($('.upevents-slider').length) {
         $('.upevents-slider').owlCarousel({
@@ -188,7 +188,7 @@ jQuery(document).ready(function ($) {
 
 
     /* Owl Slider For Blog
-   ======================================================*/
+    ======================================================*/
     if ($('#cp-blog-slider').length) {
         $('#cp-blog-slider').owlCarousel({
             loop: true,
@@ -216,7 +216,7 @@ jQuery(document).ready(function ($) {
     }
 
 
-	/* Event Countdown Scipts Start
+    /* Event Countdown Scipts Start
     ======================================================*/
     if ($('.eventcountdown').length) {
         $(function () {
@@ -361,7 +361,7 @@ jQuery(document).ready(function ($) {
                 lightness: 10
 
             }],
-        }
+        };
         map = new google.maps.Map(document.getElementById('cp-map_contact'), myOptions);
         //End Initialize MAP
         //Set Marker
@@ -384,13 +384,26 @@ jQuery(document).ready(function ($) {
     /* Quantity For Product Detail Pagew
     ======================================================*/
     if ($('.spinnerExample').length) {
-        $('.spinnerExample').spinner()
+        $('.spinnerExample').spinner();
     }
 
 
     $(function () {
+        $("#datetimepicker0").datetimepicker();
         $('#datetimepicker1').datetimepicker();
-            $('#datetimepicker2').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+        $('#datetimepicker3').datetimepicker();
+        $('#datetimepicker4').datetimepicker();
+        $('#datetimepicker5').datetimepicker();
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker();
+        $('#datetimepicker8').datetimepicker();
+        $('#datetimepicker9').datetimepicker();
+        $('#datetimepicker10').datetimepicker();
+        $('#datetimepicker11').datetimepicker();
+        $('#datetimepicker12').datetimepicker();
+        $('#datetimepicker13').datetimepicker();
+        $('#datetimepicker14').datetimepicker();
     });
 
 });

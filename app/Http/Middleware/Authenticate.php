@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\M;
 
 class Authenticate
 {
@@ -21,8 +22,7 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
-                session()->flash("issue_status", "warning");
-                session()->flash("issue_message", "You need to login to view this page");
+                M::flash("You need to login to view this page", "warning");
 
                 return redirect()->guest('events/login');
             }

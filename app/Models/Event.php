@@ -3,16 +3,32 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon;
 
 class Event extends Model
 {
     protected $dates = ['datetime', 'datetime_end'];
 
-    public function getVenueAttribute($venue)
+    protected $fillable = ['title', 'description', 'venue', 'datetime', 'datetime_end'];
+
+    protected $casts = [
+        'venue' => 'array',
+    ];
+
+    public function setDatetimeAttribute($value)
     {
-        return unserialize($venue);
+        $this->attributes['datetime'] = Carbon\Carbon::createFromFormat('m/d/Y h:i a', $value);
+    }
+    public function setDatetimeEndAttribute($value)
+    {
+        $this->attributes['datetime_end'] = Carbon\Carbon::createFromFormat('m/d/Y h:i a', $value);
     }
 
+    public function publish()
+    {
+        $this->published = "true";
+        $this->save();
+    }
 
     //Relationships
     public function owner()

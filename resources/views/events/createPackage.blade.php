@@ -30,7 +30,7 @@
 
     <!-- Main Content Start -->
     <div class="cp-main-content">
-        <form action="{{ url('events/create/media') }}" method="POST">
+        <form action="{{ url('events/create/package') }}" method="POST">
 
             <!--Signup Content Start-->
             <section ng-controller="formCtrl as FC" class="cp-signup-section pd-tb60">
@@ -51,23 +51,26 @@
                 <div class="row pd-tb60">
 
                     <div class="col-md-6 col-md-offset-3">
+                        @include('inc/flash')
 
+                        <p>Create package(s) for <b>{{ session('event')->title }}</b></p>
+                        <hr />
                         <div style="padding-left: 30px" ng-repeat="i in FC.list">
                             <h2>Package @{{i + 1}}</h2>
                             <hr />
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Package Title</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Title">
+                                <input type="text" class="form-control" required name="title[]" placeholder="Title">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Package Description</label>
-                                <textarea class="form-control" placeholder="Description" rows="3" style="resize: none; border: 0px; border-bottom: 2px solid silver; "></textarea>
+                                <textarea class="form-control" required name="description[]" placeholder="Description" rows="3" style="resize: none; border: 0px; border-bottom: 2px solid silver; "></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Package Fee Type</label>
-                                <select class="form-control">
+                                <select class="form-control" name="fee_type[]">
                                     <option>Booth Fee</option>
                                     <option>Exhibition Fee</option>
                                     <option>Runway Fee</option>
@@ -88,7 +91,7 @@
                                 <label for="exampleInputEmail1">Package Fee</label>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <select class="form-control">
+                                        <select class="form-control" name="fee_currency[]">
                                             <option>Naira</option>
                                             <option>CFA</option>
                                             <option>USD</option>
@@ -100,10 +103,10 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="amount">
+                                        <input type="number" required name="fee_amount[]" class="form-control" placeholder="amount">
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="form-control">
+                                        <select class="form-control" name="fee_style[]">
                                             <option>Free</option>
                                             <option>Early Bird</option>
                                             <option>Late Bird</option>
@@ -114,7 +117,6 @@
                                 <br />
                                 <hr />
                             </div>
-                            <!-- ---- -->
 
                         </div>
                     </div>
@@ -142,7 +144,6 @@
     .controller('formCtrl', function() {
         this.list = [];
         this.num = 0;
-
         this.list.push(this.num);
 
         this.duplicate = function(){

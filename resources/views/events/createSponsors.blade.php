@@ -29,7 +29,7 @@
 
     <!-- Main Content Start -->
     <div class="cp-main-content">
-        <form action="{{ url('events/create/sponsors') }}" method="POST">
+        <form action="{{ url('events/create/sponsors') }}" method="POST" enctype="multipart/form-data">
 
             <!--Signup Content Start-->
             <section class="cp-signup-section pd-tb60" ng-controller="formCtrl as FC" >
@@ -49,28 +49,34 @@
 
                 <div class="row pd-tb60">
 
-                    <div class="col-md-6 col-md-offset-3" ng-repeat="i in FC.list" style="margin-bottom: 50px !important">
+                    <div class="col-md-6 col-md-offset-3" style="margin-bottom: 50px !important">
+                        @include('inc/flash')
 
-                        <h2>Partners Logo @{{i + 1}} </h2>
+                        <p>Add your partners for <b>{{ session('event')->title }}</b></p>
                         <hr />
-                        <div style="padding-left: 30px">
+                        <div style="padding-left: 30px" ng-repeat="i in FC.list">
+                            <h2>Partners Logo @{{i + 1}} </h2>
+                            <hr />
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Partner Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name">
+                                        <input type="text" name="name[]" class="form-control" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Link</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL to partner">
+                                        <label for="exampleInputEmail1">Link to partner website</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">http://</span>
+                                            <input type="text" name="link[]" class="form-control" placeholder="URL to partner">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Upload Media</label>
-                                        <input type="file" class="form-control" />
+                                        <input type="file" name="file[]" class="form-control" />
                                     </div>
                                 </div>
                             </div>

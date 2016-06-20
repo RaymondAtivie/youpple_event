@@ -2,6 +2,14 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ url('css/audio-player.css') }}" />
+{{-- {{ Request::path() }} --}}
+    @if (Request::path() == 'events/preview')
+        <hr style="clear: both" />
+        <div class="alert alert-info" style="text-align: center; margin: 20px">
+            <p>Your Event is ready to be published. Please Click this button to confirm</p><br />
+            <a class="btn btn-primary" href="{{ url("events/publish") }}">Publish</a>
+        </div>
+    @endif
 
     <!-- Inner Banner Start -->
     <div class="cp-inner-banner">
@@ -27,6 +35,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
+                        @include('inc/flash')
                         <!-- Blog Item Start -->
                         <div class="cp-blog-item cp-blog-detail">
                             <!--Events Thumb Start-->

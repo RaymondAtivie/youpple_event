@@ -29,14 +29,26 @@ Route::get('/about', 'PagesController@about');
 Route::group(['prefix'=>'events'], function(){
     Route::auth();
 
-    Route::get('/', 'EventsController@index');
-    Route::get('/create', 'EventsController@showCreateEvent');
-    Route::post('/create', 'EventsController@storeEvent');
-    Route::get('/create/package', 'EventsController@showCreateEventPackage');
-    Route::any('/create/media', 'EventsController@showCreateEventMedia');
-    Route::any('/create/awards', 'EventsController@showCreateEventAwards');
-    Route::any('/create/sponsors', 'EventsController@showCreateEventSponsors');
+    Route::get('/', 'EventsController@home');
 
-    Route::get('/{event}', 'EventsController@showEvent');
+    Route::get('/create', 'EventsController@showCreate');
+    Route::post('/create', 'EventsController@store');
+
+    Route::get('/create/package', 'EventsController@showCreatePackage')->middleware('confirmEvent');
+    Route::post('/create/package', 'EventsController@storePackage');
+
+    Route::get('/create/media', 'EventsController@showCreateMedia')->middleware('confirmEvent');
+    Route::post('/create/media', 'EventsController@storeMedia');
+
+    Route::get('/create/awards', 'EventsController@showCreateAwards')->middleware('confirmEvent');
+    Route::post('/create/awards', 'EventsController@storeAwards');
+
+    Route::get('/create/sponsors', 'EventsController@showCreateSponsors')->middleware('confirmEvent');
+    Route::post('/create/sponsors', 'EventsController@storeSponsors');
+
+    Route::get('preview', 'EventsController@showPreview')->middleware('confirmEvent');
+    Route::get('publish', 'EventsController@publishEvent')->middleware('confirmEvent');
+
+    Route::get('/{event}', 'EventsController@show');
 
 });

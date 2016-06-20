@@ -18,6 +18,7 @@ class CreateEventTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('venue');
+            $table->srting('others');
             $table->enum('published', ['true', 'false'])->default('false');
             $table->timestamp('datetime');
             $table->timestamp('datetime_end');

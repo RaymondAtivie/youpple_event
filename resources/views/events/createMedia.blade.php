@@ -30,7 +30,7 @@
 
     <!-- Main Content Start -->
     <div class="cp-main-content">
-        <form action="{{ url('events/create/awards') }}" method="POST">
+        <form action="{{ url('events/create/media') }}" method="POST" enctype="multipart/form-data">
 
             <!--Signup Content Start-->
             <section class="cp-signup-section pd-tb60" ng-controller="formCtrl as FC">
@@ -50,22 +50,25 @@
 
                 <div class="row pd-tb60">
 
-                    <div class="col-md-6 col-md-offset-3" ng-repeat="i in FC.list" style="margin-bottom: 40px">
+                    <div class="col-md-6 col-md-offset-3" style="margin-bottom: 40px">
+                        @include('inc/flash')
 
-                        <h2>Media @{{i + 1}}</h2>
+                        <p>Add media (pictures, audio, video) for <b>{{ session('event')->title }}</b></p>
                         <hr />
-                        <div style="padding-left: 30px">
+                        <div style="padding-left: 30px; padding-bottom: 30px"  ng-repeat="i in FC.list">
+                            <h2>Media @{{i + 1}}</h2>
+                            <hr />
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Media Title</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Title">
+                                        <input type="text" name="title[]" class="form-control" placeholder="Title">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Media Type</label>
-                                        <select class="form-control">
+                                        <select class="form-control" name="type[]">
                                             <option>Image</option>
                                             <option>Audio</option>
                                             <option>Video</option>
@@ -78,19 +81,17 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Upload Media</label>
-                                        <input type="file" class="form-control" />
+                                        <input type="file" name="file[]" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-2" style="text-align: center; padding-top: 20px"><h3>OR</h3></div>
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Add Link</label>
-                                        <input type="text" class="form-control" />
+                                        <label for="exampleInputEmail1">Add Url</label>
+                                        <input type="text" name="url[]" class="form-control" />
                                     </div>
                                 </div>
                             </div>
-
-
 
                         </div>
                     </div>
