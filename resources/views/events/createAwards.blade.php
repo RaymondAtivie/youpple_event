@@ -34,18 +34,7 @@
             <!--Signup Content Start-->
             <section class="cp-signup-section pd-tb60" ng-controller="formCtrl as FC">
 
-
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <ul class="nav nav-wizard">
-                            <li><a href="#">Basic information</a></li>
-                            <li><a href="#">Packages</a></li>
-                            <li><a href="#">Media</a></li>
-                            <li class="active"><a href="#">Awards</a></li>
-                            <li><a href="#">Partners</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @include('inc/chips', ['page'=>'awards'])
 
                 <div class="row pd-tb60">
 
@@ -109,7 +98,6 @@
                                             <span ng-show="!i.reg">Registration only?</span>
                                             <span ng-show="i.reg">Upload contestants</span>
                                         </button>
-                                        @{{i.reg}}
 
                                         <input type="hidden" name="enable_registration[]" value="@{{ i.reg }}" />
                                     </div>

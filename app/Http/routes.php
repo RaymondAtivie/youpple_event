@@ -34,21 +34,29 @@ Route::group(['prefix'=>'events'], function(){
     Route::get('/create', 'EventsController@showCreate');
     Route::post('/create', 'EventsController@store');
 
-    Route::get('/create/package', 'EventsController@showCreatePackage')->middleware('confirmEvent');
-    Route::post('/create/package', 'EventsController@storePackage');
+    Route::group(['middleware'=>['confirmEvent']], function(){
 
-    Route::get('/create/media', 'EventsController@showCreateMedia')->middleware('confirmEvent');
-    Route::post('/create/media', 'EventsController@storeMedia');
+        Route::get('/create/package', 'EventsController@showCreatePackage');
+        Route::post('/create/package', 'EventsController@storePackage');
 
-    Route::get('/create/awards', 'EventsController@showCreateAwards')->middleware('confirmEvent');
-    Route::post('/create/awards', 'EventsController@storeAwards');
+        Route::get('/create/media', 'EventsController@showCreateMedia');
+        Route::post('/create/media', 'EventsController@storeMedia');
 
-    Route::get('/create/sponsors', 'EventsController@showCreateSponsors')->middleware('confirmEvent');
-    Route::post('/create/sponsors', 'EventsController@storeSponsors');
+        Route::get('/create/awards', 'EventsController@showCreateAwards');
+        Route::post('/create/awards', 'EventsController@storeAwards');
 
-    Route::get('preview', 'EventsController@showPreview')->middleware('confirmEvent');
-    Route::get('publish', 'EventsController@publishEvent')->middleware('confirmEvent');
+        Route::get('/create/sponsors', 'EventsController@showCreateSponsors');
+        Route::post('/create/sponsors', 'EventsController@storeSponsors');
 
+        Route::get('preview', 'EventsController@showPreview');
+        Route::get('publish', 'EventsController@publishEvent');
+
+        Route::get('deleteEvent', function()
+        {
+            // var_dump(session('event'));
+            session()->forget("event");
+        });
+    });
     Route::get('/{event}', 'EventsController@show');
 
 });

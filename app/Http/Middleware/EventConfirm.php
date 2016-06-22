@@ -16,6 +16,7 @@ class EventConfirm
      */
     public function handle($request, Closure $next)
     {
+        // dd(session());
         if(!session()->has('event')){
             M::flash("Create an event first", "info");
 

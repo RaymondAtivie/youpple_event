@@ -16,7 +16,7 @@ class CreateEventTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('title');
-            $table->text('description');
+            $table->longText('description');
             $table->text('venue');
             $table->srting('others');
             $table->enum('published', ['true', 'false'])->default('false');

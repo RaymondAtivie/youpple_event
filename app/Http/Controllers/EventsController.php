@@ -14,7 +14,7 @@ class EventsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(["index", "showEvent"]);
+        $this->middleware('auth')->except(["home", "show"]);
     }
 
     public function home()
@@ -81,13 +81,13 @@ class EventsController extends Controller
 
         for($i=0;$i<count($r->input('title'));$i++) {
 
-            if ($r->file('file')[$i]->isValid()) {
+            if (isset($r->file('file')[$i]) && $r->file('file')[$i]->isValid()) {
                 $destinationPath = 'uploads/'.strtolower($r->input('type')[$i]); // upload path
                 $extension = $r->file('file')[$i]->getClientOriginalExtension(); // getting image extension
                 $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
                 $r->file('file')[$i]->move($destinationPath, $fileName); // uploading file to given path
             }else{
-                $fileName = null;
+                $fileName = '';
             }
 
             $p = [
@@ -125,7 +125,7 @@ class EventsController extends Controller
 
             for($j=0;$j<count($r->input('cName_'.$i));$j++) {
                 // dd($r->file());
-                if ($r->file('cFile_'.$i)[$j] != null) {
+                if (isset($r->file('cFile_'.$i)[$j]) && $r->file('cFile_'.$i)[$j]->isValid()) {
                     $destinationPath = 'uploads/contestants/'; // upload path
                     $extension = $r->file('cFile_'.$i)[$j]->getClientOriginalExtension(); // getting image extension
                     $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
@@ -159,7 +159,7 @@ class EventsController extends Controller
 
         for($i=0;$i<count($r->input('name'));$i++) {
 
-            if ($r->file('file')[$i]->isValid()) {
+            if (isset($r->file('file')[$i]) && $r->file('file')[$i]->isValid()) {
                 $destinationPath = 'uploads/sponsors/'; // upload path
                 $extension = $r->file('file')[$i]->getClientOriginalExtension(); // getting image extension
                 $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image

@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <ul class="cp-top-social">
                             <li> <a class="quote-btn" href="{{ url('events/create') }}">Create Event</a> </li>
-                            <li> <a class="quote-btn" href="quote.html">Order Event Service</a> </li>
+                            <li> <a class="quote-btn" href="#">Order Event Service</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="cp-logo"><a href="/"><img style="width: 80px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple"></a></div>
+                        <div class="cp-logo"><a href="{{ url("/events") }}"><img style="width: 80px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple"></a></div>
                     </div>
                     <div class="col-md-9">
                         <nav class="navbar navbar-default">

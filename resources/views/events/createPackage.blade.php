@@ -35,18 +35,7 @@
             <!--Signup Content Start-->
             <section ng-controller="formCtrl as FC" class="cp-signup-section pd-tb60">
 
-
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <ul class="nav nav-wizard">
-                            <li><a href="#">Basic information</a></li>
-                            <li class="active"><a href="#">Packages</a></li>
-                            <li><a href="#">Media</a></li>
-                            <li><a href="#">Awards</a></li>
-                            <li><a href="#">Partners</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @include('inc/chips', ['page'=>'packages'])
 
                 <div class="row pd-tb60">
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ url('css/audio-player.css') }}" />
-{{-- {{ Request::path() }} --}}
+    {{-- {{ Request::path() }} --}}
     @if (Request::path() == 'events/preview')
         <hr style="clear: both" />
         <div class="alert alert-info" style="text-align: center; margin: 20px">
@@ -45,11 +45,13 @@
                                 <div class="cp-events-flickr-box">
                                     <div class="row">
                                         @foreach($event->media->groupBy('type')['image'] as $media)
-                                            <div class="col-md-4 col-sm-4">
-                                                <figure class="cp-thumb">
-                                                    <img src="{{$media->file}}" alt="">
-                                                </figure>
-                                            </div>
+                                            @if($media->url != "" && $media->link != "")
+                                                <div class="col-md-4 col-sm-4">
+                                                    <figure class="cp-thumb">
+                                                        <img src="{{$media->file}}" alt="">
+                                                    </figure>
+                                                </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div><!--Events Flickr Box End-->
@@ -216,7 +218,7 @@
                                                                                 @foreach($award->contestants->sortByDesc('vote') as $con)
                                                                                     <tr>
                                                                                         <td>
-                                                                                            <img style="width: 50px; border-radius: 50%" src="{{$con->image}}" />
+                                                                                            <img style="width: 50px; border-radius: 50%" src="{{ url($con->image) }}" />
                                                                                         </td>
                                                                                         <td>{{$con->name}}</td>
                                                                                         <td><small>{{$con->description}}</small></td>
@@ -288,15 +290,15 @@
                                     <section class="cp-creative-section pd-tb60">
                                         <div class="container">
                                             <div class="cp-section-title">
-                                                <h2>Sponsors</h2>
-                                                <strong>Sponsors for this event</strong>
+                                                <h2>Partners</h2>
+                                                <strong>Partners for this event</strong>
                                                 {{-- {{$event->sponsors}} --}}
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 @foreach($event->sponsors as $sp)
                                                     <div class="col-md-3 col-sm-6" style="padding: 10px">
                                                         <a href="{{$sp->link}}" target="_blank">
-                                                            <img style="height: inherit" src="{{$sp->logo}}" />
+                                                            <img style="width: 150px" src="{{$sp->logo}}" />
                                                         </a>
                                                     </div>
                                                 @endforeach
