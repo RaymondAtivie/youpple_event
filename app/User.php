@@ -24,6 +24,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function createEvent($params, $eventTypes)
+    {
+        $event = $this->events()->create($params);
+        $event->eventTypes()->sync($eventTypes);
+
+        return $event;
+    }
+
     //Relationships
     public function events()
     {

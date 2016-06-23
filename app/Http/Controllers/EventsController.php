@@ -8,6 +8,7 @@ use App\Http\Requests\EventFormRequest;
 use Carbon\Carbon;
 use App\Models\EventType;
 use Validator;
+use Auth;
 use App\Helpers\M;
 
 class EventsController extends Controller
@@ -36,8 +37,10 @@ class EventsController extends Controller
 
     public function store(EventFormRequest $request)
     {
-        $event = Event::create($request->all());
-        $event->eventTypes()->sync($request->input("event_type"));
+        // $event = Event::create($request->all());
+        // $event->eventTypes()->sync($request->input("event_type"));
+
+        $event = Auth::user()->createEvent($request->all(), $request->input("event_type"));
 
         session(['event'=> $event]);
 
