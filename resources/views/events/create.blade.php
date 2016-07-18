@@ -70,15 +70,7 @@
                         <div class="form-group">
                             <label>Event Type</label>
                             {!! Form::select('event_type[]', $eTypes, null, ['class'=>'form-control', 'id'=>'selectEvents', 'multiple']) !!}
-                            {{-- <div class="cOptions">
-                                <div class="row">
-                                    <select multiple name="event_type[]" class="form-control" id="selectEvents">
-                                        @foreach ($eTypes as $type)
-                                            <option>{{$type}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
+
                             @if($errors->has('event_type'))
                                 {!! $errors->first('event_type', "<p class='text-danger help'>:message</p>") !!}
                             @endif
@@ -88,13 +80,19 @@
                             <label>If others, Specify</label>
                             <input type="text" class="form-control" name="others" {{ old('others') }}  placeholder="Specify Others">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-controller="mapCtrl">
                             <label>Event Venue</label>
-                            <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
-                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2">
+                            {{-- <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
+                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2"> --}}
                             @if($errors->has('venue.0'))
                                 <p class='text-danger help'>At least one venue is needed</p>
                             @endif
+
+                            <div id="venueMap" style="height: 500px; width: 100%"></div>
+                            <br />
+                            <div ng-repeat="m in markers">New marker</div>
+                            <br />
+                            <button class="btn btn-primary" id="addLoc" type="button">Add a Location</button>
                         </div>
                         {{-- {{ var_dump($request->all()) }} --}}
                         {{-- {{ var_dump($errors) }} --}}
@@ -161,8 +159,46 @@
         });
 
         @if(old("event_type"))
-            s2.val(['{!! implode("', '", old('event_type')) !!}']).trigger("change");
+        s2.val(['{!! implode("', '", old('event_type')) !!}']).trigger("change");
         @endif
+
+    });
+
+    </script>
+    <script src="{{ url('js/angular.min.js') }}"></script>
+    <script>
+    angular.module('eventApp', [])
+    .controller('mapCtrl', function() {
+        vm = this;
+        vm.markers = [];
+
+        var myLatLng = {lat: 8.138553, lng: 6.8819294};
+
+        var map = new google.maps.Map(document.getElementById('venueMap'), {
+            zoom: 6,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            map: map,
+            title: 'Hello World!',
+            draggable:true
+        });
+
+        vm.markers.push(marker);
+
+        $("#addLoc").click(function(){
+            console.log(map.getCenter());
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                map: map,
+                title: 'Hello World!',
+                draggable:true
+            });
+            vm.markers.push(marker);
+            console.log(vm.markers);
+        });
 
     });
     </script>

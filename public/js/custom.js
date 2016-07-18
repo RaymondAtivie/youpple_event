@@ -142,6 +142,33 @@ jQuery(document).ready(function ($) {
         });
     }
 
+
+    /* Owl Slider For Our Upcoming Event
+    ======================================================*/
+    if ($('#cp-partners').length) {
+        $('#cp-partners').owlCarousel({
+            loop: true,
+            dots: false,
+            nav: true,
+            navText: '',
+            items: 2,
+            smartSpeed: 500,
+            margin: 30,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1199: {
+                    items: 2,
+                }
+            }
+        });
+    }
+
     /* Owl Slider For Testimonial
     ======================================================*/
     if ($('#cp-testimonial-slider').length) {

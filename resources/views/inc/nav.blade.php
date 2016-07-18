@@ -15,8 +15,8 @@
                 <div class="col-md-6">
                     <ul class="cp-top-social">
                         <li> <a class="quote-btn" href="{{ url('/') }}">Home</a> </li>
-                        <li> <a class="quote-btn" href="{{ url('about') }}">What we do</a> </li>
-                        <li> <a class="quote-btn" href="{{ url('about') }}">Who are we</a> </li>
+                        <li> <a class="quote-btn" href="{{ url('what-we-do') }}">What we do</a> </li>
+                        <li> <a class="quote-btn" href="{{ url('who-we-are') }}">Who are we</a> </li>
                     </ul>
                 </div>
 
@@ -44,8 +44,8 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
 
-                                <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="{{ url('about') }}">About</a></li>
+                                {{-- <li><a href="{{ url('/') }}">Home</a></li> --}}
+                                {{-- <li><a href="{{ url('about') }}">About</a></li> --}}
 
                             </ul>
                         </div>

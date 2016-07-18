@@ -25,6 +25,8 @@ Route::get('api/vote/{contestant}', function(Contestant $contestant){
 
 Route::get('/home', 'HomeController@index');
 Route::get('/about', 'PagesController@about');
+Route::get('/what-we-do', 'PagesController@whatWeDo');
+Route::get('/who-we-are', 'PagesController@whoWeAre');
 
 Route::group(['prefix'=>'events'], function(){
     Route::auth();
