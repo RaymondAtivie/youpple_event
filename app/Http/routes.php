@@ -80,6 +80,7 @@ Route::group([
 
     Route::get('/allusers', 'adminController@siteusers');
     Route::get('/events', 'adminController@allevents');
+    Route::get('/settings', 'adminController@settings');
     Route::get('event/attendees/{id}', 'adminController@eventattendees');
 
 
@@ -89,8 +90,8 @@ Route::group([
 
 });
 
-Route::post('/admin/login', 'adminController@login');
 
 
 Route::get('/admin/login', 'adminController@loginpage');
 Route::get('/admin/logout', 'adminController@logout');
+Route::post('/admin/login', 'adminController@login');

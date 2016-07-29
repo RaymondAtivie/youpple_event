@@ -22,6 +22,9 @@ class adminController extends Controller
     public function dashboard(){
         return view('admin.pages.index');
     }
+    public function settings(){
+        return view('admin.pages.settings');
+    }
     public function login() {
         $user = Input::get('username');
         $password = Input::get('password');
