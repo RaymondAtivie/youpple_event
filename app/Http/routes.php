@@ -62,11 +62,12 @@ Route::group(['prefix'=>'events'], function(){
     Route::get('/{event}', 'EventsController@show');
 
 });
+
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['admin']
 ], function () {
-      Route::get('/', 'adminController@dashboard');
+    Route::get('/', 'adminController@dashboard');
     Route::get('/commissionsettings/add', 'adminController@addcsettingpage');
 
     Route::post('/addcsetting', 'adminController@addCsetting');
@@ -88,6 +89,7 @@ Route::group([
 
 });
 
+Route::post('/admin/login', 'adminController@login');
 
 
 Route::get('/admin/login', 'adminController@loginpage');
