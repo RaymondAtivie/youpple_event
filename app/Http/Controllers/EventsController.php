@@ -39,11 +39,15 @@ class EventsController extends Controller
     {
         // $event = Event::create($request->all());
         // $event->eventTypes()->sync($request->input("event_type"));
-        dd($request->file());
-        dd($request->input());
-        dd($request->all());
+        // dd($request->file());
+        // dd($request->input());
+        // dd($request->all());
 
         $event = Auth::user()->createEvent($request->all(), $request->input("event_type"));
+        $files = $request->file("audioFile");
+        $audio = $request->input("audio");
+        $urls = $request->input("audioUrl");
+        $this->storeAudio($event, $files, $audio, $urls);
 
         session(['event'=> $event]);
 
@@ -85,26 +89,26 @@ class EventsController extends Controller
     {
         for($i=0;$i<count($titleA);$i++) {
 
-            if (isset($r->file('file')[$i]) && $r->file('file')[$i]->isValid()) {
-                $destinationPath = 'uploads/'.strtolower($r->input('type')[$i]); // upload path
-                $extension = $r->file('file')[$i]->getClientOriginalExtension(); // getting image extension
+            if (isset($fileA[$i]) && $fileA[$i]->isValid()) {
+                $destinationPath = 'uploads/audio'; // upload path
+                $extension = $fileA[$i]->getClientOriginalExtension(); // getting image extension
                 $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
-                $r->file('file')[$i]->move($destinationPath, $fileName); // uploading file to given path
+                $fileA[$i]->move($destinationPath, $fileName); // uploading file to given path
             }else{
                 $fileName = '';
             }
 
             $p = [
-                "title" => $r->input('title')[$i],
-                "url" => $r->input('url')[$i],
+                "title" => $titleA[$i],
+                "url" => $urlA[$i],
                 "file" => $fileName,
-                "type" => $r->input('type')[$i]
+                "type" => "audio"
             ];
             $event->media()->create($p);
         }
 
-        M::flash("Media successfully added to your event");
-        return redirect('events/create/awards');
+        // M::flash("Media successfully added to your event");
+        // return redirect('events/create/awards');
     }
 
     public function showCreateAwards()
