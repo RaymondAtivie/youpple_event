@@ -40,7 +40,7 @@ Route::group(['prefix'=>'events'], function(){
 
         Route::get('/create/package', 'EventsController@showCreatePackage');
         Route::post('/create/package', 'EventsController@storePackage');
-        // 
+        //
         // Route::get('/create/media', 'EventsController@showCreateMedia');
         // Route::post('/create/media', 'EventsController@storeMedia');
 
@@ -62,3 +62,33 @@ Route::group(['prefix'=>'events'], function(){
     Route::get('/{event}', 'EventsController@show');
 
 });
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['admin']
+], function () {
+      Route::get('/', 'adminController@dashboard');
+    Route::get('/commissionsettings/add', 'adminController@addcsettingpage');
+
+    Route::post('/addcsetting', 'adminController@addCsetting');
+
+    Route::get('/', 'adminController@dashboard');
+    Route::get('/categories', 'adminController@categories');
+    Route::get('/categories/add', 'adminController@addcategorypage');
+    Route::get('/adminusers', 'adminController@adminusers');
+
+
+    Route::get('/allusers', 'adminController@siteusers');
+    Route::get('/events', 'adminController@allevents');
+    Route::get('event/attendees/{id}', 'adminController@eventattendees');
+
+
+    Route::post('/addadmin', 'adminController@postAdminuser');
+    ////////
+    Route::post('/deleteadmin/{code}', 'adminController@deleteAdminuser');
+
+});
+
+
+
+Route::get('/admin/login', 'adminController@loginpage');
+Route::get('/admin/logout', 'adminController@logout');
