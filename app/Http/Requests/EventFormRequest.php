@@ -23,13 +23,13 @@ class EventFormRequest extends Request
     */
     public function rules()
     {
-        return [
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'event_type' => 'required|array',
-            'venue.0' => 'required',
-            'datetime' => 'required|date|after:today',
-            'datetime_end' => 'date|after:datetime',
-        ];
+        // return [
+        //     'title' => 'required|max:255',
+        //     'description' => 'required',
+        //     'event_type' => 'required|array',
+        //     'venue.0' => 'required',
+        //     'datetime' => 'required|date|after:today',
+        //     'datetime_end' => 'date|after:datetime',
+        // ];
     }
 }

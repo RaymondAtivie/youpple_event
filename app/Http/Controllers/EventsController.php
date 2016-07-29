@@ -35,10 +35,13 @@ class EventsController extends Controller
         return view('events.create', compact('eTypes'));
     }
 
-    public function store(EventFormRequest $request)
+    public function store(Request $request)
     {
         // $event = Event::create($request->all());
         // $event->eventTypes()->sync($request->input("event_type"));
+        dd($request->file());
+        dd($request->input());
+        dd($request->all());
 
         $event = Auth::user()->createEvent($request->all(), $request->input("event_type"));
 
@@ -70,7 +73,7 @@ class EventsController extends Controller
         }
 
         M::flash("Packages successfully added to your event");
-        return redirect('events/create/media');
+        return redirect('events/create/awards');
     }
 
     public function showCreateMedia()
@@ -78,11 +81,9 @@ class EventsController extends Controller
         return view('events.createMedia');
     }
 
-    public function storeMedia(Request $r)
+    public function storeAudio($event, $fileA, $titleA, $urlA)
     {
-        $event = session("event");
-
-        for($i=0;$i<count($r->input('title'));$i++) {
+        for($i=0;$i<count($titleA);$i++) {
 
             if (isset($r->file('file')[$i]) && $r->file('file')[$i]->isValid()) {
                 $destinationPath = 'uploads/'.strtolower($r->input('type')[$i]); // upload path

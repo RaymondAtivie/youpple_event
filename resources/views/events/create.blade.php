@@ -36,7 +36,7 @@
 
     <!-- Main Content Start -->
     <div class="cp-main-content">
-        <form action="{{ url('events/create') }}" method="POST">
+        <form action="{{ url('events/create') }}" method="POST" enctype="multipart/form-data">
 
             <!--Signup Content Start-->
             <section class="cp-signup-section pd-tb60">
@@ -82,8 +82,8 @@
                         </div>
                         <div class="form-group" ng-controller="mapCtrl">
                             <label>Event Venue</label>
-                            {{-- <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
-                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2"> --}}
+                            <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
+                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2">
                             @if($errors->has('venue.0'))
                                 <p class='text-danger help'>At least one venue is needed</p>
                             @endif
@@ -92,10 +92,47 @@
                             <br />
                             <div ng-repeat="m in markers">New marker</div>
                             <br />
-                            <button class="btn btn-primary" id="addLoc" type="button">Add a Location</button>
+                            <button class="btn btn-default" id="addLoc" type="button">Add a Location</button>
                         </div>
-                        {{-- {{ var_dump($request->all()) }} --}}
-                        {{-- {{ var_dump($errors) }} --}}
+
+                        <div ng-controller="formCtrl as FC" style="border: 1px solid black; padding: 15px; margin-bottom: 20px; border-radius: 5px">
+                            <div style="padding-left: 30px; padding-bottom: 30px"  ng-repeat="i in FC.list">
+                                <h3>Audio @{{i + 1}}</h3>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Audio Title</label>
+                                            <input type="text" name="audio[]" class="form-control" placeholder="Title">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Audio File</label>
+                                            <input type="file" name="audioFile[]" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="col-md-12" style="text-align: center;"><h3>OR</h3></div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Audio Url</label>
+                                            <input type="text" name="audioUrl[]" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" ng-click="FC.duplicate()" class="btn btn-block btn-default">Add another Audio file</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label>Event Date and Time (Start)</label>
                             <div class='input-group date' id='datetimepicker1'>
@@ -200,6 +237,19 @@
             console.log(vm.markers);
         });
 
+    });
+
+    angular.module('eventApp')
+    .controller('formCtrl', function() {
+        this.list = [];
+        this.num = 0;
+
+        this.list.push(this.num);
+
+        this.duplicate = function(){
+            this.num++;
+            this.list.push(this.num);
+        }
     });
     </script>
 @endsection

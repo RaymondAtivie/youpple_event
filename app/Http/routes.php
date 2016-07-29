@@ -40,9 +40,9 @@ Route::group(['prefix'=>'events'], function(){
 
         Route::get('/create/package', 'EventsController@showCreatePackage');
         Route::post('/create/package', 'EventsController@storePackage');
-
-        Route::get('/create/media', 'EventsController@showCreateMedia');
-        Route::post('/create/media', 'EventsController@storeMedia');
+        // 
+        // Route::get('/create/media', 'EventsController@showCreateMedia');
+        // Route::post('/create/media', 'EventsController@storeMedia');
 
         Route::get('/create/awards', 'EventsController@showCreateAwards');
         Route::post('/create/awards', 'EventsController@storeAwards');
