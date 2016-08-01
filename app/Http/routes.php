@@ -30,6 +30,7 @@ Route::get('/who-we-are', 'PagesController@whoWeAre');
 
 Route::group(['prefix'=>'events'], function(){
     Route::auth();
+    Route::get("/register/more", "Auth\AuthController@moreReg");
 
     Route::get('/', 'EventsController@home');
 
@@ -40,7 +41,7 @@ Route::group(['prefix'=>'events'], function(){
 
         Route::get('/create/package', 'EventsController@showCreatePackage');
         Route::post('/create/package', 'EventsController@storePackage');
-        //
+
         // Route::get('/create/media', 'EventsController@showCreateMedia');
         // Route::post('/create/media', 'EventsController@storeMedia');
 

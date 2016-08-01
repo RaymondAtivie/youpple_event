@@ -73,4 +73,25 @@ class AuthController extends Controller
         ]);
     }
 
+    function moreReg(){
+        $intrests = ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
+                    'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
+                    'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
+                    'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
+                    'Ordination', 'Cookout'];
+
+        $services = [
+                "publicity"=>[
+                    'Graphics Design', 'Animation', 'Printing', 'Souvenir/Gift Management', 'Branding',
+                    'Event Website Management', 'Social Media Hype', 'Radio Jingles',
+                    'Television Advertisement', 'Billboard Advertisement'
+                ],
+                "Rentals" =>[
+                    's'
+                ]
+        ];
+
+        return view("auth.moreRegister", compact('intrests', 'services'));
+    }
+
 }
