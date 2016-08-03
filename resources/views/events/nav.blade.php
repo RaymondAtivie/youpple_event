@@ -56,6 +56,7 @@
 
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="{{ url('events/profile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Profile</a></li>
+                                                <li><a href="{{ url('events/register/more') }}"><i class="fa fa-btn fa-user"></i> &nbsp; More Information</a></li>
                                                 <li><a href="{{ url('events/logout') }}"><i class="fa fa-btn fa-sign-out"></i> &nbsp; Logout</a></li>
                                             </ul>
                                         </li>

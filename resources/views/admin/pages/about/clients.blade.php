@@ -1,14 +1,14 @@
 @extends('admin.layout.default')
 @section('title')
-    Dashboard
+    Change Clients
 @stop
 @section('main')
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            Dashboard
+            Clients
         </h3>
-        <span class="sub-title">Welcome to Youpple Events</span>
+        <span class="sub-title">Change the clients of Youpple</span>
     </div>
 
     <div class="wrapper">

@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Http\Request;
+use App\Helpers\M;
 
 class AuthController extends Controller
 {
@@ -24,29 +26,29 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
+    * Where to redirect users after login / registration.
+    *
+    * @var string
+    */
     protected $redirectTo = '/events';
     protected $redirectAfterLogout = '/events';
 
     /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
+    * Create a new authentication controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'moreReg']]);
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+    * Get a validator for an incoming registration request.
+    *
+    * @param  array  $data
+    * @return \Illuminate\Contracts\Validation\Validator
+    */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -58,13 +60,16 @@ class AuthController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
+    * Create a new user instance after a valid registration.
+    *
+    * @param  array  $data
+    * @return User
+    */
     protected function create(array $data)
     {
+        M::flash("Successfully Registered. Please provide extra details");
+        $this->redirectTo = '/events/register/more';
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,20 +80,36 @@ class AuthController extends Controller
 
     function moreReg(){
         $intrests = ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
-                    'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
-                    'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
-                    'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
-                    'Ordination', 'Cookout'];
+        'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
+        'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
+        'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
+        'Ordination', 'Cookout'];
 
         $services = [
-                "publicity"=>[
-                    'Graphics Design', 'Animation', 'Printing', 'Souvenir/Gift Management', 'Branding',
-                    'Event Website Management', 'Social Media Hype', 'Radio Jingles',
-                    'Television Advertisement', 'Billboard Advertisement'
-                ],
-                "Rentals" =>[
-                    's'
-                ]
+            "publicity"=>[
+                'Graphics Design', 'Animation', 'Printing', 'Souvenir/Gift Management', 'Branding',
+                'Event Website Management', 'Social Media Hype', 'Radio Jingles',
+                'Television Advertisement', 'Billboard Advertisement'
+            ],
+            "Rentals" =>[
+                'Chairs', 'Tables', 'Canopy and Tent', 'Toys', 'Bouncing Castle', 'Crockery Set',
+                'Costume', 'Sound Equipment', 'Visual Equipment', 'Musical Instrument', 'Lighting',
+                'Stage', 'Decoration Items', 'Halls', 'Garden and Park', 'Pool'
+            ],
+            "Logistics and transportation" => [
+                "Transport", "Accommodation", "Decoration", "Cleaning Services", "Laundry Services",
+                "Waste Disposal", "Parking Services"
+            ],
+            "Human Resource" => [
+                "Make-up Artiste", "Models", "Ushers", "Bouncers", "Security Officials",
+                "Master of Ceremony / Moderator", "Comedian", "Clown", "Dancer/ Dance Crew",
+                "Musical Band", "Music Artiste", "Disc Jockey", "Public Speaker", "Religious Leader",
+                "Caterer", "Waiter", "Undertaker", "Sound Engineer", "Videographer", "Photographer",
+                "Fashion Designer"
+            ],
+            "Other Services" => [
+                "Bouquet", "Cake and Snack", "Drink Supply", "Event Planning", "Saloon and Spa", "Wardrobe Management"
+            ]
         ];
 
         return view("auth.moreRegister", compact('intrests', 'services'));

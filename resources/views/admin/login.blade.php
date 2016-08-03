@@ -6,7 +6,7 @@
     <meta name="description" content="Admin Template">
     <meta name="keywords" content="admin dashboard, admin, flat, flat ui, ui kit, app, web app, responsive">
     <link rel="shortcut icon" href="img/ico/favicon.png">
-    <title>ADMIN LOGIN - Ticket Wire</title>
+    <title>Admin Login - Youpple Events</title>
 
     <!-- Base Styles -->
     <link href="{{ url('') }}/assets/admin/css/style.css" rel="stylesheet">

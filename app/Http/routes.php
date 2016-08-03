@@ -69,6 +69,24 @@ Route::group([
     'middleware' => ['admin']
 ], function () {
     Route::get('/', 'adminController@dashboard');
+
+    Route::get('/home/logo', "AdminController@showLogo");
+    Route::get('/home/social', "AdminController@showSocial");
+    Route::get('/home/terms', "AdminController@showTermsAndConditions");
+    Route::get('/home/termsofuse', "AdminController@showTermsOfUse");
+    Route::get('/home/advert', "AdminController@showAdvert");
+    Route::get('/home/privacy', "AdminController@showPrivacyPolicy");
+
+    Route::get('/about/clients', "AdminController@showClients");
+    Route::get('/about/partners', "AdminController@showPartners");
+    Route::get('/about/info', "AdminController@showInfo");
+    Route::get('/about/testimonials', "AdminController@showTestimonials");
+
+    Route::get('/feature/events', "AdminController@showFeaturedEvents");
+    Route::get('/feature/providers', "AdminController@showFeaturedProviders");
+
+    ////////////////////////////////////////////////////////////
+
     Route::get('/commissionsettings/add', 'adminController@addcsettingpage');
 
     Route::post('/addcsetting', 'adminController@addCsetting');
@@ -84,15 +102,10 @@ Route::group([
     Route::get('/settings', 'adminController@settings');
     Route::get('event/attendees/{id}', 'adminController@eventattendees');
 
-
     Route::post('/addadmin', 'adminController@postAdminuser');
-    ////////
     Route::post('/deleteadmin/{code}', 'adminController@deleteAdminuser');
-
 });
 
-
-
-Route::get('/admin/login', 'adminController@loginpage');
-Route::get('/admin/logout', 'adminController@logout');
-Route::post('/admin/login', 'adminController@login');
+Route::get('/admin/login', 'AdminController@loginpage');
+Route::get('/admin/logout', 'AdminController@logout');
+Route::post('/admin/login', 'AdminController@login');

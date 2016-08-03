@@ -1,14 +1,14 @@
 @extends('admin.layout.default')
 @section('title')
-    Dashboard
+    Change Terms and Conditions
 @stop
 @section('main')
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            Dashboard
+            Terms and conditions
         </h3>
-        <span class="sub-title">Welcome to Youpple Events</span>
+        <span class="sub-title">Change the terms and conditions for Youpple</span>
     </div>
 
     <div class="wrapper">

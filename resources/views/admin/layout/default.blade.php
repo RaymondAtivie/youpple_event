@@ -109,7 +109,7 @@
             @yield('main')
 
             <footer>
-                2015 &copy; TicketWire
+                {{date("Y")}} &copy; Youpple Events
             </footer>
 
 

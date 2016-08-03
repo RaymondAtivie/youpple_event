@@ -2,39 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Request;
-use App\Adminuser;
-use App\Csetting;
-use App\User;
-use App\Event;
-use Validator;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use Maatwebsite\Excel\Facades\Excel;
+use Validator;
 
+use App\Http\Requests;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
-    // Student Dashboard
-    // Admin Dashboard
-    public function dashboard(){
-        return view('admin.pages.index');
-    }
-    public function settings(){
-        return view('admin.pages.settings');
-    }
     public function login() {
         $user = Input::get('username');
         $password = Input::get('password');
+
         if (Auth::guard('admin')->attempt(['username' => $user, 'password' => $password])) {
             return redirect()->intended('admin/');
         }elseif(Auth::guard('admin')->attempt(['email' => $user, 'password' => $password])){
-          return redirect()->intended('admin/');
+            return redirect()->intended('admin/');
         }else{
             return Redirect::to('admin/login')->withErrors("Wrong details");
-
         }
     }
 
@@ -44,89 +32,58 @@ class adminController extends Controller
         }
         return redirect()->intended('admin/');
     }
-    ////
-    /////////
-    public function csettings(){
-        $rcategories = Csetting::orderby('name', 'asc')->get();
-        return view('admin.pages.csettings', compact('rcategories'));
-    }
-    public function addcsettingpage(){
-        return view('admin.pages.addcsetting');
-    }
-    public function addCsetting(){
-        // dd(Input::all());
-        $rules = array(
-          'lower' => 'required|unique:csettings',
-          'higher' => 'required|unique:csettings',
-          'percentage' => 'required',
-          'extra' => 'required',
-          'code' => 'required|unique:csettings',
-        );
-
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            return Redirect::to('admin/commissionsettings/add')->withErrors($validator);
-        } else {
-            $user = new Csetting;
-            $user->lower = Input::get('lower');
-            $user->higher = Input::get('higher');
-            $user->percentage = Input::get('percentage');
-            $user->extra = Input::get('extra');
-            $user->code = Input::get('code');
-            $user->save();
-
-            return Redirect::to('admin/commissionsettings/add')->with('message', $user->code . ' Commission setting added successfully.');
-        }
-    }
-    public function allevents(){
-        $events = Event::all();
-        return view('admin.pages.allevents', compact('events'));
-    }
-    public function eventattendees($id)
-    {
-        $event = Event::find($id);
-        $attendees = $event->attendees;
-        return view('admin.pages.eventattendees', compact('event','attendees'));
-    }
-
-    public function siteusers(){
-        $users = User::all();
-        return view('admin.pages.users', compact('users'));
-    }
-    public function adminusers(){
-        $adminusers = Adminuser::all();
-        return view('admin.pages.adminusers', compact('adminusers'));
-    }
-
-
-    public function postAdminuser(){
-        $rules = array(
-            'email' => 'required|unique:adminusers',
-            'username' => 'required|unique:adminusers',
-            'password' => 'required',
-            'fullname' => 'required',
-        );
-
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            return Redirect::to('admin/adminusers')->withErrors($validator);
-        } else {
-            $user = new Adminuser;
-            $user->fullname = Input::get('fullname');
-            $user->username = Input::get('username');
-            $user->email = Input::get('email');
-            $user->password = Hash::make(Input::get('password'));
-            $user->save();
-
-            return Redirect::to('admin/adminusers')->with('message', $user->username . ' User added successfully.');
-        }
-    }
 
     public function logout()
     {
         Auth::guard('admin')->logout();
         \Session::flush();
         return Redirect::to('admin/login')->withMessage("See you soon");
+    }
+
+    public function dashboard(){
+        return view('admin.pages.index');
+    }
+
+    ///////--- HOME -----///////////////
+    public function showLogo(){
+        return view('admin.pages.home.logos');
+    }
+    public function showSocial(){
+        return view('admin.pages.home.social');
+    }
+    public function showPrivacyPolicy(){
+        return view('admin.pages.home.privacy');
+    }
+    public function showAdvert(){
+        return view('admin.pages.home.advert');
+    }
+    public function showTermsOfUse(){
+        return view('admin.pages.home.termsofuse');
+    }
+    public function showTermsAndConditions(){
+        return view('admin.pages.home.terms');
+    }
+
+    ///////--- ABOUT -----///////////////
+    public function showClients(){
+        return view('admin.pages.about.clients');
+    }
+    public function showPartners(){
+        return view('admin.pages.about.partners');
+    }
+    public function showInfo(){
+        return view('admin.pages.about.information');
+    }
+    public function showTestimonials(){
+        return view('admin.pages.about.testimonials');
+    }
+
+    ///////--- FEATURED -----///////////////
+    public function showFeaturedEvents(){
+        return view('admin.pages.feature.events');
+    }
+    public function showFeaturedProviders(){
+        return view('admin.pages.feature.providers');
     }
 
 }
