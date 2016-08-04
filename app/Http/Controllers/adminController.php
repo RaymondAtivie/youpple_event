@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 
 use App\Http\Requests;
+use App\Slim;
 
 class AdminController extends Controller
 {
