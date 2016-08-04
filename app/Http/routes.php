@@ -72,6 +72,7 @@ Route::group([
     'middleware' => ['admin']
 ], function () {
     Route::get('/', 'adminController@dashboard');
+    Route::get('/forms', 'AdminController@forms');
 
     Route::get('/home/logo', "AdminController@showLogo");
     Route::get('/home/social', "AdminController@showSocial");
