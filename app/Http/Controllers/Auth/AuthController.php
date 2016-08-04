@@ -118,7 +118,9 @@ class AuthController extends Controller
 
     function saveUserInfo(Request $request){
         Auth::user()->addInfo($request->all());
-        dd($request->all());
+
+        M::flash("Successfully Saved your information. Change it anytime in your profile");
+        return redirect('events');
     }
 
 }

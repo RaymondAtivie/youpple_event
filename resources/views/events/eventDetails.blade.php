@@ -112,7 +112,9 @@
                                     <!--Form Box Start-->
                                     <div class="cp-form-box">
                                         <h2>Register for this event</h2>
-                                        <form action="form3.php" method="post">
+                                        <form action="{{ url("events/apply") }}" method="post">
+                                            {{print_r($user->email)}}
+                                            <input type="hidden" name="event_id" value="{{$event->id}}" />
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-4">
                                                     <div class="inner-holder">
@@ -137,7 +139,7 @@
                                                                 @foreach($chunk as $package)
                                                                     <label class="col-md-6" style="margin-bottom: 20px">
                                                                         <div class="col-md-1">
-                                                                            <input type="checkbox"  />
+                                                                            <input type="checkbox" name="packages[]" value="{{$package->id}}" />
                                                                         </div>
                                                                         <div class='col-md-11'>
                                                                             <span style="font-size: 18px; color: black">

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @include('inc/flash');
     <!-- Main Slider Start -->
     <div id="homev2-slider" class="owl-carousel">
         <div class="item">

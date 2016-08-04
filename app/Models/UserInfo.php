@@ -1,17 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class UserInfo extends Model
 {
-    protected $table = "user_info";
+    protected $table = "users_info";
     protected $guarded = ['id'];
 
     protected $casts = [
         'intrests' => 'array',
         'event_services' => 'array',
+        'dPicture' => 'array'
     ];
 
 

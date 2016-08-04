@@ -38,6 +38,8 @@ Route::group(['prefix'=>'events'], function(){
     Route::get('/create', 'EventsController@showCreate');
     Route::post('/create', 'EventsController@store');
 
+    Route::post('/apply', 'TicketController@regEvent');
+    
     Route::group(['middleware'=>['confirmEvent']], function(){
 
         Route::get('/create/package', 'EventsController@showCreatePackage');
@@ -60,6 +62,7 @@ Route::group(['prefix'=>'events'], function(){
             session()->forget("event");
         });
     });
+
     Route::get('/{event}', 'EventsController@show');
 
 });

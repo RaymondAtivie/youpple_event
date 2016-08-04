@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function addInfo($params)
     {
-        $this->info()->create($params);
+        $this->info()->updateOrCreate(['user_id'=>$this->id], $params);
 
         return $params;
     }
