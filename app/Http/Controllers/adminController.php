@@ -43,6 +43,9 @@ class AdminController extends Controller
     public function dashboard(){
         return view('admin.pages.index');
     }
+    public function forms(){
+        return view('admin.pages.forms');
+    }
 
     ///////--- HOME -----///////////////
     public function showLogo(){

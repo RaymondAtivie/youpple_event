@@ -46,6 +46,14 @@
             <li><a href="{{ url('admin/feature/providers') }}">Featured Service Providers</a></li>
         </ul>
     </li>
+    <li class="menu-list">
+        <a href="">
+            <i class="fa fa-star"></i><span>Forms</span>
+        </a>
+        <ul class="child-list">
+            <li><a href="{{ url('admin/forms') }}">Forms</a></li>
+        </ul>
+    </li>
 
 
     <li>
