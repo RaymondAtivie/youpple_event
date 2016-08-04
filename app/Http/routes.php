@@ -31,6 +31,7 @@ Route::get('/who-we-are', 'PagesController@whoWeAre');
 Route::group(['prefix'=>'events'], function(){
     Route::auth();
     Route::get("/register/more", "Auth\AuthController@moreReg");
+    Route::post("/register/more", "Auth\AuthController@saveUserInfo");
 
     Route::get('/', 'EventsController@home');
 
@@ -56,7 +57,6 @@ Route::group(['prefix'=>'events'], function(){
 
         Route::get('deleteEvent', function()
         {
-            // var_dump(session('event'));
             session()->forget("event");
         });
     });

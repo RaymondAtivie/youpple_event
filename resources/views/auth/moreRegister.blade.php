@@ -54,7 +54,7 @@
                 <hr />
 
                 <form ng-hide="RM.mode == false" class="form-horizontal" role="form"
-                enctype="multipart/form-data" method="POST" action="{{ url('events/auth/moreReg') }}">
+                enctype="multipart/form-data" method="POST" action="{{ url('events/register/more') }}">
                 {{ csrf_field() }}
 
 
@@ -63,7 +63,7 @@
                         <label>Display Picture</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="file" name="name" value="">
+                        <input type="file" name="picture">
                     </div>
                 </div>
                 <br />
@@ -71,7 +71,7 @@
                 <div class="row"  ng-show="RM.mode == 'p'">
                     <div class="col-md-12">
                         <div class="input-field">
-                            <input type="text" name="name" value="">
+                            <input type="text" name="business_name" value="">
                             <label>Business Name</label>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                 <div class="row"  ng-show="RM.mode == 'p'">
                     <div class="col-md-6">
                         <div class="input-field">
-                            <select class="form-control">
+                            <select class="form-control" name="id_type">
                                 <option>CAC Registraion Number</option>
                                 <option>TIN</option>
                                 <option>Driver’s License</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-6"  ng-show="RM.mode == 'p'">
                         <div class="input-field">
-                            <input type="text" name="name" value="">
+                            <input type="text" name="id_number" value="">
                             <label>Identification Number</label>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                         <label ng-show="RM.mode == 'p'">Company Profile</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="file" name="name" value="">
+                        <input type="file" name="CV" value="">
                     </div>
                 </div>
 
@@ -130,12 +130,12 @@
                     <div class="col-md-8">
                         <label ng-show="RM.mode == 'c'">Date of birth</label>
                         <label ng-show="RM.mode == 'p'">Date of Registration</label>
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' name="datetime" value="{{ old('datetime') }}" class="form-control" />
-                            <span class="input-group-addon">
+                        {{-- <div class='input-group date'> --}}
+                            <input type='date' name="dob" value="{{ old('datetime') }}" class="form-control" />
+                            {{-- <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
+                            </span> --}}
+                        {{-- </div> --}}
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-field">
-                            <input type="text" name="name" value="">
+                            <input type="text" name="address" value="">
                             <label>Contact Address</label>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                 <div class="row">
                     <div class="col-md-5"><label>Currency Prefrence:</label></div>
                     <div class="col-md-5">
-                        <select class="form-control">
+                        <select class="form-control" name="currency">
                             <option>Naira</option>
                             <option>Dollar</option>
                         </select>
@@ -167,35 +167,35 @@
                     <div class="col-md-6">
                         <div class="input-field">
                             <i class="fa fa-twitter prefix"></i>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="social_twitter" value="">
                             <label>Twitter</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
                             <i class="fa fa-facebook prefix"></i>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="social_facebook" value="">
                             <label>Facebook</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
                             <i class="fa fa-blackberry prefix"></i>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="social_bbm" value="">
                             <label>BBM</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
                             <i class="fa fa-instagram prefix"></i>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="social_instagram" value="">
                             <label>Instagram</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
                             <i class="fa fa-google prefix"></i>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="social_google" value="">
                             <label>Google</label>
                         </div>
                     </div>
@@ -209,77 +209,77 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-twitter prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_eye_color" value="">
                                 <label>Eye Color</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-facebook prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_hair_color" value="">
                                 <label>Hair Color</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-blackberry prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_height" value="">
                                 <label>Height</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-instagram prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_weight" value="">
                                 <label>Weight</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_sleeve" value="">
                                 <label>Sleeve Length</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_waist" value="">
                                 <label>Waist Measurement</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_lap" value="">
                                 <label>Lap</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_dl" value="">
                                 <label>DL</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_back" value="">
                                 <label>Back Measurement</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_bust" value="">
                                 <label>Bust Measurement</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 {{-- <i class="fa fa-google prefix"></i> --}}
-                                <input type="text" name="name" value="">
+                                <input type="text" name="desc_trouser" value="">
                                 <label>Trouser Length</label>
                             </div>
                         </div>
@@ -294,16 +294,24 @@
                                 <span ng-show="RM.mode == 'c'">you</span>
                                 <span ng-show="RM.mode == 'p'">your company</span>
                             </label>
-                            <textarea></textarea>
+                            <textarea name="description"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="row" ng-show="RM.mode == 'c'">
-                    <div class="input-field">
-                        <div>Intrests</div>
-                        {!! Form::select('intrests[]', $intrests, null, ['class'=>'form-control', 'id'=>'selectIntrest', 'multiple']) !!}
-                    </div>
+                        <h4>Intrests</h4>
+                        <div class="row servicesList">
+                            @foreach($intrests as $value)
+                                <div class="col-md-6">
+                                    <label>
+                                        <input type="checkbox" name="intrests[]" value="{{$value}}" />
+                                        {{$value}}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                        {{-- {!! Form::select('intrests[]', $intrests, null, ['class'=>'form-control', 'id'=>'selectIntrest', 'multiple']) !!} --}}
                 </div>
 
                 <div  class="row" ng-show="RM.mode == 'p'">
@@ -318,7 +326,7 @@
                             @foreach($list as $value)
                                 <div class="col-md-6">
                                     <label>
-                                        <input type="checkbox" name="" />
+                                        <input type="checkbox" name="event_services[]" value="{{$value}}" />
                                         {{$value}}
                                     </label>
                                 </div>

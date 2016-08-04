@@ -7,8 +7,9 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use App\Http\Request;
+use Illuminate\Http\Request;
 use App\Helpers\M;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,7 @@ class AuthController extends Controller
     */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'moreReg']]);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'moreReg', 'saveUserInfo']]);
     }
 
     /**
@@ -113,6 +114,11 @@ class AuthController extends Controller
         ];
 
         return view("auth.moreRegister", compact('intrests', 'services'));
+    }
+
+    function saveUserInfo(Request $request){
+        Auth::user()->addInfo($request->all());
+        dd($request->all());
     }
 
 }
