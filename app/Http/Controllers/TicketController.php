@@ -50,12 +50,14 @@ class TicketController extends Controller
 
         $ticket = \App\Models\Ticket::create($inputs);
 
-        return ['status'=>"success", "url"=>url("events/ticket/show/".$ticket->ticket)];
+        return ['status'=>"success", "url"=>url("events/ticket/show?ticket=".$ticket->ticket)];
     }
 
 
-    public function showTicket(Request $request, $ticket){
-        $T = \App\Models\Ticket::where('ticket', $ticket)->first();
+    public function showTicket(Request $request){
+        $t = $request->get("ticket");
+
+        $T = \App\Models\Ticket::where('ticket', $t)->first();
 
         dd($T);
     }
