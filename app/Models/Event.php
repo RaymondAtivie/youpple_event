@@ -60,4 +60,9 @@ class Event extends Model
     {
         return $this->belongsToMany("App\Models\EventType")->withTimestamps();
     }
+
+    public function tickets()
+    {
+        return $this->hasMany("App\Models\Ticket");
+    }
 }

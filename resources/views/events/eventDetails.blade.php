@@ -113,24 +113,27 @@
                                     <div class="cp-form-box">
                                         <h2>Register for this event</h2>
                                         <form action="{{ url("events/apply") }}" method="post">
-                                            {{print_r($user->email)}}
+                                            {{-- {{print_r($isLoggedIn)}} --}}
                                             <input type="hidden" name="event_id" value="{{$event->id}}" />
-                                            <div class="row">
-                                                <div class="col-md-4 col-sm-4">
-                                                    <div class="inner-holder">
-                                                        <input type="text" placeholder="Your Name" name="name2" required pattern="[a-zA-Z ]+">
+
+                                            @if(!$isLoggedIn)
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="inner-holder">
+                                                            <input type="text" placeholder="Your Name" name="name" required pattern="[a-zA-Z ]+">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <div class="inner-holder">
-                                                        <input type="text" placeholder="Your Email" name="email2" required pattern="^[a-zA-Z0-9-\_.]+@[a-zA-Z0-9-\_.]+\.[a-zA-Z0-9.]{2,5}$">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="inner-holder">
+                                                            <input type="text" placeholder="Your Email" name="email" required pattern="^[a-zA-Z0-9-\_.]+@[a-zA-Z0-9-\_.]+\.[a-zA-Z0-9.]{2,5}$">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <div class="inner-holder">
-                                                        <input type="text" placeholder="Phone" name="phone" required pattern="[0-9 ]+">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="inner-holder">
+                                                            <input type="text" placeholder="Phone" name="phone" required pattern="[0-9 ]+">
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                                 <div class="col-md-12 col-sm-12">
                                                     <h3><u>Select Package</u></h3>
                                                     <div class="inner-holder">

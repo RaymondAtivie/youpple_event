@@ -5,7 +5,7 @@
 @section('main')
     <div class="wrapper">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-7">
               <section class="panel">
                   <header class="panel-heading">
                       Add Commission Setting
@@ -87,7 +87,7 @@
                   </div>
               </section>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-5">
               <section class="panel">
                   <header class="panel-heading">
                       Add Commission Setting

@@ -38,10 +38,10 @@ Sidebar heading:	font:24px/24px 'Noto Serif', sans-serif;
 
 
 
-==> RESET    
-==> Wrapper   
-==> HEADER	
-==> Navigation	
+==> RESET
+==> Wrapper
+==> HEADER
+==> Navigation
 ==> Banner
 ==> Welcome Section
 ==> About Section
@@ -86,17 +86,17 @@ End of Table of Content Css End **/
 body {
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-size: 14px;
 }
 body p {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	line-height: 24px;
 	margin: 0px;
 }
 body h1, body h2, body h3,body  h4, body h5,body h6 {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	color: #222;
 	margin: 0;
 }
@@ -186,7 +186,7 @@ figure figcaption{
 
 }
 .cp-btn-style1,.cp-btn-style2{
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-size: 18px;
 	line-height: 18px;
 	font-weight: 600;
@@ -302,7 +302,7 @@ figure figcaption{
 	display: block;
 	padding: 0 23px;
 	font-weight: 600;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	position: relative;
 	z-index: 99;
 	border: 1px solid;
@@ -355,7 +355,7 @@ figure figcaption{
 }
 .cp-nav-logo-bar .navbar-default .navbar-nav > li > a {
 	padding: 15px 7px;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 14px;
 	font-weight: 700;
 	color: #444;
@@ -400,7 +400,7 @@ figure figcaption{
 .cp-nav-logo-bar .dropdown-menu > li > a,.cp-nav-logo-bar .dropdown-menu ul li a {
 	padding: 0px 10px;
 	line-height: 40px;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 14px;
 	border-bottom: 1px solid #ccc;
 	background: #fff;
@@ -425,7 +425,7 @@ figure figcaption{
 	padding: 0 28px;
 }
 #cp_header_v3 .quote-btn{
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-weight: 600;
 	font-size: 14px;
 }
@@ -679,7 +679,7 @@ figure figcaption{
 	color: #fff;
 	font-size: 44px;
 	font-weight: 700;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	margin: 0 0 10px;
 }
 .cp-slider-content h2,.cp-banner .cp-slider-content > p{
@@ -703,7 +703,7 @@ figure figcaption{
 .cp-slider-content p {
 	font-size: 20px;
 	color: #777777;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	line-height: 26px;
 	margin-bottom: 25px;
 }
@@ -1000,7 +1000,7 @@ figure figcaption{
 	margin: 0;
 }
 .cp-inner-banner-outer .breadcrumb li{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 16px;
 	color: #fff;
 	font-style: italic;
@@ -1061,7 +1061,7 @@ figure figcaption{
 	margin: 0 0 15px;
 }
 .cp-home1-welcome p {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 18px;
 	color: #777;
 	font-style: italic;
@@ -1113,7 +1113,7 @@ figure figcaption{
 	width: 100%;
 }
 .cp-about-left h2,.cp-about-left strong{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 48px;
 	font-weight: 400;
 	color: #222222;
@@ -1360,7 +1360,7 @@ figure figcaption{
 }
 .cp-section-title strong {
 	color: #777777;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-style: italic;
 	font-size: 16px;
 	font-weight: 400;
@@ -1723,7 +1723,7 @@ figure figcaption{
 	z-index: 99;
 }
 .countdown-holder .countdown-amount {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 30px;
 	line-height: 30px;
 	font-weight: 700;
@@ -1847,7 +1847,7 @@ figure figcaption{
 	top: 30px;
 }
 .cp-blockquote p{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 18px;
 	line-height: 28px;
 	font-style: italic;
@@ -2319,7 +2319,7 @@ figure figcaption{
 	display: block;
 }
 .cp-clients-inner p{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-style: italic;
 	font-size: 18px;
 	line-height: 28px;
@@ -2686,7 +2686,7 @@ figure figcaption{
 	border: none;
 }
 .cp-counter-item .counter{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 60px;
 	line-height: 60px;
 	padding-bottom: 17px;
@@ -2707,7 +2707,7 @@ figure figcaption{
 	border-bottom: 4px solid #cccccc;
 }
 .cp-counter-item strong{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 20px;
 	font-weight: 700;
 	display: block;
@@ -2987,7 +2987,7 @@ figure figcaption{
 	border-top: 20px solid #e1e1e1;
 }
 .cp-price-box .cp-title strong{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-weight: 700;
 	font-size: 48px;
 	color: #222;
@@ -3060,7 +3060,7 @@ figure figcaption{
 	text-align: center;
 }
 .cp-error-title{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 300px;
 	line-height: 240px;
 	font-weight: 400;
@@ -3074,7 +3074,7 @@ figure figcaption{
 	margin: 0 0 17px;
 }
 .cp-error-inner p{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #222222;
@@ -3259,7 +3259,7 @@ figure figcaption{
 	margin: 0 0 40px;
 }
 .cp-filter-option label{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 16px;
 	font-weight: 700;
 	color: #222;
@@ -3270,7 +3270,7 @@ figure figcaption{
 	float: right;
 }
 .cp-filter-option .btn-default{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 14px;
 	font-weight: 700;
 	font-style: italic;
@@ -3455,7 +3455,7 @@ figure figcaption{
 	padding: 0;
 }
 .cp-tab-box .nav-tabs > li > a {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 20px;
 	font-weight: 700;
 	background-color: transparent;
@@ -3781,7 +3781,7 @@ figure figcaption{
 .inner .text .val{
 	font-size:60px;
 	font-weight:bold;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	margin: 5px 0 0 0;
 }
 .inner .text p{
@@ -3796,7 +3796,7 @@ figure figcaption{
 						/*From Animate Css*/
 /*===========================================================================*/
 ::-webkit-input-placeholder {
-  color: #777; 
+  color: #777;
 }
 :-moz-placeholder {
   color: #777; /* Firefox 18- */
@@ -3805,7 +3805,7 @@ figure figcaption{
   color: #777; /* Firefox 19+ */
 }
 :-ms-input-placeholder {
-  color: #777; 
+  color: #777;
 }
 input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
   background-color: transparent;
@@ -3819,11 +3819,11 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
   margin: 0 ;
   padding: 0;
   box-shadow: none;
-  transition: all .3s; 
+  transition: all .3s;
 }
 input[type=text]:disabled, input[type=text][readonly="readonly"], input[type=password]:disabled, input[type=password][readonly="readonly"], input[type=email]:disabled, input[type=email][readonly="readonly"], input[type=url]:disabled, input[type=url][readonly="readonly"], input[type=time]:disabled, input[type=time][readonly="readonly"], input[type=date]:disabled, input[type=date][readonly="readonly"], input[type=datetime-local]:disabled, input[type=datetime-local][readonly="readonly"], input[type=tel]:disabled, input[type=tel][readonly="readonly"], input[type=number]:disabled, input[type=number][readonly="readonly"], input[type=search]:disabled, input[type=search][readonly="readonly"], textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
     color: rgba(0, 0, 0, 0.26);
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.26); 
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.26);
 }
 input[type=text]:disabled + label, input[type=text][readonly="readonly"] + label, input[type=password]:disabled + label, input[type=password][readonly="readonly"] + label, input[type=email]:disabled + label, input[type=email][readonly="readonly"] + label, input[type=url]:disabled + label, input[type=url][readonly="readonly"] + label, input[type=time]:disabled + label, input[type=time][readonly="readonly"] + label, input[type=date]:disabled + label, input[type=date][readonly="readonly"] + label, input[type=datetime-local]:disabled + label, input[type=datetime-local][readonly="readonly"] + label, input[type=tel]:disabled + label, input[type=tel][readonly="readonly"] + label, input[type=number]:disabled + label, input[type=number][readonly="readonly"] + label, input[type=search]:disabled + label, input[type=search][readonly="readonly"] + label, textarea.materialize-textarea:disabled + label, textarea.materialize-textarea[readonly="readonly"] + label {
     color: rgba(0, 0, 0, 0.26); }
@@ -3853,7 +3853,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
     position: absolute;
     top: 65px;
     opacity: 0;
-    transition: .2s opacity ease-out, .2s color ease-out; 
+    transition: .2s opacity ease-out, .2s color ease-out;
 }
 .input-field {
   position: relative;
@@ -3874,7 +3874,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 	-moz-transition: .2s ease-out;
 	-o-transition: .2s ease-out;
 	-ms-transition: .2s ease-out;
-	transition: .2s ease-out; 
+	transition: .2s ease-out;
 }
 .input-field label.active {
 	font-size: 14px;
@@ -3882,7 +3882,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 	-moz-transform: translateY(-100%);
 	-ms-transform: translateY(-100%);
 	-o-transform: translateY(-100%);
-	transform: translateY(-100%); 
+	transform: translateY(-100%);
 }
 .input-field .prefix {
 	position: absolute;
@@ -3893,38 +3893,38 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 	-moz-transition: color .2s;
 	-o-transition: color .2s;
 	-ms-transition: color .2s;
-	transition: color .2s; 
+	transition: color .2s;
 }
 .input-field .prefix ~ input, .input-field .prefix ~ textarea {
 	width: 100%;
 	padding-left: 30px;
 	position: relative;
-	z-index: 999; 
+	z-index: 999;
 }
   .input-field .prefix ~ textarea {
-    padding-top: .8rem; 
+    padding-top: .8rem;
 }
   .input-field .prefix ~ label {
-    margin-left: 30px; 
+    margin-left: 30px;
 }
 .input-field input[type=search] {
   display: block;
   line-height: inherit;
   padding-left: 4rem;
   width: calc(100% - 4rem)
-  ; 
+  ;
 }
 .input-field input[type=search]:focus {
     background-color: #FFF;
     border: 0;
     box-shadow: none;
-    color: #444; 
+    color: #444;
 }
 .input-field input[type=search]:focus + label i, .input-field input[type=search]:focus ~ .mdi-navigation-close {
-   color: #444; 
+   color: #444;
 }
 .input-field input[type=search] + label {
-   left: 1rem; 
+   left: 1rem;
 }
 .input-field input[type=search] ~ .mdi-navigation-close {
     position: absolute;
@@ -3933,7 +3933,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
     color: transparent;
     cursor: pointer;
     font-size: 2rem;
-    transition: .3s color; 
+    transition: .3s color;
 }
 .input-field textarea {
   width: 100%;
@@ -3948,7 +3948,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
   padding: 1.6rem 0;
   /* prevents text jump on Enter keypress */
   resize: none;
-  min-height: 145px; 
+  min-height: 145px;
   border-bottom: 2px solid #7c246d;
 }
 .hiddendiv {
@@ -3958,7 +3958,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
   overflow-wrap: break-word;
   /* future version of deprecated 'word-wrap' */
   padding-top: 1.2rem;
-  /* prevents text jump on Enter keypress */ 
+  /* prevents text jump on Enter keypress */
 }
 
 /*===========================================================================*/
@@ -4002,7 +4002,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 	overflow: hidden;
 }
 .widget-search ::-webkit-input-placeholder {
-  color: #777; 
+  color: #777;
 }
 .widget-search :-moz-placeholder {
   color: #777; /* Firefox 18- */
@@ -4011,7 +4011,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
   color: #777; /* Firefox 19+ */
 }
 .widget-search :-ms-input-placeholder {
-  color: #777; 
+  color: #777;
 }
 .widget-search .btn-submit{
 	font-size: 16px;
@@ -4185,7 +4185,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 	background-color: #141414;
 }
 .cp-ft-box .left{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 16px;
 	font-weight: 700;
 	width: 100px;
@@ -4259,7 +4259,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 /*===========================================================================*/
 						/*Transition Css*/
 /*===========================================================================*/
-a,ul li,.cp-about-img img,.quote-btn, .quote-btn:after, .social-links a,.cp-slider-content a, .cp-slider-content a:after, .cp-nav-logo-bar .dropdown-menu > li > a,.read-more, .read-more:after, .cp-Our-experties .bx-wrapper .bx-prev:after, .cp-Our-experties .bx-wrapper .bx-next:after, .cp-events-slider .bx-wrapper .bx-prev:after, 
+a,ul li,.cp-about-img img,.quote-btn, .quote-btn:after, .social-links a,.cp-slider-content a, .cp-slider-content a:after, .cp-nav-logo-bar .dropdown-menu > li > a,.read-more, .read-more:after, .cp-Our-experties .bx-wrapper .bx-prev:after, .cp-Our-experties .bx-wrapper .bx-next:after, .cp-events-slider .bx-wrapper .bx-prev:after,
 .cp-events-slider .bx-wrapper .bx-next:after, .cp-Our-experties .cp-hover-content, .cp-ex-title,.cp-caption,.cp-ex-title h3,.cp-ex-title,.cp-social-links li a,.widget-listed ul li:before,.widget-listed ul li,.owl-controls .owl-nav div,.cp-price-box,.cp-price-box .cp-title,.cp-price-box .cp-title:before,.cp-price-box .cp-title:after,.cp-title strong
 ,.cp-btn-style1,.cp-btn-style2:before,.cp-btn-style1:before,.cp-about-img:before,.cp-about-img:after,.cp-process-box .cp-icon-box:after,.cp-process-box .cp-icon-box:before,.cp-process-box .cp-icon-box,.tagcloud a,.btn-submit,.cp-gallery-item,.cp-gallery-item .cp-caption,.cp-text h3,.cp-text span,.cp-text,.cp-social-links2 li a,.cp-social-links2 li .fa,.cp-ex-title
 ,.dropdown-menu ul{
@@ -4328,6 +4328,6 @@ a,ul li,.cp-about-img img,.quote-btn, .quote-btn:after, .social-links a,.cp-slid
 						/*Fonts Family*/
 /*===========================================================================*/
 .font-family{
-	font-family: 'Noto Serif', serif;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 }

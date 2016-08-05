@@ -86,17 +86,17 @@ End of Table of Content Css End **/
 body {
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-size: 14px;
 }
 body p {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	line-height: 24px;
 	margin: 0px;
 }
 body h1, body h2, body h3,body  h4, body h5,body h6 {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	color: #222;
 	margin: 0;
 }
@@ -186,7 +186,7 @@ figure figcaption{
 
 }
 .cp-btn-style1,.cp-btn-style2{
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-size: 18px;
 	line-height: 18px;
 	font-weight: 600;
@@ -302,7 +302,7 @@ figure figcaption{
 	display: block;
 	padding: 0 23px;
 	font-weight: 600;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	position: relative;
 	z-index: 99;
 	border: 1px solid;
@@ -355,7 +355,7 @@ figure figcaption{
 }
 .cp-nav-logo-bar .navbar-default .navbar-nav > li > a {
 	padding: 15px 7px;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 14px;
 	font-weight: 700;
 	color: #444;
@@ -400,7 +400,7 @@ figure figcaption{
 .cp-nav-logo-bar .dropdown-menu > li > a,.cp-nav-logo-bar .dropdown-menu ul li a {
 	padding: 0px 10px;
 	line-height: 40px;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 14px;
 	border-bottom: 1px solid #ccc;
 	background: #fff;
@@ -425,7 +425,7 @@ figure figcaption{
 	padding: 0 28px;
 }
 #cp_header_v3 .quote-btn{
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 	font-weight: 600;
 	font-size: 14px;
 }
@@ -679,7 +679,7 @@ figure figcaption{
 	color: #fff;
 	font-size: 44px;
 	font-weight: 700;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	margin: 0 0 10px;
 }
 .cp-slider-content h2,.cp-banner .cp-slider-content > p{
@@ -703,7 +703,7 @@ figure figcaption{
 .cp-slider-content p {
 	font-size: 20px;
 	color: #777777;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	line-height: 26px;
 	margin-bottom: 25px;
 }
@@ -1000,7 +1000,7 @@ figure figcaption{
 	margin: 0;
 }
 .cp-inner-banner-outer .breadcrumb li{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 16px;
 	color: #fff;
 	font-style: italic;
@@ -1061,7 +1061,7 @@ figure figcaption{
 	margin: 0 0 15px;
 }
 .cp-home1-welcome p {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 18px;
 	color: #777;
 	font-style: italic;
@@ -1113,7 +1113,7 @@ figure figcaption{
 	width: 100%;
 }
 .cp-about-left h2,.cp-about-left strong{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 48px;
 	font-weight: 400;
 	color: #222222;
@@ -1360,7 +1360,7 @@ figure figcaption{
 }
 .cp-section-title strong {
 	color: #777777;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-style: italic;
 	font-size: 16px;
 	font-weight: 400;
@@ -1723,7 +1723,7 @@ figure figcaption{
 	z-index: 99;
 }
 .countdown-holder .countdown-amount {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 30px;
 	line-height: 30px;
 	font-weight: 700;
@@ -1847,7 +1847,7 @@ figure figcaption{
 	top: 30px;
 }
 .cp-blockquote p{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 18px;
 	line-height: 28px;
 	font-style: italic;
@@ -2319,7 +2319,7 @@ figure figcaption{
 	display: block;
 }
 .cp-clients-inner p{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-style: italic;
 	font-size: 18px;
 	line-height: 28px;
@@ -2687,7 +2687,7 @@ figure figcaption{
 	border: none;
 }
 .cp-counter-item .counter{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 60px;
 	line-height: 60px;
 	padding-bottom: 17px;
@@ -2708,7 +2708,7 @@ figure figcaption{
 	border-bottom: 4px solid #cccccc;
 }
 .cp-counter-item strong{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 20px;
 	font-weight: 700;
 	display: block;
@@ -2988,7 +2988,7 @@ figure figcaption{
 	border-top: 20px solid #e1e1e1;
 }
 .cp-price-box .cp-title strong{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-weight: 700;
 	font-size: 48px;
 	color: #222;
@@ -3061,7 +3061,7 @@ figure figcaption{
 	text-align: center;
 }
 .cp-error-title{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 300px;
 	line-height: 240px;
 	font-weight: 400;
@@ -3075,7 +3075,7 @@ figure figcaption{
 	margin: 0 0 17px;
 }
 .cp-error-inner p{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #222222;
@@ -3260,7 +3260,7 @@ figure figcaption{
 	margin: 0 0 40px;
 }
 .cp-filter-option label{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 16px;
 	font-weight: 700;
 	color: #222;
@@ -3271,7 +3271,7 @@ figure figcaption{
 	float: right;
 }
 .cp-filter-option .btn-default{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 14px;
 	font-weight: 700;
 	font-style: italic;
@@ -3456,7 +3456,7 @@ figure figcaption{
 	padding: 0;
 }
 .cp-tab-box .nav-tabs > li > a {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 20px;
 	font-weight: 700;
 	background-color: transparent;
@@ -3782,7 +3782,7 @@ figure figcaption{
 .inner .text .val{
 	font-size:60px;
 	font-weight:bold;
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	margin: 5px 0 0 0;
 }
 .inner .text p{
@@ -4186,7 +4186,7 @@ input[type=text] + label:after, input[type=password] + label:after, input[type=e
 	background-color: #141414;
 }
 .cp-ft-box .left{
-	font-family: 'Noto Serif', serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
 	font-size: 16px;
 	font-weight: 700;
 	width: 100px;
@@ -4329,6 +4329,6 @@ a,ul li,.cp-about-img img,.quote-btn, .quote-btn:after, .social-links a,.cp-slid
 						/*Fonts Family*/
 /*===========================================================================*/
 .font-family{
-	font-family: 'Noto Serif', serif;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Noto Serif', serif;
+	font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 }

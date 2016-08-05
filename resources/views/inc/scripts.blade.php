@@ -12,7 +12,7 @@
 <script src="{{ url('js/jquery.isotope.js') }}"></script>
 <script src="{{ url('js/animate-form.js') }}"></script>
 <script src="{{ url('js/select2.min.js') }}"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="{{ url('js/map.js') }}"></script>
 <script src="{{ url('js/toastr.min.js') }}"></script>
 <script src="{{ url('js/select2.min.js') }}"></script>

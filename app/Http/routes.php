@@ -38,8 +38,12 @@ Route::group(['prefix'=>'events'], function(){
     Route::get('/create', 'EventsController@showCreate');
     Route::post('/create', 'EventsController@store');
 
-    Route::post('/apply', 'TicketController@regEvent');
-    
+    // Route::get('/apply', 'TicketController@showTicket');
+    Route::any('/apply', 'TicketController@regEvent');
+
+    Route::get('/ticket/show/{{ticket}}', 'TicketController@showTicket');
+    Route::post('/ticket/save', 'TicketController@saveTicket');
+
     Route::group(['middleware'=>['confirmEvent']], function(){
 
         Route::get('/create/package', 'EventsController@showCreatePackage');
