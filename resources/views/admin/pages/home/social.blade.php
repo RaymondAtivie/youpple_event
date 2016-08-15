@@ -11,8 +11,110 @@
         <span class="sub-title">Change the social links for Youpple</span>
     </div>
 
-    <div class="wrapper">
+    <style>
+        .socials div.col-sm-12{
+            margin-bottom: 10px;
+        }
+    </style>
 
+    <div class="wrapper">
+        <div class="row">
+
+            <div class="col-sm-8">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Social Links
+                    </header>
+                    <div class="panel-body socials">
+                        <form method="POST" autocomplete="off" action="{{ url('admin/home/changeSocial') }}">
+                            <input type="hidden" name="_token" value="{{ Session::getToken() }}"/>
+                            @include('partials.errors')
+                            @include('partials.messages')
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-facebook"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://facebook.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-twitter"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://twitter.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-google"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://google.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-instagram"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://instagram.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-google-plus"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://plus.google.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-pinterest"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://pintrest.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-youtube"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://youtube.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-linkedin"></i>
+                                    </span>
+                                    <input type="text" class="form-control" value="http://linkedin.com/youpple" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <hr />
+                                <div class="form-group">
+                                    <button type="submit" type="button" class="btn btn-info">Change</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+        </div>
     </div>
 @stop
 @section('styles')
@@ -21,6 +123,6 @@
 @section('scripts')
     <script src="{{ url('') }}/assets/js/tabs.js"></script>
     <script>
-        new CBPFWTabs(document.getElementById('tabs'));
+    new CBPFWTabs(document.getElementById('tabs'));
     </script>
 @stop

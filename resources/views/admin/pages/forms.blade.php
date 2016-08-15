@@ -23,8 +23,8 @@
                           </div>
                           <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="control-label" for="companyname">Vendor Profile Description<span class="required">*</span></label>
                                 <textarea rows="5"  name="description" class="form-control summernote" id="" placeholder="Write your message" ></textarea>
+                                <label class="control-label" for="companyname">Vendor Profile Description<span class="required">*</span></label>
 
                               </div>
                           </div>
@@ -136,9 +136,6 @@
                               <div class="form-group">
                               <label class="control-label">Upload</label>
                               <input type="file"  name="slim[]" id="slim" />
-
-
-
                             </div>
                           </div>
 

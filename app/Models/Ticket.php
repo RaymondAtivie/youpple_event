@@ -23,14 +23,16 @@ class Ticket extends Model
     {
         return $this->belongsTo('App\Models\Event', "event_id");
     }
-
+    
     public function getPackages()
     {
         foreach ($this->packages as $pid) {
-            $p = \App\Models\Packages::find($pid);
+            $p = \App\Models\Package::find($pid);
             $packs[] = $p;
         }
 
         return $packs;
     }
+
+
 }

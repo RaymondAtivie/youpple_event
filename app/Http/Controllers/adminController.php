@@ -50,11 +50,37 @@ class AdminController extends Controller
 
     ///////--- HOME -----///////////////
     public function showLogo(){
-        return view('admin.pages.home.logos');
+        $logos = [
+            "main" => ["name"=>"Youpple", "link"=>"main/main_normal.png"],
+            "talk" => ["name"=>"Youpple Talk", "link"=>"talk/talk_logo_normal.png"],
+            "event" => ["name"=>"Youpple Events", "link"=>"event/event_logo.png"],
+            "consult" => ["name"=>"Youpple Consult", "link"=>"consult/consult_logo_normal.png"],
+            "shop" => ["name"=>"Youpple Shop", "link"=>"expert-img-05.jpg"],
+            "reformers" => ["name"=>"Reformers Circle", "link"=>"reformers/reformers_logo_normal.png"],
+            "fashion" => ["name"=>"Fashion", "link"=>"fashion/fashion_logo_normal.png"],
+            "technology" => ["name"=>"Technology", "link"=>"technology/technology_logo_normal.png"]
+        ];
+        return view('admin.pages.home.logos', compact('logos'));
     }
+    public function changeLogo($logoname, Request $request){
+        $image = Slim::getImages('logo')[0];
+
+        $lExt = $image['input']['ext'];
+        $lName = $image['input']['name'];
+        $lData = $image['output']['data'];
+
+        $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+        rename($file['path'], "images/logos/".$logoname.".".$lExt);
+    }
+
     public function showSocial(){
         return view('admin.pages.home.social');
     }
+    public function changeSocial(){
+        return view('admin.pages.home.social');
+    }
+
     public function showPrivacyPolicy(){
         return view('admin.pages.home.privacy');
     }
@@ -70,21 +96,51 @@ class AdminController extends Controller
 
     ///////--- ABOUT -----///////////////
     public function showClients(){
-        return view('admin.pages.about.clients');
+        $clients = [
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
+        ];
+
+        return view('admin.pages.about.clients', compact('clients'));
     }
     public function showPartners(){
-        return view('admin.pages.about.partners');
+        $partners = [
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
+        ];
+        return view('admin.pages.about.partners', compact('partners'));
     }
     public function showInfo(){
-        return view('admin.pages.about.information');
+        $logos = [
+            "main" => ["name"=>"Youpple", "link"=>"main/main_normal.png"],
+            "talk" => ["name"=>"Youpple Talk", "link"=>"talk/talk_logo_normal.png"],
+            "event" => ["name"=>"Youpple Events", "link"=>"event/event_logo.png"],
+            "consult" => ["name"=>"Youpple Consult", "link"=>"consult/consult_logo_normal.png"],
+            "shop" => ["name"=>"Youpple Shop", "link"=>"expert-img-05.jpg"],
+            "reformers" => ["name"=>"Reformers Circle", "link"=>"reformers/reformers_logo_normal.png"],
+            "fashion" => ["name"=>"Fashion", "link"=>"fashion/fashion_logo_normal.png"],
+            "technology" => ["name"=>"Technology", "link"=>"technology/technology_logo_normal.png"]
+        ];
+        return view('admin.pages.about.information', compact('logos'));
     }
     public function showTestimonials(){
-        return view('admin.pages.about.testimonials');
+        $testimonials = [
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
+        ];
+        return view('admin.pages.about.testimonials', compact('testimonials'));
     }
 
     ///////--- FEATURED -----///////////////
     public function showFeaturedEvents(){
-        return view('admin.pages.feature.events');
+        $events = \App\Models\Event::all();
+
+        $fEvents = \App\Models\Event::take(3)->get();
+
+        return view('admin.pages.feature.events', compact("events", "fEvents"));
     }
     public function showFeaturedProviders(){
         return view('admin.pages.feature.providers');

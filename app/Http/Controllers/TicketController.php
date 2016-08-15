@@ -55,10 +55,9 @@ class TicketController extends Controller
 
 
     public function showTicket(Request $request){
-        $t = $request->get("ticket");
+        $ticket_code = $request->get("ticket");
+        $ticket = \App\Models\Ticket::where('ticket', $ticket_code)->first();
 
-        $T = \App\Models\Ticket::where('ticket', $t)->first();
-
-        dd($T);
+        return view("events.showTicket", compact('ticket'));
     }
 }

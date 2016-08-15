@@ -34,7 +34,7 @@
         <section class="cp-upcoming-events pd-tb60">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         @include('inc/flash')
                         <!-- Blog Item Start -->
                         <div class="cp-blog-item cp-blog-detail">
@@ -335,7 +335,7 @@
 
                             </div>
 
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                                 <!--Sidebar Outer Start-->
                                 <div class="cp-sidebar-outer">
                                     <!--Widget Start-->
@@ -387,7 +387,7 @@
                                     </div><!--Widget End-->
                                 </div>
 
-                            </div>
+                            </div> --}}
                         </section><!-- Up Coming Events Start -->
                     </div>
                     <!-- Main Content End -->

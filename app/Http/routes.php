@@ -79,7 +79,11 @@ Route::group([
     Route::get('/forms', 'AdminController@forms');
 
     Route::get('/home/logo', "AdminController@showLogo");
+    Route::post('/home/changeLogo/{logoname}', "AdminController@changeLogo");
+
     Route::get('/home/social', "AdminController@showSocial");
+    Route::post('/home/changeSocial', "AdminController@changeSocial");
+
     Route::get('/home/terms', "AdminController@showTermsAndConditions");
     Route::get('/home/termsofuse', "AdminController@showTermsOfUse");
     Route::get('/home/advert', "AdminController@showAdvert");

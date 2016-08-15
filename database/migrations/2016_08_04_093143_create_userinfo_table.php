@@ -19,6 +19,7 @@ class CreateUserinfoTable extends Migration
 
             $table->string('picture');
             $table->string('cv');
+            $table->string('user_info');
             $table->string('company_profile');
             $table->string('dPicture');
             $table->string('business_name');

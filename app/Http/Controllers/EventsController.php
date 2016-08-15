@@ -20,7 +20,9 @@ class EventsController extends Controller
 
     public function home()
     {
-        return view('events.event');
+        $events = \App\Models\Event::all();
+
+        return view('events.event', compact('events'));
     }
 
     public function show(Event $event)

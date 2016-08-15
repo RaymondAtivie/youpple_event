@@ -6,21 +6,110 @@
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            PartnersS
+            Partners
         </h3>
         <span class="sub-title">Change the partners for Youpple</span>
     </div>
 
     <div class="wrapper">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Add a new Partners
+                    </header>
+                    <div class="panel-body">
+                        <form action="post.php" method="post" enctype="multipart/form-data" class="avatar">
+                            <div class="row">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <div class="slim"
+                                    data-label="Drop your avatar here"
+                                    data-size="240,240"
+                                    data-ratio="1:1">
+                                    <input type="file" name="slim[]" required /></div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Name</label>
+                                        <input type="text" name="name" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <hr />
+                                    <div class="form-group">
+                                        <button type="submit" type="button" class="btn btn-info">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        All Partners
+                    </header>
+                    <div class="panel-body">
+                        <table class="table convert-data-table data-table"  id="sample_1">
+                            <thead>
+                                <tr>
+                                    {{-- <th>
+                                    <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                </th> --}}
+                                <th>
+                                    Image
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(!empty($partners))
+                                @foreach($partners as $partner)
+
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            <img src="{{ url("images/".$partner['image']) }}" class="img-round img-responsive" style="width: 50px" />
+                                        </td>
+                                        <td>
+                                            {{ $partner['name'] }}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete Artisan {{ $partner['name'] }}?')" href="{{ url('admin/artisan/delete/'. $partner['name']) }}">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </section>
+        </div>
     </div>
+</div>
 @stop
+
 @section('styles')
-    <link href="{{ url('') }}/assets/css/tabs_home.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('') }}/assets/slim/slim.min.css">
 @stop
 @section('scripts')
-    <script src="{{ url('') }}/assets/js/tabs.js"></script>
-    <script>
-        new CBPFWTabs(document.getElementById('tabs'));
-    </script>
+    <script src="{{ url('') }}/assets/slim/slim.kickstart.min.js" type="text/javascript"></script>
+    @include('admin.includes.datatable')
 @stop
