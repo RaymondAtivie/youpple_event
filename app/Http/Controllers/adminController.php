@@ -11,6 +11,7 @@ use Validator;
 
 use App\Http\Requests;
 use App\Slim;
+use App\Helpers\M;
 
 class AdminController extends Controller
 {
@@ -50,28 +51,35 @@ class AdminController extends Controller
 
     ///////--- HOME -----///////////////
     public function showLogo(){
-        $logos = [
-            "main" => ["name"=>"Youpple", "link"=>"main/main_normal.png"],
-            "talk" => ["name"=>"Youpple Talk", "link"=>"talk/talk_logo_normal.png"],
-            "event" => ["name"=>"Youpple Events", "link"=>"event/event_logo.png"],
-            "consult" => ["name"=>"Youpple Consult", "link"=>"consult/consult_logo_normal.png"],
-            "shop" => ["name"=>"Youpple Shop", "link"=>"expert-img-05.jpg"],
-            "reformers" => ["name"=>"Reformers Circle", "link"=>"reformers/reformers_logo_normal.png"],
-            "fashion" => ["name"=>"Fashion", "link"=>"fashion/fashion_logo_normal.png"],
-            "technology" => ["name"=>"Technology", "link"=>"technology/technology_logo_normal.png"]
-        ];
+        $logos = M::getLogos();
+
         return view('admin.pages.home.logos', compact('logos'));
     }
     public function changeLogo($logoname, Request $request){
-        $image = Slim::getImages('logo')[0];
 
-        $lExt = $image['input']['ext'];
-        $lName = $image['input']['name'];
-        $lData = $image['output']['data'];
+        $images = Slim::getImages('logo');
+        $p = $request->all();
 
-        $file = Slim::saveFile($lData, $lName, "jpg", false);
+        if(isset($images[0])){
+            $image = $images[0];
 
-        rename($file['path'], "images/logos/".$logoname.".".$lExt);
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $filename = "logos/".$logoname.".".$lExt;
+            rename($file['path'], "images/".$filename);
+
+            M::setDocuments($p['key']."_logo", $filename);
+        }
+
+        M::setDocuments($p['key']."_name", $p['name']);
+
+        M::flash("Successfully changed ".$p['key'], "success");
+
+        return redirect('admin/home/logo');
     }
 
     public function showSocial(){
@@ -82,6 +90,15 @@ class AdminController extends Controller
     }
 
     public function showPrivacyPolicy(){
+        // $FmyFunctions1 = new \App\library\myFunctions;
+        // $is_ok = ($FmyFunctions1->is_ok());
+
+        $AC = M::getLogos();
+        // $AC = M::getDocuments("terms");
+        // $AC = M::setDocuments("terms_of_use", "<b>dsjk</b>");
+
+        dd($AC);
+
         return view('admin.pages.home.privacy');
     }
     public function showAdvert(){
@@ -133,6 +150,14 @@ class AdminController extends Controller
         ];
         return view('admin.pages.about.testimonials', compact('testimonials'));
     }
+    public function showTeam(){
+        $team = [
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
+            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
+        ];
+        return view('admin.pages.about.team', compact('team'));
+    }
 
     ///////--- FEATURED -----///////////////
     public function showFeaturedEvents(){
@@ -144,6 +169,24 @@ class AdminController extends Controller
     }
     public function showFeaturedProviders(){
         return view('admin.pages.feature.providers');
+    }
+
+    public function listCustomers(){
+        $users = \App\User::all();
+
+        return view('admin.pages.list.customers', compact('users'));
+    }
+
+    public function listEvents(){
+        $events = \App\Models\Event::all();
+
+        return view('admin.pages.list.events', compact('events'));
+    }
+
+    public function listProviders(){
+        $users = \App\User::all();
+
+        return view('admin.pages.list.providers', compact('users'));
     }
 
     ////

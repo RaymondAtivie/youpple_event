@@ -8,6 +8,7 @@ use Carbon;
 class Event extends Model
 {
     protected $dates = ['datetime', 'datetime_end'];
+    // protected $dateFormat = 'd m Y H:i a';
 
     protected $fillable = ['title', 'description', 'venue', 'datetime', 'datetime_end'];
 

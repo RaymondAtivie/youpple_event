@@ -90,12 +90,17 @@ Route::group([
     Route::get('/home/privacy', "AdminController@showPrivacyPolicy");
 
     Route::get('/about/clients', "AdminController@showClients");
+    Route::get('/about/team', "AdminController@showTeam");
     Route::get('/about/partners', "AdminController@showPartners");
     Route::get('/about/info', "AdminController@showInfo");
     Route::get('/about/testimonials', "AdminController@showTestimonials");
 
     Route::get('/feature/events', "AdminController@showFeaturedEvents");
     Route::get('/feature/providers', "AdminController@showFeaturedProviders");
+
+    Route::get('/list/customers', "AdminController@listCustomers");
+    Route::get('/list/events', "AdminController@listEvents");
+    Route::get('/list/providers', "AdminController@listProviders");
 
     ////////////////////////////////////////////////////////////
 

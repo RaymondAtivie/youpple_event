@@ -32,6 +32,7 @@
         </a>
         <ul class="child-list">
             <li><a href="{{ url('admin/about/info') }}">Information</a></li>
+            <li><a href="{{ url('admin/about/team') }}">Team</a></li>
             <li><a href="{{ url('admin/about/partners') }}">Partners</a></li>
             <li><a href="{{ url('admin/about/clients') }}">Clients</a></li>
             <li><a href="{{ url('admin/about/testimonials') }}">Testimonials</a></li>
@@ -60,17 +61,17 @@
         <h3 class="navigation-title">Users</h3>
     </li>
     <li>
-        <a href="">
-            <i class="fa fa-users"></i><span>Customers</span>
+        <a href="{{ url('admin/list/customers') }}">
+            <i class="fa fa-users"></i><span>Users</span>
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="{{ url('admin/list/events') }}">
             <i class="fa fa-calendar"></i><span>Events</span>
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="{{ url('admin/list/providers') }}">
             <i class="fa fa-briefcase"></i><span>Service Providers</span>
         </a>
     </li>

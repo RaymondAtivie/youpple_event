@@ -14,6 +14,9 @@
     <div class="wrapper">
 
         <div class="row">
+            <div class="col-sm-12">
+                @include('inc/flash')
+            </div>
 
             @foreach($logos as $key => $logo)
                 <div class="col-sm-4">
@@ -30,6 +33,7 @@
                                     <div class="form-group">
                                         {{-- <label class="control-label">Name</label> --}}
                                         <input type="text" name="name" class="form-control" value="{{$logo['name']}}" >
+                                        <input type="hidden" name="key" class="form-control" value="{{$key}}" >
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

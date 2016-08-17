@@ -12,7 +12,7 @@
     </div>
 
     <div class="wrapper">
-
+        <h1>Welcome to Youpple Event Dashboard</h1>
     </div>
 @stop
 @section('styles')
