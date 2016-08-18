@@ -13,8 +13,11 @@
 
     <div class="wrapper">
         <div class="row">
+            <div class="col-sm-12">
+                @include('inc/flash')
+            </div>
 
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Privacy Policy
@@ -26,7 +29,7 @@
                             @include('partials.messages')
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <textarea name="description" class="form-control summernote" placeholder="Write your Provacy policy" ></textarea>
+                                    <textarea id="summernote" rows="90" name="privacy" class="form-control" placeholder="Write your Provacy policy" >{{$privacy}}</textarea>
                                 </div>
                             </div>
 
@@ -46,18 +49,14 @@
 @stop
 @section('styles')
     <link href="{{ url('') }}/assets/summernote/summernote.css" rel="stylesheet">
-    <link href="{{ url('') }}/assets/css/tabs_home.css" rel="stylesheet">
 @stop
 @section('scripts')
     <script src="{{ url('') }}/assets/summernote/summernote.min.js"></script>
-    <script src="{{ url('') }}/assets/js/tabs.js"></script>
     <script>
-    // $(document).ready(function() {
-    //     $('#summernote').summernote({
-    //         height: 600,
-    //     });
-    // });
-    new CBPFWTabs(document.getElementById('tabs'));
-
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 600,
+        });
+    });
     </script>
 @stop

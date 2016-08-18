@@ -40,9 +40,11 @@ class M
 
         foreach ($data as $key => $value) {
             if(strpos($key, "social_") !== FALSE){
-                $socials[$key] = $value;
+                $k = substr($key, 7);
+                $socials[$k] = $value;
             }
         }
+
         return $socials;
     }
 

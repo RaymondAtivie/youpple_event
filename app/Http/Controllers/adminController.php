@@ -83,32 +83,79 @@ class AdminController extends Controller
     }
 
     public function showSocial(){
-        return view('admin.pages.home.social');
+        $socials = M::getSocials();
+
+        return view('admin.pages.home.social', compact('socials'));
     }
-    public function changeSocial(){
-        return view('admin.pages.home.social');
+    public function changeSocial(Request $request){
+        $r = $request->all();
+
+        unset($r['_token']);
+
+        foreach ($r as $key => $value) {
+            M::setDocuments($key, $value);
+        }
+
+        M::flash("Successfully Updated", "success");
+
+        return redirect('admin/home/social');
     }
 
     public function showPrivacyPolicy(){
-        // $FmyFunctions1 = new \App\library\myFunctions;
-        // $is_ok = ($FmyFunctions1->is_ok());
+        $privacy = M::getDocuments("privacy_policy");
 
-        $AC = M::getLogos();
-        // $AC = M::getDocuments("terms");
-        // $AC = M::setDocuments("terms_of_use", "<b>dsjk</b>");
-
-        dd($AC);
-
-        return view('admin.pages.home.privacy');
+        return view('admin.pages.home.privacy', compact('privacy'));
     }
+    public function changePrivacyPolicy(Request $request){
+        $privacy = $request->get("privacy");
+
+        M::setDocuments("privacy_policy", $privacy);
+        M::flash("Successfully Updated", "success");
+
+        return redirect('admin/home/privacy');
+    }
+
     public function showAdvert(){
-        return view('admin.pages.home.advert');
+        $ad = M::getDocuments("advertising");
+
+        return view('admin.pages.home.advert', compact("ad"));
     }
+    public function changeAdvert(Request $request){
+        $ad = $request->get("advert");
+
+        M::setDocuments("advertising", $ad);
+        M::flash("Successfully Updated", "success");
+
+        return redirect('admin/home/advert');
+    }
+
     public function showTermsOfUse(){
-        return view('admin.pages.home.termsofuse');
+        $terms_of_use = M::getDocuments("terms_of_use");
+
+        return view('admin.pages.home.termsofuse', compact("terms_of_use"));
     }
+
+    public function changeTermsOfUse(Request $request){
+        $TOU = $request->get("terms_of_us");
+
+        M::setDocuments("terms_of_use", $TOU);
+        M::flash("Successfully Updated", "success");
+
+        return redirect('admin/home/termsofuse');
+    }
+
     public function showTermsAndConditions(){
-        return view('admin.pages.home.terms');
+        $terms = M::getDocuments("terms");
+
+        return view('admin.pages.home.terms', compact('terms'));
+    }
+    public function changeTermsAndConditions(Request $request){
+        $terms = $request->get("terms");
+
+        M::setDocuments("terms", $terms);
+        M::flash("Successfully Updated", "success");
+
+        return redirect('admin/home/terms');
     }
 
     ///////--- ABOUT -----///////////////

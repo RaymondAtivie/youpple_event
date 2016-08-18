@@ -85,9 +85,16 @@ Route::group([
     Route::post('/home/changeSocial', "AdminController@changeSocial");
 
     Route::get('/home/terms', "AdminController@showTermsAndConditions");
+    Route::post('/home/changeTerms', "AdminController@changeTermsAndConditions");
+
     Route::get('/home/termsofuse', "AdminController@showTermsOfUse");
+    Route::post('/home/changeTOU', "AdminController@changeTermsOfUse");
+
     Route::get('/home/advert', "AdminController@showAdvert");
+    Route::post('/home/changeAd', "AdminController@changeAdvert");
+
     Route::get('/home/privacy', "AdminController@showPrivacyPolicy");
+    Route::post('/home/changePP', "AdminController@changePrivacyPolicy");
 
     Route::get('/about/clients', "AdminController@showClients");
     Route::get('/about/team', "AdminController@showTeam");

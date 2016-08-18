@@ -19,6 +19,9 @@
 
     <div class="wrapper">
         <div class="row">
+            <div class="col-sm-12">
+                @include('inc/flash')
+            </div>
 
             <div class="col-sm-8">
                 <section class="panel">
@@ -36,7 +39,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-facebook"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://facebook.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_facebook" class="form-control" value="{{$socials['facebook']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -45,7 +48,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-twitter"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://twitter.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_twitter" class="form-control" value="{{$socials['twitter']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -54,7 +57,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-google"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://google.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_google" class="form-control" value="{{$socials['google']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -63,7 +66,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-instagram"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://instagram.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text"  name="social_instagram" class="form-control" value="{{$socials['instagram']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -72,7 +75,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-google-plus"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://plus.google.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_google_plus" class="form-control" value="{{$socials['google_plus']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -81,7 +84,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-pinterest"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://pintrest.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_pinterest" class="form-control" value="{{$socials['pinterest']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -90,7 +93,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-youtube"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://youtube.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_youtube" class="form-control" value="{{$socials['youtube']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
@@ -99,7 +102,7 @@
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-linkedin"></i>
                                     </span>
-                                    <input type="text" class="form-control" value="http://linkedin.com/youpple" aria-describedby="basic-addon1">
+                                    <input type="text" name="social_linkedin" class="form-control" value="{{$socials['linkedin']}}" aria-describedby="basic-addon1">
                                 </div>
                             </div>
 
