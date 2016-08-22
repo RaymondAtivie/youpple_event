@@ -12,6 +12,7 @@ use Validator;
 use App\Http\Requests;
 use App\Slim;
 use App\Helpers\M;
+use App\Models\Event;
 
 class AdminController extends Controller
 {
@@ -181,7 +182,7 @@ class AdminController extends Controller
         $description = M::getAboutData("description");
         $aboutImage = M::getAboutData("image");
         $logos = M::getAboutLogos();
-        
+
         return view('admin.pages.about.information', compact('logos', 'header', 'description', 'aboutImage'));
     }
     public function changeInfo(Request $request){
@@ -263,12 +264,29 @@ class AdminController extends Controller
 
     ///////--- FEATURED -----///////////////
     public function showFeaturedEvents(){
-        $events = \App\Models\Event::all();
+        $events = Event::where('featured', 'false')->get();
 
-        $fEvents = \App\Models\Event::take(3)->get();
+        $fEvents = Event::where('featured', 'true')->get();
 
         return view('admin.pages.feature.events', compact("events", "fEvents"));
     }
+
+    public function addToFeaturedEvent(Event $event){
+        $event->featured = 'true';
+        $event->save();
+
+        M::flash("Successfully Added to featured events", "success");
+        return redirect('admin/feature/events');
+    }
+
+    public function removeFromFeaturedEvent(Event $event){
+        $event->featured = 'false';
+        $event->save();
+
+        M::flash("Successfully Removed from featured events", "danger");
+        return redirect('admin/feature/events');
+    }
+
     public function showFeaturedProviders(){
         return view('admin.pages.feature.providers');
     }
@@ -280,7 +298,7 @@ class AdminController extends Controller
     }
 
     public function listEvents(){
-        $events = \App\Models\Event::all();
+        $events = Event::all();
 
         return view('admin.pages.list.events', compact('events'));
     }

@@ -109,10 +109,16 @@ Route::group([
     Route::get('/about/testimonials', "AdminController@showTestimonials");
 
     Route::get('/feature/events', "AdminController@showFeaturedEvents");
+    Route::get('/feature/events/add/{event}', "AdminController@addToFeaturedEvent");
+    Route::get('/feature/events/remove/{event}', "AdminController@removeFromFeaturedEvent");
+
     Route::get('/feature/providers', "AdminController@showFeaturedProviders");
 
     Route::get('/list/customers', "AdminController@listCustomers");
+
     Route::get('/list/events', "AdminController@listEvents");
+    Route::get('/list/events/remove/{event}', "AdminController@listEvents");
+
     Route::get('/list/providers', "AdminController@listProviders");
 
     ////////////////////////////////////////////////////////////

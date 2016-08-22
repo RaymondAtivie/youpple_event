@@ -43,7 +43,7 @@
                                 {{-- <img src="/images/events-thumb-img1.jpg" alt="" style="margin-bottom: 10px"> --}}
                                 <!--Events Flickr Box Start-->
                                 <div class="cp-events-flickr-box">
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         @foreach($event->media->groupBy('type')['image'] as $media)
                                             @if($media->url != "" && $media->link != "")
                                                 <div class="col-md-4 col-sm-4">
@@ -53,7 +53,7 @@
                                                 </div>
                                             @endif
                                         @endforeach
-                                    </div>
+                                    </div> --}}
                                 </div><!--Events Flickr Box End-->
                             </figure><!--Events Thumb End-->
                             <div class="cp-text">
