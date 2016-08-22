@@ -56,7 +56,6 @@ class AdminController extends Controller
         return view('admin.pages.home.logos', compact('logos'));
     }
     public function changeLogo($logoname, Request $request){
-
         $images = Slim::getImages('logo');
         $p = $request->all();
 
@@ -149,6 +148,7 @@ class AdminController extends Controller
 
         return view('admin.pages.home.terms', compact('terms'));
     }
+
     public function changeTermsAndConditions(Request $request){
         $terms = $request->get("terms");
 
@@ -177,18 +177,73 @@ class AdminController extends Controller
         return view('admin.pages.about.partners', compact('partners'));
     }
     public function showInfo(){
-        $logos = [
-            "main" => ["name"=>"Youpple", "link"=>"main/main_normal.png"],
-            "talk" => ["name"=>"Youpple Talk", "link"=>"talk/talk_logo_normal.png"],
-            "event" => ["name"=>"Youpple Events", "link"=>"event/event_logo.png"],
-            "consult" => ["name"=>"Youpple Consult", "link"=>"consult/consult_logo_normal.png"],
-            "shop" => ["name"=>"Youpple Shop", "link"=>"expert-img-05.jpg"],
-            "reformers" => ["name"=>"Reformers Circle", "link"=>"reformers/reformers_logo_normal.png"],
-            "fashion" => ["name"=>"Fashion", "link"=>"fashion/fashion_logo_normal.png"],
-            "technology" => ["name"=>"Technology", "link"=>"technology/technology_logo_normal.png"]
-        ];
-        return view('admin.pages.about.information', compact('logos'));
+        $header = M::getAboutData("header");
+        $description = M::getAboutData("description");
+        $aboutImage = M::getAboutData("image");
+        $logos = M::getAboutLogos();
+        
+        return view('admin.pages.about.information', compact('logos', 'header', 'description', 'aboutImage'));
     }
+    public function changeInfo(Request $request){
+        $header = $request->get("header");
+        $description = $request->get("description");
+
+        M::setAboutData("header", $header);
+        M::setAboutData("description", $description);
+
+        M::flash("Successfully Updated About Page Info", "success");
+
+        return redirect('admin/about/info');
+    }
+    public function changeInfoLogo($logoname, Request $request){
+
+            $images = Slim::getImages('logo');
+            $p = $request->all();
+
+            if(isset($images[0])){
+                $image = $images[0];
+
+                $lExt = $image['input']['ext'];
+                $lName = $image['input']['name'];
+                $lData = $image['output']['data'];
+
+                $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+                $filename = "logos/".$logoname.".".$lExt;
+                rename($file['path'], "images/".$filename);
+
+                M::setAboutData($p['key']."_logo", $filename);
+            }
+
+            M::setAboutData($p['key']."_name", $p['name']);
+            M::setAboutData($p['key']."_desc", $p['name']);
+
+            M::flash("Successfully changed ".$p['key'], "success");
+
+        return redirect('admin/about/info');
+    }
+    public function changeInfoImage(Request $request){
+        $images = Slim::getImages('image');
+
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $filename = "page/aboutimage.".$lExt;
+            rename($file['path'], "images/".$filename);
+
+            M::setAboutData("image", $filename);
+            M::flash("Successfully Updated About Image", "success");
+        }
+
+        return redirect('admin/about/info');
+    }
+
     public function showTestimonials(){
         $testimonials = [
             ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],

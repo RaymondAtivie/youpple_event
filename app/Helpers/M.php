@@ -78,6 +78,57 @@ class M
 
         return $logos;
     }
+
+    static function getAboutLogos(){
+        $data = DB::table('admin_about')->first();
+
+        foreach ($data as $key => $value) {
+            if(strpos($key, "_name") !== FALSE || strpos($key, "_logo") !== FALSE || strpos($key, "_desc") !== FALSE){
+                $ls[$key] = $value;
+            }
+        }
+
+        foreach ($ls as $key => $value) {
+            if(strpos($key, "_name") !== FALSE){
+                $k = substr($key, 0, -5);
+                if(isset($logos[$k])){
+                    $logos[$k]['name'] = $value;
+                }else{
+                    $logos[$k] = ["name" => $value];
+                }
+            }
+            if(strpos($key, "_logo") !== FALSE){
+                $k = substr($key, 0, -5);
+                if(isset($logos[$k])){
+                    $logos[$k]['link'] = $value;
+                }else{
+                    $logos[$k] = ["link" => $value];
+                }
+            }
+            if(strpos($key, "_desc") !== FALSE){
+                $k = substr($key, 0, -5);
+                if(isset($logos[$k])){
+                    $logos[$k]['desc'] = $value;
+                }else{
+                    $logos[$k] = ["desc" => $value];
+                }
+            }
+        }
+
+        return $logos;
+    }
+
+    static function setAboutData($data, $content){
+        DB::table("admin_about")
+        ->where('id', 1)
+        ->update([$data => $content]);
+    }
+
+    static function getAboutData($data){
+        $row = DB::table('admin_about')->first();
+
+        return $row->{$data};
+    }
 }
 
 

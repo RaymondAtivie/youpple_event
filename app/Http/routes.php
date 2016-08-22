@@ -96,10 +96,16 @@ Route::group([
     Route::get('/home/privacy', "AdminController@showPrivacyPolicy");
     Route::post('/home/changePP', "AdminController@changePrivacyPolicy");
 
+    /////////////////ABOUT//////////////////////////////////////////////
+
+    Route::get('/about/info', "AdminController@showInfo");
+    Route::post('/about/changeAboutInfo', "AdminController@changeInfo");
+    Route::post('/about/changeAboutImage', "AdminController@changeInfoImage");
+    Route::post('/about/changeAboutLogo/{logoname}', "AdminController@changeInfoLogo");
+
     Route::get('/about/clients', "AdminController@showClients");
     Route::get('/about/team', "AdminController@showTeam");
     Route::get('/about/partners', "AdminController@showPartners");
-    Route::get('/about/info', "AdminController@showInfo");
     Route::get('/about/testimonials', "AdminController@showTestimonials");
 
     Route::get('/feature/events', "AdminController@showFeaturedEvents");

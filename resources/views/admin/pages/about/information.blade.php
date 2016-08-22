@@ -14,6 +14,9 @@
     <div class="wrapper">
 
         <div class="row">
+            <div class="col-sm-12">
+                @include('inc/flash')
+            </div>
 
             <div class="col-sm-5">
                 <section class="panel">
@@ -21,7 +24,7 @@
                         About Page Image
                     </header>
                     <div class="panel-body">
-                        <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/home/changeAboutImage') }}">
+                        <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/about/changeAboutImage') }}">
                             <input type="hidden" name="_token" value="{{ Session::getToken() }}"/>
                             @include('partials.errors')
                             @include('partials.messages')
@@ -31,7 +34,7 @@
                                 data-label="Drop your Logo here"
                                 data-size="1000,600"
                                 data-ratio="10:6" data-will-transform="addWatermark">
-                                <img src="{{ url("images/banner/about.jpg") }}" alt=""/>
+                                <img src="{{ url("images/".$aboutImage) }}" alt=""/>
                                 <input type="file"  name="image[]" id="slim" /></div>
                             </div>
                             <div class="col-sm-12">
@@ -51,18 +54,18 @@
                         About Page Info
                     </header>
                     <div class="panel-body">
-                        <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/home/changeAbout') }}">
+                        <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/about/changeAboutInfo') }}">
                             <input type="hidden" name="_token" value="{{ Session::getToken() }}"/>
                             @include('partials.errors')
                             @include('partials.messages')
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="control-label">Page Header</label>
-                                    <input type="text" name="name" class="form-control" value="" >
+                                    <input type="text" name="header" class="form-control" value="{{$header}}" >
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <textarea name="description" class="form-control summernote" placeholder="Write your Provacy policy" ></textarea>
+                                <textarea name="description" class="form-control" id="summernote" placeholder="Write your description" >{{$description}}</textarea>
                             </div>
                             <div class="col-sm-12">
                                 <hr />
@@ -85,10 +88,11 @@
                             {{$logo['name']}}
                         </header>
                         <div class="panel-body">
-                            <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/home/changeLogo/'.$key) }}">
+                            <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/about/changeAboutLogo/'.$key) }}">
                                 <input type="hidden" name="_token" value="{{ Session::getToken() }}"/>
                                 @include('partials.errors')
                                 @include('partials.messages')
+                                <input type="hidden" name="key" class="form-control" value="{{$key}}" >
 
                                 <div class="col-sm-12">
                                     <div class="slim"
@@ -103,8 +107,14 @@
                                 <div class="col-sm-12">
                                     <hr />
                                     <div class="form-group">
+                                        <label class="control-label">Caption</label>
+                                        <input type="text" name="name" value="{{$logo['name']}}" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
                                         <label class="control-label">Summary</label>
-                                        <textarea style="resize: none" rows="4" name="name" class="form-control">{{$logo['name']}}</textarea>
+                                        <textarea style="resize: none" rows="4" name="desc" class="form-control">{{$logo['name']}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

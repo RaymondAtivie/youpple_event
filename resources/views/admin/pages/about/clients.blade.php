@@ -1,4 +1,4 @@
-@extends('admin.layout.default')
+ @extends('admin.layout.default')
 @section('title')
     Change Clients
 @stop

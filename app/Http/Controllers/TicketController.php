@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Auth;
+use Mail;
 
 class TicketController extends Controller
 {
@@ -53,11 +54,30 @@ class TicketController extends Controller
         return ['status'=>"success", "url"=>url("events/ticket/show?ticket=".$ticket->ticket)];
     }
 
-
     public function showTicket(Request $request){
         $ticket_code = $request->get("ticket");
         $ticket = \App\Models\Ticket::where('ticket', $ticket_code)->first();
 
+        if(!$ticket){
+            return "this ticket doesn't exist";
+        }
+
+        $from = "events@youpple.com";
+        $to = $ticket->email;
+        $toName = $ticket->name;
+        $subject = "Ticket Purchased for ".$ticket->event->title;
+
+        $this->sendEmail($from, $to, $toName, $subject, compact('ticket'));
+
         return view("events.showTicket", compact('ticket'));
+    }
+
+    public function sendEmail($from, $to, $toName, $subject, $objectArray)
+    {
+        Mail::send('email.ticket', $objectArray, function ($message) use ($from, $to, $toName, $subject)
+        {
+            $message->from($from);
+            $message->to($to, $toName)->subject($subject);
+        });
     }
 }

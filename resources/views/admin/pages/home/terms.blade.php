@@ -51,7 +51,7 @@
     <link href="{{ url('') }}/assets/summernote/summernote.css" rel="stylesheet">
 @stop
 @section('scripts')
-    <script src="{{ url('') }}/assets/summernote/summernote.min.js"></script>
+    <script src="{{ url('') }}/assets/summernote/summernote2.js"></script>
     <script>
     $(document).ready(function() {
         $('#summernote').summernote({
