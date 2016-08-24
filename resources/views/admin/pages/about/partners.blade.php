@@ -13,20 +13,23 @@
 
     <div class="wrapper">
         <div class="row">
+            <div class="col-sm-12">
+                @include('inc/flash')
+            </div>
             <div class="col-sm-6 col-sm-offset-3">
                 <section class="panel">
                     <header class="panel-heading">
                         Add a new Partners
                     </header>
                     <div class="panel-body">
-                        <form action="post.php" method="post" enctype="multipart/form-data" class="avatar">
+                        <form action="{{url('admin/about/partners')}}" method="post" enctype="multipart/form-data" class="avatar">
                             <div class="row">
-                                <div class="col-sm-4 col-sm-offset-4">
+                                <div class="col-sm-6 col-sm-offset-3">
                                     <div class="slim"
-                                    data-label="Drop your avatar here"
-                                    data-size="240,240"
+                                    data-label="Drop the logo here"
+                                    data-size="1000,1000"
                                     data-ratio="1:1">
-                                    <input type="file" name="slim[]" required /></div>
+                                    <input type="file" name="image" /></div>
                                 </div>
                             </div>
 
@@ -35,6 +38,19 @@
                                     <div class="form-group">
                                         <label class="control-label">Name</label>
                                         <input type="text" name="name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Link</label>
+                                        <input type="text" name="link" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Summary</label>
+                                        <textarea style="resize: none" rows="4" class="form-control" name="summary"></textarea>
+                                        {{-- <input type="text" name="link" class="form-control" /> --}}
                                     </div>
                                 </div>
 
@@ -62,9 +78,6 @@
                         <table class="table convert-data-table data-table"  id="sample_1">
                             <thead>
                                 <tr>
-                                    {{-- <th>
-                                    <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-                                </th> --}}
                                 <th>
                                     Image
                                 </th>
@@ -72,7 +85,13 @@
                                     Name
                                 </th>
                                 <th>
-
+                                    Link
+                                </th>
+                                <th>
+                                    Summary
+                                </th>
+                                <th>
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
@@ -82,15 +101,23 @@
 
                                     <tr class="odd gradeX">
                                         <td>
-                                            <img src="{{ url("images/".$partner['image']) }}" class="img-round img-responsive" style="width: 50px" />
+                                            <img src="{{ url("images/".$partner->image) }}" class="img-round img-responsive" style="width: 50px" />
                                         </td>
                                         <td>
-                                            {{ $partner['name'] }}
+                                            {{ $partner->name }}
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete Artisan {{ $partner['name'] }}?')" href="{{ url('admin/artisan/delete/'. $partner['name']) }}">
+                                            {{ $partner->link }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->summary }}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this partner {{ $partner->name }}?')"
+                                            href="{{ url('admin/about/partners/remove/'. $partner->id) }}">
                                                 <i class="fa fa-trash"></i> Delete
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -111,5 +138,5 @@
 @stop
 @section('scripts')
     <script src="{{ url('') }}/assets/slim/slim.kickstart.min.js" type="text/javascript"></script>
-    @include('admin.includes.datatable')
+    {{-- @include('admin.includes.datatable') --}}
 @stop

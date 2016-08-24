@@ -129,6 +129,78 @@ class M
 
         return $row->{$data};
     }
+
+    // TEAM FUNCTIONS //
+    static function addTeam($teamDetails)
+    {
+        DB::table("admin_team")
+        ->insert($teamDetails);
+    }
+    static function getTeam()
+    {
+        return DB::table("admin_team")->get();
+    }
+
+    static function removeTeam($teamId)
+    {
+        DB::table("admin_team")
+        ->where("id", $teamId)
+        ->delete();
+    }
+
+
+    // Partner FUNCTIONS //
+    static function addPartner($partnerDetails)
+    {
+        DB::table("admin_partners")
+        ->insert($partnerDetails);
+    }
+    static function getPartners()
+    {
+        return DB::table("admin_partners")->get();
+    }
+
+    static function removePartner($partnerId)
+    {
+        DB::table("admin_partners")
+        ->where("id", $partnerId)
+        ->delete();
+    }
+
+    // Testimonial FUNCTIONS //
+    static function addTestimony($testimonyDetails)
+    {
+        DB::table("admin_testimonials")
+        ->insert($testimonyDetails);
+    }
+    static function getTestimonials()
+    {
+        return DB::table("admin_testimonials")->get();
+    }
+
+    static function removeTestimony($testimonyId)
+    {
+        DB::table("admin_testimonials")
+        ->where("id", $testimonyId)
+        ->delete();
+    }
+
+    // Clients FUNCTIONS //
+    static function addClient($clientDetails)
+    {
+        DB::table("admin_clients")
+        ->insert($clientDetails);
+    }
+    static function getClients()
+    {
+        return DB::table("admin_clients")->get();
+    }
+    static function removeClient($clientId)
+    {
+        DB::table("admin_clients")
+        ->where("id", $clientId)
+        ->delete();
+    }
 }
 
 

@@ -41,7 +41,7 @@ Route::group(['prefix'=>'events'], function(){
     // Route::get('/apply', 'TicketController@showTicket');
     Route::any('/apply', 'TicketController@regEvent');
 
-    Route::get('/ticket/show', 'TicketController@showTicket');
+    Route::get('/ticket/show/{ticket}', 'TicketController@showTicket');
     Route::post('/ticket/save', 'TicketController@saveTicket');
 
     Route::group(['middleware'=>['confirmEvent']], function(){
@@ -104,9 +104,20 @@ Route::group([
     Route::post('/about/changeAboutLogo/{logoname}', "AdminController@changeInfoLogo");
 
     Route::get('/about/clients', "AdminController@showClients");
+    Route::post('/about/clients', "AdminController@saveClient");
+    Route::get('/about/clients/remove/{clientId}', "AdminController@removeClient");
+
     Route::get('/about/team', "AdminController@showTeam");
+    Route::post('/about/team', "AdminController@saveTeam");
+    Route::get('/about/team/remove/{teamId}', "AdminController@removeTeam");
+
     Route::get('/about/partners', "AdminController@showPartners");
+    Route::post('/about/partners', "AdminController@savePartner");
+    Route::get('/about/partners/remove/{partnerId}', "AdminController@removePartner");
+
     Route::get('/about/testimonials', "AdminController@showTestimonials");
+    Route::post('/about/testimonials', "AdminController@saveTestimony");
+    Route::get('/about/testimonials/remove/{testimonyId}', "AdminController@removeTestimony");
 
     Route::get('/feature/events', "AdminController@showFeaturedEvents");
     Route::get('/feature/events/add/{event}', "AdminController@addToFeaturedEvent");
@@ -115,9 +126,13 @@ Route::group([
     Route::get('/feature/providers', "AdminController@showFeaturedProviders");
 
     Route::get('/list/customers', "AdminController@listCustomers");
+    Route::get('/list/customers/remove/{user}', "AdminController@removeCustomer");
 
     Route::get('/list/events', "AdminController@listEvents");
-    Route::get('/list/events/remove/{event}', "AdminController@listEvents");
+    Route::get('/list/events/remove/{event}', "AdminController@removeEvent");
+    Route::get('/list/events/{event}/tickets', "AdminController@eventTickets");
+    Route::get('/list/events/revokeTicket/{ticket}', "AdminController@revokeTicket");
+    Route::get('/list/events/unrevokeTicket/{ticket}', "AdminController@unrevokeTicket");
 
     Route::get('/list/providers', "AdminController@listProviders");
 

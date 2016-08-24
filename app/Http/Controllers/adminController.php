@@ -160,23 +160,8 @@ class AdminController extends Controller
     }
 
     ///////--- ABOUT -----///////////////
-    public function showClients(){
-        $clients = [
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
-        ];
 
-        return view('admin.pages.about.clients', compact('clients'));
-    }
-    public function showPartners(){
-        $partners = [
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
-        ];
-        return view('admin.pages.about.partners', compact('partners'));
-    }
+
     public function showInfo(){
         $header = M::getAboutData("header");
         $description = M::getAboutData("description");
@@ -198,28 +183,28 @@ class AdminController extends Controller
     }
     public function changeInfoLogo($logoname, Request $request){
 
-            $images = Slim::getImages('logo');
-            $p = $request->all();
+        $images = Slim::getImages('logo');
+        $p = $request->all();
 
-            if(isset($images[0])){
-                $image = $images[0];
+        if(isset($images[0])){
+            $image = $images[0];
 
-                $lExt = $image['input']['ext'];
-                $lName = $image['input']['name'];
-                $lData = $image['output']['data'];
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
 
-                $file = Slim::saveFile($lData, $lName, "jpg", false);
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
 
-                $filename = "logos/".$logoname.".".$lExt;
-                rename($file['path'], "images/".$filename);
+            $filename = "logos/".$logoname.".".$lExt;
+            rename($file['path'], "images/".$filename);
 
-                M::setAboutData($p['key']."_logo", $filename);
-            }
+            M::setAboutData($p['key']."_logo", $filename);
+        }
 
-            M::setAboutData($p['key']."_name", $p['name']);
-            M::setAboutData($p['key']."_desc", $p['name']);
+        M::setAboutData($p['key']."_name", $p['name']);
+        M::setAboutData($p['key']."_desc", $p['name']);
 
-            M::flash("Successfully changed ".$p['key'], "success");
+        M::flash("Successfully changed ".$p['key'], "success");
 
         return redirect('admin/about/info');
     }
@@ -245,24 +230,176 @@ class AdminController extends Controller
         return redirect('admin/about/info');
     }
 
-    public function showTestimonials(){
-        $testimonials = [
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
-        ];
-        return view('admin.pages.about.testimonials', compact('testimonials'));
-    }
-    public function showTeam(){
-        $team = [
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"],
-            ["name"=>"Raymond Ativie", "position"=>"Developer", "description"=>"Youpple7", "image"=>"logos/small_2.png"]
-        ];
-        return view('admin.pages.about.team', compact('team'));
+    //// CLIENTS CONTROL //////
+    public function showClients(){
+        $clients = M::getClients();
+
+        return view('admin.pages.about.clients', compact('clients'));
     }
 
-    ///////--- FEATURED -----///////////////
+    public function saveClient(Request $request){
+        $info = $request->all();
+
+
+        $images = Slim::getImages('image');
+
+        $info['image'] = "clients/unknown.jpg";
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $filename = "team/".rand(1000, 99999999999).".".$lExt;
+            rename($file['path'], "images/".$filename);
+
+            $info['image'] = $filename;
+        }
+
+        M::addClient($info);
+
+        M::flash("Successfully added a client", "success");
+
+        return Redirect::back();
+    }
+    public function removeClient($clientId){
+        M::removeClient($clientId);
+
+        M::flash("Successfully removed the client", "danger");
+
+        return Redirect::back();
+    }
+
+    //// TESTIMONY CONTROLS /////
+    public function showTestimonials(){
+        $testimonials =  M::getTestimonials();
+
+        return view('admin.pages.about.testimonials', compact('testimonials'));
+    }
+
+    public function saveTestimony(Request $request){
+        $info = $request->all();
+
+        $images = Slim::getImages('image');
+
+        $info['image'] = "testimonials/unknown.jpg";
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $filename = "team/".rand(1000, 99999999999).".".$lExt;
+            rename($file['path'], "images/".$filename);
+
+            $info['image'] = $filename;
+        }
+
+        M::addTestimony($info);
+
+        M::flash("Successfully added a testimony", "success");
+
+        return Redirect::back();
+    }
+    public function removeTestimony($testimonyId){
+        M::removeTestimony($testimonyId);
+
+        M::flash("Successfully removed the testimony", "danger");
+
+        return Redirect::back();
+    }
+
+
+    /////// PARTNERS CONTROLS //////////
+    public function showPartners(){
+        $partners = M::getPartners();
+        return view('admin.pages.about.partners', compact('partners'));
+    }
+    public function savePartner(Request $request){
+        $info = $request->all();
+
+        $images = Slim::getImages('image');
+
+        $info['image'] = "partners/unknown.jpg";
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $filename = "team/".rand(1000, 99999999999).".".$lExt;
+            rename($file['path'], "images/".$filename);
+
+            $info['image'] = $filename;
+        }
+
+        M::addPartner($info);
+
+        M::flash("Successfully added a partner", "success");
+
+        return Redirect::back();
+    }
+    public function removePartner($partnerId){
+        M::removePartner($partnerId);
+
+        M::flash("Successfully removed the partner", "danger");
+
+        return Redirect::back();
+    }
+
+    /////// TEAM CONTROLS //////////
+    public function showTeam(){
+        $team = M::getTeam();
+        return view('admin.pages.about.team', compact('team'));
+    }
+    public function saveTeam(Request $request){
+        $info = $request->all();
+
+        $images = Slim::getImages('image');
+
+        $info['image'] = "team/unknown.jpg";
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $filename = "team/".rand(1000, 99999999999).".".$lExt;
+            rename($file['path'], "images/".$filename);
+
+            $info['image'] = $filename;
+        }
+
+        M::addTeam($info);
+
+        M::flash("Successfully added a team member", "success");
+
+        return Redirect::back();
+    }
+    public function removeTeam($teamId){
+        M::removeTeam($teamId);
+
+        M::flash("Successfully removed the team member", "danger");
+
+        return Redirect::back();
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////
+    ///////--- FEATURED -----////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
     public function showFeaturedEvents(){
         $events = Event::where('featured', 'false')->get();
 
@@ -296,15 +433,48 @@ class AdminController extends Controller
 
         return view('admin.pages.list.customers', compact('users'));
     }
+    public function removeCustomer(\App\User $user){
+        $user->delete();
+
+        M::flash("Successfully deleted customer", "danger");
+
+        return redirect('admin/list/customers');
+    }
 
     public function listEvents(){
         $events = Event::all();
 
         return view('admin.pages.list.events', compact('events'));
     }
+    public function eventTickets(Event $event){
+        return view('admin.pages.list.eventTickets', compact('event'));
+    }
+    public function revokeTicket(\App\Models\Ticket $ticket){
+        $ticket->revokeTicket();
+
+        M::flash("Successfully Revoked the ticket - ".$ticket->ticket, "success");
+
+        return Redirect::back();
+    }
+    public function unrevokeTicket(\App\Models\Ticket $ticket){
+        $ticket->unrevokeTicket();
+
+        M::flash("Successfully Unrvoked the ticket - ".$ticket->ticket, "success");
+
+        return Redirect::back();
+    }
+
+    public function removeEvent(Event $event){
+        $event->delete();
+
+        M::flash("Successfully deleted event", "danger");
+
+        return redirect('admin/list/events');
+    }
 
     public function listProviders(){
-        $users = \App\User::all();
+        $UI = new \App\Models\UserInfo;
+        $users = $UI->getAllProviders();
 
         return view('admin.pages.list.providers', compact('users'));
     }

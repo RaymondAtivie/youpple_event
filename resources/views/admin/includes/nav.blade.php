@@ -9,7 +9,6 @@
         </a>
     </li>
 
-
     <li>
         <h3 class="navigation-title">Page Settings</h3>
     </li>
@@ -47,15 +46,6 @@
             <li><a href="{{ url('admin/feature/providers') }}">Featured Service Providers</a></li>
         </ul>
     </li>
-    {{-- <li class="menu-list">
-        <a href="">
-            <i class="fa fa-star"></i><span>Forms</span>
-        </a>
-        <ul class="child-list">
-            <li><a href="{{ url('admin/forms') }}">Forms</a></li>
-        </ul>
-    </li> --}}
-
 
     <li>
         <h3 class="navigation-title">Users</h3>
@@ -75,7 +65,7 @@
             <i class="fa fa-briefcase"></i><span>Service Providers</span>
         </a>
     </li>
-
+{{--
     <li>
         <h3 class="navigation-title">Settings</h3>
     </li>
@@ -88,53 +78,6 @@
         <a href="">
             <i class="fa fa-credit-card"></i><span>Payment</span>
         </a>
-    </li>
-
-
-    {{-- <li>
-        <h3 class="navigation-title">Voting Management</h3>
-    </li>
-    <!-- <li><a href=""><i class="fa fa-home"></i> <span>Commission Settings</span></a></li> -->
-    <li class="menu-list">
-        <a href=""><i class="fa fa-laptop"></i>  <span>Voting Settings</span></a>
-        <ul class="child-list">
-            <li><a href="{{ url('admin/commissionsettings') }}">Contestants</a></li>
-            <li><a href="{{ url('admin/commissionsettings/add') }}">Edit Contestant</a></li>
-        </ul>
-    </li>
-    <li>
-        <h3 class="navigation-title">Events Management</h3>
-    </li>
-    <li class="menu-list">
-        <a href=""><i class="fa fa-laptop"></i>  <span>Events</span></a>
-        <ul class="child-list">
-            <li><a href="{{ url('admin/events') }}">All Events</a></li>
-            <li><a href="{{ url('admin/commissionsettings') }}">Event Attendees</a></li>
-            <li><a href="{{ url('admin/commissionsettings/add') }}">Create Events</a></li>
-        </ul>
-    </li>
-    <li>
-        <h3 class="navigation-title">Users Management</h3>
-    </li>
-    <li>
-        <a href="">
-            <i class="fa fa-laptop"></i>  <span>Service Providers</span>
-        </a>
-    </li>
-    <li class="menu-list">
-        <a href="">
-            <i class="fa fa-laptop"></i>  <span>Customers</span>
-        </a>
-        <ul class="child-list">
-            <li><a href="{{ url('admin/allusers') }}">All Site Users</a></li>
-            <li><a href="{{ url('admin/commissionsettings/add') }}">Add/Edit User Events</a></li>
-        </ul>
-    </li>
-    <li>
-        <h3 class="navigation-title">Website Settings</h3>
-    </li>
-    <li><a href="{{ url('admin/settings') }}"><i class="fa fa-home"></i> <span>Settings</span></a></li>
-    <li><a href="{{ url('admin/adminusers') }}"><i class="fa fa-users"></i> <span>Admin Users</span></a></li> --}}
-
+    </li> --}}
 
 </ul>

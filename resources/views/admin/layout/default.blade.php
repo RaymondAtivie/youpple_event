@@ -12,7 +12,7 @@
     <link href="{{ url('') }}/assets/admin/css/slidebars.css" rel="stylesheet">
 
     <!--switchery-->
-    <link href="j{{ url('') }}/assets/admin/s/switchery/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    {{-- <link href="j{{ url('') }}/assets/admin/switchery/switchery.min.css" rel="stylesheet" type="text/css" media="screen" /> --}}
 
     <!--common style-->
     <link href="{{ url('') }}/assets/admin/css/style.css" rel="stylesheet">
@@ -84,7 +84,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu purple pull-right">
-                                <li><a href="javascript:;">  Profile</a></li>
+                                {{-- <li><a href="javascript:;">  Profile</a></li>
                                 <li>
                                     <a href="javascript:;">
                                         <span class="badge bg-danger pull-right">40%</span>
@@ -96,7 +96,7 @@
                                         <span class="label bg-info pull-right">new</span>
                                         Help
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li><a href="{{ url('admin/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>

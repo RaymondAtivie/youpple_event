@@ -33,7 +33,7 @@
                                 <div class="slim"
                                 data-label="Drop your Logo here"
                                 data-size="1000,600"
-                                data-ratio="10:6" data-will-transform="addWatermark">
+                                data-ratio="10:6" >
                                 <img src="{{ url("images/".$aboutImage) }}" alt=""/>
                                 <input type="file"  name="image[]" id="slim" /></div>
                             </div>
@@ -132,15 +132,10 @@
     </div>
 @stop
 @section('styles')
-    <link href="{{ url('') }}/assets/css/tabs_home.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/summernote/summernote.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/assets/slim/slim.min.css">
 @stop
 @section('scripts')
     <script src="{{ url('') }}/assets/summernote/summernote.min.js"></script>
     <script src="{{ url('') }}/assets/slim/slim.kickstart.min.js" type="text/javascript"></script>
-    <script src="{{ url('') }}/assets/js/tabs.js"></script>
-    <script>
-        new CBPFWTabs(document.getElementById('tabs'));
-    </script>
 @stop

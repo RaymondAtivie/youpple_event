@@ -13,20 +13,24 @@
 
     <div class="wrapper">
         <div class="row">
+            <div>
+                @include("inc/flash")
+            </div>
+
             <div class="col-sm-6 col-sm-offset-3">
                 <section class="panel">
                     <header class="panel-heading">
                         Add a new Client
                     </header>
                     <div class="panel-body">
-                        <form action="post.php" method="post" enctype="multipart/form-data" class="avatar">
+                        <form action="{{url('admin/about/clients')}}" method="post" enctype="multipart/form-data" class="avatar">
                             <div class="row">
                                 <div class="col-sm-4 col-sm-offset-4">
                                     <div class="slim"
                                     data-label="Drop your avatar here"
                                     data-size="240,240"
                                     data-ratio="1:1">
-                                    <input type="file" name="slim[]" required /></div>
+                                    <input type="file" name="image" required /></div>
                                 </div>
                             </div>
 
@@ -72,7 +76,7 @@
                                     Name
                                 </th>
                                 <th>
-
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
@@ -82,15 +86,17 @@
 
                                     <tr class="odd gradeX">
                                         <td>
-                                            <img src="{{ url("images/".$client['image']) }}" class="img-round img-responsive" style="width: 50px" />
+                                            <img src="{{ url("images/".$client->image) }}" class="img-round img-responsive" style="width: 50px" />
                                         </td>
                                         <td>
-                                            {{ $client['name'] }}
+                                            {{ $client->name }}
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete Artisan {{ $client['name'] }}?')" href="{{ url('admin/artisan/delete/'. $client['name']) }}">
+                                            <a class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this client - {{ $client->name }}?')"
+                                            href="{{ url('admin/about/clients/remove/'. $client->id) }}">
                                                 <i class="fa fa-trash"></i> Delete
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -111,5 +117,5 @@
 @stop
 @section('scripts')
     <script src="{{ url('') }}/assets/slim/slim.kickstart.min.js" type="text/javascript"></script>
-    @include('admin.includes.datatable')
+    {{-- @include('admin.includes.datatable') --}}
 @stop

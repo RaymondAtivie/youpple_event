@@ -51,15 +51,18 @@ class TicketController extends Controller
 
         $ticket = \App\Models\Ticket::create($inputs);
 
-        return ['status'=>"success", "url"=>url("events/ticket/show?ticket=".$ticket->ticket)];
+        return ['status'=>"success", "url"=>url("events/ticket/show/".$ticket->ticket)];
     }
 
-    public function showTicket(Request $request){
-        $ticket_code = $request->get("ticket");
+    public function showTicket($ticket_code){
         $ticket = \App\Models\Ticket::where('ticket', $ticket_code)->first();
 
         if(!$ticket){
-            return "this ticket doesn't exist";
+            return "This ticket doesn't exist";
+        }
+
+        if($ticket->revoked){
+            return "Sorry this ticket has been revoked. Please contact Youpple events";
         }
 
         $from = "events@youpple.com";

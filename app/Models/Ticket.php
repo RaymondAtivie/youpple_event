@@ -10,7 +10,8 @@ class Ticket extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'packages' => 'array'
+        'packages' => 'array',
+        'revoked' => 'boolean'
     ];
 
 
@@ -23,7 +24,7 @@ class Ticket extends Model
     {
         return $this->belongsTo('App\Models\Event', "event_id");
     }
-    
+
     public function getPackages()
     {
         foreach ($this->packages as $pid) {
@@ -32,6 +33,23 @@ class Ticket extends Model
         }
 
         return $packs;
+    }
+
+    public function getTotalPrice(){
+        $sum = 0;
+        foreach ($this->getPackages() as $pack) {
+            $sum += $pack->fee_amount;
+        }
+
+        return $sum;
+    }
+
+    public function revokeTicket(){
+        $this->update(['revoked'=>1]);
+    }
+
+    public function unrevokeTicket(){
+        $this->update(['revoked'=>0]);
     }
 
 

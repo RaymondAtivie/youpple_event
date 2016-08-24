@@ -13,10 +13,15 @@
 
     <div class="wrapper">
         <div class="row">
+
+            <div class="col-sm-12">
+                @include('inc/flash')
+            </div>
+
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        All Events
+                        All Events ({{count($events)}})
                     </header>
                     <div class="panel-body">
                         <table class="table convert-data-table data-table"  id="sample_1">
@@ -28,15 +33,18 @@
                                 <th>
                                     Title
                                 </th>
+                                <th>
+                                    Address
+                                </th>
 
                                 <th>
-                                    Start date
+                                    Start
                                 </th>
                                 <th>
-                                    End date
+                                    End
                                 </th>
                                 <th>
-                                    Delete
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
@@ -47,25 +55,33 @@
                                         <td>
                                             {{ $event['title'] }}
                                         </td>
-                                        <td>
+                                        <td class="col-sm-2">
+                                            @foreach($event->venue as $venue)
+                                                {{$venue}}<?php if($event->venue[count($event->venue)-1] != $venue){echo " / ";} ?>
+                                            @endforeach
+                                        </td>
+                                        <td title="{{$event['datetime']}}">
                                             {{ $event['datetime']->diffForHumans() }}
                                         </td>
-                                        <td>
+                                        <td title="{{$event['datetime_end']}}">
                                             {{ $event['datetime_end']->diffForHumans() }}
                                         </td>
                                         <td>
                                             <a class="btn btn-sm btn-info" href="{{ url('events/'. $event['id']) }}" target="_blank">
-                                                <i class="fa fa-pencil"></i> &nbsp; View Event
+                                                <i class="fa fa-pencil"></i> &nbsp; Event Details
+                                            </a>
+                                            <a class="btn btn-sm btn-warning" href="{{ url('admin/list/events/'. $event['id'])."/tickets" }}" target="_blank">
+                                                <i class="fa fa-tag"></i> &nbsp; Tickets
                                             </a>
                                             <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal{{$event['id']}}">
                                                 <i class="fa fa-user"></i> &nbsp; Event Owner
                                             </button>
 
-                                            <button class="btn btn-sm btn-danger"
+                                            <a class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure you want to delete this event - {{ $event['title'] }}?')"
                                             href="{{ url('admin/list/events/remove/'. $event['id']) }}">
                                             <i class="fa fa-trash"></i> &nbsp; Delete
-                                        </button>
+                                        </a>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="myModal{{$event['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

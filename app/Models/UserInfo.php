@@ -20,4 +20,13 @@ class UserInfo extends Model
     {
         return $this->belongsTo("App\User", "user_id");
     }
+
+    public function getAllProviders(){
+        $providers = $this->where('user_type', 'provider')->get();
+        foreach ($providers as $provider) {
+            $users[] = $provider->user;
+        }
+
+        return $users;
+    }
 }

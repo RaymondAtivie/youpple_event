@@ -118,6 +118,7 @@
                         <label ng-show="RM.mode == 'p'">Date of Registration</label>
                         {{-- <div class='input-group date'> --}}
                         <input type='date' name="dob" value="{{ old('datetime') }}" class="form-control" />
+                        <input ng-show="RM.mode == 'p'" type='date' name="dor" value="{{ old('datetime') }}" class="form-control" />
                         {{-- <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span> --}}
