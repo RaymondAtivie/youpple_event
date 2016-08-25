@@ -8,7 +8,13 @@ Route::group([
     Route::post("/register/more", "Auth\AuthController@saveUserInfo");
 
     Route::get('/', 'EventsController@home');
-    Route::get('/{event}', 'EventsController@show');
+
+    Route::get('/myevent', 'EventsController@showUserEvents');
+    Route::get('/myevent/{event}/tickets', 'EventsController@showUserEventTickets');
+    Route::get('/myprofile', 'EventsController@showUserEvents');
+    Route::get('/myevent/{event}/remove', 'EventsController@removeEvent');
+    Route::get('/myevent/ticket/revoke/{ticket}', 'EventsController@revokeTicket');
+    Route::get('/myevent/ticket/unrevoke/{ticket}', 'EventsController@unrevokeTicket');
 
     Route::get('/create', 'EventsController@showCreate');
     Route::post('/create', 'EventsController@store');
@@ -17,8 +23,9 @@ Route::group([
     Route::get('/ticket/show/{ticket}', 'TicketController@showTicket');
     Route::post('/ticket/save', 'TicketController@saveTicket');
 
-    Route::group(['middleware'=>['confirmEvent']], function(){
-
+    Route::group([
+        'middleware'=>['confirmEvent']
+    ], function(){
         Route::get('/create/package', 'EventsController@showCreatePackage');
         Route::post('/create/package', 'EventsController@storePackage');
 
@@ -37,6 +44,7 @@ Route::group([
         });
     });
 
+    Route::get('/{event}', 'EventsController@show');
 });
 
 ?>

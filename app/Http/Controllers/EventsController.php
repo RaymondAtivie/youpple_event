@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EventFormRequest;
 use Carbon\Carbon;
 use App\Models\EventType;
@@ -25,6 +26,39 @@ class EventsController extends Controller
         return view('events.event', compact('events'));
     }
 
+    //////////////////////////// MY EVENT MANAGEMENT ///////////////////////////
+    public function showUserEvents(){
+        $events = Auth::user()->events;
+
+        return view('events.myevents', compact('events'));
+    }
+
+    public function showUserEventTickets(Event $event){
+        return view('events.mytickets', compact('event'));
+    }
+    public function revokeTicket(\App\Models\Ticket $ticket){
+        $ticket->revokeTicket();
+
+        M::flash("Successfully Revoked the ticket - ".$ticket->ticket, "success");
+
+        return Redirect::back();
+    }
+    public function unrevokeTicket(\App\Models\Ticket $ticket){
+        $ticket->unrevokeTicket();
+
+        M::flash("Successfully Unrvoked the ticket - ".$ticket->ticket, "success");
+
+        return Redirect::back();
+    }
+    public function removeEvent(Event $event){
+        $event->delete();
+
+        M::flash("Successfully deleted event", "danger");
+
+        return Redirect::back();
+    }
+    ///////////////////////END OF MY EVENT MANAGEMENT///////////////////////////
+
     public function show(Event $event)
     {
         return view('events.eventDetails', compact('event'));
@@ -39,12 +73,6 @@ class EventsController extends Controller
 
     public function store(Request $request)
     {
-        // $event = Event::create($request->all());
-        // $event->eventTypes()->sync($request->input("event_type"));
-        // dd($request->file());
-        // dd($request->input());
-        // dd($request->all());
-
         $event = Auth::user()->createEvent($request->all(), $request->input("event_type"));
         $files = $request->file("audioFile");
         $audio = $request->input("audio");

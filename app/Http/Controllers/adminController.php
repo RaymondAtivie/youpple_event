@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Slim;
 use App\Helpers\M;
 use App\Models\Event;
+use App\Models\Ticket;
+use App\Models\UserInfo;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -44,7 +48,23 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.pages.index');
+        $today = Carbon::today()->toDateString();
+        $totalEvents = Event::count();
+        $pastEvents = Event::whereDate('datetime_end', '<', $today)->whereDate('datetime', '<', $today)->count();
+        $onEvents = Event::whereDate('datetime', '=', $today)->count();
+        $futureEvents = Event::whereDate('datetime', '>', $today)->count();
+
+        $totalTickets = Ticket::count();
+        $totalTicketSales = M::getTotalTicketSales();
+
+        $totalUsers = User::count();
+        $totalProviders = UserInfo::where('user_type', 'provider')->count();
+        $totalCustomers = $totalUsers - $totalProviders;
+
+        return view('admin.pages.index',
+        compact('totalEvents', 'pastEvents', 'onEvents', 'futureEvents',
+        'totalTickets', 'totalTicketSales',
+        'totalUsers', 'totalProviders', 'totalCustomers'));
     }
     public function forms(){
         return view('admin.pages.forms');
@@ -487,7 +507,7 @@ class AdminController extends Controller
 
         M::flash("Successfully deleted event", "danger");
 
-        return redirect('admin/list/events');
+        return Redirect::back();
     }
 
     public function listProviders(){

@@ -32,7 +32,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="cp-logo"><a href="{{ url("/events") }}"><img style="width: 80px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple"></a></div>
+                        <div class="cp-logo">
+                            <a href="{{ url("/events") }}">
+                                <img style="width: 80px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple" />
+                            </a>
+                        </div>
                     </div>
                     <div class="col-md-9">
                         <nav class="navbar navbar-default">
@@ -56,6 +60,9 @@
 
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="{{ url('events/profile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Profile</a></li>
+                                                @if(count(Auth::user()->events) > 0)
+                                                    <li><a href="{{ url('events/myevent') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Events</a></li>
+                                                @endif
                                                 <li><a href="{{ url('events/register/more') }}"><i class="fa fa-btn fa-user"></i> &nbsp; More Information</a></li>
                                                 <li><a href="{{ url('events/logout') }}"><i class="fa fa-btn fa-sign-out"></i> &nbsp; Logout</a></li>
                                             </ul>

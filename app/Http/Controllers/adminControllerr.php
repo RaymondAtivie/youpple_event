@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Auth;
 use Hash;
 
 
-class adminController extends Controller
+class adminControllerr extends Controller
 {
     // Student Dashboard
     // Admin Dashboard
     public function dashboard(){
-        return view('admin.pages.index');
+        // return view('admin.pages.index');
     }
     public function settings(){
         return view('admin.pages.settings');

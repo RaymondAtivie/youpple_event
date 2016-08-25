@@ -14,6 +14,16 @@ class M
         session()->flash("issue_message", $message);
     }
 
+    static function getTotalTicketSales(){
+        $tickets = \App\Models\Ticket::all();
+        $sum = 0;
+        foreach ($tickets as $t) {
+            $sum += $t->total;
+        }
+
+        return $sum;
+    }
+
     static function getAll()
     {
         $data = DB::table('admin_home')->first();

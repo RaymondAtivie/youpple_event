@@ -3,7 +3,7 @@ Route::group([
     'prefix' => 'admin',
     'middleware' => ['admin']
 ], function () {
-    Route::get('/', 'adminController@dashboard');
+    Route::get('/', 'AdminController@dashboard');
     Route::get('/forms', 'AdminController@forms');
 
     Route::get('/home/logo', "AdminController@showLogo");
@@ -68,23 +68,23 @@ Route::group([
 
     ////////////////////////////////////////////////////////////
 
-    Route::get('/commissionsettings/add', 'adminController@addcsettingpage');
-
-    Route::post('/addcsetting', 'adminController@addCsetting');
-
-    Route::get('/', 'adminController@dashboard');
-    Route::get('/categories', 'adminController@categories');
-    Route::get('/categories/add', 'adminController@addcategorypage');
-    Route::get('/adminusers', 'adminController@adminusers');
-
-
-    Route::get('/allusers', 'adminController@siteusers');
-    Route::get('/events', 'adminController@allevents');
-    Route::get('/settings', 'adminController@settings');
-    Route::get('event/attendees/{id}', 'adminController@eventattendees');
-
-    Route::post('/addadmin', 'adminController@postAdminuser');
-    Route::post('/deleteadmin/{code}', 'adminController@deleteAdminuser');
+    // Route::get('/commissionsettings/add', 'adminController@addcsettingpage');
+    //
+    // Route::post('/addcsetting', 'adminController@addCsetting');
+    //
+    // Route::get('/', 'adminController@dashboard');
+    // Route::get('/categories', 'adminController@categories');
+    // Route::get('/categories/add', 'adminController@addcategorypage');
+    // Route::get('/adminusers', 'adminController@adminusers');
+    //
+    //
+    // Route::get('/allusers', 'adminController@siteusers');
+    // Route::get('/events', 'adminController@allevents');
+    // Route::get('/settings', 'adminController@settings');
+    // Route::get('event/attendees/{id}', 'adminController@eventattendees');
+    //
+    // Route::post('/addadmin', 'adminController@postAdminuser');
+    // Route::post('/deleteadmin/{code}', 'adminController@deleteAdminuser');
 });
 
 Route::get('/admin/login', 'AdminController@loginpage');
