@@ -12,7 +12,8 @@ class UserInfo extends Model
     protected $casts = [
         'intrests' => 'array',
         'event_services' => 'array',
-        'dPicture' => 'array'
+        'dPicture' => 'array',
+        'featured' => 'boolean'
     ];
 
 
@@ -20,9 +21,26 @@ class UserInfo extends Model
     {
         return $this->belongsTo("App\User", "user_id");
     }
+    
+    public function getAllProviders($type = "all"){
+        $pBuild = $this->where('user_type', 'provider');
 
-    public function getAllProviders(){
-        $providers = $this->where('user_type', 'provider')->get();
+        switch ($type) {
+            case 'featured':
+            $pBuild = $pBuild->where("featured", true);
+            break;
+
+            case 'unfeatured':
+            $pBuild = $pBuild->where("featured", false);
+            break;
+
+            default:
+            #do nothing
+            break;
+        }
+
+        $providers = $pBuild->get();
+        $users = [];
         foreach ($providers as $provider) {
             $users[] = $provider->user;
         }

@@ -124,6 +124,8 @@ Route::group([
     Route::get('/feature/events/remove/{event}', "AdminController@removeFromFeaturedEvent");
 
     Route::get('/feature/providers', "AdminController@showFeaturedProviders");
+    Route::get('/feature/providers/add/{user}', "AdminController@addToFeaturedProvider");
+    Route::get('/feature/providers/remove/{user}', "AdminController@removeFromFeaturedProvider");
 
     Route::get('/list/customers', "AdminController@listCustomers");
     Route::get('/list/customers/remove/{user}', "AdminController@removeCustomer");

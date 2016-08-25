@@ -425,7 +425,25 @@ class AdminController extends Controller
     }
 
     public function showFeaturedProviders(){
-        return view('admin.pages.feature.providers');
+        $UI = new \App\Models\UserInfo;
+        $fProviders = $UI->getAllProviders('featured');
+        $providers = $UI->getAllProviders('unfeatured');
+
+        return view('admin.pages.feature.providers', compact('providers', 'fProviders'));
+    }
+    public function addToFeaturedProvider(\App\User $user){
+        $user->info->featured = 1;
+        $user->info->save();
+
+        M::flash("Successfully added to featured providers", "success");
+        return Redirect::back();
+    }
+    public function removeFromFeaturedProvider(\App\User $user){
+        $user->info->featured = 0;
+        $user->info->save();
+
+        M::flash("Successfully removed from featured providers", "danger");
+        return Redirect::back();
     }
 
     public function listCustomers(){
