@@ -80,38 +80,9 @@ class AuthController extends Controller
     }
 
     function moreReg(){
-        $intrests = ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
-        'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
-        'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
-        'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
-        'Ordination', 'Cookout'];
+        $intrests = M::getIntrests();
 
-        $services = [
-            "publicity"=>[
-                'Graphics Design', 'Animation', 'Printing', 'Souvenir/Gift Management', 'Branding',
-                'Event Website Management', 'Social Media Hype', 'Radio Jingles',
-                'Television Advertisement', 'Billboard Advertisement'
-            ],
-            "Rentals" =>[
-                'Chairs', 'Tables', 'Canopy and Tent', 'Toys', 'Bouncing Castle', 'Crockery Set',
-                'Costume', 'Sound Equipment', 'Visual Equipment', 'Musical Instrument', 'Lighting',
-                'Stage', 'Decoration Items', 'Halls', 'Garden and Park', 'Pool'
-            ],
-            "Logistics and transportation" => [
-                "Transport", "Accommodation", "Decoration", "Cleaning Services", "Laundry Services",
-                "Waste Disposal", "Parking Services"
-            ],
-            "Human Resource" => [
-                "Make-up Artiste", "Models", "Ushers", "Bouncers", "Security Officials",
-                "Master of Ceremony / Moderator", "Comedian", "Clown", "Dancer/ Dance Crew",
-                "Musical Band", "Music Artiste", "Disc Jockey", "Public Speaker", "Religious Leader",
-                "Caterer", "Waiter", "Undertaker", "Sound Engineer", "Videographer", "Photographer",
-                "Fashion Designer"
-            ],
-            "Other Services" => [
-                "Bouquet", "Cake and Snack", "Drink Supply", "Event Planning", "Saloon and Spa", "Wardrobe Management"
-            ]
-        ];
+        $services = M::getServices();
 
         return view("auth.moreRegister", compact('intrests', 'services'));
     }

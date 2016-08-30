@@ -9,9 +9,13 @@ Route::group([
 
     Route::get('/', 'EventsController@home');
 
+    Route::get('/myprofile', 'EventsController@showUserProfile');
+    Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
+    Route::post('/myprofile/uploadExtraPics', 'EventsController@updateExtraPics');
+    Route::any('/myprofile/updateBio', 'EventsController@updateBio');
+
     Route::get('/myevent', 'EventsController@showUserEvents');
     Route::get('/myevent/{event}/tickets', 'EventsController@showUserEventTickets');
-    Route::get('/myprofile', 'EventsController@showUserEvents');
     Route::get('/myevent/{event}/remove', 'EventsController@removeEvent');
     Route::get('/myevent/ticket/revoke/{ticket}', 'EventsController@revokeTicket');
     Route::get('/myevent/ticket/unrevoke/{ticket}', 'EventsController@unrevokeTicket');

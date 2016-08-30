@@ -75,7 +75,7 @@
                         <ul class="notification-menu">
                             <li>
                                 <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ url('') }}/assets/admin/img/avatar-mini.jpg" alt=""> {{ \Auth::user()->name }}
+                                    <img src="{{ url('userPhotos/'.Auth::user()->info->picture) }}" alt=""> {{ \Auth::user()->name }}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu purple pull-right">
@@ -103,6 +103,7 @@
 
         </div>
     </section>
+    <script src="{{ url('js/angular.min.js') }}"></script>
 
     <!-- Placed js at the end of the document so the pages load faster -->
     <script src="{{ url('') }}/assets/admin/js/jquery-1.10.2.min.js"></script>

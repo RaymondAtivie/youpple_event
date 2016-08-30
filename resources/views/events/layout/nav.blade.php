@@ -8,7 +8,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ url('event/myprofile') }}">
+        <a href="{{ url('events/myprofile') }}">
             <i class="fa fa-user"></i> <span>Profile</span>
         </a>
     </li>

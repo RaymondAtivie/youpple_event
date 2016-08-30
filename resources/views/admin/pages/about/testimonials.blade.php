@@ -141,5 +141,4 @@
 @stop
 @section('scripts')
     <script src="{{ url('') }}/assets/slim/slim.kickstart.min.js" type="text/javascript"></script>
-    {{-- @include('admin.includes.datatable') --}}
 @stop

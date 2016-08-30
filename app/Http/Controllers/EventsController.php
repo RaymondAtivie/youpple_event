@@ -9,6 +9,7 @@ use App\Http\Requests\EventFormRequest;
 use Carbon\Carbon;
 use App\Models\EventType;
 use Validator;
+use App\Slim;
 use Auth;
 use App\Helpers\M;
 
@@ -58,6 +59,81 @@ class EventsController extends Controller
         return Redirect::back();
     }
     ///////////////////////END OF MY EVENT MANAGEMENT///////////////////////////
+
+    //////////////////////////// MY PROFILE MANAGEMENT ///////////////////////////
+    public function showUserProfile(){
+        $user = Auth::user();
+
+        $intrests = M::getIntrests();
+        $services = M::getServices();
+
+        return view('events.myprofile', compact('user', 'intrests', 'services'));
+    }
+
+    public function updateDP(){
+        $images = Slim::getImages('picture');
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $pid = rand(100000, 999999999);
+
+            $filename = "dp/".$pid.".".$lExt;
+            rename($file['path'], "userPhotos/".$filename);
+
+            Auth::user()->info->picture = $filename;
+            Auth::user()->info->save();
+        }
+
+        return [
+            "status"=>"success",
+            "name"=>$filename,
+            "path"=>url('userPhotos/'.$filename)
+        ];
+    }
+
+    public function updateExtraPics(){
+        $images = Slim::getImages('dPicture');
+        $files = [];
+        foreach ($images as $image) {
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $pid = rand(100000, 999999999);
+
+            $filename = "ex/".$pid.".".$lExt;
+            rename($file['path'], "userPhotos/".$filename);
+
+            $files[] = $filename;
+        }
+
+        Auth::user()->info->dPicture = $files;
+        Auth::user()->info->save();
+
+        M::flash("Successfully Uploaded the extra pictures", "success");
+
+        return Redirect::back();
+    }
+
+    public function updateBio(Request $request){
+
+        // dd($request->all()['event_services']);
+
+        Auth::user()->addInfo($request->all());
+
+        M::flash("Successfully Updated bio", "success");
+
+        return Redirect::back();
+    }
+    ///////////////////////END OF MY PROFILE MANAGEMENT///////////////////////////
 
     public function show(Event $event)
     {
