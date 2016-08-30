@@ -84,7 +84,7 @@
                                     @if(count(Auth::user()->events) > 0)
                                         <li><a href="{{ url('events/myevent') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Events</a></li>
                                     @endif
-                                    <li><a href="{{ url('events/register/more') }}"><i class="fa fa-btn fa-user"></i> &nbsp; More Information</a></li>
+                                    {{-- <li><a href="{{ url('events/register/more') }}"><i class="fa fa-btn fa-user"></i> &nbsp; More Information</a></li> --}}
                                     <li><a href="{{ url('events/logout') }}"><i class="fa fa-btn fa-sign-out"></i> &nbsp; Logout</a></li>
                                 </ul>
                             </li>
