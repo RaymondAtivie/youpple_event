@@ -51,4 +51,10 @@ return [
         'redirect'      => env('TW_REDIRECT')
     ],
 
+    'google' => [
+        'client_id'     => env('GG_ID'),
+        'client_secret' => env('GG_SECRET'),
+        'redirect'      => env('GG_REDIRECT')
+    ],
+
 ];
