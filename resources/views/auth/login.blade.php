@@ -83,19 +83,19 @@
                                 <div class="input-field">
                                     <ul class="cp-social-links2">
                                         <li class="fb-btn">
-                                            <a href="#">
+                                            <a href="{{ url("events/social/redirect/facebook") }}">
                                                 <i class="fa fa-facebook"></i>
                                                 <span>Facebook Login</span>
                                             </a>
                                         </li>
                                         <li class="google-btn">
-                                            <a href="#">
+                                            <a href="{{ url("events/social/redirect/google") }}">
                                                 <i class="fa fa-google-plus"></i>
                                                 <span>Google Plus Login</span>
                                             </a>
                                         </li>
                                         <li class="twitter-btn">
-                                            <a href="#">
+                                            <a href="{{ url("events/social/redirect/twitter") }}">
                                                 <i class="fa fa-twitter"></i>
                                                 <span>Twitter Login</span>
                                             </a>

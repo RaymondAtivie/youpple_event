@@ -67,6 +67,10 @@ class EventsController extends Controller
         $intrests = M::getIntrests();
         $services = M::getServices();
 
+        if(!isset($user->info->user_type)){
+            $user->addInfo([]);
+        }
+
         return view('events.myprofile', compact('user', 'intrests', 'services'));
     }
 

@@ -123,8 +123,8 @@
                     <div class="panel-body detailsBody">
                         <form action="{{url('events/myprofile/updateBio')}}">
 
-                            <input type="hidden" name="user_type" value="customer" ng-show="RM.mode == 'c'" />
-                            <input type="hidden" name="user_type" value="provider" ng-show="RM.mode == 'p'" />
+                            <input type="hidden" name="user_type" value="customer" ng-if="RM.mode == 'c'" />
+                            <input type="hidden" name="user_type" value="provider" ng-if="RM.mode == 'p'" />
 
                             <div class="row"  ng-show="RM.mode == 'p'">
                                 <div class="col-md-12">
@@ -172,14 +172,22 @@
                                 <div class="col-md-3">
                                     <div class="input-field">
                                         <label>
-                                            <input type="radio" name="gender" value="male"> Male
+                                            <input type="radio"
+                                            @if($user->info->gender == 'male')
+                                                checked="checked"
+                                            @endif
+                                             name="gender" value="male"> Male
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-field">
                                         <label>
-                                            <input type="radio" name="gender" value="female"> Female
+                                            <input type="radio"
+                                            @if($user->info->gender == 'female')
+                                                checked="checked"
+                                            @endif
+                                            name="gender" value="female"> Female
                                         </label>
                                     </div>
                                 </div>

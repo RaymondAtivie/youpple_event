@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Helpers\M;
 use Auth;
+use Socialite;
+use App\Models\SocialLogins;
 
 class AuthController extends Controller
 {
@@ -41,7 +43,9 @@ class AuthController extends Controller
     */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'moreReg', 'saveUserInfo']]);
+        $this->middleware($this->guestMiddleware(), [
+            'except' => ['logout', 'moreReg', 'saveUserInfo', 'getSocialRedirect', 'getSocialHandle']
+        ]);
     }
 
     /**
@@ -92,6 +96,63 @@ class AuthController extends Controller
 
         M::flash("Successfully Saved your information. Change it anytime in your profile");
         return redirect('events');
+    }
+
+    public function getSocialRedirect( $provider ){
+        // dd($provider);
+
+        $providerKey = \Config::get('services.' . $provider);
+        if(empty($providerKey))
+        return view('pages.status')
+        ->with('error','No such provider');
+
+        return Socialite::driver( $provider )->redirect();
+    }
+
+    public function getSocialHandle( $provider ){
+        $user = Socialite::driver( $provider )->user();
+
+        $socialUser = null;
+
+        //Check is this email present
+        $userCheck = User::where('email', '=', $user->email)->first();
+        if(!empty($userCheck))
+        {
+            $socialUser = $userCheck;
+            $url = '/events';
+        }
+        else
+        {
+            $sameSocialId = SocialLogins::where('social_id', '=', $user->id)->where('provider', '=', $provider )->first();
+
+            if(empty($sameSocialId)){
+                //There is no combination of this social id and provider, so create new one
+                $newSocialUser = new User;
+                $newSocialUser->email = $user->email;
+                $newSocialUser->name = $user->name;
+                $newSocialUser->save();
+
+                $socialData = new SocialLogins;
+                $socialData->social_id = $user->id;
+                $socialData->provider= $provider;
+                $newSocialUser->social()->save($socialData);
+
+                $socialUser = $newSocialUser;
+            }
+            else
+            {
+                //Load this existing social user
+                $socialUser = $sameSocialId->user;
+            }
+
+            M::flash("Successfully login. Please fill additional information", "success");
+            $url = '/events/myprofile';
+        }
+
+
+        auth()->login($socialUser);
+
+        return redirect()->to($url);
     }
 
 }

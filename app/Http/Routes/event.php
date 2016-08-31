@@ -4,6 +4,11 @@ Route::group([
     'prefix'=>'events'
 ], function(){
     Route::auth();
+
+    $s = 'social.';
+    Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);
+    Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'Auth\AuthController@getSocialHandle']);
+
     Route::get("/register/more", "Auth\AuthController@moreReg");
     Route::post("/register/more", "Auth\AuthController@saveUserInfo");
 
