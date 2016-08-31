@@ -97,15 +97,15 @@
 
                                                             <button class="btn btn-success btn-lg btn-block">Login</button>
                                                             <hr />
-                                                            <a class="btn btn-primary btn-block">
+                                                            <a class="btn btn-primary btn-block" href="{{ url("events/social/redirect/facebook") }}">
                                                                 <i class="fa fa-facebook"></i> &nbsp;
                                                                 <span>Facebook Login</span>
                                                             </a>
-                                                            <a class="btn btn-primary btn-block">
+                                                            <a class="btn btn-primary btn-block" href="{{ url("events/social/redirect/google") }}">
                                                                 <i class="fa fa-google"></i> &nbsp;
                                                                 <span>Google Login</span>
                                                             </a>
-                                                            <a class="btn btn-primary btn-block">
+                                                            <a class="btn btn-primary btn-block" href="{{ url("events/social/redirect/twitter") }}">
                                                                 <i class="fa fa-twitter"></i> &nbsp;
                                                                 <span>Twitter Login</span>
                                                             </a>
