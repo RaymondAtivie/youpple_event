@@ -58,6 +58,12 @@ Route::group([
     Route::get('/list/customers', "AdminController@listCustomers");
     Route::get('/list/customers/remove/{user}', "AdminController@removeCustomer");
 
+    Route::get('/list/orders', "AdminController@listOrders");
+    Route::post('/list/orders/{order}/counter', "ServiceController@counterOffer");
+    Route::get('/list/orders/{order}/cancel', "ServiceController@cancelOffer");
+    Route::get('/list/orders/{order}/decline', "ServiceController@declineOffer");
+    Route::get('/list/orders/{order}/accept', "ServiceController@acceptOffer");
+
     Route::get('/list/events', "AdminController@listEvents");
     Route::get('/list/events/remove/{event}', "AdminController@removeEvent");
     Route::get('/list/events/{event}/tickets', "AdminController@eventTickets");

@@ -11,6 +11,7 @@ class ServiceOrder extends Model
 
     protected $casts = [
         'event_services' => 'array',
+        'history' => 'array'
     ];
 
     public function owner()

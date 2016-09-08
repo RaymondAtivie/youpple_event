@@ -34,6 +34,15 @@ class User extends Authenticatable
 
     public function createServiceOrder($params)
     {
+        $params['history'] = json_encode([
+            0 => [
+                'budget' => $params['budget'],
+                'datetime' => \Carbon\Carbon::now()->format("d/m/Y H:i"),
+                'made_by' => "user",
+                'message' => $params['comment'],
+            ]
+        ]);
+        // dd($params);
         $order = $this->serviceOrders()->create($params);
 
         return $order;

@@ -484,6 +484,13 @@ class AdminController extends Controller
 
         return view('admin.pages.list.events', compact('events'));
     }
+
+    public function listOrders(){
+        $orders = \App\Models\ServiceOrder::all();
+
+        return view('admin.pages.list.orders', compact('orders'));
+    }
+
     public function eventTickets(Event $event){
         return view('admin.pages.list.eventTickets', compact('event'));
     }

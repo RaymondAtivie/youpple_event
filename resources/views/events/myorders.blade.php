@@ -104,72 +104,27 @@
                                             <a class="btn btn-sm btn-info disabled"
                                             href="{{ url('events/'. $order['id']) }}"
                                             title="Can't pay until it is approved">
-                                                <i class="fa fa-money"></i> &nbsp; Pay
-                                            </a>
-
-                                            <a class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are you sure you want to cancel this order?')"
-                                            href="{{ url('events/myorders/'. $order['id']."/cancel") }}">
-                                            <i class="fa fa-close"></i> &nbsp; Cancel Order
+                                            <i class="fa fa-money"></i> &nbsp; Pay
                                         </a>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="myModal{{$order['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">{{$order->owner->name}}</h4>
-                                                    </div>
-                                                    <div class="modal-body">
+                                        <a class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure you want to cancel this order?')"
+                                        href="{{ url('events/myorders/'. $order['id']."/cancel") }}">
+                                        <i class="fa fa-close"></i> &nbsp; Cancel Order
+                                    </a>
 
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <h3>Name</h3>
-                                                            </div>
-                                                            <div class="col-sm-9">
-                                                                <h3>{{$order->owner->name}}</h3>
-                                                            </div>
-                                                        </div>
+                                </td>
 
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <h3>Email</h3>
-                                                            </div>
-                                                            <div class="col-sm-9">
-                                                                <h3>{{$order->owner->email}}</h3>
-                                                            </div>
-                                                        </div>
+                            </tr>
+                        @endforeach
+                    @endif
 
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <h3>Phone</h3>
-                                                            </div>
-                                                            <div class="col-sm-9">
-                                                                <h3>{{$order->owner->phone}}</h3>
-                                                            </div>
-                                                        </div>
+                </tbody>
+            </table>
 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                            @endforeach
-                        @endif
-
-                    </tbody>
-                </table>
-
-            </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 </div>
 </div>
 @stop
