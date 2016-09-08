@@ -32,6 +32,13 @@ class User extends Authenticatable
         return $event;
     }
 
+    public function createServiceOrder($params)
+    {
+        $order = $this->serviceOrders()->create($params);
+
+        return $order;
+    }
+
     public function addInfo($params)
     {
         $this->info()->updateOrCreate(['user_id'=>$this->id], $params);
@@ -43,6 +50,11 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasMany("App\Models\Event");
+    }
+
+    public function serviceOrders()
+    {
+        return $this->hasMany("App\Models\ServiceOrder");
     }
 
     public function info()

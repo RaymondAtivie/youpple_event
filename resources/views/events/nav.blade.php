@@ -59,9 +59,12 @@
                                             </a>
 
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Profile</a></li>
+                                                <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; My Profile</a></li>
                                                 @if(count(Auth::user()->events) > 0)
                                                     <li><a href="{{ url('events/myevent') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Events</a></li>
+                                                @endif
+                                                @if(count(Auth::user()->serviceOrders) > 0)
+                                                    <li><a href="{{ url('events/myorders') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Service Orders</a></li>
                                                 @endif
                                                 {{-- <li><a href="{{ url('events/register/more') }}"><i class="fa fa-btn fa-user"></i> &nbsp; More Information</a></li> --}}
                                                 <li><a href="{{ url('events/logout') }}"><i class="fa fa-btn fa-sign-out"></i> &nbsp; Logout</a></li>

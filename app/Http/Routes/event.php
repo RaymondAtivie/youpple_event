@@ -14,6 +14,8 @@ Route::group([
 
     Route::get('/', 'EventsController@home');
 
+    Route::get('/myorders', 'ServiceController@showServiceOrders');
+
     Route::get('/myprofile', 'EventsController@showUserProfile');
     Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
     Route::post('/myprofile/uploadExtraPics', 'EventsController@updateExtraPics');
@@ -25,13 +27,15 @@ Route::group([
     Route::get('/myevent/ticket/revoke/{ticket}', 'EventsController@revokeTicket');
     Route::get('/myevent/ticket/unrevoke/{ticket}', 'EventsController@unrevokeTicket');
 
-    Route::get('/create', 'EventsController@showCreate');
-    Route::post('/create', 'EventsController@store');
-
     Route::any('/apply', 'TicketController@regEvent');
     Route::get('/ticket/show/{ticket}', 'TicketController@showTicket');
     Route::post('/ticket/save', 'TicketController@saveTicket');
 
+    Route::get('/order', 'ServiceController@orderService')->middleware('auth');
+    Route::post('/order', 'ServiceController@createOrder')->middleware('auth');
+
+    Route::get('/create', 'EventsController@showCreate');
+    Route::post('/create', 'EventsController@store');
     Route::group([
         'middleware'=>['confirmEvent']
     ], function(){

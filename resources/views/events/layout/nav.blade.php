@@ -8,6 +8,11 @@
         </a>
     </li>
     <li>
+        <a href="{{ url('events/myorders') }}">
+            <i class="fa fa-tag"></i> <span>Service Orders</span>
+        </a>
+    </li>
+    <li>
         <a href="{{ url('events/myprofile') }}">
             <i class="fa fa-user"></i> <span>Profile</span>
         </a>
