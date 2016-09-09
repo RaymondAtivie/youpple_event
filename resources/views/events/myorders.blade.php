@@ -24,6 +24,7 @@
                         All My Service Orders ({{count($orders)}})
                     </header>
                     <div class="panel-body">
+                        <div class="table-responsive">
                         <table class="table convert-data-table data-table"  id="sample_1">
                             <thead>
                                 <tr>
@@ -287,6 +288,7 @@
 
 </tbody>
 </table>
+</div>
 
 </div>
 </section>

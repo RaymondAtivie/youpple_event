@@ -49,10 +49,10 @@ class AdminController extends Controller
 
     public function dashboard(){
         $today = Carbon::today()->toDateString();
-        $totalEvents = Event::count();
-        $pastEvents = Event::whereDate('datetime_end', '<', $today)->whereDate('datetime', '<', $today)->count();
-        $onEvents = Event::whereDate('datetime', '=', $today)->count();
-        $futureEvents = Event::whereDate('datetime', '>', $today)->count();
+        $totalEvents = Event::where("published", 'true')->count();
+        $pastEvents = Event::where("published", 'true')->whereDate('datetime_end', '<', $today)->whereDate('datetime', '<', $today)->count();
+        $onEvents = Event::where("published", 'true')->whereDate('datetime', '=', $today)->count();
+        $futureEvents = Event::where("published", 'true')->whereDate('datetime', '>', $today)->count();
 
         $totalTickets = Ticket::count();
         $totalTicketSales = M::getTotalTicketSales();
@@ -480,7 +480,7 @@ class AdminController extends Controller
     }
 
     public function listEvents(){
-        $events = Event::all();
+        $events = Event::where("published", 'true')->get();
 
         return view('admin.pages.list.events', compact('events'));
     }

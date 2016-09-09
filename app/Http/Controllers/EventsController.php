@@ -22,9 +22,10 @@ class EventsController extends Controller
 
     public function home()
     {
-        $events = \App\Models\Event::all();
+        $events = \App\Models\Event::where("published", "true")->get();
+        $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
 
-        return view('events.event', compact('events'));
+        return view('events.event', compact('events', 'fEvents'));
     }
 
     //////////////////////////// MY EVENT MANAGEMENT ///////////////////////////
@@ -153,11 +154,37 @@ class EventsController extends Controller
 
     public function store(Request $request)
     {
-        $event = Auth::user()->createEvent($request->all(), $request->input("event_type"));
+        $posts = $request->all();
+        $posts['venue'] = explode(";", $posts['venue']);
+
+        $images = Slim::getImages('picture');
+
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $pid = rand(100000, 999999999);
+
+            $filename = "event/".$pid.".".$lExt;
+            rename($file['path'], "userPhotos/".$filename);
+
+            $posts['image'] = $filename;
+        }
+
+        $event = Auth::user()->createEvent($posts, $request->input("event_type"));
+
         $files = $request->file("audioFile");
         $audio = $request->input("audio");
         $urls = $request->input("audioUrl");
-        $this->storeAudio($event, $files, $audio, $urls);
+
+        if(isset($files[0])){
+            $this->storeAudio($event, $files, $audio, $urls);
+        }
 
         session(['event'=> $event]);
 

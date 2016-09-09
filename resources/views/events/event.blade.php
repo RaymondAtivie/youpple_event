@@ -3,54 +3,7 @@
 @section('content')
 
     @include('inc/flash');
-    <!-- Main Slider Start -->
-    {{-- <div id="homev2-slider" class="owl-carousel">
-    <div class="item">
-    <div class="cp-slider-thumb"> <img src="{{ url('/images/h1-slide5.jpg') }}" alt=""> </div>
-    <div class="container">
-    <div class="cp-slider-content">
-    <h2>We <span>Arrange</span> World’s </h2>
-    <strong>Most Celebrated <span>Events...</span></strong>
-    <p>We are an Event Planning Agency each event and client is unique and we believe our services should be as well.</p>
-    <a href="quote.html">Get Quick Quote</a> <a href="#">Learn More</a>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="cp-slider-thumb"> <img src="{{ url('/images/h1-slide6.jpg') }}" alt=""> </div>
-<div class="container">
-<div class="cp-slider-content">
-<h2>We <span>Arrange</span> World’s </h2>
-<strong>Most Celebrated <span>Events...</span></strong>
-<p>We are an Event Planning Agency each event and client is unique and we believe our services should be as well.</p>
-<a href="quote.html">Get Quick Quote</a> <a href="#">Learn More</a>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="cp-slider-thumb"> <img src="{{ url('/images/h1-slide7.jpg') }}" alt=""> </div>
-<div class="container">
-<div class="cp-slider-content">
-<h2>We <span>Arrange</span> World’s </h2>
-<strong>Most Celebrated <span>Events...</span></strong>
-<p>We are an Event Planning Agency each event and client is unique and we believe our services should be as well.</p>
-<a href="quote.html">Get Quick Quote</a> <a href="#">Learn More</a>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="cp-slider-thumb"> <img src="{{ url('/images/h1-slide4.jpg') }}" alt=""> </div>
-<div class="container">
-<div class="cp-slider-content">
-<h2>We <span>Arrange</span> World’s </h2>
-<strong>Most Celebrated <span>Events...</span></strong>
-<p>We are an Event Planning Agency each event and client is unique and we believe our services should be as well.</p>
-<a href="quote.html">Get Quick Quote</a> <a href="#">Learn More</a>
-</div>
-</div>
-</div>
-</div> --}}
-<!-- Main Slider End -->
+
 
 <!-- Main Content Start -->
 <div class="cp-main-content">
@@ -65,16 +18,16 @@
                     <div class="cp-ex-slider col-md-12">
                         <div class="experties-slider owl-carousel">
 
-                            @foreach($events as $event)
+                            @foreach($fEvents as $event)
                                 <!-- Item Start -->
                                 <div class="slide">
-                                    <div class="cp-thumb"> <img src="{{ url('/images/ex1.jpg') }}" alt="">
+                                    <div class="cp-thumb"> <img src="{{ url('userPhotos/'.$event->image) }}" alt="">
                                         <div class="cp-hover-content">
                                             <p>{{$event->title}}</p>
-                                            <a href="experties-details.html">Read More</a> </div>
+                                            <a href="{{ url("/events//".$event->id) }}">View More</a> </div>
                                         </div>
                                         <div class="cp-ex-title">
-                                            <h3><a href="{{ url('/events/1') }}">{{$event->title}}</a></h3>
+                                            <h3><a href="{{ url("/events//".$event->id) }}">{{$event->title}}</a></h3>
                                         </div>
                                     </div>
                                     <!-- item end -->
@@ -90,23 +43,21 @@
             <section class="cp-Our-experties pd-tb60">
                 <div class="container">
                     <div class="cp-section-title">
-                        <h2>Events Service Providers</h2>
-                        <strong>Featured</strong>
+                        <h2>All Events</h2>
+                        <strong></strong>
                     </div>
 
                     <div class="cp-ex-slider row">
 
-                        <?php for($i=0;$i<20;$i++){ ?>
+                        <?php foreach($events as $event){ ?>
                             <div class="col-md-3 col-sm-6">
                                 <!-- Item Start -->
                                 <div class="slide">
-                                    <div class="cp-thumb"> <img src="{{ url('/images/expert-img-01.jpg') }}" alt="">
+                                    <div class="cp-thumb"> <img src="{{ url('userPhotos/'.$event->image) }}" alt="">
                                         <div class="cp-hover-content" style="padding-top: 10% !important">
-                                            <h3 style="color: white">Sam Events</h3>
-                                            <p> <i class="fa fa-map-marker"></i> Abuja, Nigeria </p>
-                                            <hr />
-                                            <p> Conference dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                                            <a href="{{ url('/events/1') }}">Read More</a>
+                                            <h3 style="color: white">{{$event->title}}</h3>
+                                            <p> <i class="fa fa-map-marker"></i> {{$event->venue[0]}}</p>
+                                            <a href="{{ url("/events//".$event->id) }}">View More</a>
                                         </div>
                                     </div>
                                     <div class="cp-ex-title">

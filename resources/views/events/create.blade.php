@@ -4,6 +4,8 @@
 
     <link rel="stylesheet" href="{{ url('css/bootstrap-nav.css') }}" />
     <link rel="stylesheet" href="{{ url('css/summernote.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('') }}/assets/slim/slim.min.css">
+
     <!-- Inner Banner Start -->
     <div class="cp-inner-banner">
         <div class="container">
@@ -35,7 +37,7 @@
     </style>
 
     <!-- Main Content Start -->
-    <div class="cp-main-content">
+    <div class="cp-main-content" style="padding-left: 10px; padding-right: 10px">
         <form action="{{ url('events/create') }}" method="POST" enctype="multipart/form-data">
 
             <!--Signup Content Start-->
@@ -49,6 +51,17 @@
 
                         <h2>Basic information</h2>
                         <hr />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="slim"
+                                    data-label="Your events main picture"
+                                    data-size="360,400"
+                                    data-ratio="1:1">
+                                    <input type="file" name="picture"></div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label>Event Title</label>
@@ -80,19 +93,21 @@
                             <label>If others, Specify</label>
                             <input type="text" class="form-control" name="others" {{ old('others') }}  placeholder="Specify Others">
                         </div>
-                        <div class="form-group" ng-controller="mapCtrl">
+                        <div class="form-group">
                             <label>Event Venue</label>
-                            <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
-                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2">
-                            @if($errors->has('venue.0'))
+                            <textarea class="form-control" name="venue"></textarea>
+                            <p class="info">Seperate multiple addresses with a column "<b>;</b>"</p>
+                            {{-- <input type="text" class="form-control"  name="venue[]" value="{{ old('venue')[0] }}" placeholder="Venue 1">
+                            <input type="text" class="form-control" name="venue[]"  value="{{ old('venue')[1] }}"  placeholder="Venue 2"> --}}
+                            @if($errors->has('venue'))
                                 <p class='text-danger help'>At least one venue is needed</p>
                             @endif
 
-                            <div id="venueMap" style="height: 500px; width: 100%"></div>
+                            {{-- <div id="venueMap" style="height: 500px; width: 100%"></div>
                             <br />
                             <div ng-repeat="m in markers">New marker</div>
                             <br />
-                            <button class="btn btn-default" id="addLoc" type="button">Add a Location</button>
+                            <button class="btn btn-default" id="addLoc" type="button">Add a Location</button> --}}
                         </div>
 
                         <div ng-controller="formCtrl as FC" style="border: 1px solid black; padding: 15px; margin-bottom: 20px; border-radius: 5px">
@@ -174,6 +189,8 @@
 @endsection
 
 @section('footer_scripts')
+    <script src="{{ url('') }}/assets/slim/slim.kickstart.min.js" type="text/javascript"></script>
+
     <script src="{{ url('js/summernote.min.js') }}"></script>
     <script>
     $(document).ready(function() {
@@ -205,41 +222,41 @@
     <script src="{{ url('js/angular.min.js') }}"></script>
     <script>
     angular.module('eventApp', [])
-    .controller('mapCtrl', function() {
-        vm = this;
-        vm.markers = [];
-
-        var myLatLng = {lat: 8.138553, lng: 6.8819294};
-
-        var map = new google.maps.Map(document.getElementById('venueMap'), {
-            zoom: 6,
-            center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-            position: map.getCenter(),
-            map: map,
-            title: 'Hello World!',
-            draggable:true
-        });
-
-        vm.markers.push(marker);
-
-        $("#addLoc").click(function(){
-            console.log(map.getCenter());
-            var marker = new google.maps.Marker({
-                position: map.getCenter(),
-                map: map,
-                title: 'Hello World!',
-                draggable:true
-            });
-            vm.markers.push(marker);
-            console.log(vm.markers);
-        });
-
-    });
-
-    angular.module('eventApp')
+    // .controller('mapCtrl', function() {
+    //     vm = this;
+    //     vm.markers = [];
+    //
+    //     var myLatLng = {lat: 8.138553, lng: 6.8819294};
+    //
+    //     var map = new google.maps.Map(document.getElementById('venueMap'), {
+    //         zoom: 6,
+    //         center: myLatLng
+    //     });
+    //
+    //     var marker = new google.maps.Marker({
+    //         position: map.getCenter(),
+    //         map: map,
+    //         title: 'Hello World!',
+    //         draggable:true
+    //     });
+    //
+    //     vm.markers.push(marker);
+    //
+    //     $("#addLoc").click(function(){
+    //         console.log(map.getCenter());
+    //         var marker = new google.maps.Marker({
+    //             position: map.getCenter(),
+    //             map: map,
+    //             title: 'Hello World!',
+    //             draggable:true
+    //         });
+    //         vm.markers.push(marker);
+    //         console.log(vm.markers);
+    //     });
+    //
+    // });
+    //
+    // angular.module('eventApp')
     .controller('formCtrl', function() {
         this.list = [];
         this.num = 0;
