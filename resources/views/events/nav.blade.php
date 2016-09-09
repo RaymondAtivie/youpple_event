@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <ul class="cp-top-social">
                             <li> <a class="quote-btn" href="{{ url('events/create') }}">Create Event</a> </li>
-                            <li> <a class="quote-btn" href="#">Order Event Service</a> </li>
+                            <li> <a class="quote-btn" href="{{ url('events/order') }}">Order Event Service</a> </li>
                         </ul>
                     </div>
                 </div>
