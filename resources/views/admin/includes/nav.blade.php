@@ -65,6 +65,11 @@
             <i class="fa fa-briefcase"></i><span>Service Providers</span>
         </a>
     </li>
+    <li>
+        <a href="{{ url('admin/list/orders') }}">
+            <i class="fa fa-briefcase"></i><span>Service Orders</span>
+        </a>
+    </li>
 {{--
     <li>
         <h3 class="navigation-title">Settings</h3>

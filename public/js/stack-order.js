@@ -1,24 +1,19 @@
 $(document).ready(function(){
     $('#payButton').show();
 
-    var refr = "YouEv"+Math.floor(Math.random()*(9999999999 - 100000000) + 100000000);
-    console.log(refr);
+    var refr = "YouSO"+Math.floor(Math.random()*(9999999999 - 100000000) + 100000000);
 
     $('#payButton').on('click', function () {
         console.log("loading...");
         var $btn = $(this);
 
-        var event_id = $btn.data("event");
-        var packages = $btn.data("packages");
-        var total = $btn.data("total");
+        var order_id = $btn.data("order");
+        var total = $btn.data("budget");
         var oName = $btn.data("name");
         var oEmail = $btn.data("email");
         var oPhone = $btn.data("phone");
 
         var sendurl = $btn.data("sendurl");
-
-        // console.log(event_id+" - "+packages+oName+oEmail+oPhone);
-
 
         $btn.html('<i class="fa fa-spinner fa-spin"></i> &nbsp; Loading...');
         $btn.prop('disabled', true);
@@ -42,7 +37,7 @@ $(document).ready(function(){
                     success: function (result) {
 
                         $.post(sendurl,
-                            {event_id: event_id, packages: packages, total: total,
+                            {order_id: order_id, budget: total,
                                 name: oName, email: oEmail, phone: oPhone, transaction_ref: response.trxref},
                                 function(data,status,xhr){
                                     if(data.status == 'success'){
@@ -54,15 +49,14 @@ $(document).ready(function(){
                             },
                             error: function (error) {
                                 alert("Something wrong happened");
-                                $btn.html('Pay Now');
+                                $btn.html("<i class='fa fa-money'></i> &nbsp; Pay");
                                 $btn.prop('disabled', false);
                             }
                         });
                     },
                     onClose: function(){
                         alert('No payment has been made');
-
-                        $btn.html('Pay Now');
+                        $btn.html("<i class='fa fa-money'></i> &nbsp; Pay");
                         $btn.prop('disabled', false);
                     }
                 });

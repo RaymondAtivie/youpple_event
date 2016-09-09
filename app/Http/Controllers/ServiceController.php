@@ -38,7 +38,7 @@ class ServiceController extends Controller
         $made_by = $request->get("made_by");
         $message = $request->get("message");
 
-        $history = json_decode($order->history);
+        $history = $order->history;
 
         $history[] =  [
             'budget' => $newBudget,
@@ -94,4 +94,23 @@ class ServiceController extends Controller
 
         return Redirect::back();
     }
+
+    public function payOrder(ServiceOrder $order, Request $request){
+        $order->status = "paid";
+        $order->save();
+
+        //SEND EMAIL
+
+        return ['status'=>"success", "url"=>url("events/myorders/".$order->id."/confirmpay")];
+    }
+
+    public function confirmPay(ServiceOrder $order){
+        M::flash("You have successfully paid for this service", "success");
+
+        return Redirect::back();
+        // return ['status'=>"success", "url"=>url("events/ticket/show/".$ticket->ticket)];
+    }
+
+
+
 }

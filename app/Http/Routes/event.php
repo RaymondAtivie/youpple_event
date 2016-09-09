@@ -15,6 +15,10 @@ Route::group([
     Route::get('/', 'EventsController@home');
 
     Route::get('/myorders', 'ServiceController@showServiceOrders');
+    Route::post('/myorders/{order}/counter', 'ServiceController@counterOffer');
+    Route::any('/myorders/{order}/cancel', 'ServiceController@cancelOffer');
+    Route::post('/myorders/{order}/pay', 'ServiceController@payOrder');
+    Route::any('/myorders/{order}/confirmpay', 'ServiceController@confirmPay');
 
     Route::get('/myprofile', 'EventsController@showUserProfile');
     Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
