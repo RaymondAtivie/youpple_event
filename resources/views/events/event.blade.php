@@ -128,10 +128,10 @@
 
     <hr />
     <style>
-        .padding-5{
-            padding-left: 5px;
-            padding-right: 5px;
-        }
+    .padding-5{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     </style>
     <div class="row serviceList">
 
@@ -170,27 +170,54 @@
         {{-- EVENTS --}}
         <div class="col-sm-3">
 
-            @for($i=0; $i < 5; $i++)
-                <div class="row">
-                    <div style="text-align: right" class="col-sm-12">
-                        <small>
-                            <i class="fa fa-calendar"></i>
-                            24 Aug 2016, 8:00pm
-                        </small>
-                    </div>
-                    <div class="col-sm-12">
+        <style>
+        .eventBox{
+            position: relative;
+            width: 100%;
+        }
+        .eventBox p {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+        }
+        .eventBox p span {
+            color: white;
+            font-weight: 100;
+            letter-spacing: -1px;
+            background: rgb(0, 0, 0); /* fallback color */
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        .eventBox:hover p span{
+            background: rgba(0, 0, 0, 0.7);
+        }
+        </style>
+
+        @for($i=0; $i < 5; $i++)
+            <div class="row">
+                <div style="text-align: right" class="col-sm-12">
+                    <small>
+                        <i class="fa fa-calendar"></i>
+                        24 Aug 2016, 8:00pm
+                    </small>
+                </div>
+                <div class="col-sm-12">
+                    <div class="eventBox">
                         <img class="img-responsive" src="http://placehold.it/300" />
-                    </div>
-                    <div style="text-align: center; margin-top: 5px" class="col-sm-12">
-                        <h3>This is a sample event</h3>
+                        <p><span>This is a sample event</span></p>
                     </div>
                 </div>
-                <hr />
-            @endfor
+                <div style="text-align: center; margin-top: 5px" class="col-sm-12">
+                    {{-- <h3>This is a sample event</h3> --}}
+                </div>
+            </div>
+            <hr />
+        @endfor
 
 
-        </div>
     </div>
+</div>
 </div>
 
 
