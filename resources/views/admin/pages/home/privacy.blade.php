@@ -29,7 +29,7 @@
                             @include('partials.messages')
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <textarea id="summernote" rows="90" name="privacy" class="form-control" placeholder="Write your Provacy policy" >{{$privacy}}</textarea>
+                                    <textarea id="trumbowyg-demo" rows="90" name="privacy" class="form-control" placeholder="Write your Provacy policy" >{{$privacy}}</textarea>
                                 </div>
                             </div>
 
@@ -49,11 +49,15 @@
 @stop
 @section('styles')
     <link href="{{ url('') }}/assets/summernote/summernote.css" rel="stylesheet">
+    <link href="{{ url('') }}/trumbowyg/ui/trumbowyg.min.css" rel="stylesheet">
 @stop
 @section('scripts')
     <script src="{{ url('') }}/assets/summernote/summernote.min.js"></script>
+    <script src="{{ url('') }}/trumbowyg/trumbowyg.min.js"></script>
     <script>
     $(document).ready(function() {
+        $('#trumbowyg-demo').trumbowyg();
+
         $('#summernote').summernote({
             height: 600,
         });

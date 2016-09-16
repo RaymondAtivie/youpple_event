@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
 use Auth;
 use View;
+use App\Helpers\M;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -17,13 +18,18 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function($view){
-            $view->with(['user'=>Auth::user(), 'isLoggedIn'=>Auth::check()]);
+            $socials = M::getSocials();
+
+            $view->with([
+                'user'=>Auth::user(),
+                'isLoggedIn'=>Auth::check(),
+                'social_links'=>$socials
+            ]);
         });
         View::composer('auth.*', function($view){
             $view->with(['pageType'=>'event']);
         });
-        View::composer('events.*', function($view)
-        {
+        View::composer('events.*', function($view){
             $view->with(['pageType'=>'event']);
         });
     }

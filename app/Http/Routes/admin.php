@@ -24,6 +24,9 @@ Route::group([
     Route::get('/home/privacy', "AdminController@showPrivacyPolicy");
     Route::post('/home/changePP', "AdminController@changePrivacyPolicy");
 
+    Route::get('/home/faq', "AdminController@showFaq");
+    Route::post('/home/changeFaq', "AdminController@changeFaq");
+
     /////////////////ABOUT//////////////////////////////////////////////
 
     Route::get('/about/info', "AdminController@showInfo");

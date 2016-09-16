@@ -99,7 +99,7 @@ class M
         $data = DB::table('admin_home')->first();
 
         foreach ($data as $key => $value) {
-            if(strpos($key, "_name") !== FALSE || strpos($key, "_logo") !== FALSE){
+            if(strpos($key, "_name") !== FALSE || strpos($key, "_logo") !== FALSE || strpos($key, "_link") !== FALSE && $key != "social_linkedin"){
                 $ls[$key] = $value;
             }
         }
@@ -114,6 +114,14 @@ class M
                 }
             }
             if(strpos($key, "_logo") !== FALSE){
+                $k = substr($key, 0, -5);
+                if(isset($logos[$k])){
+                    $logos[$k]['logo'] = $value;
+                }else{
+                    $logos[$k] = ["logo" => $value];
+                }
+            }
+            if(strpos($key, "_link") !== FALSE){
                 $k = substr($key, 0, -5);
                 if(isset($logos[$k])){
                     $logos[$k]['link'] = $value;

@@ -11,14 +11,19 @@
         <div class="cp-topbar">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <ul class="cp-phone-mail">
+                            <li>
+                                <a href="{{ url("/") }}">
+                                    <img style="width: 50px" src="{{ url('images/main/logo_small.png') }}" alt="Youpple" />
+                                </a>
+                            </li>
                             <li><i class="fa fa-phone"></i>+234 809 072 6621</li>
                             <li><i class="fa fa-envelope-o"></i> info@youpple.com.ng</li>
                             <!--<li><i class="fa fa-clock-o"></i> Mon - Sat: 07:00 - 19:00</li>-->
                         </ul>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <ul class="cp-top-social">
                             <li> <a class="quote-btn" href="{{ url('events/create') }}">Create Event</a> </li>
                             <li> <a class="quote-btn" href="{{ url('events/order') }}">Order Event Service</a> </li>
@@ -28,13 +33,13 @@
             </div>
         </div>
         <!-- Nav Bar Start -->
-        <div class="cp-nav-logo-bar">
+        <div class="cp-nav-logo-bar" style="padding: 5px 0px">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="cp-logo">
                             <a href="{{ url("/events") }}">
-                                <img style="width: 80px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple" />
+                                <img style="width: 65px" src="{{ url('images/event/event_logo_small.png') }}" alt="Youpple" />
                             </a>
                         </div>
                     </div>
@@ -49,7 +54,6 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
                                     <li><a href="{{ url('events') }}">Home</a></li>
-                                    {{-- <li><a href="{{ url('about') }}">About</a></li> --}}
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right">
                                     @if (!Auth::guest())
@@ -59,14 +63,17 @@
                                             </a>
 
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; My Profile</a></li>
-                                                @if(count(Auth::user()->events) > 0)
-                                                    <li><a href="{{ url('events/myevent') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Events</a></li>
+                                                @if(!Auth::user()->info)
+                                                    <li><a href="{{ url('events/becomeProvider') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Become a Service Provider</a></li>
+                                                @else
+                                                    <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Profile</a></li>
+                                                    @if(count(Auth::user()->events) > 0)
+                                                        <li><a href="{{ url('events/myevent') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Events</a></li>
+                                                    @endif
+                                                    @if(count(Auth::user()->serviceOrders) > 0)
+                                                        <li><a href="{{ url('events/myorders') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Service Orders</a></li>
+                                                    @endif
                                                 @endif
-                                                @if(count(Auth::user()->serviceOrders) > 0)
-                                                    <li><a href="{{ url('events/myorders') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Service Orders</a></li>
-                                                @endif
-                                                {{-- <li><a href="{{ url('events/register/more') }}"><i class="fa fa-btn fa-user"></i> &nbsp; More Information</a></li> --}}
                                                 <li><a href="{{ url('events/logout') }}"><i class="fa fa-btn fa-sign-out"></i> &nbsp; Logout</a></li>
                                             </ul>
                                         </li>

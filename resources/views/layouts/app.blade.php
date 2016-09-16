@@ -21,6 +21,8 @@
 
         <link href="{{ url('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ url('css/owl.carousel.css') }}" rel="stylesheet">
+        <link href="{{ url('css/owl.transitions.css') }}" rel="stylesheet">
+        <link href="{{ url('css/owl.theme.css') }}" rel="stylesheet">
         <link href="{{ url('css/jquery.bxslider.css') }}" rel="stylesheet">
         <link href="{{ url('css/responsive.css') }}" rel="stylesheet">
         <link href="{{ url('css/prettyPhoto.css') }}" rel="stylesheet">
@@ -59,7 +61,7 @@
             @include('events/nav')
           @endif
 
-          <hr style="clear: both" />
+          {{-- <hr style="clear: both" /> --}}
 
             @yield('content')
 

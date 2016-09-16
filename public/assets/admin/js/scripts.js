@@ -7,10 +7,10 @@
    // Sidebar toggle
 
    jQuery('.menu-list > a').click(function() {
-      
+
       var parent = jQuery(this).parent();
       var sub = parent.find('> ul');
-      
+
       if(!jQuery('body').hasClass('sidebar-collapsed')) {
          if(sub.is(':visible')) {
             sub.slideUp(300, function(){
@@ -90,7 +90,7 @@
        owl.reinit();
 
    });
-   
+
 
    searchform_reposition();
 
@@ -124,31 +124,31 @@
     });
 
     // body scroll
-
-    $("html").niceScroll({
-        styler: "fb",
-        cursorcolor: "#a979d1",
-        cursorwidth: '5',
-        cursorborderradius: '15px',
-        background: '#404040',
-        cursorborder: '',
-        zindex: '12000'
-    });
-
-    $(".notification-list-scroll").niceScroll({
-        styler: "fb",
-        cursorcolor: "#DFDFE2",
-        cursorwidth: '3',
-        cursorborderradius: '15px',
-//        background: '#404040',
-        cursorborder: '',
-        zindex: '12000'
-    });
-
-
+//
+//     $("html").niceScroll({
+//         styler: "fb",
+//         cursorcolor: "#a979d1",
+//         cursorwidth: '5',
+//         cursorborderradius: '15px',
+//         background: '#404040',
+//         cursorborder: '',
+//         zindex: '12000'
+//     });
+//
+//     $(".notification-list-scroll").niceScroll({
+//         styler: "fb",
+//         cursorcolor: "#DFDFE2",
+//         cursorwidth: '3',
+//         cursorborderradius: '15px',
+// //        background: '#404040',
+//         cursorborder: '',
+//         zindex: '12000'
+//     });
+//
+//
 
     // collapsible panel
-    
+
     $('.panel .tools .t-collapse').click(function () {
         var el = $(this).parents(".panel").children(".panel-body");
         if ($(this).hasClass("fa-chevron-down")) {
@@ -160,7 +160,7 @@
     });
 
 
-    // close panel 
+    // close panel
     $('.panel .tools .t-close').click(function () {
         $(this).parents(".panel").parent().remove();
     });

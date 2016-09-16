@@ -99,7 +99,7 @@ class AdminController extends Controller
 
         M::flash("Successfully changed ".$p['key'], "success");
 
-        return redirect('admin/home/logo');
+        return Redirect::back();
     }
 
     public function showSocial(){
@@ -118,7 +118,7 @@ class AdminController extends Controller
 
         M::flash("Successfully Updated", "success");
 
-        return redirect('admin/home/social');
+        return Redirect::back();
     }
 
     public function showPrivacyPolicy(){
@@ -132,7 +132,7 @@ class AdminController extends Controller
         M::setDocuments("privacy_policy", $privacy);
         M::flash("Successfully Updated", "success");
 
-        return redirect('admin/home/privacy');
+        return Redirect::back();
     }
 
     public function showAdvert(){
@@ -146,7 +146,7 @@ class AdminController extends Controller
         M::setDocuments("advertising", $ad);
         M::flash("Successfully Updated", "success");
 
-        return redirect('admin/home/advert');
+        return Redirect::back();
     }
 
     public function showTermsOfUse(){
@@ -161,7 +161,7 @@ class AdminController extends Controller
         M::setDocuments("terms_of_use", $TOU);
         M::flash("Successfully Updated", "success");
 
-        return redirect('admin/home/termsofuse');
+        return Redirect::back();
     }
 
     public function showTermsAndConditions(){
@@ -176,7 +176,22 @@ class AdminController extends Controller
         M::setDocuments("terms", $terms);
         M::flash("Successfully Updated", "success");
 
-        return redirect('admin/home/terms');
+        return Redirect::back();
+    }
+
+    public function showFaq(){
+        $faq = M::getDocuments("faq");
+
+        return view('admin.pages.home.faq', compact('faq'));
+    }
+
+    public function changeFaq(Request $request){
+        $faq = $request->get("faq");
+
+        M::setDocuments("faq", $faq);
+        M::flash("Successfully Updated", "success");
+
+        return Redirect::back();
     }
 
     ///////--- ABOUT -----///////////////
@@ -222,7 +237,7 @@ class AdminController extends Controller
         }
 
         M::setAboutData($p['key']."_name", $p['name']);
-        M::setAboutData($p['key']."_desc", $p['name']);
+        M::setAboutData($p['key']."_desc", $p['desc']);
 
         M::flash("Successfully changed ".$p['key'], "success");
 
@@ -451,6 +466,7 @@ class AdminController extends Controller
 
         return view('admin.pages.feature.providers', compact('providers', 'fProviders'));
     }
+
     public function addToFeaturedProvider(\App\User $user){
         $user->info->featured = 1;
         $user->info->save();
@@ -523,77 +539,6 @@ class AdminController extends Controller
 
         return view('admin.pages.list.providers', compact('users'));
     }
-
-    ////
-    // public function addVendorprofile() {
-    //   $gallery = [];
-    //   $slim = Input::get('slim');
-    //
-    //   // $description =  Purifier::clean(Input::get('description'));
-    //   $description =  Input::get('description');
-    //   $images = Slim::getImages();
-    //
-    //   // dd(Input::all());
-    //   if ($images == false || $slim[0] == "") {
-    //     return response()->json(['result' => 'ferror','description' => 'Featured Image required']);
-    //   }else {
-    //     $rules = array(
-    //         'slim' => 'required|min:1',
-    //         'name' => 'required',
-    //         'description' => 'required',
-    //         'state' => 'required',
-    //         'category' => 'required',
-    //         'address' => 'required',
-    //         'contact' => 'required',
-    //         'pricerange' => 'required',
-    //         'mobile' => 'required',
-    //         'email' => 'required',
-    //         'travel' => 'required',
-    //
-    //     );
-    //     $redirect = url('myaccount/profiles');
-    //
-    //     $validator = Validator::make(Input::all(), $rules);
-    //     if ($validator->fails()){
-    //         return response()->json(['result' => 'valerror','details' => $validator->messages()], 200);
-    //     }else {
-    //       foreach ($images as $image) {
-    //         $file = Slim::saveFile($image['output']['data'],$image['input']['name'],$image['input']['ext'],NULL);
-    //         $gallery[] = ellipsis($file['name'],100);
-    //       }
-    //       $obj =  new Vendorprofile;
-    //       $obj->name = Input::get('name');
-    //       $slug = to_slug(Input::get('name'));
-    //       $obj->slug = $slug;
-    //       $code = generate_profile_code();
-    //       $obj->code = $code;
-    //
-    //       $obj->category_id = Input::get('category');
-    //       $obj->subcategory_ids = json_encode(Input::get('subcategory_ids'));
-    //       $obj->description = $description;
-    //       $obj->state_id = Input::get('state');
-    //       $obj->tagline = Input::get('tagline');
-    //       $obj->pricerange_id = Input::get('pricerange');
-    //       $obj->address = Input::get('address');
-    //       $obj->email = Input::get('email');
-    //       $obj->travel = Input::get('travel');
-    //       $obj->mobile = Input::get('mobile');
-    //       $obj->contact = Input::get('contact');
-    //       $obj->website = Input::get('website');
-    //       $obj->social = json_encode(Input::get('social'));
-    //       $obj->location = json_encode(Input::get('location'));
-    //       $obj->featured = $gallery[0];
-    //       $obj->gallery = json_encode($gallery);
-    //       $obj->user_id = Auth::user()->user_id;
-    //       $obj->save();
-    //       return response()->json(['result' => 'success','link' => $redirect]);
-    //
-    //       // dd(Input::all());
-    //     }
-    //   }
-    //   // dd($gallery);
-    //   // dd(Input::all());
-    // }
 
 
 }

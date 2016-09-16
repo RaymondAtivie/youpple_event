@@ -27,7 +27,7 @@
                                 <div class="col-sm-6 col-sm-offset-3">
                                     <div class="slim"
                                     data-label="Drop your avatar here"
-                                    data-size="1000,1000"
+                                    data-size="150,150"
                                     data-ratio="1:1">
                                     <input type="file" name="image" required /></div>
                                 </div>

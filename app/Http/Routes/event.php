@@ -20,6 +20,7 @@ Route::group([
     Route::post('/myorders/{order}/pay', 'ServiceController@payOrder');
     Route::any('/myorders/{order}/confirmpay', 'ServiceController@confirmPay');
 
+    Route::get('/becomeProvider', 'EventsController@becomeProvider');
     Route::get('/myprofile', 'EventsController@showUserProfile');
     Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
     Route::post('/myprofile/uploadExtraPics', 'EventsController@updateExtraPics');

@@ -21,21 +21,43 @@ class UserInfo extends Model
     {
         return $this->belongsTo("App\User", "user_id");
     }
-    
+
+    public function getUserTypeAttribute($value)
+    {
+        if($value == 'customer'){
+            return "Individual";
+        }elseif($value == 'provider'){
+            return "Business";
+        }else{
+            return $value;
+        }
+    }
+
+    public function setUserTypeAttribute($value)
+    {
+        if($value == 'Individual'){
+            $this->attributes['user_type'] = "customer";
+        }elseif($value == 'Business'){
+            $this->attributes['user_type'] = "provider";
+        }else{
+            $this->attributes['user_type'] = $value;
+        }
+
+    }
+
     public function getAllProviders($type = "all"){
-        $pBuild = $this->where('user_type', 'provider');
+        $pBuild = $this;
 
         switch ($type) {
             case 'featured':
-            $pBuild = $pBuild->where("featured", true);
+            $pBuild = $this->where("featured", true);
             break;
 
             case 'unfeatured':
-            $pBuild = $pBuild->where("featured", false);
+            $pBuild = $this->where("featured", false);
             break;
 
             default:
-            #do nothing
             break;
         }
 

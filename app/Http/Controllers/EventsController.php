@@ -25,7 +25,9 @@ class EventsController extends Controller
         $events = \App\Models\Event::where("published", "true")->get();
         $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
 
-        return view('events.event', compact('events', 'fEvents'));
+        $services = M::getServices();
+
+        return view('events.event', compact('events', 'fEvents', "services"));
     }
 
     //////////////////////////// MY EVENT MANAGEMENT ///////////////////////////
@@ -62,15 +64,21 @@ class EventsController extends Controller
     ///////////////////////END OF MY EVENT MANAGEMENT///////////////////////////
 
     //////////////////////////// MY PROFILE MANAGEMENT ///////////////////////////
+    public function becomeProvider(){
+        if(!isset($user->info->user_type)){
+            Auth::user()->addInfo([]);
+        }
+
+        M::flash("Please fill in your details");
+
+        return Redirect::to("events/myprofile");
+    }
+
     public function showUserProfile(){
         $user = Auth::user();
 
         $intrests = M::getIntrests();
         $services = M::getServices();
-
-        if(!isset($user->info->user_type)){
-            $user->addInfo([]);
-        }
 
         return view('events.myprofile', compact('user', 'intrests', 'services'));
     }
@@ -129,10 +137,17 @@ class EventsController extends Controller
     }
 
     public function updateBio(Request $request){
+        $posts = $request->all();
 
-        // dd($request->all()['event_services']);
+        if ($request->hasFile('CV')) {
+            $filename = md5($request->CV->getClientOriginalName()).".".$request->CV->getClientOriginalExtension();
+            $request->file('CV')->move("uploads/cv", $filename);
 
-        Auth::user()->addInfo($request->all());
+            $file = "uploads/cv/".$filename;
+            $posts["CV"] = $file;
+        }
+
+        Auth::user()->addInfo($posts);
 
         M::flash("Successfully Updated bio", "success");
 

@@ -114,7 +114,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label class="control-label">Summary</label>
-                                        <textarea style="resize: none" rows="4" name="desc" class="form-control">{{$logo['name']}}</textarea>
+                                        <textarea style="resize: none" rows="4" name="desc" class="form-control">{{$logo['desc']}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

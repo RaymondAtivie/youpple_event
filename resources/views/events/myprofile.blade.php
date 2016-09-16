@@ -99,15 +99,15 @@
                     <div class="col-sm-12">
                         <section class="panel panel-info">
                             <header class="panel-heading">
-                                Customer or Service Provider?
+                                Are you an individual or a business?
                             </header>
                             <div class="panel-body">
 
                                 <div class="col-md-4 col-md-offset-2">
-                                    <button class="btn btn-block btn-default" ng-click="RM.toCustomer()">Customer</button>
+                                    <button class="btn btn-block btn-default" ng-click="RM.toCustomer()">Individual</button>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-block btn-default" ng-click="RM.toProvider()">Service Provider</button>
+                                    <button class="btn btn-block btn-default" ng-click="RM.toProvider()">Business</button>
                                 </div>
 
                             </div>
@@ -116,12 +116,12 @@
                 </div>
                 <section class="panel panel-info">
                     <header class="panel-heading">
-                        <b ng-show="RM.mode == 'c'">Customer</b>
-                        <b ng-show="RM.mode == 'p'">Service Provider</b>
+                        <b ng-show="RM.mode == 'c'">Individual</b>
+                        <b ng-show="RM.mode == 'p'">Business</b>
                         Details
                     </header>
                     <div class="panel-body detailsBody">
-                        <form action="{{url('events/myprofile/updateBio')}}">
+                        <form action="{{url('events/myprofile/updateBio')}}" method="POST" enctype="multipart/form-data">
 
                             <input type="hidden" name="user_type" value="customer" ng-if="RM.mode == 'c'" />
                             <input type="hidden" name="user_type" value="provider" ng-if="RM.mode == 'p'" />
@@ -134,21 +134,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row"  ng-show="RM.mode == 'p'">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Identification Type</label>
                                         <select class="form-control" name="id_type">
                                             <option>{{$user->info->id_type}}</option>
-                                            <option>CAC Registraion Number</option>
+                                            <option ng-if="RM.mode == 'p'">CAC Registraion Number</option>
                                             <option>TIN</option>
-                                            <option>Driver’s License</option>
-                                            <option>International Passport Number</option>
-                                            <option>National ID</option>
+                                            <option ng-if="RM.mode == 'c'">Driver’s License</option>
+                                            <option ng-if="RM.mode == 'c'">International Passport Number</option>
+                                            <option ng-if="RM.mode == 'c'">National ID</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6"  ng-show="RM.mode == 'p'">
+                                <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Identification Number</label>
                                         <input class="form-control" type="text" name="id_number" value="{{$user->info->id_number}}">
@@ -157,12 +157,23 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-1">
                                     <label ng-show="RM.mode == 'c'">CV</label>
                                     <label ng-show="RM.mode == 'p'">Company Profile</label>
                                 </div>
-                                <div class="col-md-7">
-                                    <input type="file" name="CV" value="">
+                                <div class="col-md-5">
+                                    <button type="button" ng-show="another" class="btn btn-small btn-warning" ng-click="another = true">Change</button>
+                                    <input type="file" name="CV" ng-if="!another" value="" />
+                                </div>
+                                <div class="col-md-2">
+                                    @if($user->info->cv)
+                                        <a class="btn btn-info btn-lg" target="_blank" href="{{ url($user->info->cv) }}">
+                                            <i class="fa fa-file"></i> &nbsp; View
+                                            <span ng-show="RM.mode == 'c'">CV</span>
+                                            <span ng-show="RM.mode == 'p'">Company Profile</span>
+                                        </a>
+                                        <span ng-init="another = true"></span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -176,7 +187,7 @@
                                             @if($user->info->gender == 'male')
                                                 checked="checked"
                                             @endif
-                                             name="gender" value="male"> Male
+                                            name="gender" value="male"> Male
                                         </label>
                                     </div>
                                 </div>
@@ -208,7 +219,7 @@
                                 <div class="col-md-12">
                                     <div class="input-field">
                                         <label>Contact Address</label>
-                                        <input class="form-control" type="text" name="address" value="{{$user->info->address}}">
+                                        <textarea class="form-control" name="address">{{$user->info->address}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +277,7 @@
                                 </div>
                             </div>
 
-                            <div  ng-show="RM.mode == 'c'">
+                            <div ng-show="RM.mode == 'c'">
                                 <h3>Self Description</h3>
                                 <hr />
 
@@ -353,7 +364,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="padding: 20px;" ng-show="RM.mode == 'c'">
+                            <div class="row" style="padding: 20px;">
                                 <h4>Intrests</h4>
                                 <div class="row servicesList">
                                     @foreach($intrests as $value)
@@ -371,7 +382,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="padding: 20px" ng-show="RM.mode == 'p'">
+                            <div class="row" style="padding: 20px">
                                 <h3>Event Service Options</h3>
                                 <hr />
 
@@ -394,6 +405,15 @@
                                         @endforeach
                                     </div>
                                 @endforeach
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-field">
+                                        <label>Others Specify</label>
+                                        <textarea class="form-control" name="others">{{$user->info->others}}</textarea>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">

@@ -20,5 +20,12 @@ Route::get('/about', 'PagesController@about');
 Route::get('/what-we-do', 'PagesController@whatWeDo');
 Route::get('/who-we-are', 'PagesController@whoWeAre');
 
+Route::get('/advert', 'PagesController@advert');
+Route::get('/privacy-policy', 'PagesController@privacy');
+Route::get('/faq', 'PagesController@faq');
+Route::get('/terms-of-use', 'PagesController@terms');
+Route::get('/terms-and-conditions', 'PagesController@termsandconditions');
+
+
 require_once("Routes/event.php");
 require_once("Routes/admin.php");

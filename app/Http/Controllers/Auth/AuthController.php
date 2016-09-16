@@ -72,8 +72,8 @@ class AuthController extends Controller
     */
     protected function create(array $data)
     {
-        M::flash("Successfully Registered. Please provide extra details");
-        $this->redirectTo = '/events/register/more';
+        M::flash("Successfully Registered.");
+        // $this->redirectTo = '/events/register/more';
 
         return User::create([
             'name' => $data['name'],

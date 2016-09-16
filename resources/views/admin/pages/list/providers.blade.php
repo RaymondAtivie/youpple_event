@@ -41,6 +41,9 @@
                                     Name
                                 </th>
                                 <th>
+                                    Type
+                                </th>
+                                <th>
                                     Email
                                 </th>
                                 <th>
@@ -60,6 +63,9 @@
                                     <tr class="odd gradeX">
                                         <td>
                                             {{ $user['name'] }}
+                                        </td>
+                                        <td>
+                                            {{ $user->info->user_type }}
                                         </td>
                                         <td>
                                             {{ $user['email'] }}

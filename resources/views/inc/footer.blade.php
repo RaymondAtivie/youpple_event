@@ -10,12 +10,12 @@
           </div>
           <div class="col-md-8" style="text-align: right">
             <p>
-              <a href="#">About Youple</a> &nbsp; &middot; &nbsp;
-                <a href="#">Advertising / Partnership</a> &nbsp; &middot; &nbsp;
-                <a href="#">FAQ</a> &nbsp; &middot; &nbsp;
-                <a href="#">Terms of Use</a> &nbsp; &middot; &nbsp;
-                <a href="#">Privacy Policy</a> &nbsp; &middot; &nbsp;
-                <a href="#">Terms and Conditions</a>
+              <a href="{{url("about")}}">About Youple</a> &nbsp; &middot; &nbsp;
+                <a href="{{url("advert")}}">Advertising / Partnership</a> &nbsp; &middot; &nbsp;
+                <a href="{{url("faq")}}">FAQ</a> &nbsp; &middot; &nbsp;
+                <a href="{{url("terms-of-use")}}">Terms of Use</a> &nbsp; &middot; &nbsp;
+                <a href="{{url("privacy-policy")}}">Privacy Policy</a> &nbsp; &middot; &nbsp;
+                <a href="{{url("terms-and-conditions")}}">Terms and Conditions</a>
             </p>
           </div>
         </div>
@@ -29,14 +29,14 @@
           </div>
           <div class="col-md-6">
             <ul class="cp-social-links">
-              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-google"></i></a></li>
-              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['google_plus'] }}"><i class="fa fa-google-plus"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['twitter'] }}"><i class="fa fa-twitter"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['linkedin'] }}"><i class="fa fa-linkedin"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['facebook'] }}"><i class="fa fa-facebook"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['google'] }}"><i class="fa fa-google"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['pinterest'] }}"><i class="fa fa-pinterest"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['instagram'] }}"><i class="fa fa-instagram"></i></a></li>
+              <li><a target="_blank" href="{{ $social_links['youtube'] }}"><i class="fa fa-youtube"></i></a></li>
             </ul>
           </div>
         </div>

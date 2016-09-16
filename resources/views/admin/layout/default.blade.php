@@ -34,7 +34,7 @@
         <div class="sidebar-left">
             <!--responsive view logo start-->
             <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
-                <a href="index.html">
+                <a href="{{ url("events") }}">
                     <img src="{{ url('images/event/event_logo_small.png') }}"  style="height: 50px" alt="">
                 </a>
             </div>
