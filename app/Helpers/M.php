@@ -15,11 +15,17 @@ class M
     }
 
     static function getIntrests(){
-        return ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
-        'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
-        'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
-        'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
-        'Ordination', 'Cookout'];
+        $data = DB::table('event_types')->get();
+
+        foreach($data as $d){
+            $list[$d->id] = $d->name;
+        }
+        return $list;
+        // return ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
+        // 'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
+        // 'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
+        // 'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
+        // 'Ordination', 'Cookout'];
     }
 
     static function getServices(){

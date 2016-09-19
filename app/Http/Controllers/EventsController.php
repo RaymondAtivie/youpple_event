@@ -12,12 +12,13 @@ use Validator;
 use App\Slim;
 use Auth;
 use App\Helpers\M;
+use App\User;
 
 class EventsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(["home", "show"]);
+        $this->middleware('auth')->except(["home", "show", "listEvents", "listEventsByCategory", "viewService"]);
     }
 
     public function home()
@@ -28,6 +29,43 @@ class EventsController extends Controller
         $services = M::getServices();
 
         return view('events.event', compact('events', 'fEvents', "services"));
+    }
+
+    public function listEvents()
+    {
+        $events = \App\Models\Event::where("published", "true")->get();
+        // $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
+
+        $intrests = M::getIntrests();
+
+        return view('events.eventCategory', compact('events', "intrests"));
+    }
+
+    public function listEventsByCategory($category)
+    {
+        $category = str_replace("-", " ", $category);
+        $events = \App\Models\Event::where("published", "true")->get();
+
+        return view('events.eventList', compact('events', "category"));
+    }
+
+    public function listServicesByCategory($category)
+    {
+        $category = str_replace("-", " ", $category);
+        $events = \App\Models\Event::where("published", "true")->get();
+
+        return view('events.eventServices', compact('events', "category"));
+    }
+
+    public function viewService($user){
+        $provider = User::find($user);
+        // dd($provider);
+        if($provider->info){
+            return view("events.showService", compact("provider"));
+        }else{
+            return view("404");
+        }
+
     }
 
     //////////////////////////// MY EVENT MANAGEMENT ///////////////////////////

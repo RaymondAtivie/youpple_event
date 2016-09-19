@@ -13,6 +13,11 @@ Route::group([
     Route::post("/register/more", "Auth\AuthController@saveUserInfo");
 
     Route::get('/', 'EventsController@home');
+    Route::get('/list', 'EventsController@listEvents');
+    Route::get('/list/{category}', 'EventsController@listEventsByCategory');
+    Route::get('/services/{category}', 'EventsController@listServicesByCategory');
+
+    Route::get('/view/service/{user}', 'EventsController@viewService');
 
     Route::get('/myorders', 'ServiceController@showServiceOrders');
     Route::post('/myorders/{order}/counter', 'ServiceController@counterOffer');

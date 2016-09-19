@@ -53,15 +53,17 @@
                         <hr />
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-sm-6 col-sm-offset-3">
+                                <div class="col-sm-10 col-sm-offset-1">
                                     <div class="slim"
                                     data-label="Your events main picture"
-                                    data-size="360,400"
-                                    data-ratio="1:1">
+                                    data-size="950,400"
+                                    data-ratio="19:8">
                                     <input type="file" name="picture"></div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <br />
 
                         <div class="form-group">
                             <label>Event Title</label>

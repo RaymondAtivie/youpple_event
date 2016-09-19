@@ -9,7 +9,7 @@
                     <ul class="cp-phone-mail">
                         <li>
                             <a href="{{ url("/") }}">
-                                <img style="width: 50px" src="{{ url('images/main/logo_small.png') }}" alt="Youpple" />
+                                <img style="width: 100px" src="{{ url('images/youlogo.png') }}" alt="Youpple" />
                             </a>
                         </li>
                         <li><i class="fa fa-phone"></i> +234 809 072 6621</li>
