@@ -33,7 +33,7 @@
                             <br />
                             <div class="row" style="text-align: center">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <button class="btn btn-primary btn-lg">
+                                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                                         @if($provider->info->user_type == "Individual")
                                             HIRE ME
                                         @else
@@ -44,7 +44,6 @@
                             </div>
 
                             <hr />
-
 
                             <div class="row grid">
                                 @foreach($provider->info->dPicture as $pic)
@@ -125,6 +124,95 @@
                     </section><!-- Up Coming Events Start -->
                 </div>
                 <!-- Main Content End -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">About your event</h4>
+                            </div>
+                            <form action="{{ url('events/order') }}" method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div>
+                                        <input type="hidden" name="provider_id" value="{{$provider->id}}" />
+                                        <div class="row pd-tb20">
+                                            <div class="col-md-10 col-md-offset-1">
+                                                @include('inc/flash')
+
+                                                <div class="form-group">
+                                                    <label>Type of event</label>
+                                                    <div class="row">
+                                                        @foreach($intrests as $in)
+                                                            <div class="col-sm-4">
+                                                                <label style="font-weight: 100">
+                                                                    <input type="radio" name="event_type" value="{{$in}}" />
+                                                                    {{$in}}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Number of guests</label>
+                                                    <input type="number" name="guests"  value="{{ old('guests') }}"  class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Event Address</label>
+                                                    <textarea name="address" rows="3" style="resize: none"  class="form-control">{{ old('title') }}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Event Service Options</label>
+                                                    @foreach($services as $sName => $service)
+                                                        <br />
+                                                        <label>{{UCFirst($sName)}}</label>
+                                                        <div class="row">
+                                                            @foreach($service as $s)
+                                                                <div class="col-sm-4">
+                                                                    <label style="font-weight: 100">
+                                                                        <input type="checkbox" name="event_services[]" value="{{$s}}" />
+                                                                        {{$s}}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Event Service Description (Message / Comment)</label>
+                                                    <textarea name="comment" rows="3" style="resize: none"  class="form-control">{{ old('comment') }}</textarea>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col-sm-9">
+                                                        <label>Budget</label>
+                                                        <input type="number" name="budget"  value="{{ old('budget') }}"  class="form-control col-sm-9">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label>Currency</label>
+                                                        <select name="currency" class="form-control col-sm-3">
+                                                            <option>Naira</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-md-offset-4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-lg btn-submit">Send Order</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endsection
 
             @section("footer_scripts")

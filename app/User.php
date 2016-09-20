@@ -34,18 +34,30 @@ class User extends Authenticatable
 
     public function createServiceOrder($params)
     {
-        $params['history'] = json_encode([
+        $params['history'] = [
             0 => [
                 'budget' => $params['budget'],
                 'datetime' => \Carbon\Carbon::now()->format("d/m/Y H:i"),
-                'made_by' => "user",
+                'made_by' => Auth::user()->name,
                 'message' => $params['comment'],
             ]
-        ]);
+        ];
         // dd($params);
         $order = $this->serviceOrders()->create($params);
 
+        // dd($order);
+
         return $order;
+    }
+
+    public function getOrdersToYoupple(){
+        return $this->serviceOrders()->where("provider_id", 0)->get();
+    }
+    public function getOrdersToOthers(){
+        return $this->serviceOrders()->where("provider_id", "!=", 0)->get();
+    }
+    public function getOrdersToMe(){
+        return \App\Models\ServiceOrder::where("provider_id", $this->id)->get();
     }
 
     public function addInfo($params)

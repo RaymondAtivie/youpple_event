@@ -22,77 +22,7 @@
                 @include('inc/flash')
             </div>
 
-            <div class="col-sm-4">
-                <section class="panel">
-                    <header class="panel-heading">
-                        My Display Picture
-                    </header>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    <div class="slim"
-                                    data-label="Drop your display picture here"
-                                    data-service="{{url('events/myprofile/uploadDP')}}"
-                                    data-size="200,200"
-                                    data-ratio="1:1">
-                                    <img src="{{url('userPhotos/'.$user->info->picture)}}" alt=""/>
-                                    <input type="file" name="picture"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
-                <section class="panel"  ng-show="RM.mode == 'p'">
-                    <header class="panel-heading">
-                        Upload Extra Images
-                    </header>
-                    <div class="panel-body">
-                        <form action="{{url('events/myprofile/uploadExtraPics')}}" method="post" enctype="multipart/form-data">
-                            <div id="my-slims"  class="row"  style="padding: 10px">
-
-                                <div class="col-sm-12" ng-repeat="i in RM.numPics">
-                                    <div class="slim"
-                                    data-label="Drop your display picture here"
-                                    data-size="1000,1000"
-                                    data-ratio="free">
-                                    <input type="file" name="dPicture[]"></div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <hr />
-                                    <button class="btn btn-default" type="button" ng-click="RM.addPicture()">
-                                        <i class="fa fa-plus"></i> Add
-                                    </button>
-                                    <button class="btn pull-right btn-primary" type="submit">
-                                        <i class="fa fa-upload"></i> Upload
-                                    </button>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </section>
-
-
-                <section class="panel"  ng-show="RM.mode == 'p'">
-                    <header class="panel-heading">
-                        Current Images
-                    </header>
-                    <div class="panel-body">
-
-                        @foreach($user->info->dPicture as $pic)
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <img src="{{url('userPhotos/'.$pic)}}" class="img-responsive img-thumbnail" />
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </section>
-            </div>
 
             <div class="col-sm-8">
                 <div class="row">
@@ -427,6 +357,79 @@
                     </div>
                 </section>
             </div>
+
+            <div class="col-sm-4">
+                {{-- <section class="panel">
+                    <header class="panel-heading">
+                        My Display Picture
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="slim"
+                                    data-label="Drop your display picture here"
+                                    data-service="{{url('events/myprofile/uploadDP')}}"
+                                    data-size="200,200"
+                                    data-ratio="1:1">
+                                    <img src="{{url('userPhotos/'.$user->info->picture)}}" alt=""/>
+                                    <input type="file" name="picture"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section> --}}
+
+                <section class="panel"  ng-show="RM.mode == 'p'">
+                    <header class="panel-heading">
+                        Upload Extra Images
+                    </header>
+                    <div class="panel-body">
+                        <form action="{{url('events/myprofile/uploadExtraPics')}}" method="post" enctype="multipart/form-data">
+                            <div id="my-slims"  class="row"  style="padding: 10px">
+
+                                <div class="col-sm-12" ng-repeat="i in RM.numPics">
+                                    <div class="slim"
+                                    data-label="Drop your display picture here"
+                                    data-size="1000,1000"
+                                    data-ratio="free">
+                                    <input type="file" name="dPicture[]"></div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <hr />
+                                    <button class="btn btn-default" type="button" ng-click="RM.addPicture()">
+                                        <i class="fa fa-plus"></i> Add
+                                    </button>
+                                    <button class="btn pull-right btn-primary" type="submit">
+                                        <i class="fa fa-upload"></i> Upload
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+
+                <section class="panel"  ng-show="RM.mode == 'p'">
+                    <header class="panel-heading">
+                        Current Images
+                    </header>
+                    <div class="panel-body">
+
+                        @foreach($user->info->dPicture as $pic)
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img src="{{url('userPhotos/'.$pic)}}" class="img-responsive img-thumbnail" />
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </section>
+            </div>
+
         </div>
     </div>
 @stop

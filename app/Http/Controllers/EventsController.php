@@ -59,9 +59,11 @@ class EventsController extends Controller
 
     public function viewService($user){
         $provider = User::find($user);
-        // dd($provider);
+        $intrests = M::getIntrests();
+        $services = M::getServices();
+
         if($provider->info){
-            return view("events.showService", compact("provider"));
+            return view("events.showService", compact("provider", "intrests", "services"));
         }else{
             return view("404");
         }
@@ -121,6 +123,12 @@ class EventsController extends Controller
         return view('events.myprofile', compact('user', 'intrests', 'services'));
     }
 
+    public function viewProfile(){
+        $user = Auth::user();
+
+        return view('events.profile', compact('user'));
+    }
+
     public function updateDP(){
         $images = Slim::getImages('picture');
         if(isset($images[0])){
@@ -137,8 +145,13 @@ class EventsController extends Controller
             $filename = "dp/".$pid.".".$lExt;
             rename($file['path'], "userPhotos/".$filename);
 
-            Auth::user()->info->picture = $filename;
-            Auth::user()->info->save();
+            Auth::user()->picture = $filename;
+            Auth::user()->save();
+
+            if(Auth::user()->info){
+                Auth::user()->info->picture = $filename;
+                Auth::user()->info->save();
+            }
         }
 
         return [

@@ -22,20 +22,36 @@ class ServiceController extends Controller
     public function createOrder(Request $request){
         $r = $request->all();
 
-        $s = Auth::user()->createServiceOrder($r);
+        // dd($r);
 
-        dd($s);
+        $s = Auth::user()->createServiceOrder($r);
+        M::flash("Successfully Ordered the service. Expect an email", "success");
+
+        return Redirect::back();
     }
 
     public function showServiceOrders(){
-        $orders = Auth::user()->serviceOrders;
+        $orders = Auth::user()->getOrdersToYoupple();
 
         return view('events.myorders', compact('orders'));
+    }
+
+    public function showServiceOrdersToOthers(){
+        $orders = Auth::user()->getOrdersToOthers();
+
+        return view('events.myordersOthers', compact('orders'));
+    }
+
+    public function showServiceOrdersToMe(){
+        $orders = Auth::user()->getOrdersToMe();
+
+        return view('events.myordersMe', compact('orders'));
     }
 
     public function counterOffer(ServiceOrder $order, Request $request){
         $newBudget = $request->get("budget");
         $made_by = $request->get("made_by");
+        $iMade = $request->get("iMade");
         $message = $request->get("message");
 
         $history = $order->history;
@@ -49,7 +65,7 @@ class ServiceController extends Controller
 
         $order->history = $history;
         $order->budget = $newBudget;
-        if($made_by == "user"){
+        if($iMade == "user"){
             $order->status = "pending";
         }else{
             $order->status = "counter";

@@ -6,7 +6,7 @@
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            My Service Orders
+            Service Orders made to Service Providers
         </h3>
         <span class="sub-title">Manage your Service Orders</span>
     </div>
@@ -39,6 +39,9 @@
                                         <tr>
                                             <th>
                                                 Event Type
+                                            </th>
+                                            <th>
+                                                Provider
                                             </th>
                                             <th>
                                                 Address
@@ -75,6 +78,13 @@
                                                 ">
                                                 <td>
                                                     {{ $order['event_type'] }}
+                                                </td>
+                                                <td>
+                                                    @if($order->provider->info->user_type == "Business")
+                                                        {{ $order->provider->info->business_name }}
+                                                    @else
+                                                        {{ $order->provider->name }}
+                                                    @endif
                                                 </td>
                                                 <td class="col-sm-2">
                                                     {{$order->address}}

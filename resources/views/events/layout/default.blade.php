@@ -75,7 +75,7 @@
                         <ul class="notification-menu">
                             <li>
                                 <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ url('userPhotos/'.Auth::user()->info->picture) }}" alt=""> {{ \Auth::user()->name }}
+                                    <img src="{{ url('userPhotos/'.Auth::user()->picture) }}" alt=""> {{ \Auth::user()->name }}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu purple pull-right">

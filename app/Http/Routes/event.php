@@ -19,13 +19,23 @@ Route::group([
 
     Route::get('/view/service/{user}', 'EventsController@viewService');
 
-    Route::get('/myorders', 'ServiceController@showServiceOrders');
+    Route::get('myorders', 'ServiceController@showServiceOrders');
+    Route::get('myorders/others', 'ServiceController@showServiceOrdersToOthers');
+    Route::get("myorders/me", 'ServiceController@showServiceOrdersToMe');
+
     Route::post('/myorders/{order}/counter', 'ServiceController@counterOffer');
     Route::any('/myorders/{order}/cancel', 'ServiceController@cancelOffer');
     Route::post('/myorders/{order}/pay', 'ServiceController@payOrder');
     Route::any('/myorders/{order}/confirmpay', 'ServiceController@confirmPay');
 
+    Route::post('/list/orders/{order}/counter', "ServiceController@counterOffer");
+    Route::get('/list/orders/{order}/cancel', "ServiceController@cancelOffer");
+    Route::get('/list/orders/{order}/decline', "ServiceController@declineOffer");
+    Route::get('/list/orders/{order}/accept', "ServiceController@acceptOffer");
+
     Route::get('/becomeProvider', 'EventsController@becomeProvider');
+    Route::get('/me', 'EventsController@viewProfile');
+
     Route::get('/myprofile', 'EventsController@showUserProfile');
     Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
     Route::post('/myprofile/uploadExtraPics', 'EventsController@updateExtraPics');

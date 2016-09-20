@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @include('inc/flash')
     <style>
     .dropbtn {
         cursor: pointer;
@@ -63,6 +62,9 @@
 
         <div class="container">
             <hr style="clear:both" />
+
+            @include('inc/flash')
+
             <div class="row no-margin">
                 <div class="col-sm-2">
                     <div class="list-group topmenu">

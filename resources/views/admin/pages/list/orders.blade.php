@@ -112,22 +112,24 @@
                                         <small>{{ $order['updated_at']->diffForHumans() }}</small>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-success"
-                                        onclick="return confirm('Are you sure you want to accept this order?')"
-                                        href="{{ url('admin/list/orders/'. $order['id']."/accept") }}">
-                                        <i class="fa fa-check"></i> &nbsp; Accept
-                                    </a>
+                                        @if($order['status'] != "cancelled" && $order['status'] != "declined" && $order['status'] != "paid")
+                                            <a class="btn btn-sm btn-success"
+                                            onclick="return confirm('Are you sure you want to accept this order?')"
+                                            href="{{ url('admin/list/orders/'. $order['id']."/accept") }}">
+                                            <i class="fa fa-check"></i> &nbsp; Accept
+                                        </a>
 
-                                    <button class="btn btn-sm btn-warning"
-                                    data-toggle="modal" data-target="#counterModal{{$order['id']}}">
-                                    <i class="fa fa-money"></i> &nbsp; Counter
-                                </button>
+                                        <button class="btn btn-sm btn-warning"
+                                        data-toggle="modal" data-target="#counterModal{{$order['id']}}">
+                                        <i class="fa fa-money"></i> &nbsp; Counter
+                                    </button>
 
-                                <a class="btn btn-sm btn-danger"
-                                onclick="return confirm('Are you sure you want to reject this order?')"
-                                href="{{ url('admin/list/orders/'. $order['id']."/decline") }}">
-                                <i class="fa fa-close"></i> &nbsp; Decline
-                            </a>
+                                    <a class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to reject this order?')"
+                                    href="{{ url('admin/list/orders/'. $order['id']."/decline") }}">
+                                    <i class="fa fa-close"></i> &nbsp; Decline
+                                </a>
+                            @endif
 
                             <button class="btn btn-sm btn-info"
                             data-toggle="modal" data-target="#userModal{{$order['id']}}">

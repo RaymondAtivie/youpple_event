@@ -14,9 +14,19 @@ class ServiceOrder extends Model
         'history' => 'array'
     ];
 
+
+    //Relationships
     public function owner()
     {
         return $this->belongsTo("App\User", "user_id");
+    }
+
+    public function provider(){
+        if($this->provider_id == 0){
+            return "Youpple";
+        }else{
+            return $this->belongsTo("App\User", "provider_id");
+        }
     }
 
 }

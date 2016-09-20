@@ -6,7 +6,7 @@
       <div class="cp-copyright-row">
         <div class="row">
           <div class="col-md-4">
-            <p><a href="{{ url('/') }}">Youpple</a> &copy; 2015, All Rights Reserved</a></p>
+            <p><a href="{{ url('/') }}">Youpple</a> &copy; {{date("Y")}}. All Rights Reserved</a></p>
           </div>
           <div class="col-md-8" style="text-align: right">
             <p>
