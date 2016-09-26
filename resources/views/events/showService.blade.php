@@ -15,24 +15,26 @@
                         <div class="cp-blog-item cp-blog-detail">
 
                             <div class="row">
-                                <div class="col-sm-6 col-sm-offset-3" style="text-align: center">
-                                    <img src="{{ url("userPhotos/".$provider->info->picture) }}" />
+                                <div class="col-sm-12">
+
                                 </div>
                             </div>
-                            <br />
-                            <div class="row" style="text-align: center">
-                                <div class="col-sm-8 col-sm-offset-2">
+
+                            <div class="row">
+                                <div class="col-sm-3" style="text-align: center">
+                                    <img class="img-responsive" style src="{{ url("userPhotos/".$provider->info->picture) }}" />
+                                </div>
+                                <div class="col-sm-3">
                                     @if($provider->info->user_type == "Individual")
                                         <h3>{{$provider->name}}</h3>
                                     @else
                                         <h3>{{$provider->info->business_name}}</h3>
                                     @endif
+                                    <br />
                                     <p>{{$provider->info->description}}</p>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="row" style="text-align: center">
-                                <div class="col-sm-8 col-sm-offset-2">
+
+                                    <hr />
+
                                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                                         @if($provider->info->user_type == "Individual")
                                             HIRE ME
@@ -41,8 +43,42 @@
                                         @endif
                                     </button>
                                 </div>
-                            </div>
+                                @if(count($provider->info->event_services) > 0)
+                                    <div class="col-sm-3" style="text-align: right">
+                                        <h4>
+                                            @if($provider->info->user_type == "Individual")
+                                                What i do
+                                            @else
+                                                What we do
+                                            @endif
+                                        </h4>
+                                        <br />
+                                        <ul>
+                                            @foreach($provider->info->event_services as $intrest)
+                                                <li>{{$intrest}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
+                                @if(count($provider->info->intrests) > 0)
+                                    <div class="col-sm-3">
+                                        <h4>
+                                            @if($provider->info->user_type == "Individual")
+                                                What i am intrested in
+                                            @else
+                                                What we are intrested in
+                                            @endif
+                                        </h4>
+                                        <br />
+                                        <ul>
+                                            @foreach($provider->info->intrests as $intrest)
+                                                <li>{{$intrest}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
                             <hr />
 
                             <div class="row grid">
@@ -55,44 +91,6 @@
                                 @endforeach
                             </div>
 
-                            <hr />
-
-                            <div class="row">
-                                @if(count($provider->info->event_services) > 0)
-                                    <div class="col-sm-6">
-                                        <h4><u>
-                                            @if($provider->info->user_type == "Individual")
-                                                What i do
-                                            @else
-                                                What we do
-                                            @endif
-                                        </u></h4>
-                                        <ul>
-                                            @foreach($provider->info->event_services as $intrest)
-                                                <li>{{$intrest}}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
-                                @if(count($provider->info->intrests) > 0)
-                                    <div class="col-sm-6">
-                                        <h4><u>
-                                            @if($provider->info->user_type == "Individual")
-                                                What i am intrested in
-                                            @else
-                                                What we are intrested in
-                                            @endif
-                                        </u></h4>
-                                        <ul>
-                                            @foreach($provider->info->intrests as $intrest)
-                                                <li>{{$intrest}}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
-                            </div>
 
                             <div class="cp-text">
 

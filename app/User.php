@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -58,6 +59,9 @@ class User extends Authenticatable
     }
     public function getOrdersToMe(){
         return \App\Models\ServiceOrder::where("provider_id", $this->id)->get();
+    }
+    public function getPaidOrders(){
+        return $this->serviceOrders()->where("provider_id", "!=", 0)->where("status", "paid")->get();
     }
 
     public function addInfo($params)

@@ -140,174 +140,173 @@
                                                 <i class="fa fa-list"></i>
                                             </button>
 
-
-                                            @if($order->status == "accepted" || $order->status == "counter")
-                                                <form style="display: inline-block">
-                                                    <script src="https://js.paystack.co/v1/inline.js"></script>
-                                                    <button
-                                                    data-order="{{$order->id}}"
-                                                    data-budget="{{$order->budget}}"
-                                                    data-name="{{$order->owner->name}}"
-                                                    data-email="{{$order->owner->email}}"
-                                                    data-phone="{{$order->owner->phone}}"
-                                                    data-sendurl="{{url('events/myorders/'.$order->id.'/pay')}}"
-                                                    type="button"
-                                                    class="btn btn-primary btn-sm"
-                                                    style="display: none"
-                                                    id="payButton"
-                                                    autocomplete="off">
-                                                    <i class="fa fa-money"></i> &nbsp; Pay
-                                                </button>
-                                            </form>
-                                        </a>
-                                    @endif
-
-
-                                    @if($order->status == "counter")
-                                        <button class="btn btn-sm btn-warning"
-                                        data-toggle="modal" data-target="#counterModal{{$order['id']}}">
-                                        <i class="fa fa-reply"></i> &nbsp; Counter
-                                    </button>
+                                        @if($order->status == "accepted" || $order->status == "counter")
+                                            <form style="display: inline-block">
+                                                <script src="https://js.paystack.co/v1/inline.js"></script>
+                                                <button
+                                                data-order="{{$order->id}}"
+                                                data-budget="{{$order->budget}}"
+                                                data-name="{{$order->owner->name}}"
+                                                data-email="{{$order->owner->email}}"
+                                                data-phone="{{$order->owner->phone}}"
+                                                data-sendurl="{{url('events/myorders/'.$order->id.'/pay')}}"
+                                                type="button"
+                                                class="btn btn-primary btn-sm"
+                                                style="display: none"
+                                                id="payButton"
+                                                autocomplete="off">
+                                                <i class="fa fa-money"></i> &nbsp; Pay
+                                            </button>
+                                        </form>
+                                    </a>
                                 @endif
 
-                                @if($order->status != "declined" && $order->status != "cancelled" && $order->status != "paid")
-                                    <a class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Are you sure you want to cancel this order?')"
-                                    href="{{ url('events/myorders/'. $order['id']."/cancel") }}">
-                                    <i class="fa fa-close"></i> &nbsp; Cancel
-                                </a>
+
+                                @if($order->status == "counter")
+                                    <button class="btn btn-sm btn-warning"
+                                    data-toggle="modal" data-target="#counterModal{{$order['id']}}">
+                                    <i class="fa fa-reply"></i> &nbsp; Counter
+                                </button>
                             @endif
 
+                            @if($order->status != "declined" && $order->status != "cancelled" && $order->status != "paid")
+                                <a class="btn btn-sm btn-danger"
+                                onclick="return confirm('Are you sure you want to cancel this order?')"
+                                href="{{ url('events/myorders/'. $order['id']."/cancel") }}">
+                                <i class="fa fa-close"></i> &nbsp; Cancel
+                            </a>
+                        @endif
 
-                            <div class="modal fade" id="counterModal{{$order['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Counter this Offer</h4>
-                                        </div>
-                                        <div class="modal-body">
 
-                                            <h3>Offer History</h3>
-                                            <div class="row form-group" style="border-bottom: 1px solid silver">
-                                                <div class="col-sm-2">
-                                                    <h4><b>Made By</b></h4>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <h4><b>Budget</b></h4>
-                                                </div>
-                                                <div class="col-sm-5">
-                                                    <h4><b>Message</b></h4>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <h4><b>Date / Time</b></h4>
-                                                </div>
-                                            </div>
-                                            <?php //$order->history = json_decode($order->history) ?>
-                                            @foreach($order->history as $h)
-                                                <div class="row form-group" style="border-bottom: 1px solid silver">
-                                                    <div class="col-sm-2">
-                                                        <h4>{{$h['made_by']}}</h4>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <h4>{{number_format($h['budget'])}}</h4>
-                                                    </div>
-                                                    <div class="col-sm-5">
-                                                        <h4><small>{{$h['message']}}</small></h4>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <h4><small>{{$h['datetime']}}</small></h4>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                            <br /><hr />
-                                            <form method="POST" action="{{url("events/myorders/".$order['id']."/counter")}}">
-                                                <div class="row form-group">
-                                                    <div class="col-sm-4">
-                                                        <h4>Counter Offer: </h4>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <input type="number" name="budget" value="{{$order->budget}}" class="form-control">
-                                                        <input type="hidden" name="made_by" value="{{$user->name}}" class="form-control">
-                                                        <input type="hidden" name="iMade" value="user" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-                                                    <div class="col-sm-4">
-                                                        <h4>Comment/Message: </h4>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <textarea name="message" rows="3" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Make Offer</button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </form>
+                        <div class="modal fade" id="counterModal{{$order['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Counter this Offer</h4>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="modal-body">
 
-                            {{-- HISTORY MODAL --}}
-                            <div class="modal fade" id="historyModal{{$order['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Owner of this Offer</h4>
+                                        <h3>Offer History</h3>
+                                        <div class="row form-group" style="border-bottom: 1px solid silver">
+                                            <div class="col-sm-2">
+                                                <h4><b>Made By</b></h4>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <h4><b>Budget</b></h4>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <h4><b>Message</b></h4>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h4><b>Date / Time</b></h4>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            <h3>Offer History</h3>
+                                        <?php //$order->history = json_decode($order->history) ?>
+                                        @foreach($order->history as $h)
                                             <div class="row form-group" style="border-bottom: 1px solid silver">
                                                 <div class="col-sm-2">
-                                                    <h4><b>Made By</b></h4>
+                                                    <h4>{{$h['made_by']}}</h4>
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <h4><b>Budget</b></h4>
+                                                    <h4>{{number_format($h['budget'])}}</h4>
                                                 </div>
                                                 <div class="col-sm-5">
-                                                    <h4><b>Message</b></h4>
+                                                    <h4><small>{{$h['message']}}</small></h4>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <h4><b>Date / Time</b></h4>
+                                                    <h4><small>{{$h['datetime']}}</small></h4>
                                                 </div>
                                             </div>
-                                            @foreach($order->history as $h)
-                                                <div class="row form-group" style="border-bottom: 1px solid silver">
-                                                    <div class="col-sm-2">
-                                                        <h4>{{$h['made_by']}}</h4>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <h4>{{number_format($h['budget'])}}</h4>
-                                                    </div>
-                                                    <div class="col-sm-5">
-                                                        <h4><small>{{$h['message']}}</small></h4>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <h4><small>{{$h['datetime']}}</small></h4>
-                                                    </div>
+                                        @endforeach
+                                        <br /><hr />
+                                        <form method="POST" action="{{url("events/myorders/".$order['id']."/counter")}}">
+                                            <div class="row form-group">
+                                                <div class="col-sm-4">
+                                                    <h4>Counter Offer: </h4>
                                                 </div>
-                                            @endforeach
+                                                <div class="col-sm-8">
+                                                    <input type="number" name="budget" value="{{$order->budget}}" class="form-control">
+                                                    <input type="hidden" name="made_by" value="{{$user->name}}" class="form-control">
+                                                    <input type="hidden" name="iMade" value="user" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-sm-4">
+                                                    <h4>Comment/Message: </h4>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <textarea name="message" rows="3" class="form-control"></textarea>
+                                                </div>
+                                            </div>
 
                                         </div>
                                         <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Make Offer</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- HISTORY MODAL --}}
+                        <div class="modal fade" id="historyModal{{$order['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Owner of this Offer</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Offer History</h3>
+                                        <div class="row form-group" style="border-bottom: 1px solid silver">
+                                            <div class="col-sm-2">
+                                                <h4><b>Made By</b></h4>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <h4><b>Budget</b></h4>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <h4><b>Message</b></h4>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h4><b>Date / Time</b></h4>
+                                            </div>
+                                        </div>
+                                        @foreach($order->history as $h)
+                                            <div class="row form-group" style="border-bottom: 1px solid silver">
+                                                <div class="col-sm-2">
+                                                    <h4>{{$h['made_by']}}</h4>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <h4>{{number_format($h['budget'])}}</h4>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <h4><small>{{$h['message']}}</small></h4>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <h4><small>{{$h['datetime']}}</small></h4>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </td>
+                    </td>
 
-                    </tr>
-                @endforeach
-            @endif
+                </tr>
+            @endforeach
+        @endif
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 </div>
 
 </div>

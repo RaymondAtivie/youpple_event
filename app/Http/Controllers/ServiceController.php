@@ -8,10 +8,15 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Helpers\M;
 use App\Models\ServiceOrder;
+use App\Models\PaymentHistory;
 use Auth;
 
 class ServiceController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function orderService(){
         $intrests = M::getIntrests();
         $services = M::getServices();
@@ -46,6 +51,29 @@ class ServiceController extends Controller
         $orders = Auth::user()->getOrdersToMe();
 
         return view('events.myordersMe', compact('orders'));
+    }
+
+    public function showPaidOrders(){
+        $orders = Auth::user()->getPaidOrders();
+
+        return view('events.myordersPaid', compact('orders'));
+    }
+
+    public function confirmPaidOrders(PaymentHistory $payment){
+        $payment->status = "confirmed";
+        $payment->save();
+
+        M::flash("Your Service order has been confirmed", "success");
+        return Redirect::back();
+    }
+
+    public function complainPaidOrders(Request $request, PaymentHistory $payment){
+        $payment->status = "complain";
+        $payment->message = $request->get("message");
+        $payment->save();
+
+        M::flash("Your Service order complain has been noted", "warning");
+        return Redirect::back();
     }
 
     public function counterOffer(ServiceOrder $order, Request $request){
@@ -114,6 +142,8 @@ class ServiceController extends Controller
     public function payOrder(ServiceOrder $order, Request $request){
         $order->status = "paid";
         $order->save();
+
+        $order->addToHistory();
 
         //SEND EMAIL
 

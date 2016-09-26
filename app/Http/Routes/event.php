@@ -22,6 +22,10 @@ Route::group([
     Route::get('myorders', 'ServiceController@showServiceOrders');
     Route::get('myorders/others', 'ServiceController@showServiceOrdersToOthers');
     Route::get("myorders/me", 'ServiceController@showServiceOrdersToMe');
+    Route::get("myorders/paid", 'ServiceController@showPaidOrders');
+
+    Route::get("myorders/paid/{payment}/confirm", 'ServiceController@confirmPaidOrders');
+    Route::post("myorders/paid/{payment}/complain", 'ServiceController@complainPaidOrders');
 
     Route::post('/myorders/{order}/counter', 'ServiceController@counterOffer');
     Route::any('/myorders/{order}/cancel', 'ServiceController@cancelOffer');

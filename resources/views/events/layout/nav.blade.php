@@ -17,6 +17,9 @@
             @if($user->info)
                 <li><a href="{{ url('events/myorders/me') }}">Made to me</a></li>
             @endif
+            @if(count($user->getPaidOrders()) > 0)
+                <li><a href="{{ url('events/myorders/paid') }}">Paid Orders</a></li>
+            @endif
         </ul>
     </li>
     @if($user->info)

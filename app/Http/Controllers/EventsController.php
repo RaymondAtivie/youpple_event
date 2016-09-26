@@ -206,9 +206,14 @@ class EventsController extends Controller
     }
     ///////////////////////END OF MY PROFILE MANAGEMENT///////////////////////////
 
-    public function show(Event $event)
+    public function show($event)
     {
-        return view('events.eventDetails', compact('event'));
+        $event = Event::find($event);
+        if($event){
+            return view('events.eventDetails', compact('event'));
+        }else{
+            return view('404');
+        }
     }
 
     public function showCreate()
