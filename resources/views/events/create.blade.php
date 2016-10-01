@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <br />
 
                         <div class="form-group">
@@ -224,6 +224,17 @@
     <script src="{{ url('js/angular.min.js') }}"></script>
     <script>
     angular.module('eventApp', [])
+    .controller('formCtrl', function() {
+        this.list = [];
+        this.num = 0;
+
+        this.list.push(this.num);
+
+        this.duplicate = function(){
+            this.num++;
+            this.list.push(this.num);
+        }
+    });
     // .controller('mapCtrl', function() {
     //     vm = this;
     //     vm.markers = [];
@@ -259,16 +270,6 @@
     // });
     //
     // angular.module('eventApp')
-    .controller('formCtrl', function() {
-        this.list = [];
-        this.num = 0;
 
-        this.list.push(this.num);
-
-        this.duplicate = function(){
-            this.num++;
-            this.list.push(this.num);
-        }
-    });
     </script>
 @endsection

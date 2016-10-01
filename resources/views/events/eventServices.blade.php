@@ -1,98 +1,46 @@
-@extends('layouts.app')
+@extends("events.fEvent")
+@section("eventBody")
+    <br style="margin-bottom: 200px; clear: both" />
 
-@section('content')
+    <div style="text-align: center">
+        <h2>{{ucwords($category)}}</h2>
+    </div>
 
-    @include('inc/flash')
-
+    <hr />
     <style>
-    .eventBox{
-        position: relative;
-        width: 100%;
-    }
-    .eventBox p {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        width: 100%;
-    }
-    .eventBox p span {
-        color: white;
-        font-weight: 100;
-        letter-spacing: -1px;
-        background: rgb(0, 0, 0); /* fallback color */
-        background: rgba(0, 0, 0, 0.2);
-        padding: 10px;
-    }
-    .eventBox:hover p span{
-        background: rgba(0, 0, 0, 0.7);
+    .padding-5{
+        padding: 20px;
     }
     </style>
 
-    <!-- Main Content Start -->
-    <div class="cp-main-content">
-
-        <div class="container">
-            <hr style="clear: both" />
-            <br style="margin-bottom: 200px; clear: both" />
-
-            <div style="text-align: center">
-                <h2>{{ucwords($category)}}</h2>
-            </div>
-
-            <hr />
-            <style>
-            .padding-5{
-                padding: 20px;
-            }
-            </style>
-
-            <div class="row">
-                @for($i=0;$i<34;$i++)
-                    <div class="col-sm-3 padding-5">
-                        <div>
-                            <small>
-                                <i class="fa fa-calendar"></i>
-                                24 Aug, 8:00pm
-                            </small>
-                        </div>
-                        <a href="#">
-                            <div class="eventBox">
-                                <img class="img-responsive" src="http://placehold.it/300x400" />
-                                <p><span>This is a sample event</span></p>
-                            </div>
-                        </a>
+    <div class="row">
+        @foreach($providers as $p)
+            <a href="{{ url("events/view/service/".$p->user->id) }}">
+                <div class="col-sm-3 padding-5" style="text-align: center">
+                    <div style="text-align: center;">
+                        <img src="{{url("userPhotos/".$p->picture)}}" class="img-responsive img-rounded" style="margin: auto" />
                     </div>
-                @endfor
+                    <div style="margin-top: 5px">
+                        <h3>
+                            @if($p->user_type == 'Business')
+                                {{$p->business_name}}
+                            @else
+                                {{$p->user->name}}
+                            @endif
+                        </h3>
+                        <small>
+                            @foreach($p->event_services as $value)
+                                {{$value}},
+                            @endforeach
+                        </small>
+                    </div>
+                </div>
+            </a>
+        @endforeach
+        @if(count($providers) < 1)
+            <div class="alert alert-info" style="text-align: center">
+                <h3>Nothing to see here</h3>
             </div>
-
-        </div>
-
-
-
-
+        @endif
     </div>
-    <!-- Main Content End -->
-@endsection
-
-@section("footer_scripts")
-    <script>
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : false, // Show next and prev buttons
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            autoPlay: true,
-            stopOnHover: true,
-            pagination: true,
-            singleItem:true
-        });
-
-        $("#owl-vert").owlCarousel({
-            autoPlay: true,
-            singleItem : true,
-            transitionStyle : "slideDown"
-        });
-
-    });
-    </script>
 @endsection

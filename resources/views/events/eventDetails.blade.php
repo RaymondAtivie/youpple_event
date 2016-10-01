@@ -11,6 +11,13 @@
         </div>
     @endif
 
+    <style>
+        .cp-inner-banner{
+            background: url("{{ url("userPhotos/".$event->image) }}") center center no-repeat;
+            background-size: cover;
+        }
+    </style>
+
     <!-- Inner Banner Start -->
     <div class="cp-inner-banner">
         <div class="container">

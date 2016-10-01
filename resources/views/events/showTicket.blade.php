@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-
+<hr style="clear: both" />
     <div class="container" style="text-align: center; padding: 20px 0px">
         <h2 class="text-success">You have successfully purchased your ticket.</h2>
         <br />
         <h3>Ticket Number: <b>{{$ticket->ticket}}</b></h3>
         <hr />
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <img src="{{ url("userPhotos/".$ticket->event->image) }}" class="img-responsive" />
+            </div>
+        </div>
         <h1>{{$ticket->event->title}}</h1>
         <div class="post-meta">
             <i class="fa fa-calendar"></i> {{$ticket->event->datetime->format("d M, Y")}} &nbsp;&nbsp;&middot;&nbsp;&nbsp;
@@ -58,6 +63,8 @@
             <div class="col-md-3" style="text-align: right; font-weight: lighter">
                 <div>
                     Ticket Number: <b>{{$ticket->ticket}}</b>
+                    <br /><br />
+                    {!! DNS1D::getBarcodeHTML($ticket->ticket, "C39") !!}
                 </div>
                 <br />
 

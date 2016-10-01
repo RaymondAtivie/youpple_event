@@ -59,45 +59,38 @@
                                     @foreach($lists as $list)
                                         <tr class="odd gradeX">
                                             <td>
-                                                {{ $user['name'] }}
+                                                {{ $list['provider']->name }}
                                             </td>
                                             <td>
-                                                {{ $user->info->user_type }}
+                                                {{ $list['provider']->info->user_type }}
                                             </td>
                                             <td>
-                                                {{ $user['email'] }}
+                                                {{ $list['amount'] }}
                                             </td>
                                             <td>
-                                                {{ $user['phone'] }}
+                                                {{ $list['amount'] }}
                                             </td>
                                             <td class="col-sm-3">
-                                                @foreach($user->info->event_services as $service)
-                                                    {{$service}}<?php if($user->info->event_services[count($user->info->event_services)-1] != $service){echo ", ";} ?>
-                                                @endforeach
+
                                             </td>
                                             <td>
-                                                <button class="btn btn-sm btn-info"
-                                                data-toggle="modal" data-target="#myModal{{$user['id']}}">
-                                                <i class="fa fa-pencil"></i> &nbsp; More Info
-                                            </button>
-                                            <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are you sure you want to delete this user completely? - {{ $user['name'] }}?')"
-                                            href="{{ url('admin/artisan/add/'. $user['id']) }}">
-                                            <i class="fa fa-trash"></i> &nbsp; Delete
-                                        </button>
-                                    </td>
+                                                <a class="btn btn-sm btn-info"
+                                                href="{{ url("admin/payments/due/".$list['provider']->id) }}">
+                                                <i class="fa fa-list"></i> &nbsp; Details
+                                            </a>
+                                        </td>
 
-                                </tr>
-                            @endforeach
-                        @endif
+                                    </tr>
+                                @endforeach
+                            @endif
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-            </div>
-        </section>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
 </div>
 @stop
 

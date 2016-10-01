@@ -78,6 +78,8 @@ Route::group([
     ////////////////////////////////////////////////////////////
 
     Route::get('/payments/due', "PaymentController@showDuePayments");
+    Route::get('/payments/due/{provider}', "PaymentController@showProviderDuePayments");
+    Route::get('/payments/due/{payment}/transfer', "PaymentController@confirmMoneyTransfer");
 });
 
 Route::get('/admin/login', 'AdminController@loginpage');

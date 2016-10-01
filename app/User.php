@@ -63,6 +63,7 @@ class User extends Authenticatable
     public function getPaidOrders(){
         return $this->serviceOrders()->where("provider_id", "!=", 0)->where("status", "paid")->get();
     }
+    
 
     public function addInfo($params)
     {

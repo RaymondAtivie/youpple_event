@@ -151,6 +151,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -209,8 +210,10 @@ return [
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
         'Form' => Illuminate\Html\FormFacade::class,
         'Html' => Illuminate\Html\HtmlFacade::class,
-        
+
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
         // Custom Classes
         'M' => App\Helpers\M::class,

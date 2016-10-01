@@ -18,25 +18,33 @@ class EventsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(["home", "show", "listEvents", "listEventsByCategory", "viewService"]);
+        $this->middleware('auth')->except(["home", "show", "listEvents", "listEventsByCategory", "viewService", "listServicesByCategory"]);
     }
 
     public function home()
     {
-        $events = \App\Models\Event::where("published", "true")->get();
-        $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
+        $events = \App\Models\Event::where("published", "true")->limit(5)->get();
+        $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->limit(5)->get();
+        $fProviders = \App\Models\UserInfo::where("featured", 1)->limit(5)->get();
+        $providers = \App\Models\UserInfo::get();
+
+        // dd($fProviders[0]->user);
 
         $services = M::getServices();
 
-        return view('events.event', compact('events', 'fEvents', "services"));
+        return view('events.event', compact('events', 'fEvents', "services", "providers", "fProviders"));
     }
 
     public function listEvents()
     {
         $events = \App\Models\Event::where("published", "true")->get();
-        // $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
 
-        $intrests = M::getIntrests();
+        $collection = collect([]);
+        foreach ($events as $event) {
+            $collection = $collection->merge($event->eventTypes->lists("name")->toArray());
+        }
+
+        $intrests = $collection;
 
         return view('events.eventCategory', compact('events', "intrests"));
     }
@@ -44,7 +52,9 @@ class EventsController extends Controller
     public function listEventsByCategory($category)
     {
         $category = str_replace("-", " ", $category);
-        $events = \App\Models\Event::where("published", "true")->get();
+        $ET = \App\Models\EventType::where("name", $category)->first();
+
+        $events = $ET->events();
 
         return view('events.eventList', compact('events', "category"));
     }
@@ -52,9 +62,9 @@ class EventsController extends Controller
     public function listServicesByCategory($category)
     {
         $category = str_replace("-", " ", $category);
-        $events = \App\Models\Event::where("published", "true")->get();
+        $providers = \App\Models\UserInfo::where('event_services', 'like', "%".$category."%")->get();
 
-        return view('events.eventServices', compact('events', "category"));
+        return view('events.eventServices', compact('providers', "category"));
     }
 
     public function viewService($user){
