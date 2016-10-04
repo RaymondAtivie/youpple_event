@@ -8,6 +8,8 @@ Route::group([
 
     Route::get('/home/logo', "AdminController@showLogo");
     Route::post('/home/changeLogo/{logoname}', "AdminController@changeLogo");
+    Route::post('/home/addLogoButton/{logoname}', "AdminController@addLogoButton");
+    Route::get('/home/removeLogoButton/{bid}', "AdminController@removeLogoButton");
 
     Route::get('/home/social', "AdminController@showSocial");
     Route::post('/home/changeSocial', "AdminController@changeSocial");

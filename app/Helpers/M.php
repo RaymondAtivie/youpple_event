@@ -140,6 +140,35 @@ class M
         return $logos;
     }
 
+    static function getLogosLinks(){
+        $data = DB::table('admin_home_links')->get();
+        $names = [
+            'main', 'event', 'consult', 'talk', 'shop', 'reformers',
+            'fashion', 'technology'
+        ];
+
+        foreach ($names as $name) {
+            foreach($data as $a){
+                if($a->name == $name){
+                    $newArray[$name][] = $a;
+                }
+            }
+        }
+
+        return $newArray;
+    }
+
+    static function addLogosLinks($details){
+        DB::table("admin_home_links")
+        ->insert($details);
+    }
+
+    static function removeLogosLinks($id){
+        DB::table("admin_home_links")
+        ->where("id", $id)
+        ->delete();
+    }
+
     static function getAboutLogos(){
         $data = DB::table('admin_about')->first();
 

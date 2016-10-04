@@ -42,16 +42,65 @@
                                     data-max-file-size="1.5"
                                     data-size="600,600"
                                     data-ratio="6:6" data-will-transform="addWatermark">
-                                    <img src="{{ url("images/".$logo['link']) }}" alt=""/>
-                                    <input type="file"  name="logo[]" id="slim" /></div>
+                                    <img src="{{ url("images/".$logo['logo']) }}" alt=""/>
+                                    <input type="file" name="logo[]" id="slim" /></div>
                                 </div>
                                 <div class="col-sm-12">
                                     <hr />
                                     <div class="form-group">
-                                        <button type="submit" type="button" class="btn btn-info">Change</button>
+                                        <button type="submit" type="button" class="btn btn-primary">Change</button>
+                                        <button type="button" type="button"
+                                        data-toggle="modal" data-target="#{{$key}}Modal"
+                                        class="btn btn-info pull-right">Inner Buttons</button>
                                     </div>
                                 </div>
                             </form>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="{{$key}}Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Inner Buttons for {{$logo['name']}}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table">
+                                                @if(isset($logosLinks[$key]))
+                                                    @foreach($logosLinks[$key] as $btn)
+                                                        <tr>
+                                                            <td>{{$btn->title}}</td>
+                                                            <td>{{$btn->link}}</td>
+                                                            <td>
+                                                                <a onclick="return confirm('Are you sure you want to remove this button?')"
+                                                                href="{{ url('admin/home/removeLogoButton/'.$btn->id) }}"
+                                                                class="btn btn-danger btn-xs">Remove</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                            </table>
+                                            <form method="post" action="{{ url('admin/home/addLogoButton/'.$key) }}">
+                                                <input type="hidden" name="name" value="{{$key}}" />
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <input type="text" name="title" required class="form-control" placeholder="Title" />
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" name="link" required class="form-control" placeholder="http://example.com" />
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <input type="submit" value="Add New Button" class="btn btn-primary btn-sm" />
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </section>
                 </div>

@@ -12,7 +12,9 @@ class PagesController extends Controller
     public function index()
     {
         $logos = M::getLogos();
-        return view('welcome', compact("logos"));
+        $logosLinks = M::getLogosLinks();
+
+        return view('welcome', compact("logos", "logosLinks"));
     }
 
     public function about()

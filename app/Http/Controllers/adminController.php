@@ -74,7 +74,9 @@ class AdminController extends Controller
     public function showLogo(){
         $logos = M::getLogos();
 
-        return view('admin.pages.home.logos', compact('logos'));
+        $logosLinks = M::getLogosLinks();
+
+        return view('admin.pages.home.logos', compact('logos', 'logosLinks'));
     }
     public function changeLogo($logoname, Request $request){
         $images = Slim::getImages('logo');
@@ -98,6 +100,26 @@ class AdminController extends Controller
         M::setDocuments($p['key']."_name", $p['name']);
 
         M::flash("Successfully changed ".$p['key'], "success");
+
+        return Redirect::back();
+    }
+
+    public function addLogoButton($logoname, Request $request){
+
+        $p = $request->all();
+
+        M::addLogosLinks($p);
+
+        M::flash("Successfully added a button to ".$logoname, "success");
+
+        return Redirect::back();
+    }
+
+    public function removeLogoButton($bid, Request $request){
+
+        M::removeLogosLinks($bid);
+
+        M::flash("Successfully removed the button", "danger");
 
         return Redirect::back();
     }
