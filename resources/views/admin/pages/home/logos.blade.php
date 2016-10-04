@@ -29,7 +29,7 @@
                                 <input type="hidden" name="_token" value="{{ Session::getToken() }}"/>
                                 @include('partials.errors')
                                 @include('partials.messages')
-                                <div class="col-sm-12">
+                                <div class="col-sm-11">
                                     <div class="form-group">
                                         {{-- <label class="control-label">Name</label> --}}
                                         <input type="text" name="name" class="form-control" value="{{$logo['name']}}" >

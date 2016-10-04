@@ -137,6 +137,7 @@ class M
             }
         }
 
+        sort($logos);
         return $logos;
     }
 
