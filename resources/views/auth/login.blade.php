@@ -75,6 +75,14 @@
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
+                                <div class="input-field">
+                                    <label>
+                                        <input type="checkbox" required name="terms" value="yes">
+                                        I accept Youpple <a target="_blank" href="{{url("terms-and-conditions")}}">Terms and Condition</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
                                 <div class="input-field btn-holder">
                                     <button type="submit" class="btn-submit" value="Submit">Login</button>
                                 </div>

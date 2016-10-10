@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="cp-section-title">
                     <h2>Our Team</h2>
-                    <strong>Morlem ipsum dolor sit amet, vesena tomosi elit. Ut elit tellus luctus nec.</strong>
+                    <strong>{{$taglineT}}</strong>
                 </div>
                 <div id="cp-team-slider" class="owl-carousel">
 
@@ -69,7 +69,7 @@
             <div class="container">
                 <div class="cp-section-title">
                     <h2>Our Partners</h2>
-                    <strong>These are the people we work with</strong>
+                    <strong>{{$taglineP}}</strong>
                 </div>
                 <div id="cp-partners" class="owl-carousel">
 
@@ -98,7 +98,7 @@
             <div class="container">
                 <div class="cp-section-title">
                     <h2>Our Clients</h2>
-                    <strong>Morlem ipsum dolor sit amet, vesena tomosi elit. Ut elit tellus luctus nec.</strong>
+                    <strong>{{$taglineC}}</strong>
                 </div>
                 <hr style="clear: both" />
 

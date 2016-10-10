@@ -22,7 +22,7 @@
             <li><a href="{{ url('admin/home/privacy') }}">Privacy Policy</a></li>
             <li><a href="{{ url('admin/home/faq') }}">FAQ</a></li>
             <li><a href="{{ url('admin/home/advert') }}">Advertising partners</a></li>
-            <li><a href="{{ url('admin/home/termsofuse') }}">Terms of Use</a></li>
+            <li><a href="{{ url('admin/home/termsofuse') }}">How it works</a></li>
             <li><a href="{{ url('admin/home/terms') }}">Terms & Condition</a></li>
         </ul>
     </li>

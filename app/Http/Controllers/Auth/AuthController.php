@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Helpers\M;
 use Auth;
+use App\Slim;
 use Socialite;
 use App\Models\SocialLogins;
 
@@ -72,13 +73,39 @@ class AuthController extends Controller
     */
     protected function create(array $data)
     {
-        M::flash("Successfully Registered.");
-        // $this->redirectTo = '/events/register/more';
+        $images = Slim::getImages('picture');
+        $filename = "dp/unknown.jpg";
+        if(isset($images[0])){
+            $image = $images[0];
+
+            $lExt = $image['input']['ext'];
+            $lName = $image['input']['name'];
+            $lData = $image['output']['data'];
+
+            $file = Slim::saveFile($lData, $lName, "jpg", false);
+
+            $pid = rand(100000, 999999999);
+
+            $filename = "dp/".$pid.".".$lExt;
+            rename($file['path'], "userPhotos/".$filename);
+        }
+
+        // dd($data);
+
+        if($data['user_type'] == "provider"){
+            M::flash("Successfully Registered. Please fill your details");
+            $this->redirectTo = '/events/becomeProvider';
+        }else{
+            M::flash("Successfully Registered.");
+        }
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'dob' => $data['dob'],
+            'gender' => $data['gender'],
+            'picture' => $filename,
             'password' => bcrypt($data['password']),
         ]);
     }

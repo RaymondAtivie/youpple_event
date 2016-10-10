@@ -30,6 +30,7 @@ Route::group([
     Route::post('/home/changeFaq', "AdminController@changeFaq");
 
     /////////////////ABOUT//////////////////////////////////////////////
+    Route::post('/about/changeTagline', "AdminController@changeTagline");
 
     Route::get('/about/info', "AdminController@showInfo");
     Route::post('/about/changeAboutInfo', "AdminController@changeInfo");

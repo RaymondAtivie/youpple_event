@@ -6,7 +6,7 @@
 </style>
 <div class="cp-wrapper">
     <!-- Header Start -->
-    <header class="cp-header" style="position: fixed">
+    <header class="cp-header">
         <!-- Topbar Start -->
         <div class="cp-topbar">
             <div class="container">
@@ -37,6 +37,7 @@
 
                                     <ul class="dropdown-menu" role="menu">
                                         @if(!Auth::user()->info)
+                                            <li><a href="{{ url('events/me') }}"><i class="fa fa-btn fa-user"></i> &nbsp; My Details</a></li>
                                             <li><a href="{{ url('events/becomeProvider') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Become a Service Provider</a></li>
                                         @else
                                             <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Profile</a></li>

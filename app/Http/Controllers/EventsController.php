@@ -119,7 +119,7 @@ class EventsController extends Controller
             Auth::user()->addInfo([]);
         }
 
-        M::flash("Please fill in your details");
+        M::flash("Successfully registered as a provider. Please fill in your details as a provider");
 
         return Redirect::to("events/myprofile");
     }

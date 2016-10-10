@@ -29,9 +29,14 @@ class PagesController extends Controller
         $team = M::getTeam();
         $clients = M::getClients();
 
+        $taglineP = M::getTagline("partners");
+        $taglineC = M::getTagline("clients");
+        $taglineT = M::getTagline("team");
+
 
         return view('about', compact("header", "description", "aboutImage", "clients",
-                                    "logos", "testimonials", "team", "partners"));
+                                    "logos", "testimonials", "team", "partners",
+                                    "taglineP", "taglineC", "taglineT"));
     }
 
     public function whatWeDo()
@@ -67,7 +72,7 @@ class PagesController extends Controller
     }
     public function terms()
     {
-        $title = "Terms of Use";
+        $title = "How it Works";
         $body = M::getDocuments("terms_of_use");
 
         return view('pages', compact("title", "body"));

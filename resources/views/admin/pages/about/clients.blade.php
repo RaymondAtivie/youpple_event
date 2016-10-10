@@ -20,6 +20,32 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <section class="panel">
                     <header class="panel-heading">
+                        Change Client tagline
+                    </header>
+                    <div class="panel-body">
+                        <form action="{{url('admin/about/changeTagline')}}" method="post">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Tagline</label>
+                                        <textarea name="tagline" class="form-control">{{$tagline}}</textarea>
+                                        <input type="hidden" name="name" value="clients" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <button type="submit" type="button" class="btn btn-info">Change</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <section class="panel">
+                    <header class="panel-heading">
                         Add a new Client
                     </header>
                     <div class="panel-body">
@@ -95,7 +121,7 @@
                                             <a class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure you want to delete this client - {{ $client->name }}?')"
                                             href="{{ url('admin/about/clients/remove/'. $client->id) }}">
-                                                <i class="fa fa-trash"></i> Delete
+                                                <i class="fa fa-trash"></i> &nbsp; Delete
                                             </a>
                                         </td>
                                     </tr>

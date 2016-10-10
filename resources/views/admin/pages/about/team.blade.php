@@ -21,6 +21,32 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <section class="panel">
                     <header class="panel-heading">
+                        Change Team tagline
+                    </header>
+                    <div class="panel-body">
+                        <form action="{{url('admin/about/changeTagline')}}" method="post">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Tagline</label>
+                                        <textarea name="tagline" class="form-control">{{$tagline}}</textarea>
+                                        <input type="hidden" name="name" value="team" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <button type="submit" type="button" class="btn btn-info">Change</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <section class="panel">
+                    <header class="panel-heading">
                         Add a new Team member
                     </header>
                     <div class="panel-body">

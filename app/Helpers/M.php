@@ -15,7 +15,7 @@ class M
     }
 
     static function getIntrests(){
-        $data = DB::table('event_types')->get();
+        $data = DB::table('event_types')->orderBy('name', 'asc')->get();
 
         foreach($data as $d){
             $list[$d->id] = $d->name;
@@ -72,6 +72,21 @@ class M
         $data = DB::table('admin_home')->first();
 
         return $data;
+    }
+
+    static function getTagline($name)
+    {
+        $data = DB::table('admin_tagline')
+        ->where('name', $name)
+        ->first();
+
+        return $data->tagline;
+    }
+    static function setTagline($name, $content)
+    {
+        DB::table("admin_tagline")
+        ->where('name', $name)
+        ->update(["tagline" => $content]);
     }
 
     static function getDocuments($doc)
@@ -137,7 +152,16 @@ class M
             }
         }
 
-        sort($logos);
+        ksort($logos);
+
+        $mm = $logos['main'];
+        $rr = $logos['reformers'];
+
+        unset($logos['main'], $logos['reformers']);
+
+        $logos['reformers'] = $rr;
+        $logos['main'] = $mm;
+
         return $logos;
     }
 

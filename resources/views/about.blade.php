@@ -47,9 +47,11 @@
         <!-- Process Content Start-->
         <section class="cp-process-section pd-tb60">
             <div class="container">
-                <div class="row">
-
-                    @foreach($logos as $logo)
+                <?php $j=0; ?>
+                @foreach($logos as $logo)
+                    @if($j == 0 || $j == 4)
+                        <div class="row">
+                        @endif
                         <div class="col-md-3 col-sm-6">
                             <!--Process Box Start-->
                             <div class="cp-process-box">
@@ -61,9 +63,11 @@
                                 </div>
                             </div><!--Process Box End-->
                         </div>
-                    @endforeach
-
-                </div>
+                        <?php $j++; ?>
+                        @if($j == 4 || $j == 8)
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </section><!-- Process Content End-->
 
@@ -99,7 +103,7 @@
             <div class="container">
                 <div class="cp-section-title">
                     <h2>Our Team</h2>
-                    <strong>Morlem ipsum dolor sit amet, vesena tomosi elit. Ut elit tellus luctus nec.</strong>
+                    <strong>{{$taglineT}}</strong>
                 </div>
                 <div id="cp-team-slider" class="owl-carousel">
 
@@ -142,7 +146,7 @@
             <div class="container">
                 <div class="cp-section-title">
                     <h2>Our Partners</h2>
-                    <strong>These are the people we work with</strong>
+                    <strong>{{$taglineP}}</strong>
                 </div>
                 <div id="cp-partners" class="owl-carousel">
 
@@ -171,7 +175,7 @@
             <div class="container">
                 <div class="cp-section-title">
                     <h2>Our Clients</h2>
-                    <strong>Morlem ipsum dolor sit amet, vesena tomosi elit. Ut elit tellus luctus nec.</strong>
+                    <strong>{{$taglineC}}</strong>
                 </div>
                 <hr style="clear: both" />
 

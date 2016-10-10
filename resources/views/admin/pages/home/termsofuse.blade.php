@@ -1,12 +1,12 @@
 @extends('admin.layout.default')
 @section('title')
-    Change The Terms Of Use
+    Change the How it Works
 @stop
 @section('main')
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            Terms of Use
+            How it Works
         </h3>
         <span class="sub-title">Change the terms of use for Youpple</span>
     </div>
@@ -20,7 +20,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Terms of Use
+                        How it Works
                     </header>
                     <div class="panel-body">
                         <form method="POST" enctype="multipart/form-data" autocomplete="off" action="{{ url('admin/home/changeTOU/') }}">
@@ -29,7 +29,7 @@
                             @include('partials.messages')
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <textarea name="terms_of_use" id="summernote" class="form-control" placeholder="Write your Advertisment policy" >{{$terms_of_use}}</textarea>
+                                    <textarea name="terms_of_use" id="summernote" class="form-control" placeholder="Write how it works" >{{$terms_of_use}}</textarea>
                                 </div>
                             </div>
 

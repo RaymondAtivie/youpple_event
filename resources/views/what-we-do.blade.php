@@ -23,9 +23,11 @@
         <!-- Process Content Start-->
         <section class="cp-process-section pd-tb60">
             <div class="container">
-                <div class="row">
-
-                    @foreach($logos as $logo)
+                <?php $j=0; ?>
+                @foreach($logos as $logo)
+                    @if($j == 0 || $j == 4)
+                        <div class="row">
+                        @endif
                         <div class="col-md-3 col-sm-6">
                             <!--Process Box Start-->
                             <div class="cp-process-box">
@@ -37,37 +39,41 @@
                                 </div>
                             </div><!--Process Box End-->
                         </div>
-                    @endforeach
-                </div>
+                        <?php $j++; ?>
+                        @if($j == 4 || $j == 8)
+                        </div>
+                    @endif
+                @endforeach
             </div>
-        </section><!-- Process Content End-->
+        </div>
+    </section><!-- Process Content End-->
 
-        <!-- Clients Content Variation 2 Start-->
-        <section class="cp-clients-section pd-tb60">
-            <div class="container">
-                <h2>Satisfied Clients</h2>
-                <!--Clients Inner Start-->
-                <div class="">
-                    <div id="cp-testimonial-slider2" class="owl-carousel">
+    <!-- Clients Content Variation 2 Start-->
+    <section class="cp-clients-section pd-tb60">
+        <div class="container">
+            <h2>Satisfied Clients</h2>
+            <!--Clients Inner Start-->
+            <div class="">
+                <div id="cp-testimonial-slider2" class="owl-carousel">
 
-                        @foreach($testimonials as $t)
-                            <div class="item cp-clients-inner cp-clients-inner2">
-                                <div class="cp-top">
-                                    <div class="cp-sm-thumb">
-                                        <img src="{{ url('images/'.$t->image) }}" alt="">
-                                    </div>
-                                    <h5>{{ $t->name }}</h5>
-                                    <span>{{ $t->position }}</span>
+                    @foreach($testimonials as $t)
+                        <div class="item cp-clients-inner cp-clients-inner2">
+                            <div class="cp-top">
+                                <div class="cp-sm-thumb">
+                                    <img src="{{ url('images/'.$t->image) }}" alt="">
                                 </div>
-                                <p>{{ $t->testimony }}</p>
+                                <h5>{{ $t->name }}</h5>
+                                <span>{{ $t->position }}</span>
                             </div>
-                        @endforeach
-                        
-                    </div>
-                </div><!--Clients Inner End-->
-            </div>
-        </section><!-- Clients Content Variation 2 End-->
+                            <p>{{ $t->testimony }}</p>
+                        </div>
+                    @endforeach
 
-    </div>
-    <!-- Main Content End -->
+                </div>
+            </div><!--Clients Inner End-->
+        </div>
+    </section><!-- Clients Content Variation 2 End-->
+
+</div>
+<!-- Main Content End -->
 @endsection

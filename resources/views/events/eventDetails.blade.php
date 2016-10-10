@@ -1,5 +1,20 @@
 @extends('layouts.app')
 
+{{-- @section('pageTitle', '{$event->title} | @parent') --}}
+@section("pageTitle")
+    {{$event->title}}
+@endsection
+@section("pageDescription")
+    {{$event->venue[0]}} - {{$event->title}}
+@endsection
+@section("pageImage")
+    {{url("userPhotos/".$event->image)}}
+@endsection
+
+@section("addThis")
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57fa2382afccb91a"></script>
+@endsection
+
 @section('content')
     <link rel="stylesheet" href="{{ url('css/audio-player.css') }}" />
     {{-- {{ Request::path() }} --}}
@@ -12,10 +27,20 @@
     @endif
 
     <style>
-        .cp-inner-banner{
-            background: url("{{ url("userPhotos/".$event->image) }}") center center no-repeat;
-            background-size: cover;
-        }
+    .cp-inner-banner{
+        background: url("{{ url("userPhotos/".$event->image) }}") center center no-repeat;
+        background-size: cover;
+    }
+    #clockdiv .timerbox{
+        margin-top: 20px;
+        border: 2px solid white;
+        padding: 10px 20px;
+    }
+    #clockdiv .days,#clockdiv .hours,#clockdiv .minutes,#clockdiv .seconds, .smalltext{
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+    }
     </style>
 
     <!-- Inner Banner Start -->
@@ -29,6 +54,33 @@
                     <i class="fa fa-map-marker"></i> &nbsp; {{$event->venue[0]}} &nbsp; &nbsp; &nbsp;
                     {{-- <i class="fa fa-map-marker"></i> &nbsp; {{unserialize($event->venue)[1]}} --}}
                 </h3>
+
+                @if($event->datetime > \Carbon\Carbon::now())
+                    <div id="clockdiv">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4 timerbox">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <span class="days"></span>
+                                        <div class="smalltext">Days</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span class="hours"></span>
+                                        <div class="smalltext">Hours</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span class="minutes"></span>
+                                        <div class="smalltext">Minutes</div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span class="seconds"></span>
+                                        <div class="smalltext">Seconds</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
             </div>
         </div>
@@ -368,6 +420,49 @@
             },
             dataType: 'json'
         });
-    })
+    });
+
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+        return {
+            'total': t,
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+
+    function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var daysSpan = clock.querySelector('.days');
+        var hoursSpan = clock.querySelector('.hours');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
+        }
+
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
+    }
+
+    var dt = "{{$event->datetime->toDateTimeString()}}";
+    var deadline = new Date(Date.parse(dt));
+    initializeClock('clockdiv', deadline);
     </script>
 @endsection

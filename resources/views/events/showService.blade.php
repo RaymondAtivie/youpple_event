@@ -1,5 +1,27 @@
 @extends('layouts.app')
 
+@if($provider->info->user_type == "Individual")
+    @section("pageTitle")
+    {{$provider->name}} - Service Provider
+    @endsection
+@else
+    @section("pageTitle")
+    {{$provider->info->business_name}} - Service Provider
+    @endsection
+@endif
+
+@section("pageDescription")
+{{$provider->info->description}}
+@endsection
+@section("pageImage")
+{{ url("userPhotos/".$provider->info->picture) }}
+@endsection
+
+@section("addThis")
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57fa2382afccb91a"></script>
+@endsection
+
+
 @section('content')
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">

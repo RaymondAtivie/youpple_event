@@ -218,6 +218,15 @@ class AdminController extends Controller
 
     ///////--- ABOUT -----///////////////
 
+    public function changeTagline(Request $request){
+        $p = $request->all();
+
+        M::setTagline($p['name'], $p['tagline']);
+
+        M::flash("Successfully updated the <b>".$p['name']."</b> tagline", "success");
+        return Redirect::back();
+    }
+
 
     public function showInfo(){
         $header = M::getAboutData("header");
@@ -263,7 +272,7 @@ class AdminController extends Controller
 
         M::flash("Successfully changed ".$p['key'], "success");
 
-        return redirect('admin/about/info');
+        return Redirect::back();
     }
     public function changeInfoImage(Request $request){
         $images = Slim::getImages('image');
@@ -290,8 +299,9 @@ class AdminController extends Controller
     //// CLIENTS CONTROL //////
     public function showClients(){
         $clients = M::getClients();
+        $tagline = M::getTagline("clients");
 
-        return view('admin.pages.about.clients', compact('clients'));
+        return view('admin.pages.about.clients', compact('clients', 'tagline'));
     }
 
     public function saveClient(Request $request){
@@ -376,7 +386,9 @@ class AdminController extends Controller
     /////// PARTNERS CONTROLS //////////
     public function showPartners(){
         $partners = M::getPartners();
-        return view('admin.pages.about.partners', compact('partners'));
+        $tagline = M::getTagline("partners");
+
+        return view('admin.pages.about.partners', compact('partners', 'tagline'));
     }
     public function savePartner(Request $request){
         $info = $request->all();
@@ -416,7 +428,9 @@ class AdminController extends Controller
     /////// TEAM CONTROLS //////////
     public function showTeam(){
         $team = M::getTeam();
-        return view('admin.pages.about.team', compact('team'));
+        $tagline = M::getTagline("team");
+
+        return view('admin.pages.about.team', compact('team', 'tagline'));
     }
     public function saveTeam(Request $request){
         $info = $request->all();

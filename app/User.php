@@ -13,7 +13,11 @@ class User extends Authenticatable
     * @var array
     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'dob', 'gender', 'image', 'phone', 'picture'
+    ];
+
+    protected $dates = [
+        'dob'
     ];
 
     /**
@@ -63,7 +67,7 @@ class User extends Authenticatable
     public function getPaidOrders(){
         return $this->serviceOrders()->where("provider_id", "!=", 0)->where("status", "paid")->get();
     }
-    
+
 
     public function addInfo($params)
     {

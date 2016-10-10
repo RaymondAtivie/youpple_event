@@ -13,7 +13,7 @@
               <a href="{{url("about")}}">About Youple</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("advert")}}">Advertising / Partnership</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("faq")}}">FAQ</a> &nbsp; &middot; &nbsp;
-                <a href="{{url("terms-of-use")}}">Terms of Use</a> &nbsp; &middot; &nbsp;
+                <a href="{{url("terms-of-use")}}">How it Works</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("privacy-policy")}}">Privacy Policy</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("terms-and-conditions")}}">Terms and Conditions</a>
             </p>
