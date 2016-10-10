@@ -169,6 +169,9 @@
 
 @section("footer_scripts")
     <script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
     $(document).ready(function() {
         $("#owl-demo").owlCarousel({
             navigation : false, // Show next and prev buttons
