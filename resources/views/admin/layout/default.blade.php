@@ -60,7 +60,7 @@
 
                 <!--logo and logo icon start-->
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
-                    <a href="{{ url('admin') }}">
+                    <a href="{{ url('events') }}">
                         <img src="{{ url('images/event/event_logo_small.png') }}" style="height: 50px" alt="">
                         <!--<i class="fa fa-maxcdn"></i>-->
                         <!-- <span class="brand-name">TicketWire</span> -->
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
-                    <a href="{{ url('admin') }}">
+                    <a href="{{ url('events') }}">
                         <img src="" alt="">
                         <!--<i class="fa fa-maxcdn"></i>-->
                     </a>

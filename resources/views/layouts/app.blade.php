@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('pageDescription')">
     <meta property="og:image" content="@yield('pageImage')" />
-
-    <link rel="shortcut icon" href="{{url("images/favicon.ico")}}" type="image/x-icon">
-    <link rel="icon" href="{{url("images/favicon.ico")}}" type="image/x-icon">
+    @if(isset($pageType))
+        <link rel="shortcut icon" href="{{url("images/event_favicon.ico")}}" type="image/x-icon">
+        <link rel="icon" href="{{url("images/event_favicon.ico")}}" type="image/x-icon">
+    @else
+        <link rel="shortcut icon" href="{{url("images/home_favicon.ico")}}" type="image/x-icon">
+        <link rel="icon" href="{{url("images/home_favicon.ico")}}" type="image/x-icon">
+    @endif
 
     <title>@yield('pageTitle') Youpple</title>
     <!-- Css Files Start -->

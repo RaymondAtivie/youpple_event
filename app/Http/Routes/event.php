@@ -6,7 +6,14 @@ Route::group([
     Route::auth();
 
     Route::get("/email", function(){
-        return view('emails.signup');
+        $userMan = [
+            'email'=>'raymondativie@gmail.com',
+            'name'=>'Raymond Ativie',
+            'picture'=>url("userPhotos/dp/unknown.jpg"),
+            'user_type'=>'Customer'
+        ];
+
+        return view('emails.signup', compact("userMan"));
     });
 
     $s = 'social.';
@@ -48,6 +55,8 @@ Route::group([
     Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
     Route::post('/myprofile/uploadExtraPics', 'EventsController@updateExtraPics');
     Route::any('/myprofile/updateBio', 'EventsController@updateBio');
+    Route::post('/myprofile/updateProfile', 'EventsController@updateProfile');
+    Route::post('/myprofile/updateProfilePassword', 'EventsController@updateProfilePassword');
 
     Route::get('/myevent', 'EventsController@showUserEvents');
     Route::get('/myevent/{event}/tickets', 'EventsController@showUserEventTickets');

@@ -14,6 +14,8 @@ use App\Http\Requests;
 use App\Slim;
 use App\Helpers\M;
 use App\Models\Event;
+use App\Models\EventType;
+use App\Models\ServiceList;
 use App\Models\Ticket;
 use App\Models\UserInfo;
 use App\User;
@@ -70,6 +72,78 @@ class AdminController extends Controller
         return view('admin.pages.forms');
     }
 
+    public function eventtypes(){
+        $event_types = \App\Models\EventType::orderBy('name', 'asc')->get();
+        // $services = M::getServices();
+        $services = \App\Models\ServiceOptions::orderBy('name', 'asc')->get();
+
+        return view('admin.pages.eventtypes', compact("event_types", "services"));
+    }
+
+    public function addEventtype(Request $request){
+        $name = $request->get("name");
+
+        M::addIntrest($name);
+
+        M::flash("Successfully added an Event type", "success");
+
+        return Redirect::back();
+    }
+    public function addServiceOption(Request $request){
+        $name = $request->get("name");
+
+        $SO = new \App\Models\ServiceOptions;
+        $SO->name = $name;
+        $SO->save();
+
+        M::flash("Successfully added an new Major Service", "success");
+
+        return Redirect::back();
+    }
+    public function addServiceList(Request $request){
+        $sid = $request->get("service_id");
+        $name = $request->get("name");
+
+        $SO = \App\Models\ServiceOptions::find($sid);
+        $SO->children()->create(['name'=>$name]);
+
+        M::flash("Successfully added an new Service", "success");
+
+        return Redirect::back();
+    }
+
+    static function showIntrest(EventType $evt){
+        $evt->visible = true;
+        $evt->save();
+
+        M::flash("Successfully made <b>".$evt->name."</b> visible", "success");
+        return Redirect::back();
+    }
+
+    static function hideIntrest(EventType $evt){
+        $evt->visible = false;
+        $evt->save();
+
+        M::flash("Successfully hidden <b>".$evt->name."</b>", "warning");
+        return Redirect::back();
+    }
+
+    static function showService(ServiceList $evt){
+        $evt->visible = true;
+        $evt->save();
+
+        M::flash("Successfully made <b>".$evt->name."</b> visible", "success");
+        return Redirect::back();
+    }
+
+    static function hideService(ServiceList $evt){
+        $evt->visible = false;
+        $evt->save();
+
+        M::flash("Successfully hidden <b>".$evt->name."</b>", "warning");
+        return Redirect::back();
+    }
+
     ///////--- HOME -----///////////////
     public function showLogo(){
         $logos = M::getLogos();
@@ -98,8 +172,9 @@ class AdminController extends Controller
         }
 
         M::setDocuments($p['key']."_name", $p['name']);
+        M::setDocuments($p['key']."_orda", $p['orda']);
 
-        M::flash("Successfully changed ".$p['key'], "success");
+        M::flash("Successfully changed <b>".$p['key']."</b>", "success");
 
         return Redirect::back();
     }
@@ -574,6 +649,23 @@ class AdminController extends Controller
         $users = $UI->getAllProviders();
 
         return view('admin.pages.list.providers', compact('users'));
+    }
+
+    public function verifyProvider(User $user){
+        $user->info->verified = true;
+        $user->info->save();
+
+        M::flash("Provider has been verified", "success");
+
+        return Redirect::back();
+    }
+    public function unverifyProvider(User $user){
+        $user->info->verified = false;
+        $user->info->save();
+
+        M::flash("Provider has been unverified", "info");
+
+        return Redirect::back();
     }
 
 

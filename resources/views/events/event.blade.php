@@ -30,7 +30,7 @@
                                     <a href="{{ url("events/view/service/".$p->user->id) }}">
 
                                     <div class="col-sm-3 padding-5">
-                                        <img src="{{ url("userPhotos/".$p->picture) }}" class="img-responsive img-rounded" />
+                                        <img src="{{ url("userPhotos/".$p->picture) }}" style="width: 100%" class="img-responsive img-rounded" />
                                         <div style="text-align: center; margin-top: 5px">
                                             <a tabindex="0" href="#"
                                             data-toggle="popover"
@@ -42,6 +42,11 @@
                                             @endforeach
                                             ">
                                             <h3>
+                                                @if($p->verified)
+                                                    <span style="color: purple; padding-right: 10px" title="Verified by Youpple">
+                                                        <i class="fa fa-certificate"></i>
+                                                    </span>
+                                                @endif
                                                 @if($p->user_type == 'Business')
                                                     {{$p->business_name}}
                                                 @else

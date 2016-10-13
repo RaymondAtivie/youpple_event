@@ -13,7 +13,7 @@
         <h3 class="navigation-title">Page Settings</h3>
     </li>
     <li class="menu-list">
-        <a href="">
+        <a href="#">
             <i class="fa fa-file-text-o"></i><span>Home Page</span>
         </a>
         <ul class="child-list">
@@ -27,7 +27,7 @@
         </ul>
     </li>
     <li class="menu-list">
-        <a href="">
+        <a href="#">
             <i class="fa fa-file-text-o"></i><span>About Page</span>
         </a>
         <ul class="child-list">
@@ -39,13 +39,18 @@
         </ul>
     </li>
     <li class="menu-list">
-        <a href="">
+        <a href="#">
             <i class="fa fa-star"></i><span>Featured</span>
         </a>
         <ul class="child-list">
             <li><a href="{{ url('admin/feature/events') }}">Featured Events</a></li>
             <li><a href="{{ url('admin/feature/providers') }}">Featured Service Providers</a></li>
         </ul>
+    </li>
+    <li>
+        <a href="{{ url('admin/eventtypes') }}">
+            <i class="fa fa-users"></i><span>Manage Event types</span>
+        </a>
     </li>
 
     <li>
@@ -77,7 +82,7 @@
             <h3 class="navigation-title">Reaching Out</h3>
         </li>
         <li class="menu-list">
-            <a href="">
+            <a href="#">
                 <i class="fa fa-star"></i><span>Send SMS</span>
             </a>
             <ul class="child-list">
@@ -89,7 +94,7 @@
             </ul>
         </li>
         <li class="menu-list">
-            <a href="">
+            <a href="#">
                 <i class="fa fa-star"></i><span>Send Email</span>
             </a>
             <ul class="child-list">
@@ -101,7 +106,7 @@
             <h3 class="navigation-title">Settings</h3>
         </li>
         <li class="menu-list">
-            <a href="">
+            <a href="#">
                 <i class="fa fa-star"></i><span>User Management</span>
             </a>
             <ul class="child-list">

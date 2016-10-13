@@ -110,6 +110,20 @@
                             </div>
                         </div>
 
+                        <div class="row form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                                <label>Address</label>
+                                <div class="input-field">
+                                    <textarea name="address" requied>{{ old('address') }}</textarea>
+                                    @if ($errors->has('address'))
+                                        <span class="help-block">
+                                            <strong class="danger">{{ $errors->first('address') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row form-group{{ $errors->has('state') ? ' has-error' : '' }}">
                             <div class="col-md-12">
                                 <label>State / Province</label>

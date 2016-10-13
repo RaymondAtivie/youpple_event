@@ -13,7 +13,8 @@ class UserInfo extends Model
         'intrests' => 'array',
         'event_services' => 'array',
         'dPicture' => 'array',
-        'featured' => 'boolean'
+        'featured' => 'boolean',
+        'verified' => 'boolean',
     ];
 
 

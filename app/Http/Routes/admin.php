@@ -6,6 +6,15 @@ Route::group([
     Route::get('/', 'AdminController@dashboard');
     Route::get('/forms', 'AdminController@forms');
 
+    Route::get('/eventtypes', 'AdminController@eventtypes');
+    Route::post('/eventtypes/add', 'AdminController@addEventtype');
+    Route::get('/eventtypes/{evt}/hide', 'AdminController@hideIntrest');
+    Route::get('/eventtypes/{evt}/show', 'AdminController@showIntrest');
+    Route::post('/eventtypes/servicelistadd', 'AdminController@addServiceList');
+    Route::post('/eventtypes/serviceadd', 'AdminController@addServiceOption');
+    Route::get('/servicelist/{evt}/hide', 'AdminController@hideService');
+    Route::get('/servicelist/{evt}/show', 'AdminController@showService');
+
     Route::get('/home/logo', "AdminController@showLogo");
     Route::post('/home/changeLogo/{logoname}', "AdminController@changeLogo");
     Route::post('/home/addLogoButton/{logoname}', "AdminController@addLogoButton");
@@ -77,6 +86,8 @@ Route::group([
     Route::get('/list/events/unrevokeTicket/{ticket}', "AdminController@unrevokeTicket");
 
     Route::get('/list/providers', "AdminController@listProviders");
+    Route::get('/list/provider/{user}/verify', "AdminController@verifyProvider");
+    Route::get('/list/provider/{user}/unverify', "AdminController@unverifyProvider");
 
     ////////////////////////////////////////////////////////////
 

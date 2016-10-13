@@ -7,6 +7,9 @@ use DB;
 
 class EventType extends Model
 {
+    protected $casts = [
+        'visible' => 'boolean',
+    ];
     public function events()
     {
         $eventids = DB::table('event_event_type')->select("event_id")->where("event_type_id", $this->id)->get();

@@ -35,8 +35,8 @@ class PagesController extends Controller
 
 
         return view('about', compact("header", "description", "aboutImage", "clients",
-                                    "logos", "testimonials", "team", "partners",
-                                    "taglineP", "taglineC", "taglineT"));
+        "logos", "testimonials", "team", "partners",
+        "taglineP", "taglineC", "taglineT"));
     }
 
     public function whatWeDo()
@@ -53,7 +53,12 @@ class PagesController extends Controller
         $team = M::getTeam();
         $clients = M::getClients();
 
-        return view('who-we-are', compact('partners', 'team', 'clients'));
+        $taglineP = M::getTagline("partners");
+        $taglineC = M::getTagline("clients");
+        $taglineT = M::getTagline("team");
+
+        return view('who-we-are', compact('partners', 'team', 'clients',
+        'taglineT', 'taglineP', 'taglineC'));
     }
 
     public function advert()

@@ -11,6 +11,7 @@ use App\Models\EventType;
 use Validator;
 use App\Slim;
 use Auth;
+use Hash;
 use App\Helpers\M;
 use App\User;
 
@@ -213,6 +214,46 @@ class EventsController extends Controller
         M::flash("Successfully Updated bio", "success");
 
         return Redirect::back();
+    }
+    public function updateProfile(Request $request){
+        $posts = $request->all();
+        $u = Auth::user();
+
+        $u->name = $posts['name'];
+        $u->phone = $posts['phone'];
+        $u->address = $posts['address'];
+
+        $u->save();
+
+        M::flash("Successfully Updated Profile", "success");
+
+        return Redirect::back();
+    }
+
+    public function updateProfilePassword(Request $request){
+        $posts = $request->all();
+
+        if(!(count($posts) == 3 && isset($posts['cpassword']) && isset($posts['newpassword']) && isset($posts['confirm_password']))){
+            M::flash("Something went wrong. Bad request", "danger");
+
+            return Redirect::back();
+        }
+
+        if (!Hash::check($posts['cpassword'], Auth::user()->getAuthPassword())){
+            M::flash("Your current password was not correct. Please try again", "danger");
+            return Redirect::back();
+
+        }elseif($posts['newpassword'] != $posts['confirm_password']){
+            M::flash("Your new passwords did not match. Please try again", "warning");
+            return Redirect::back();
+        }else{
+            Auth::user()->password = bcrypt($posts['newpassword']);
+            Auth::user()->save();
+
+            M::flash("Successfully Updated Profile", "success");
+
+            return Redirect::back();
+        }
     }
     ///////////////////////END OF MY PROFILE MANAGEMENT///////////////////////////
 

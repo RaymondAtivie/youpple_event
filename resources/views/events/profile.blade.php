@@ -23,7 +23,7 @@
             </div>
 
             <div class="col-sm-4">
-                <section class="panel">
+                <section class="panel panel-info">
                     <header class="panel-heading">
                         My Display Picture
                     </header>
@@ -49,6 +49,9 @@
             <div class="col-sm-8">
 
                 <section class="panel panel-info">
+                    <header class="panel-heading">
+                        Profile Update
+                    </header>
 
                     <div class="panel-body detailsBody">
                         <form action="{{url('events/myprofile/updateProfile')}}" method="POST">
@@ -56,8 +59,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="input-field">
-                                        <label>Name</label>
-                                        <input class="form-control" type="text" name="name" value="{{$user->name}}">
+                                        <label>Full Name</label>
+                                        <input class="form-control" type="text" required name="name" value="{{$user->name}}">
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +69,16 @@
                                 <div class="col-md-12">
                                     <div class="input-field">
                                         <label>Phone</label>
-                                        <input class="form-control" type="text" name="name" value="{{$user->phone}}">
+                                        <input class="form-control" type="text" required name="phone" value="{{$user->phone}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-field">
+                                        <label>Address</label>
+                                        <textarea class="form-control" required name="address">{{$user->address}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +88,7 @@
                                 <div class="col-md-12">
                                     <div class="input-field">
                                         <label>Email</label>
-                                        <input class="form-control" disabled type="text" name="name" value="{{$user->email}}">
+                                        <input class="form-control" disabled type="email" name="email" value="{{$user->email}}">
                                     </div>
                                 </div>
                             </div>
@@ -85,6 +97,53 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <input type="submit" class="btn btn-lg btn-primary" value="Update"/>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </section>
+
+                <section class="panel panel-info">
+                    <header class="panel-heading">
+                        Password Change
+                    </header>
+
+                    <div class="panel-body detailsBody">
+                        <form action="{{url('events/myprofile/updateProfilePassword')}}" method="POST">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-field">
+                                        <label>Current Password</label>
+                                        <input class="form-control" type="password" required name="cpassword">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-field">
+                                        <label>New Password</label>
+                                        <input class="form-control" type="password" name="newpassword" required pattern=".{7,}" title="7 characters minimum">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-field">
+                                        <label>Confirm New Password</label>
+                                        <input class="form-control" type="password" name="confirm_password" required pattern=".{7,}" title="7 characters minimum">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="submit" class="btn btn-lg btn-primary" value="Change Password"/>
                                 </div>
                             </div>
 

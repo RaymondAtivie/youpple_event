@@ -380,7 +380,7 @@
                     </div>
                 </section> --}}
 
-                <section class="panel"  ng-show="RM.mode == 'p'">
+                <section class="panel">
                     <header class="panel-heading">
                         Upload Extra Images
                     </header>
@@ -412,7 +412,7 @@
                 </section>
 
 
-                <section class="panel"  ng-show="RM.mode == 'p'">
+                <section class="panel">
                     <header class="panel-heading">
                         Current Images
                     </header>

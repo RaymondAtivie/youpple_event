@@ -2,23 +2,23 @@
 
 @if($provider->info->user_type == "Individual")
     @section("pageTitle")
-    {{$provider->name}} - Service Provider
+        {{$provider->name}} - Service Provider
     @endsection
 @else
     @section("pageTitle")
-    {{$provider->info->business_name}} - Service Provider
+        {{$provider->info->business_name}} - Service Provider
     @endsection
 @endif
 
 @section("pageDescription")
-{{$provider->info->description}}
+    {{$provider->info->description}}
 @endsection
 @section("pageImage")
-{{ url("userPhotos/".$provider->info->picture) }}
+    {{ url("userPhotos/".$provider->info->picture) }}
 @endsection
 
 @section("addThis")
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57fa2382afccb91a"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57fa2382afccb91a"></script>
 @endsection
 
 
@@ -44,14 +44,22 @@
 
                             <div class="row">
                                 <div class="col-sm-3" style="text-align: center">
-                                    <img class="img-responsive" style src="{{ url("userPhotos/".$provider->info->picture) }}" />
+                                    <img class="img-responsive" style="width: 100%" src="{{ url("userPhotos/".$provider->info->picture) }}" />
                                 </div>
                                 <div class="col-sm-3">
-                                    @if($provider->info->user_type == "Individual")
-                                        <h3>{{$provider->name}}</h3>
-                                    @else
-                                        <h3>{{$provider->info->business_name}}</h3>
-                                    @endif
+                                    <h3>
+                                        @if($provider->info->verified)
+                                            <span style="color: purple; padding-right: 10px" title="Verified by Youpple">
+                                                <i class="fa fa-certificate"></i>
+                                            </span>
+                                        @endif
+                                        @if($provider->info->user_type == "Individual")
+                                            {{$provider->name}}
+                                        @else
+                                            {{$provider->info->business_name}}
+                                        @endif
+                                    </h3>
+
                                     <br />
                                     <p>{{$provider->info->description}}</p>
 

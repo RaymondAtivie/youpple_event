@@ -2,7 +2,9 @@
 namespace App\Helpers;
 
 use DB;
-
+use App\Models\EventType;
+use App\Models\ServiceOptions;
+use App\Models\ServiceList;
 /**
 *
 */
@@ -14,9 +16,18 @@ class M
         session()->flash("issue_message", $message);
     }
 
-    static function getIntrests(){
-        $data = DB::table('event_types')->orderBy('name', 'asc')->get();
+    static function addIntrest($name){
+        $evt = new EventType;
 
+        $evt->name = $name;
+
+        return $evt->save();
+    }
+
+    static function getIntrests(){
+        $data = EventType::where('visible', '1')->orderBy('name', 'asc')->get();
+
+        $list = [];
         foreach($data as $d){
             $list[$d->id] = $d->name;
         }
@@ -29,32 +40,41 @@ class M
     }
 
     static function getServices(){
-        return [
-            "publicity"=>[
-                'Graphics Design', 'Animation', 'Printing', 'Souvenir/Gift Management', 'Branding',
-                'Event Website Management', 'Social Media Hype', 'Radio Jingles',
-                'Television Advertisement', 'Billboard Advertisement'
-            ],
-            "Rentals" =>[
-                'Chairs', 'Tables', 'Canopy and Tent', 'Toys', 'Bouncing Castle', 'Crockery Set',
-                'Costume', 'Sound Equipment', 'Visual Equipment', 'Musical Instrument', 'Lighting',
-                'Stage', 'Decoration Items', 'Halls', 'Garden and Park', 'Pool'
-            ],
-            "Logistics and transportation" => [
-                "Transport", "Accommodation", "Decoration", "Cleaning Services", "Laundry Services",
-                "Waste Disposal", "Parking Services"
-            ],
-            "Human Resource" => [
-                "Make-up Artiste", "Models", "Ushers", "Bouncers", "Security Officials",
-                "Master of Ceremony / Moderator", "Comedian", "Clown", "Dancer/ Dance Crew",
-                "Musical Band", "Music Artiste", "Disc Jockey", "Public Speaker", "Religious Leader",
-                "Caterer", "Waiter", "Undertaker", "Sound Engineer", "Videographer", "Photographer",
-                "Fashion Designer"
-            ],
-            "Other Services" => [
-                "Bouquet", "Cake and Snack", "Drink Supply", "Event Planning", "Saloon and Spa", "Wardrobe Management"
-            ]
-        ];
+        $sos = ServiceOptions::orderBy('name', 'asc')->get();
+
+        $services = [];
+        foreach ($sos as $so) {
+            $services[$so->name] = collect($so->children()->where("visible", "1")->orderBy('name', 'asc')->get())->lists('name')->toArray();
+        }
+        return $services;
+
+        //
+        // return [
+        //     "publicity"=>[
+        //         'Graphics Design', 'Animation', 'Printing', 'Souvenir/Gift Management', 'Branding',
+        //         'Event Website Management', 'Social Media Hype', 'Radio Jingles',
+        //         'Television Advertisement', 'Billboard Advertisement'
+        //     ],
+        //     "Rentals" =>[
+        //         'Chairs', 'Tables', 'Canopy and Tent', 'Toys', 'Bouncing Castle', 'Crockery Set',
+        //         'Costume', 'Sound Equipment', 'Visual Equipment', 'Musical Instrument', 'Lighting',
+        //         'Stage', 'Decoration Items', 'Halls', 'Garden and Park', 'Pool'
+        //     ],
+        //     "Logistics and transportation" => [
+        //         "Transport", "Accommodation", "Decoration", "Cleaning Services", "Laundry Services",
+        //         "Waste Disposal", "Parking Services"
+        //     ],
+        //     "Human Resource" => [
+        //         "Make-up Artiste", "Models", "Ushers", "Bouncers", "Security Officials",
+        //         "Master of Ceremony / Moderator", "Comedian", "Clown", "Dancer/ Dance Crew",
+        //         "Musical Band", "Music Artiste", "Disc Jockey", "Public Speaker", "Religious Leader",
+        //         "Caterer", "Waiter", "Undertaker", "Sound Engineer", "Videographer", "Photographer",
+        //         "Fashion Designer"
+        //     ],
+        //     "Other Services" => [
+        //         "Bouquet", "Cake and Snack", "Drink Supply", "Event Planning", "Saloon and Spa", "Wardrobe Management"
+        //     ]
+        // ];
     }
 
     static function getTotalTicketSales(){
@@ -120,7 +140,7 @@ class M
         $data = DB::table('admin_home')->first();
 
         foreach ($data as $key => $value) {
-            if(strpos($key, "_name") !== FALSE || strpos($key, "_logo") !== FALSE || strpos($key, "_link") !== FALSE && $key != "social_linkedin"){
+            if(strpos($key, "_orda") !== FALSE || strpos($key, "_name") !== FALSE || strpos($key, "_logo") !== FALSE || strpos($key, "_link") !== FALSE && $key != "social_linkedin"){
                 $ls[$key] = $value;
             }
         }
@@ -150,19 +170,27 @@ class M
                     $logos[$k] = ["link" => $value];
                 }
             }
+            if(strpos($key, "_orda") !== FALSE){
+                $k = substr($key, 0, -5);
+                if(isset($logos[$k])){
+                    $logos[$k]['orda'] = $value;
+                }else{
+                    $logos[$k] = ["orda" => $value];
+                }
+            }
         }
 
-        ksort($logos);
-
-        $mm = $logos['main'];
-        $rr = $logos['reformers'];
-
-        unset($logos['main'], $logos['reformers']);
-
-        $logos['reformers'] = $rr;
-        $logos['main'] = $mm;
+        M::sortBySubkey($logos, 'orda');
 
         return $logos;
+    }
+
+
+    static function sortBySubkey(&$array, $subkey, $sortType = SORT_ASC) {
+        foreach ($array as $subarray) {
+            $keys[] = $subarray[$subkey];
+        }
+        array_multisort($keys, $sortType, $array);
     }
 
     static function getLogosLinks(){

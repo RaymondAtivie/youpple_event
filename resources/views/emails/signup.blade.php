@@ -429,7 +429,8 @@ a span,
                       <tbody>
                         <tr>
                           <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 20px;text-align: left;vertical-align: top;color: #2f68b4;font-weight: bold;padding-bottom: 0;padding-top: 16px;"><a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #2f68b4;">
-							  <img src="images/email_logo.png" width="156" height="42" alt="SimpleApp" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 156px;height: auto;"></a></td><!-- /.column_cell -->
+							  <img src="{{ url('images/event/event_logo_small.png')  }}" width="156" height="42" alt="Youpple Events" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 156px;height: auto;"></a>
+						  </td><!-- /.column_cell -->
                         </tr>
                       </tbody>
                     </table><!-- /.column -->
@@ -473,15 +474,37 @@ a span,
                       <tbody>
                         <tr>
                           <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: center;vertical-align: top;color: #888888;">
-                            <h4 style="font-family: Helvetica, Arial, sans-serif;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;padding: 0;font-size: 22px;line-height: 30px;font-weight: bold;color: #383d42;">Welcome to SimpleApp!</h4>
-                            <p class="lead" style="font-family: Helvetica, Arial, sans-serif;font-size: 19px;line-height: 27px;margin-top: 16px;margin-bottom: 16px;">Download our app to get started.</p>
+                            <table class="icon_holder icon_secondary" width="80" border="0" align="center" cellpadding="0" cellspacing="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 48px;margin-left: auto;margin-right: auto;clear: both;">
+                              <tbody>
+                                <tr>
+                                  <td class="hspace" style="padding: 0;font-size: 0;height: 8px;overflow: hidden;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td class="icon_cell" style="padding: 8px;font-size: 0;line-height: 1;-webkit-border-radius: 80px;border-radius: 80px;height: 52px;background-color: #e1e3e7;border-color: #d8dde4;">
+									  {{$userMan['picture']}}
+									  <img src="{{$userMan['picture']}}" width="52" height="52" alt="" style="line-height: 1;outline: none;border-radius: 80px; border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
+								  </td>
+                                </tr>
+                                <tr>
+                                  <td class="hspace" style="padding: 0;font-size: 0;height: 8px;overflow: hidden;">&nbsp;</td>
+                                </tr>
+                              </tbody>
+                            </table><!-- /.icon_holder:icon_secondary -->
+                            <h4 style="font-family: Helvetica, Arial, sans-serif;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;padding: 0;font-size: 22px;line-height: 30px;font-weight: bold;color: #383d42;">
+								Congratulations {{$userMan['name']}}!
+							</h4>
+                            <p class="lead" style="font-family: Helvetica, Arial, sans-serif;font-size: 19px;line-height: 27px;margin-top: 16px;margin-bottom: 16px;">You have finished setting up your account.</p>
                             <table class="primary_btn" align="center" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;clear: both;margin: 0 auto;">
                               <tbody>
                                 <tr>
-                                  <td class="font_default" style="padding: 12px 24px;font-family: Helvetica, Arial, sans-serif;font-size: 16px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;-webkit-border-radius: 4px;border-radius: 4px;background-color: #22aaa0;"><a href="#" style="display: block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;font-weight: bold;text-align: center;"><span style="text-decoration: none;color: #ffffff;text-align: center;display: block;">Download</span></a></td>
+                                  <td class="font_default" style="padding: 12px 24px;font-family: Helvetica, Arial, sans-serif;font-size: 16px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;-webkit-border-radius: 4px;border-radius: 4px;background-color: #22aaa0;">
+									  <a href="#" style="display: block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;font-weight: bold;text-align: center;">
+										  <span style="text-decoration: none;color: #ffffff;text-align: center;display: block;">Verify Your Account</span>
+									  </a>
+								  </td>
                                 </tr>
                               </tbody>
-                            </table><!-- /.primary_btn -->
+                            </table><!-- end .primary_btn -->
                           </td><!-- /.column_cell -->
                         </tr>
                       </tbody>
@@ -507,27 +530,6 @@ a span,
       <table class="content" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
         <tbody>
           <tr>
-            <td class="content_cell image_responsive" align="center" valign="top" style="padding: 0;text-align: center;background-color: #ffffff;border-left: 4px solid;border-right: 4px solid;border-color: #d8dde4;font-size: 0 !important;">
-                <!--[if (gte mso 9)|(IE)]>
-                <table width="580" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align: top;">
-                  <tbody>
-                    <tr>
-                      <td width="580" align="center" valign="top">
-                <![endif]-->
-                	<img src="demo_images/image_580x320-2.jpg" alt="" width="580" height="320" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;display: block;width: 100%;height: auto;max-width: 580px;margin-left: auto;margin-right: auto;">
-                <!--[if (gte mso 9)|(IE)]>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <![endif]-->
-            </td><!-- /.content_cell:product_row -->
-          </tr>
-        </tbody>
-      </table><!-- /.content -->
-      <table class="content" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-        <tbody>
-          <tr>
             <td class="content_cell" align="center" valign="top" style="padding: 0;text-align: center;background-color: #ffffff;border-left: 4px solid;border-right: 4px solid;border-color: #d8dde4;font-size: 0 !important;">
                 <!--[if (gte mso 9)|(IE)]>
                 <table width="580" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align: top;">
@@ -547,15 +549,12 @@ a span,
                       <tbody>
                         <tr>
                           <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: center;vertical-align: top;color: #888888;">
-                            <p style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 16px;margin-bottom: 24px;">We've put together a few videos to help get the most out of SimpleApp.</p>
-                            <table class="secondary_btn" align="center" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;clear: both;margin: 0 auto;">
-                              <tbody>
-                                <tr>
-                                  <td class="font_default" style="padding: 12px 24px;font-family: Helvetica, Arial, sans-serif;font-size: 16px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;-webkit-border-radius: 4px;border-radius: 4px;background-color: #2f68b4;"><a href="#" style="display: block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;font-weight: bold;text-align: center;"><span style="text-decoration: none;color: #ffffff;text-align: center;display: block;">Video Guide</span></a></td>
-                                </tr>
-                              </tbody>
-                            </table><!-- end .secondary_btn -->
-                            <p style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 16px;margin-bottom: 24px;"><small style="font-size: 86%;font-weight: normal;">For your reference, your username is <strong>robertallen</strong>.</small></p>
+                            {{-- <small style="font-size: 86%;font-weight: normal;">Here's some useful information.</small> --}}
+                            {{-- <p style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 16px;margin-bottom: 24px;"><strong>Username</strong><br>
+                              robertallen</p> --}}
+                            <p style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 16px;margin-bottom: 24px;">
+								<strong>User type</strong><br>
+                              {{$userMan['user_type']}}</p>
                           </td><!-- /.column_cell -->
                         </tr>
                       </tbody>
@@ -600,9 +599,12 @@ a span,
                       <tbody>
                         <tr>
                           <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: left;vertical-align: top;color: #b3b3b5;padding-bottom: 0;padding-top: 16px;">
-                          <strong>SimpleApp</strong><br>
-                          <small style="font-size: 86%;font-weight: normal;">This email was sent to <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">robert.allen@simpleapp.eu</a>. <br>
-                          Submit a <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;"><strong>support ticket</strong></a>.</small></td><!-- /.column_cell -->
+                          <strong>Youpple Events</strong><br>
+                          <small style="font-size: 86%;font-weight: normal;">This email was sent to 
+							  <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">{{$userMan['email']}}</a>. <br>
+                          {{-- Submit a <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;"><strong>support ticket</strong></a>. --}}
+					  </small>
+					  </td><!-- /.column_cell -->
                         </tr>
                       </tbody>
                     </table><!-- /.column -->
@@ -616,7 +618,18 @@ a span,
                       <tbody>
                         <tr>
                           <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: left;vertical-align: top;color: #b3b3b5;padding-bottom: 0;padding-top: 16px;">
-                            <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;<img src="images/ic_facebook.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;</a> &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;<img src="images/ic_twitter.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;</a> &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;<img src="images/ic_pinterest.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;</a> &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;<img src="images/ic_youtube.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;</a>
+                            <a href="{{ $social_links['facebook'] }}" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;
+								<img src="{{url("events_image/images/ic_facebook.png")}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;
+							</a> &nbsp;
+							<a href="{{ $social_links['twitter'] }}" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;
+								<img src="{{url("events_image/images/ic_twitter.png")}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;
+							</a> &nbsp;
+							<a href="{{ $social_links['pinterest'] }}" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;
+								<img src="{{url("events_image/images/ic_pinterest.png")}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;
+							</a> &nbsp;
+							<a href="{{ $social_links['youtube'] }}" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">&nbsp;
+								<img src="{{url("events_image/images/ic_youtube.png")}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">&nbsp;
+							</a>
                           </td><!-- /.column_cell -->
                         </tr>
                       </tbody>
