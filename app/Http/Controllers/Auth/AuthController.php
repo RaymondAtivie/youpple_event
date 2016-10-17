@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Helpers\M;
 use Auth;
+use Mail;
 use App\Slim;
 use Socialite;
 use App\Models\SocialLogins;
@@ -90,14 +91,29 @@ class AuthController extends Controller
             rename($file['path'], "userPhotos/".$filename);
         }
 
-        // dd($data);
-
         if($data['user_type'] == "provider"){
             M::flash("Successfully Registered. Please fill your details");
             $this->redirectTo = '/events/becomeProvider';
         }else{
             M::flash("Successfully Registered.");
         }
+
+        $rand = md5(rand(1000000000000,99999999999999));
+        $vlink = url("events/verify_email/".$rand."?email=".$data['email']);
+
+        $userMan = [
+            'email'=>$data['email'],
+            'name'=>$data['name'],
+            'picture'=>$filename,
+            'user_type'=>$data['user_type'],
+            'vlink'=>$vlink,
+        ];
+
+        Mail::send('emails.signup', ['userMan' => $userMan], function ($m) use ($userMan) {
+            $m->from('events@youpple.com', 'Youpple Events');
+
+            $m->to($userMan['email'], $userMan['name'])->subject('Welcome to Youpple! Please verify your Email');
+        });
 
         return User::create([
             'name' => $data['name'],
@@ -110,6 +126,7 @@ class AuthController extends Controller
             'state' => $data['state'],
             'lga' => $data['lga'],
             'picture' => $filename,
+            'vlink' => $rand,
             'password' => bcrypt($data['password']),
         ]);
     }

@@ -3,6 +3,9 @@
 #ajaxx .input-field{
     margin-bottom: 35px !important;
 }
+.quote-btn{
+    padding: 0px 15px; 
+}
 </style>
 <div class="cp-wrapper">
     <!-- Header Start -->
@@ -27,7 +30,13 @@
                         <ul class="cp-top-social">
                             <li><a class="quote-btn" href="{{ url('events') }}">Home</a></li>
                             <li> <a class="quote-btn" href="{{ url('events/create') }}">Create Event</a> </li>
-                            <li> <a class="quote-btn" href="{{ url('events/order') }}">Order Event Service</a> </li>
+                            <li> <a class="quote-btn" href="{{ url('events/order') }}">Order Service</a> </li>
+
+                            <li>
+                                <a class="quote-btn" href="{{ url('events/me') }}" style="padding: 0px; border-radius: 50%">
+                                    <img src="{{ url('userPhotos/'.Auth::user()->picture) }}" style="height: 50px; border-radius: 50%" />
+                                </a>
+                            </li>
 
                             @if (!Auth::guest())
                                 <li class="dropdown">
@@ -36,11 +45,11 @@
                                     </a>
 
                                     <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ url('events/me') }}"><i class="fa fa-btn fa-user"></i> &nbsp; My Basic Information</a></li>
                                         @if(!Auth::user()->info)
-                                            <li><a href="{{ url('events/me') }}"><i class="fa fa-btn fa-user"></i> &nbsp; My Details</a></li>
                                             <li><a href="{{ url('events/becomeProvider') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Become a Service Provider</a></li>
                                         @else
-                                            <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Profile</a></li>
+                                            <li><a href="{{ url('events/myprofile') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Service Profile</a></li>
                                             @if(count(Auth::user()->events) > 0)
                                                 <li><a href="{{ url('events/myevent') }}"><i class="fa fa-btn fa-user"></i> &nbsp; Manage My Events</a></li>
                                             @endif

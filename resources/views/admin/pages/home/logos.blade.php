@@ -29,13 +29,13 @@
                                 <input type="hidden" name="_token" value="{{ Session::getToken() }}"/>
                                 @include('partials.errors')
                                 @include('partials.messages')
-                                <div class="col-sm-10">
+                                <div class="col-sm-8">
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" value="{{$logo['name']}}" >
                                         <input type="hidden" name="key" class="form-control" value="{{$key}}" >
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <input type="text" name="orda" class="form-control" value="{{$logo['orda']}}" >
                                     </div>

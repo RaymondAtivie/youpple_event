@@ -221,6 +221,12 @@ class EventsController extends Controller
 
         $u->name = $posts['name'];
         $u->phone = $posts['phone'];
+        $u->gender = $posts['gender'];
+        $u->dob = $posts['dob'];
+        $u->zipcode = $posts['zipcode'];
+        $u->lga = $posts['lga'];
+        $u->state = $posts['state'];
+        $u->country = $posts['country'];
         $u->address = $posts['address'];
 
         $u->save();
@@ -269,6 +275,11 @@ class EventsController extends Controller
 
     public function showCreate()
     {
+        if(!Auth::user()->verify){
+            M::flash("Oops! You cannot create an event till you have verified your account", "warning");
+            return Redirect::back();
+        }
+
         $eTypes = EventType::lists("name", "id");
 
         return view('events.create', compact('eTypes'));

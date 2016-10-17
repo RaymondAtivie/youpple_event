@@ -10,7 +10,7 @@
           </div>
           <div class="col-md-8" style="text-align: right">
             <p>
-              <a href="{{url("about")}}">About Youple</a> &nbsp; &middot; &nbsp;
+              <a href="{{url("about")}}">About Youpple</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("advert")}}">Advertising / Partnership</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("faq")}}">FAQ</a> &nbsp; &middot; &nbsp;
                 <a href="{{url("terms-of-use")}}">How it Works</a> &nbsp; &middot; &nbsp;

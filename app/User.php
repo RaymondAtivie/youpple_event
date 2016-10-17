@@ -14,7 +14,7 @@ class User extends Authenticatable
     */
     protected $fillable = [
         'name', 'email', 'password', 'dob', 'gender', 'image', 'phone', 'picture',
-        'country', 'state', 'lga', 'address'
+        'country', 'state', 'lga', 'address', 'verify', 'vlink', 'zipcode'
     ];
 
     protected $dates = [
@@ -28,6 +28,10 @@ class User extends Authenticatable
     */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'verify'=>'boolean'
     ];
 
     public function createEvent($params, $eventTypes)

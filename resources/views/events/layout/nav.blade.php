@@ -4,9 +4,16 @@
     </li>
     <li>
         <a href="{{ url('events/me') }}">
-            <i class="fa fa-user"></i> <span>My Profile</span>
+            <i class="fa fa-user"></i> <span>Basic Infromation</span>
         </a>
     </li>
+    @if($user->info)
+        <li>
+            <a href="{{ url('events/myprofile') }}">
+                <i class="fa fa-user"></i> <span>Advance Information</span>
+            </a>
+        </li>
+    @endif
     <li class="menu-list">
         <a href="">
             <i class="fa fa-file-text-o"></i><span>Service Orders</span>
@@ -22,13 +29,7 @@
             @endif
         </ul>
     </li>
-    @if($user->info)
-        <li>
-            <a href="{{ url('events/myprofile') }}">
-                <i class="fa fa-user"></i> <span>Service Provider Details</span>
-            </a>
-        </li>
-    @endif
+
     <li>
         <a href="{{ url('events/myevent') }}">
             <i class="fa fa-tag"></i> <span>My Events</span>

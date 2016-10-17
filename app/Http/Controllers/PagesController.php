@@ -96,4 +96,19 @@ class PagesController extends Controller
 
         return view('pages', compact("title", "body"));
     }
+
+    public function verifyEmail(Request $request, $link){
+        $email = $request->get("email");
+
+        $v = M::verifyEmail($link, $email);
+
+        if($v){
+            M::flash("You have successfully verified your account!", "success");
+
+        }else{
+            M::flash("Sorry that link is either expired or invalid", "danger");
+        }
+
+        return redirect('events');
+    }
 }

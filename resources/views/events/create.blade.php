@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/assets/slim/slim.min.css">
 
     <!-- Inner Banner Start -->
-    <div class="cp-inner-banner">
+    <div class="cp-inner-banner" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="container">
             <div class="cp-inner-banner-outer">
                 <h2>Create an Event</h2>
@@ -38,6 +38,10 @@
 
     <!-- Main Content Start -->
     <div class="cp-main-content" style="padding-left: 10px; padding-right: 10px">
+        <hr style="clear:both" />
+
+        @include('inc/verify')
+
         <form action="{{ url('events/create') }}" method="POST" enctype="multipart/form-data">
 
             <!--Signup Content Start-->

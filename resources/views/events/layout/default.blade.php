@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="">
-    
+
     <link rel="shortcut icon" href="{{url("images/favicon.ico")}}" type="image/x-icon">
     <link rel="icon" href="{{url("images/favicon.ico")}}" type="image/x-icon">
 
@@ -96,6 +96,8 @@
                 </div>
 
             </div>
+            @include('inc/verify')
+            
             @yield('main')
 
             <footer>

@@ -142,7 +142,7 @@
                 <div class="col-md-5">
                     <select class="form-control" name="currency">
                         <option>Naira</option>
-                        <option>Dollar</option>
+                        <option>US Dollars</option>
                     </select>
                 </div>
             </div>
@@ -287,7 +287,7 @@
             </div>
 
             <div class="row" ng-show="RM.mode == 'c'">
-                <h4>Intrests</h4>
+                <h4>Interests</h4>
                 <div class="row servicesList">
                     @foreach($intrests as $value)
                         <div class="col-md-6">
@@ -366,7 +366,7 @@
     <script>
     $(document).ready(function(){
         $("#selectIntrest").select2({
-            placeholder: "Select your intrests"
+            placeholder: "Select your interests"
         });
     });
     </script>

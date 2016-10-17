@@ -18,8 +18,15 @@ class ServiceController extends Controller
     }
 
     public function orderService(){
+        if(!Auth::user()->verify){
+            M::flash("Oops! You cannot order a service untill you have verified your account", "warning");
+            return Redirect::back();
+        }
+
         $intrests = M::getIntrests();
         $services = M::getServices();
+
+        asort($intrests);
 
         return view("events.orderService", compact("intrests", "services"));
     }

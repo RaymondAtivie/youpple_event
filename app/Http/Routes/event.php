@@ -10,11 +10,13 @@ Route::group([
             'email'=>'raymondativie@gmail.com',
             'name'=>'Raymond Ativie',
             'picture'=>url("userPhotos/dp/unknown.jpg"),
-            'user_type'=>'Customer'
+            'user_type'=>'Customer',
+            'vlink'=>url('events/verify_email/'."1234567890"),
         ];
 
         return view('emails.signup', compact("userMan"));
     });
+    Route::get("/verify_email/{link}", "PagesController@verifyEmail");
 
     $s = 'social.';
     Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);

@@ -87,6 +87,7 @@
     <div class="container">
         <hr style="clear:both" />
 
+        @include('inc/verify')
         @include('inc/flash')
 
         <div class="row no-margin">

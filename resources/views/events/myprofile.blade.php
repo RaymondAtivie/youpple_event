@@ -6,9 +6,9 @@
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            My Profile
+            Advance Information
         </h3>
-        <span class="sub-title">Manage Your Profile</span>
+        <span class="sub-title">Manage the details of your service provider profile</span>
     </div>
     <style>
     .detailsBody .row, .row.social .col-md-6{
@@ -161,7 +161,7 @@
                                     <select class="form-control" name="currency">
                                         <option>{{$user->info->currency}}</option>
                                         <option>Naira</option>
-                                        <option>Dollar</option>
+                                        <option>US Dollars</option>
                                     </select>
                                 </div>
                             </div>
@@ -295,7 +295,7 @@
                             </div>
 
                             <div class="row" style="padding: 20px;">
-                                <h4>Intrests</h4>
+                                <h4>Interests</h4>
                                 <div class="row servicesList">
                                     @foreach($intrests as $value)
                                         <div class="col-sm-4">

@@ -16,6 +16,21 @@ class M
         session()->flash("issue_message", $message);
     }
 
+    static function verifyEmail($link, $email){
+        $dUser = \App\User::where('vlink', $link)->where('email', $email)->first();
+
+        if($dUser){
+            $dUser->verify = true;
+            $dUser->vlink = 0;
+            $dUser->save();
+
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     static function addIntrest($name){
         $evt = new EventType;
 
@@ -31,6 +46,7 @@ class M
         foreach($data as $d){
             $list[$d->id] = $d->name;
         }
+        // dd($list);
         return $list;
         // return ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
         // 'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
@@ -46,6 +62,11 @@ class M
         foreach ($sos as $so) {
             $services[$so->name] = collect($so->children()->where("visible", "1")->orderBy('name', 'asc')->get())->lists('name')->toArray();
         }
+        $os = $services["Other Services"];
+        unset($services["Other Services"]);
+
+        $services['Other Services'] = $os;
+
         return $services;
 
         //

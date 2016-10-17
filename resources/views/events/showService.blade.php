@@ -32,15 +32,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        @include('inc/verify')
                         @include('inc/flash')
                         <!-- Blog Item Start -->
                         <div class="cp-blog-item cp-blog-detail">
-
-                            <div class="row">
-                                <div class="col-sm-12">
-
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="col-sm-3" style="text-align: center">
@@ -65,13 +60,17 @@
 
                                     <hr />
 
-                                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                                        @if($provider->info->user_type == "Individual")
-                                            HIRE ME
-                                        @else
-                                            HIRE US
-                                        @endif
-                                    </button>
+                                    @if(!$user->verify)
+                                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#noModal">HIRE</button>
+                                    @else
+                                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                            @if($provider->info->user_type == "Individual")
+                                                HIRE ME
+                                            @else
+                                                HIRE US
+                                            @endif
+                                        </button>
+                                    @endif
                                 </div>
                                 @if(count($provider->info->event_services) > 0)
                                     <div class="col-sm-3" style="text-align: right">
@@ -95,9 +94,9 @@
                                     <div class="col-sm-3">
                                         <h4>
                                             @if($provider->info->user_type == "Individual")
-                                                What i am intrested in
+                                                What i am interested in
                                             @else
-                                                What we are intrested in
+                                                What we are interested in
                                             @endif
                                         </h4>
                                         <br />
@@ -153,6 +152,22 @@
                 </div>
                 <!-- Main Content End -->
 
+                {{-- no modal --}}
+                <div class="modal fade" id="noModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="alert alert-warning" style="text-align: center">
+                                        <h3>Oops! You cannot order until you have verified your account</h3>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
@@ -175,7 +190,7 @@
                                                         @foreach($intrests as $in)
                                                             <div class="col-sm-4">
                                                                 <label style="font-weight: 100">
-                                                                    <input type="radio" name="event_type" value="{{$in}}" />
+                                                                    <input type="radio" required name="event_type" value="{{$in}}" />
                                                                     {{$in}}
                                                                 </label>
                                                             </div>
@@ -184,11 +199,11 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Number of guests</label>
-                                                    <input type="number" name="guests"  value="{{ old('guests') }}"  class="form-control">
+                                                    <input type="number" name="guests" required value="{{ old('guests') }}"  class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Event Address</label>
-                                                    <textarea name="address" rows="3" style="resize: none"  class="form-control">{{ old('title') }}</textarea>
+                                                    <textarea name="address" rows="3" required style="resize: none"  class="form-control">{{ old('title') }}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Event Service Options</label>
@@ -199,7 +214,7 @@
                                                             @foreach($service as $s)
                                                                 <div class="col-sm-4">
                                                                     <label style="font-weight: 100">
-                                                                        <input type="checkbox" name="event_services[]" value="{{$s}}" />
+                                                                        <input type="checkbox" required name="event_services[]" value="{{$s}}" />
                                                                         {{$s}}
                                                                     </label>
                                                                 </div>
@@ -209,16 +224,16 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Event Service Description (Message / Comment)</label>
-                                                    <textarea name="comment" rows="3" style="resize: none"  class="form-control">{{ old('comment') }}</textarea>
+                                                    <textarea name="comment" rows="3" required style="resize: none"  class="form-control">{{ old('comment') }}</textarea>
                                                 </div>
                                                 <div class="row form-group">
                                                     <div class="col-sm-9">
                                                         <label>Budget</label>
-                                                        <input type="number" name="budget"  value="{{ old('budget') }}"  class="form-control col-sm-9">
+                                                        <input type="number" name="budget" required value="{{ old('budget') }}"  class="form-control col-sm-9">
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label>Currency</label>
-                                                        <select name="currency" class="form-control col-sm-3">
+                                                        <select name="currency" required class="form-control col-sm-3">
                                                             <option>Naira</option>
                                                         </select>
                                                     </div>

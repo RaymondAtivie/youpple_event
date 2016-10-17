@@ -21,6 +21,23 @@
     .has-error input{
         border-bottom-color: red;
     }
+    .btn-default{
+        background-color: #7c246d;
+        border-color: #7c246d;
+        color: white !important;
+    }
+    .btn-default:hover, .btn-default.active, .btn-default.active:hover{
+        background-color: #681c5b;
+        border-color: #681c5b;
+    }
+    .btn-default:active{
+        background-color: #681c5b;
+        border-color: #681c5b;
+    }
+    .btn-default:focus{
+        background-color: #681c5b;
+        border-color: #122b40;
+    }
     </style>
 
     <!-- Main Content Start -->
@@ -40,7 +57,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-sm-offset-3">
                                     <div class="slim"
-                                    data-label="Profile Picture"
+                                    data-label="Click to upload picture"
                                     data-size="360,400"
                                     data-ratio="1:1">
                                     <input type="file" name="picture" /></div>
@@ -98,8 +115,11 @@
 
                         <div class="row form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label>Date of Birth</label>
+                                <label>
+                                    <i class="fa fa-calendar"></i> Date of Birth
+                                </label>
                                 <div class="input-field">
+
                                     <input type="date" name="dob" value="{{ old('dob') }}">
                                     @if ($errors->has('dob'))
                                         <span class="help-block">
@@ -110,11 +130,44 @@
                             </div>
                         </div>
 
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label>Gender</label>
+
+                                <div class="btn-group" data-toggle="buttons" style="margin-left: 20px;">
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="gender" value="male" required> &nbsp; Male &nbsp;
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="gender" value="female" required> &nbsp; Female &nbsp;
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br /><br />
+
+                        <div class="row form-group{{ $errors->has('zipcode') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                                <div class="input-field">
+                                    <i class="fa fa-file-o prefix"></i>
+                                    <input type="number" name="zipcode" value="{{ old('zipcode') }}">
+                                    <label>Zip Code</label>
+                                    @if ($errors->has('zipcode'))
+                                        <span class="help-block">
+                                            <strong class="danger">{{ $errors->first('zipcode') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label>Address</label>
                                 <div class="input-field">
                                     <textarea name="address" requied>{{ old('address') }}</textarea>
+                                    <label>
+                                        <i class="fa fa-compass"></i> Address
+                                    </label>
                                     @if ($errors->has('address'))
                                         <span class="help-block">
                                             <strong class="danger">{{ $errors->first('address') }}</strong>
@@ -124,25 +177,12 @@
                             </div>
                         </div>
 
-                        <div class="row form-group{{ $errors->has('state') ? ' has-error' : '' }}">
-                            <div class="col-md-12">
-                                <label>State / Province</label>
-                                <div class="input-field">
-                                    <input type="text" name="state" requied value="{{ old('state') }}">
-                                    @if ($errors->has('state'))
-                                        <span class="help-block">
-                                            <strong class="danger">{{ $errors->first('state') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="row form-group{{ $errors->has('lga') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label>LGA / County</label>
                                 <div class="input-field">
+                                    <i class="fa fa-map-marker prefix"></i>
                                     <input type="text" name="lga" requied value="{{ old('lga') }}">
+                                    <label>LGA / County</label>
                                     @if ($errors->has('lga'))
                                         <span class="help-block">
                                             <strong class="danger">{{ $errors->first('lga') }}</strong>
@@ -152,10 +192,27 @@
                             </div>
                         </div>
 
+                        <div class="row form-group{{ $errors->has('state') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                                <div class="input-field">
+                                    <i class="fa fa-map-marker prefix"></i>
+                                    <input type="text" name="state" requied value="{{ old('state') }}">
+                                    <label>State / Province</label>
+                                    @if ($errors->has('state'))
+                                        <span class="help-block">
+                                            <strong class="danger">{{ $errors->first('state') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label>Country</label>
-
+                                <label>
+                                    <i class="fa fa-globe prefix"></i>
+                                    Country
+                                </label>
                                 <div class="input-field">
                                     <select name="country" required class="form-control">
                                         <option value="Afghanistan">Afghanistan</option>
@@ -407,23 +464,6 @@
                             </div>
                         </div>
 
-
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label>Gender</label>
-
-                                <div class="btn-group" data-toggle="buttons" style="margin-left: 20px;">
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="gender" value="male" required> &nbsp; Male &nbsp;
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="gender" value="female" required> &nbsp; Female &nbsp;
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <br /><br />
-
                         <div class="row form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-12">
                                 <div class="input-field">
@@ -459,10 +499,10 @@
                                 <label>Register as?</label>
 
                                 <div class="btn-group btn-group-justified" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
+                                    <label class="btn btn-default active">
                                         <input type="radio" name="user_type" value="customer" checked required> Customer
                                     </label>
-                                    <label class="btn btn-primary">
+                                    <label class="btn btn-default">
                                         <input type="radio" name="user_type" value="provider" required> Service Provider
                                     </label>
                                 </div>
