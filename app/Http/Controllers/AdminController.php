@@ -548,9 +548,8 @@ class AdminController extends Controller
     ///////--- FEATURED -----////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
     public function showFeaturedEvents(){
-        $events = Event::where('featured', 'false')->get();
-
-        $fEvents = Event::where('featured', 'true')->get();
+        $events = Event::where("published", "true")->where('featured', 'false')->get();
+        $fEvents = Event::where("published", "true")->where('featured', 'true')->get();
 
         return view('admin.pages.feature.events', compact("events", "fEvents"));
     }

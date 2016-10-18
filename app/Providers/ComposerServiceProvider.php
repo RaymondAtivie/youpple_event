@@ -33,8 +33,8 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with(['pageType'=>'event']);
         });
         View::composer('events.fEvent', function($view){
-            $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->limit(5)->get();
-            $fProviders = \App\Models\UserInfo::where("featured", 1)->limit(5)->get();
+            $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
+            $fProviders = \App\Models\UserInfo::where("featured", 1)->get();
             $services = M::getServices();
 
             $view->with([

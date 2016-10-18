@@ -25,9 +25,11 @@ class EventsController extends Controller
     public function home()
     {
         $events = \App\Models\Event::where("published", "true")->limit(5)->get();
-        $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->limit(5)->get();
-        $fProviders = \App\Models\UserInfo::where("featured", 1)->limit(5)->get();
+        $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
+        $fProviders = \App\Models\UserInfo::where("featured", 1)->get();
         $providers = \App\Models\UserInfo::get();
+
+        // dd($fEvents);
 
         // dd($fProviders[0]->user);
 
@@ -121,6 +123,8 @@ class EventsController extends Controller
         }
 
         M::flash("Successfully registered as a provider. Please fill in your details as a provider");
+
+        
 
         return Redirect::to("events/myprofile");
     }
@@ -260,6 +264,22 @@ class EventsController extends Controller
 
             return Redirect::back();
         }
+    }
+
+    public function switchUserType($usertype){
+
+        // dd($usertype);
+        if($usertype == "provider"){
+            Auth::user()->info->user_type = "provider";
+            $type = "business";
+        }else{
+            Auth::user()->info->user_type = "customer";
+            $type = "individual";
+        }
+        Auth::user()->info->save();
+
+        M::flash("Successfully switched your profile to become <b>$type</b> service provider", "success");
+        return Redirect::back();
     }
     ///////////////////////END OF MY PROFILE MANAGEMENT///////////////////////////
 

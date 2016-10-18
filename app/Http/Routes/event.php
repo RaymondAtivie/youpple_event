@@ -14,14 +14,6 @@ Route::group([
             'vlink'=>url('events/verify_email/'."1234567890"),
         ];
 
-        // $userMan = [
-        //     'email'=>$data['email'],
-        //     'name'=>$data['name'],
-        //     'picture'=>$filename,
-        //     'user_type'=>$data['user_type'],
-        //     'vlink'=>$vlink,
-        // ];
-
         Mail::send('emails.signup', ['userMan' => $userMan], function ($m) use ($userMan) {
             $m->from('events@youpple.com', 'Youpple Events');
 
@@ -73,6 +65,7 @@ Route::group([
     Route::any('/myprofile/updateBio', 'EventsController@updateBio');
     Route::post('/myprofile/updateProfile', 'EventsController@updateProfile');
     Route::post('/myprofile/updateProfilePassword', 'EventsController@updateProfilePassword');
+    Route::any('/myprofile/switch/{user_type}', 'EventsController@switchUserType');
 
     Route::get('/myevent', 'EventsController@showUserEvents');
     Route::get('/myevent/{event}/tickets', 'EventsController@showUserEventTickets');

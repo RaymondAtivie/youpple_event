@@ -60,21 +60,23 @@
                         <div class="row">
                             <div class="col-sm-4 col-sm-offset-4 timerbox">
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-xs-3">
                                         <span class="days"></span>
                                         <div class="smalltext">Days</div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-xs-3">
                                         <span class="hours"></span>
                                         <div class="smalltext">Hours</div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-xs-3">
                                         <span class="minutes"></span>
-                                        <div class="smalltext">Minutes</div>
+                                        <div class="smalltext hidden-xs">Minutes</div>
+                                        <div class="smalltext visible-xs">Mins</div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-xs-3">
                                         <span class="seconds"></span>
-                                        <div class="smalltext">Seconds</div>
+                                        <div class="smalltext hidden-xs">Seconds</div>
+                                        <div class="smalltext visible-xs">Secs</div>
                                     </div>
                                 </div>
                             </div>
@@ -380,8 +382,8 @@
                         </div>
                         <div class="row" style="text-align: center">
                             <?php for($i=1;$i<=6;$i++){ ?>
-                                <div class="col-md-2 col-sm-6" style="padding: 10px">
-                                    <img style="height: inherit; width: 100px" src="{{ url('images/logos/small_'.$i.'.png') }}" />
+                                <div class="col-md-2 col-xs-4" style="padding: 10px">
+                                    <img style="height: inherit;" class="img-responsive" src="{{ url('images/logos/small_'.$i.'.png') }}" />
                                 </div>
                                 <?php } ?>
                             </div>

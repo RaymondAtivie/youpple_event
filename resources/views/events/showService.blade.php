@@ -134,8 +134,8 @@
                                         </div>
                                         <div class="row" style="text-align: center">
                                             <?php for($i=1;$i<=6;$i++){ ?>
-                                                <div class="col-md-2 col-xs-6" style="padding: 10px">
-                                                    <img style="height: inherit; width: 100px" src="{{ url('images/logos/small_'.$i.'.png') }}" />
+                                                <div class="col-md-2 col-xs-4" style="padding: 10px">
+                                                    <img style="height: inherit;" class="img-responsive" src="{{ url('images/logos/small_'.$i.'.png') }}" />
                                                 </div>
                                                 <?php } ?>
                                             </div>
