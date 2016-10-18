@@ -172,6 +172,7 @@ class AdminController extends Controller
         }
 
         M::setDocuments($p['key']."_name", $p['name']);
+        M::setDocuments($p['key']."_link", $p['link']);
         M::setDocuments($p['key']."_orda", $p['orda']);
 
         M::flash("Successfully changed <b>".$p['key']."</b>", "success");

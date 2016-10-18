@@ -41,6 +41,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" name="link" class="form-control" placeholder="http://example.com/stuff" value="{{$logo['link']}}" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
                                     <div class="slim"
                                     data-label="Drop your Logo here"
                                     data-max-file-size="1.5"

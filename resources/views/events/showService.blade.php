@@ -60,7 +60,7 @@
 
                                     <hr />
 
-                                    @if(!$user->verify)
+                                    @if($user && !$user->verify)
                                         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#noModal">HIRE</button>
                                     @else
                                         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -214,7 +214,7 @@
                                                             @foreach($service as $s)
                                                                 <div class="col-sm-4">
                                                                     <label style="font-weight: 100">
-                                                                        <input type="checkbox" required name="event_services[]" value="{{$s}}" />
+                                                                        <input type="checkbox" name="event_services[]" value="{{$s}}" />
                                                                         {{$s}}
                                                                     </label>
                                                                 </div>

@@ -428,7 +428,8 @@ a span,
                     <table class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;vertical-align: top;">
                       <tbody>
                         <tr>
-                          <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 20px;text-align: left;vertical-align: top;color: #2f68b4;font-weight: bold;padding-bottom: 0;padding-top: 16px;"><a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #2f68b4;">
+                          <td class="column_cell font_default" align="center" valign="top" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 20px;text-align: left;vertical-align: top;color: #2f68b4;font-weight: bold;padding-bottom: 0;padding-top: 16px;">
+							  <a href="{{ url("events") }}" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #2f68b4;">
 							  <img src="{{ url('images/event/event_logo_small.png')  }}" width="156" height="42" alt="Youpple Events" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 156px;height: auto;"></a>
 						  </td><!-- /.column_cell -->
                         </tr>
@@ -481,7 +482,6 @@ a span,
                                 </tr>
                                 <tr>
                                   <td class="icon_cell" style="padding: 8px;font-size: 0;line-height: 1;-webkit-border-radius: 80px;border-radius: 80px;height: 52px;background-color: #e1e3e7;border-color: #d8dde4;">
-									  {{$userMan['picture']}}
 									  <img src="{{$userMan['picture']}}" width="52" height="52" alt="" style="line-height: 1;outline: none;border-radius: 80px; border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
 								  </td>
                                 </tr>

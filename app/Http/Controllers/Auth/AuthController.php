@@ -104,7 +104,7 @@ class AuthController extends Controller
         $userMan = [
             'email'=>$data['email'],
             'name'=>$data['name'],
-            'picture'=>$filename,
+            'picture'=>url("userPhotos/".$filename),
             'user_type'=>$data['user_type'],
             'vlink'=>$vlink,
         ];

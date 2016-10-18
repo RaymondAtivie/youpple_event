@@ -135,11 +135,19 @@
                                 <label>Gender</label>
 
                                 <div class="btn-group" data-toggle="buttons" style="margin-left: 20px;">
-                                    <label class="btn btn-default">
-                                        <input type="radio" name="gender" value="male" required> &nbsp; Male &nbsp;
+                                    <label class="btn btn-default
+                                    @if(old('gender') == "male") active @endif
+                                    ">
+                                        <input type="radio" name="gender" value="male"
+                                        @if(old('gender') == "male") checked @endif
+                                         required> &nbsp; Male &nbsp;
                                     </label>
-                                    <label class="btn btn-default">
-                                        <input type="radio" name="gender" value="female" required> &nbsp; Female &nbsp;
+                                    <label class="btn btn-default
+                                    @if(old('gender') == "female") active @endif
+                                    " >
+                                        <input type="radio" name="gender" value="female"
+                                        @if(old('gender') == "female") checked @endif
+                                         required> &nbsp; Female &nbsp;
                                     </label>
                                 </div>
                             </div>

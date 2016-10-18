@@ -4,7 +4,7 @@
     margin-bottom: 35px !important;
 }
 .quote-btn{
-    padding: 0px 15px; 
+    padding: 0px 15px;
 }
 </style>
 <div class="cp-wrapper">
@@ -32,13 +32,12 @@
                             <li> <a class="quote-btn" href="{{ url('events/create') }}">Create Event</a> </li>
                             <li> <a class="quote-btn" href="{{ url('events/order') }}">Order Service</a> </li>
 
-                            <li>
-                                <a class="quote-btn" href="{{ url('events/me') }}" style="padding: 0px; border-radius: 50%">
-                                    <img src="{{ url('userPhotos/'.Auth::user()->picture) }}" style="height: 50px; border-radius: 50%" />
-                                </a>
-                            </li>
-
                             @if (!Auth::guest())
+                                <li>
+                                    <a class="quote-btn" href="{{ url('events/me') }}" style="padding: 0px; border-radius: 50%">
+                                        <img src="{{ url('userPhotos/'.Auth::user()->picture) }}" style="height: 50px; border-radius: 50%" />
+                                    </a>
+                                </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle quote-btn" data-toggle="dropdown" role="button" aria-expanded="false">
                                         {{ Auth::user()->name }} <span class="caret"></span>
