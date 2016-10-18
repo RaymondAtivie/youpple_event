@@ -55,12 +55,13 @@
                     {{-- <i class="fa fa-map-marker"></i> &nbsp; {{unserialize($event->venue)[1]}} --}}
                 </h3>
 
-                @if($event->datetime > \Carbon\Carbon::now())
+                @if($event->datetime->timestamp > \Carbon\Carbon::now()->timestamp)
                     <div id="clockdiv">
                         <div class="row">
                             <div class="col-sm-4 col-sm-offset-4 timerbox">
                                 <div class="row">
                                     <div class="col-xs-3">
+                                        {{-- {{\Carbon\Carbon::now()->timestamp - $event->datetime->timestamp}} --}}
                                         <span class="days"></span>
                                         <div class="smalltext">Days</div>
                                     </div>

@@ -29,13 +29,10 @@ class EventsController extends Controller
         $fProviders = \App\Models\UserInfo::where("featured", 1)->get();
         $providers = \App\Models\UserInfo::get();
 
-        // dd($fEvents);
-
-        // dd($fProviders[0]->user);
-
         $services = M::getServices();
+        $intrests = M::getIntrests();
 
-        return view('events.event', compact('events', 'fEvents', "services", "providers", "fProviders"));
+        return view('events.event', compact('events', 'fEvents', "services", "intrests", "providers", "fProviders"));
     }
 
     public function listEvents()
@@ -124,7 +121,7 @@ class EventsController extends Controller
 
         M::flash("Successfully registered as a provider. Please fill in your details as a provider");
 
-        
+
 
         return Redirect::to("events/myprofile");
     }
