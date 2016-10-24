@@ -25,9 +25,11 @@ use Mail;
 class EmailController extends Controller
 {
     public function showSendEmail(){
-
         return view('admin.pages.email.emailTo');
+    }
 
+    public function showSendSMS(){
+        return view('admin.pages.email.smsTo');
     }
 
     public function sendEmail(Request $request){
@@ -81,7 +83,6 @@ class EmailController extends Controller
 
 
     private function fileEmails($usersArray, $subject, $body){
-
         foreach($usersArray as $userMan){
 
             Mail::send('emails.plain', ['userMan' => $userMan, 'body' => $body, 'subject' => $subject],
@@ -91,6 +92,17 @@ class EmailController extends Controller
             });
 
         }
+    }
 
+    private function fileSMS($usersArray, $text){
+        foreach($usersArray as $userMan){
+
+            Mail::send('emails.plain', ['userMan' => $userMan, 'text' => $body, 'subject' => $subject],
+            function ($m) use ($userMan, $subject) {
+                $m->from('events@youpple.com', 'Youpple Events');
+                $m->to($userMan['email'], $userMan['name'])->subject($subject);
+            });
+
+        }
     }
 }

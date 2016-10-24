@@ -81,7 +81,7 @@
         <li>
             <h3 class="navigation-title">Reaching Out</h3>
         </li>
-        <li class="menu-list">
+        {{-- <li class="menu-list">
             <a href="#">
                 <i class="fa fa-star"></i><span>Send SMS</span>
             </a>
@@ -92,42 +92,47 @@
                 <li><a href="{{ url('admin/feature/providers') }}">To Business Service Providers</a></li>
                 <li><a href="{{ url('admin/feature/providers') }}">To Customers</a></li>
             </ul>
-        </li>
+        </li> --}}
         <li>
             <a href="{{ url('admin/sendemail') }}">
                 <i class="fa fa-envelope-o"></i><span>Send Emails</span>
             </a>
+        </li>
+        <li>
+            <a href="{{ url('admin/sendsms') }}">
+                <i class="fa fa-envelope"></i><span>Send SMS</span>
+            </a>
             {{-- <ul class="child-list">
-                <li><a href="{{ url('admin/feature/events') }}">Add an Admin</a></li>
-                <li><a href="{{ url('admin/feature/providers') }}">View Administrators</a></li>
-            </ul> --}}
-        </li>
-        <li>
-            <h3 class="navigation-title">Settings</h3>
-        </li>
-        <li class="menu-list">
-            <a href="#">
-                <i class="fa fa-star"></i><span>User Management</span>
-            </a>
-            <ul class="child-list">
-                <li><a href="{{ url('admin/feature/events') }}">Add an Admin</a></li>
-                <li><a href="{{ url('admin/feature/providers') }}">View Administrators</a></li>
-            </ul>
-        </li>
-        <li>
-            <h3 class="navigation-title">Payments</h3>
-        </li>
-        <li>
-            <a href="{{ url('admin/payments/due') }}">
-                <i class="fa fa-users"></i><span>Payments Due (SP)</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url('admin/payments/history') }}">
-                <i class="fa fa-users"></i><span>Payments History</span>
-            </a>
-        </li>
-    @endif
+            <li><a href="{{ url('admin/feature/events') }}">Add an Admin</a></li>
+            <li><a href="{{ url('admin/feature/providers') }}">View Administrators</a></li>
+        </ul> --}}
+    </li>
+    <li>
+        <h3 class="navigation-title">Settings</h3>
+    </li>
+    <li class="menu-list">
+        <a href="#">
+            <i class="fa fa-star"></i><span>User Management</span>
+        </a>
+        <ul class="child-list">
+            <li><a href="{{ url('admin/feature/events') }}">Add an Admin</a></li>
+            <li><a href="{{ url('admin/feature/providers') }}">View Administrators</a></li>
+        </ul>
+    </li>
+    <li>
+        <h3 class="navigation-title">Payments</h3>
+    </li>
+    <li>
+        <a href="{{ url('admin/payments/due') }}">
+            <i class="fa fa-users"></i><span>Payments Due (SP)</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('admin/payments/history') }}">
+            <i class="fa fa-users"></i><span>Payments History</span>
+        </a>
+    </li>
+@endif
 
 
 </ul>

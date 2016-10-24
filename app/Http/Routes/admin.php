@@ -43,6 +43,9 @@ Route::group([
     Route::get('/sendemail', "EmailController@showSendEmail");
     Route::post('/sendemail', "EmailController@sendEmail");
 
+    Route::get('/sendsms', "EmailController@showSendSMS");
+    Route::post('/sendsms', "EmailController@sendSMS");
+
     /////////////////ABOUT//////////////////////////////////////////////
     Route::post('/about/changeTagline', "AdminController@changeTagline");
 
