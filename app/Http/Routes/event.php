@@ -14,13 +14,16 @@ Route::group([
             'vlink'=>url('events/verify_email/'."1234567890"),
         ];
 
+        $body = "dsdgf";
+        $subject = "subject";
+
         Mail::send('emails.signup', ['userMan' => $userMan], function ($m) use ($userMan) {
             $m->from('events@youpple.com', 'Youpple Events');
 
             $m->to($userMan['email'], $userMan['name'])->subject('Welcome to Youpple! Please verify your Email');
         });
 
-        return view('emails.signup', compact("userMan"));
+        return view('emails.plain', compact("userMan", "subject", "body"));
     });
     Route::get("/verify_email/{link}", "PagesController@verifyEmail");
 

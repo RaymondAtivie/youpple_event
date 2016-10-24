@@ -38,6 +38,11 @@ Route::group([
     Route::get('/home/faq', "AdminController@showFaq");
     Route::post('/home/changeFaq', "AdminController@changeFaq");
 
+    //////////////////////////////////////////////////////////////////////
+
+    Route::get('/sendemail', "EmailController@showSendEmail");
+    Route::post('/sendemail', "EmailController@sendEmail");
+
     /////////////////ABOUT//////////////////////////////////////////////
     Route::post('/about/changeTagline', "AdminController@changeTagline");
 

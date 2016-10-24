@@ -254,7 +254,7 @@ class AdminController extends Controller
     }
 
     public function changeTermsOfUse(Request $request){
-        $TOU = $request->get("terms_of_us");
+        $TOU = $request->get("terms_of_use");
 
         M::setDocuments("terms_of_use", $TOU);
         M::flash("Successfully Updated", "success");

@@ -93,14 +93,14 @@
                 <li><a href="{{ url('admin/feature/providers') }}">To Customers</a></li>
             </ul>
         </li>
-        <li class="menu-list">
-            <a href="#">
-                <i class="fa fa-star"></i><span>Send Email</span>
+        <li>
+            <a href="{{ url('admin/sendemail') }}">
+                <i class="fa fa-envelope-o"></i><span>Send Emails</span>
             </a>
-            <ul class="child-list">
+            {{-- <ul class="child-list">
                 <li><a href="{{ url('admin/feature/events') }}">Add an Admin</a></li>
                 <li><a href="{{ url('admin/feature/providers') }}">View Administrators</a></li>
-            </ul>
+            </ul> --}}
         </li>
         <li>
             <h3 class="navigation-title">Settings</h3>

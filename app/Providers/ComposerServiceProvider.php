@@ -19,8 +19,12 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('*', function($view){
             $socials = M::getSocials();
+            $services = M::getServices();
+            $intrests = M::getIntrests();
 
             $view->with([
+                'intrests'=>$intrests,
+                'services'=>$services,
                 'user'=>Auth::user(),
                 'isLoggedIn'=>Auth::check(),
                 'social_links'=>$socials
@@ -36,8 +40,10 @@ class ComposerServiceProvider extends ServiceProvider
             $fEvents = \App\Models\Event::where("published", "true")->where("featured", "true")->get();
             $fProviders = \App\Models\UserInfo::where("featured", 1)->get();
             $services = M::getServices();
+            $intrests = M::getIntrests();
 
             $view->with([
+                'intrests'=>$intrests,
                 'services'=>$services,
                 'fEvents'=>$fEvents,
                 'fProviders'=>$fProviders,
