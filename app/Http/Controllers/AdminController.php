@@ -72,12 +72,50 @@ class AdminController extends Controller
         return view('admin.pages.forms');
     }
 
+    public function viewAdmins(){
+        $admins = \App\Adminuser::get();
+
+        return view('admin.pages.admin.viewadmin', compact("admins"));
+    }
+
+    public function addAdmins(Request $request){
+        $this->validate($request, [
+            'fullname' => 'required',
+            'email' => 'required|email|unique:adminusers',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $data = $request->all();
+
+        \App\Adminuser::create([
+            'fullname' => $data['fullname'],
+            'email' => $data['email'],
+            'role' => $data['role'],
+            'password' => bcrypt($data['password']),
+        ]);
+
+        M::flash("Administrator successfully added", "success");
+
+        return Redirect::back();
+    }
+
+    public function deleteAdmin(Request $request, $adminid){
+
+        \App\Adminuser::where('id', $adminid)->delete();
+
+        M::flash("Administrator successfully deleted", "danger");
+
+        return Redirect::back();
+    }
+
     public function eventtypes(){
         $event_types = \App\Models\EventType::orderBy('name', 'asc')->get();
         // $services = M::getServices();
-        $services = \App\Models\ServiceOptions::orderBy('name', 'asc')->get();
+        $myservices = \App\Models\ServiceOptions::orderBy('name', 'asc')->get();
 
-        return view('admin.pages.eventtypes', compact("event_types", "services"));
+        // dd($services);
+
+        return view('admin.pages.eventtypes', compact("event_types", "myservices"));
     }
 
     public function addEventtype(Request $request){

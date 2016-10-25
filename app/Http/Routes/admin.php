@@ -6,6 +6,10 @@ Route::group([
     Route::get('/', 'AdminController@dashboard');
     Route::get('/forms', 'AdminController@forms');
 
+    Route::get('/admin', 'AdminController@viewAdmins');
+    Route::post('/admin/add', 'AdminController@addAdmins');
+    Route::get('/admin/delete/{adminid}', 'AdminController@deleteAdmin');
+
     Route::get('/eventtypes', 'AdminController@eventtypes');
     Route::post('/eventtypes/add', 'AdminController@addEventtype');
     Route::get('/eventtypes/{evt}/hide', 'AdminController@hideIntrest');

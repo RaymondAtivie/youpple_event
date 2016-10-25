@@ -110,14 +110,14 @@
     <li>
         <h3 class="navigation-title">Settings</h3>
     </li>
-    <li class="menu-list">
-        <a href="#">
+    <li>
+        <a href="{{ url('admin/admin') }}">
             <i class="fa fa-star"></i><span>User Management</span>
         </a>
-        <ul class="child-list">
-            <li><a href="{{ url('admin/feature/events') }}">Add an Admin</a></li>
-            <li><a href="{{ url('admin/feature/providers') }}">View Administrators</a></li>
-        </ul>
+        {{-- <ul class="child-list">
+            <li><a href="{{ url('admin/admin/add') }}">Add an Admin</a></li>
+            <li><a href="{{ url('admin/admin') }}">View Administrators</a></li>
+        </ul> --}}
     </li>
     <li>
         <h3 class="navigation-title">Payments</h3>

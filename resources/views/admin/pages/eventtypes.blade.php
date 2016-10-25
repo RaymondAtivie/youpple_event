@@ -3,6 +3,7 @@
     Manage Event Types
 @stop
 @section('main')
+
     <!-- Slider -->
     <div class="page-head">
         <h3>
@@ -112,10 +113,13 @@
                         <input type="text" name="name" required class="form-control" />
                     </div>
                     <div class="col-sm-6">
+                        {{-- {{dd($myservices)}} --}}
                         <select class="form-control" required name="service_id">
                             <option value="">--SELECT A MAJOR--</option>
-                            @foreach($services as $es)
-                                <option value="{{$es->id}}">{{$es->name}}</option>
+                            @foreach($myservices as $es)
+                                @if(is_object($es))
+                                    <option value="{{$es->id}}">{{$es->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -129,66 +133,67 @@
             </form>
 
             <hr />
+            @foreach($myservices as $service)
+                @if($service)
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>
 
-            @foreach($services as $service)
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>
+                                <button data-toggle="collapse" data-target="#box{{$service->id}}" class="btn btn-sm btn-default">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <b>{{$service->name}}</b>
 
-                            <button data-toggle="collapse" data-target="#box{{$service->id}}" class="btn btn-sm btn-default">
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <b>{{$service->name}}</b>
-
-                            {{-- <a href="#"
-                            style="margin-left: 30px;"
-                            onclick="return confirm('Are you sure you want to delete this?')"
-                            class="btn btn-sm btn-danger"
-                            disabled
-                            ><i class="fa fa-trash-o"></i></a> --}}
-                        </h4>
+                                {{-- <a href="#"
+                                style="margin-left: 30px;"
+                                onclick="return confirm('Are you sure you want to delete this?')"
+                                class="btn btn-sm btn-danger"
+                                disabled
+                                ><i class="fa fa-trash-o"></i></a> --}}
+                            </h4>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row collapse"  id="box{{$service->id}}">
-                    <div class="col-sm-12">
-                        <table class="table table-hover table-condensed table-bordered">
-                            <tbody>
-                                @if(count($service->children) < 1)
-                                    <tr class="warning">
-                                        <td>No services under this major service</td>
-                                    </tr>
-                                @endif
-                                @foreach($service->children()->orderBy('name', 'asc')->get() as $evt)
-                                    <tr class="
-                                    @if(!$evt->visible)
-                                        info
+                    <div class="row collapse"  id="box{{$service->id}}">
+                        <div class="col-sm-12">
+                            <table class="table table-hover table-condensed table-bordered">
+                                <tbody>
+                                    @if(count($service->children) < 1)
+                                        <tr class="warning">
+                                            <td>No services under this major service</td>
+                                        </tr>
                                     @endif
-                                    ">
-                                    <td>{{$evt->name}}</td>
-                                    <td class="col-sm-1">
-                                        @if($evt->visible)
-                                            <a class="btn btn-sm btn-warning"
-                                            title="Make it invisible to users"
-                                            onclick="return confirm('Are you sure you want to make {{$evt->name}} invisible?')"
-                                            href="{{ url('admin/servicelist/'. $evt->id.'/hide') }}">
-                                            <i class="fa fa-eye-slash"></i>
+                                    @foreach($service->children()->orderBy('name', 'asc')->get() as $evt)
+                                        <tr class="
+                                        @if(!$evt->visible)
+                                            info
+                                        @endif
+                                        ">
+                                        <td>{{$evt->name}}</td>
+                                        <td class="col-sm-1">
+                                            @if($evt->visible)
+                                                <a class="btn btn-sm btn-warning"
+                                                title="Make it invisible to users"
+                                                onclick="return confirm('Are you sure you want to make {{$evt->name}} invisible?')"
+                                                href="{{ url('admin/servicelist/'. $evt->id.'/hide') }}">
+                                                <i class="fa fa-eye-slash"></i>
+                                            </a>
+                                        @else
+                                            <a class="btn btn-sm btn-info"
+                                            title="Make it Visible to users"
+                                            onclick="return confirm('Are you sure you want to make {{$evt->name}} Visible?')"
+                                            href="{{ url('admin/servicelist/'. $evt->id.'/show') }}">
+                                            <i class="fa fa-eye"></i>
                                         </a>
-                                    @else
-                                        <a class="btn btn-sm btn-info"
-                                        title="Make it Visible to users"
-                                        onclick="return confirm('Are you sure you want to make {{$evt->name}} Visible?')"
-                                        href="{{ url('admin/servicelist/'. $evt->id.'/show') }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                @endif
-                            </td>
-                        </tr>
+                                    @endif
+                                </td>
+                            </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+@endif
 @endforeach
 
 </div>

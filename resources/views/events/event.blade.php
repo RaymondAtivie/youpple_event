@@ -32,7 +32,7 @@
                                 <a href="{{ url("events/view/service/".$p->user->id) }}">
 
                                     <div class="col-sm-3 padding-5">
-                                        <img src="{{ url("userPhotos/".$p->picture) }}" style="width: 100%" class="img-responsive img-rounded" />
+                                        <img src="{{ url("userPhotos/".$p->user->picture) }}" style="width: 100%" class="img-responsive img-rounded" />
                                         <div style="text-align: center; margin-top: 5px">
                                             <a tabindex="0" href="#"
                                             data-toggle="popover"

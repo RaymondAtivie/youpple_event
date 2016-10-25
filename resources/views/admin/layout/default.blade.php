@@ -82,7 +82,7 @@
                     <ul class="notification-menu">
                        <li>
                             <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ url('') }}/assets/admin/img/avatar-mini.jpg" alt=""> {{ \Auth::guard('admin')->user()->username }}
+                                {{ \Auth::guard('admin')->user()->fullname }}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu purple pull-right">

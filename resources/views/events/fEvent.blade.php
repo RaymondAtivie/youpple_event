@@ -130,7 +130,7 @@
                 <div class="owl-carousel owl-theme" id="owl-vert">
                     @foreach($fProviders as $p)
                         <div class="item" style="text-align: center; height: 380px;">
-                            <img style="height: 250px" src="{{url("userPhotos/".$p->picture)}}">
+                            <img style="height: 250px" src="{{url("userPhotos/".$p->user->picture)}}">
                             <hr />
                             <h3>
                                 @if($p->user_type == 'Business')
