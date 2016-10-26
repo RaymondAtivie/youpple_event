@@ -56,6 +56,7 @@
                                         <select name="role" class="form-control" required>
                                             <option value="">--SELECT--</option>
                                             <option value="admin">Administrator</option>
+                                            <option value="finadmin">Financial Administrator</option>
                                             <option value="superadmin">Super Administrator</option>
                                         </select>
                                     </div>

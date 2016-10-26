@@ -39,7 +39,7 @@
 
                             <div class="row">
                                 <div class="col-sm-3" style="text-align: center">
-                                    <img class="img-responsive" style="width: 100%" src="{{ url("userPhotos/".$provider->info->picture) }}" />
+                                    <img class="img-responsive" style="width: 100%" src="{{ url("userPhotos/".$provider->picture) }}" />
                                 </div>
                                 <div class="col-sm-3">
                                     <h3>

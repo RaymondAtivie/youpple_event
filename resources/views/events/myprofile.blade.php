@@ -117,8 +117,8 @@
                             </div>
                         </div>
 
-                        <br />
-                        <div class="row" ng-show="RM.mode == 'c'">
+                        {{-- <br /> --}}
+                        {{-- <div class="row" ng-show="RM.mode == 'c'">
                             <div class="col-md-2"><label>Gender:</label></div>
                             <div class="col-md-3">
                                 <div class="input-field">
@@ -142,20 +142,20 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <br />
                         <div class="row">
                             <div class="col-md-8">
-                                <label ng-show="RM.mode == 'c'">Date of birth</label>
+                                {{-- <label ng-show="RM.mode == 'c'">Date of birth</label> --}}
                                 <label ng-show="RM.mode == 'p'">Date of Registration</label>
-                                <input ng-show="RM.mode == 'c'" type='date' name="dob" value="{{$user->info->dob}}" class="form-control" />
+                                {{-- <input ng-show="RM.mode == 'c'" type='date' name="dob" value="{{$user->info->dob}}" class="form-control" /> --}}
                                 <input ng-show="RM.mode == 'p'" type='date' name="dor" value="{{$user->info->dor}}" class="form-control" />
                             </div>
                         </div>
 
-                        <br /><br /><br />
-                        <div class="row">
+                        <br />
+                        <div class="row" ng-show="RM.mode == 'p'">
                             <div class="col-md-12">
                                 <div class="input-field">
                                     <label>Contact Address</label>

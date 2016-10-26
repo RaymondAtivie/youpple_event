@@ -41,6 +41,8 @@ Route::group([
 
     Route::get('/view/service/{user}', 'EventsController@viewService');
 
+    Route::any('/search/event', 'SearchController@searchEvents');
+
     Route::get('myorders', 'ServiceController@showServiceOrders');
     Route::get('myorders/others', 'ServiceController@showServiceOrdersToOthers');
     Route::get("myorders/me", 'ServiceController@showServiceOrdersToMe');
