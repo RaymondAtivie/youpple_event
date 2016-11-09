@@ -77,6 +77,11 @@
 
     @include('inc/scripts')
     @yield('footer_scripts')
+    <script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+    </script>
 
     @yield('addThis')
 

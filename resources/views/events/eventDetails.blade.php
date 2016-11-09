@@ -89,6 +89,17 @@
         </div>
     </div>
     <!-- Inner Banner End -->
+    <style>
+    #eventMap{
+        width: 100%;
+        height: 400px;
+        text-align: center;
+    }
+    #eventMap img{
+        margin: auto;
+        width: 100%;
+    }
+    </style>
 
     <!-- Main Content Start -->
     <div class="cp-main-content">
@@ -169,69 +180,80 @@
 
                 @endif
 
-                <hr style="clear: both" />
-
-                <!--Form Box Start-->
-                <div class="cp-form-box">
-                    <h2>Register for this event</h2>
-                    <form action="{{ url("events/apply") }}" method="post">
-                        {{-- {{print_r($isLoggedIn)}} --}}
-                        <input type="hidden" name="event_id" value="{{$event->id}}" />
-
-                        @if(!$isLoggedIn)
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="inner-holder">
-                                        <input type="text" placeholder="Your Name" name="name" required pattern="[a-zA-Z ]+">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="inner-holder">
-                                        <input type="text" placeholder="Your Email" name="email" required pattern="^[a-zA-Z0-9-\_.]+@[a-zA-Z0-9-\_.]+\.[a-zA-Z0-9.]{2,5}$">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="inner-holder">
-                                        <input type="text" placeholder="Phone" name="phone" required pattern="[0-9 ]+">
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="col-md-12 col-sm-12">
-                                <h3><u>Select Package</u></h3>
-                                <div class="inner-holder">
-                                    @foreach($event->packages->chunk(2) as $chunk)
-                                        <div class="row">
-                                            @foreach($chunk as $package)
-                                                <label class="col-md-6" style="margin-bottom: 20px">
-                                                    <div class="col-md-1">
-                                                        <input type="checkbox" name="packages[]" value="{{$package->id}}" />
-                                                    </div>
-                                                    <div class='col-md-11'>
-                                                        <span style="font-size: 18px; color: black">
-                                                            {{$package->title}} &middot;
-                                                            <i>{{$package->packageFeeTypes->first()['name']}}</i>
-                                                        </span>
-                                                        <p style="font-weight: lighter; margin-bottom: 0px;">{{$package->description}}</p>
-                                                        <span style="font-weight: lighter;"><b style="font-size: 18px; color: black">
-                                                            {{$package->fee_currency}} {{number_format($package->fee_amount)}}</b>  &nbsp; &middot; &nbsp; <i>{{$package->fee_style}}</i>
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                            @endforeach
-                                        </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <div class="inner-holder cp-btn-holder">
-                                    <button type="submit" class="btn-submit" value="Submit" name="submit2">Register</button>
-                                </div>
+                @if($event->lat)
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="eventMap">
+                                <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=900x300&markers={{$event->lat}},{{$event->lng}}&key=AIzaSyAiyFQLOKpaCO39ybQVoxy63dzbdvtSXd8" />
                             </div>
                         </div>
-                    </form>
-                </div><!--Form Box End-->
+                    </div>
+                @endif
 
+                @if(count($event->packages) > 0)
+                    <hr style="clear: both" />
+
+                    <!--Form Box Start-->
+                    <div class="cp-form-box">
+                        <h2>Register for this event</h2>
+                        <form action="{{ url("events/apply") }}" method="post">
+                            {{-- {{print_r($isLoggedIn)}} --}}
+                            <input type="hidden" name="event_id" value="{{$event->id}}" />
+
+                            @if(!$isLoggedIn)
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="inner-holder">
+                                            <input type="text" placeholder="Your Name" name="name" required pattern="[a-zA-Z ]+">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="inner-holder">
+                                            <input type="text" placeholder="Your Email" name="email" required pattern="^[a-zA-Z0-9-\_.]+@[a-zA-Z0-9-\_.]+\.[a-zA-Z0-9.]{2,5}$">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="inner-holder">
+                                            <input type="text" placeholder="Phone" name="phone" required pattern="[0-9 ]+">
+                                        </div>
+                                    </div>
+                                @endif
+                                <div class="col-md-12 col-sm-12">
+                                    <h3><u>Select Package</u></h3>
+                                    <div class="inner-holder">
+                                        @foreach($event->packages->chunk(2) as $chunk)
+                                            <div class="row">
+                                                @foreach($chunk as $package)
+                                                    <label class="col-md-6" style="margin-bottom: 20px">
+                                                        <div class="col-md-1">
+                                                            <input type="checkbox" name="packages[]" value="{{$package->id}}" />
+                                                        </div>
+                                                        <div class='col-md-11'>
+                                                            <span style="font-size: 18px; color: black">
+                                                                {{$package->title}} &middot;
+                                                                <i>{{$package->packageFeeTypes->first()['name']}}</i>
+                                                            </span>
+                                                            <p style="font-weight: lighter; margin-bottom: 0px;">{{$package->description}}</p>
+                                                            <span style="font-weight: lighter;"><b style="font-size: 18px; color: black">
+                                                                {{$package->fee_currency}} {{number_format($package->fee_amount)}}</b>  &nbsp; &middot; &nbsp; <i>{{$package->fee_style}}</i>
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="inner-holder cp-btn-holder">
+                                        <button type="submit" class="btn-submit" value="Submit" name="submit2">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!--Form Box End-->
+                @endif
                 <br style="clear: both" />
                 <hr style="clear: both" />
 
@@ -354,25 +376,27 @@
 
                 <hr style="clear: both" />
 
-                <!-- Creative Content Start-->
-                <section class="cp-creative-section pd-tb60">
-                    <div class="container">
-                        <div class="cp-section-title">
-                            <h2>Partners</h2>
-                            <strong>Partners for this event</strong>
-                            {{-- {{$event->sponsors}} --}}
+                @if(count($event->sponsors) > 0)
+                    <!-- Creative Content Start-->
+                    <section class="cp-creative-section pd-tb60">
+                        <div class="container">
+                            <div class="cp-section-title">
+                                <h2>Partners</h2>
+                                <strong>Partners for this event</strong>
+                                {{-- {{$event->sponsors}} --}}
+                            </div>
+                            <div class="row" style="text-align: center">
+                                @foreach($event->sponsors as $sp)
+                                    <div class="col-md-3 col-sm-6" style="padding: 10px">
+                                        <a href="http://{{$sp->link}}" target="_blank">
+                                            <img style="width: 150px" src="{{$sp->logo}}" />
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="row" style="text-align: center">
-                            @foreach($event->sponsors as $sp)
-                                <div class="col-md-3 col-sm-6" style="padding: 10px">
-                                    <a href="http://{{$sp->link}}" target="_blank">
-                                        <img style="width: 150px" src="{{$sp->logo}}" />
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </section><!-- Creative Content End-->
+                    </section><!-- Creative Content End-->
+                @endif
 
                 <!-- Creative Content Start-->
                 <section class="cp-creative-section pd-tb60">

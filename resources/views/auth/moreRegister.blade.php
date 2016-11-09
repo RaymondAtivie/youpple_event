@@ -142,7 +142,7 @@
                 <div class="col-md-5">
                     <select class="form-control" name="currency">
                         <option>Naira</option>
-                        <option>US Dollars</option>
+                        {{-- <option>US Dollars</option> --}}
                     </select>
                 </div>
             </div>

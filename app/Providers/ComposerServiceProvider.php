@@ -21,13 +21,15 @@ class ComposerServiceProvider extends ServiceProvider
             $socials = M::getSocials();
             $services = M::getServices();
             $intrests = M::getIntrests();
+            $countries = M::getCountries();
 
             $view->with([
                 'intrests'=>$intrests,
                 'services'=>$services,
                 'user'=>Auth::user(),
                 'isLoggedIn'=>Auth::check(),
-                'social_links'=>$socials
+                'social_links'=>$socials,
+                'countries'=>$countries
             ]);
         });
         View::composer('auth.*', function($view){

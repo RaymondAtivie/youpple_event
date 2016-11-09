@@ -223,6 +223,7 @@
                                 </label>
                                 <div class="input-field">
                                     <select name="country" required class="form-control">
+                                        <option value="{{old('country')}}">{{old('country')}}</option>
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Albania">Albania</option>
                                         <option value="Algeria">Algeria</option>

@@ -10,7 +10,8 @@ class Event extends Model
     protected $dates = ['datetime', 'datetime_end'];
     // protected $dateFormat = 'd m Y H:i a';
 
-    protected $fillable = ['title', 'description', 'venue', 'state', 'country', 'datetime', 'datetime_end', 'image', 'others'];
+    protected $fillable = ['title', 'description', 'venue', 'state', 'country',
+    'datetime', 'datetime_end', 'image', 'others', 'lng', 'lat'];
 
     protected $casts = [
         'venue' => 'array',

@@ -115,6 +115,12 @@ class M
         return $data;
     }
 
+    static function getCountries()
+    {
+        $data = DB::table('countries')->get();
+        return $data;
+    }
+
     static function getTagline($name)
     {
         $data = DB::table('admin_tagline')

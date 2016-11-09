@@ -13,6 +13,7 @@ class EventType extends Model
     public function events()
     {
         $eventids = DB::table('event_event_type')->select("event_id")->where("event_type_id", $this->id)->get();
+        $events = [];
         foreach ($eventids as $eventid) {
             $event = \App\Models\Event::find($eventid->event_id);
             if($event->published == "true"){

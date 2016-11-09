@@ -298,8 +298,9 @@ class EventsController extends Controller
         }
 
         $eTypes = EventType::lists("name", "id");
+        $countries = M::getCountries();
 
-        return view('events.create', compact('eTypes'));
+        return view('events.create', compact('eTypes', 'countries'));
     }
 
     public function store(Request $request)
@@ -351,19 +352,27 @@ class EventsController extends Controller
     {
         $event = session("event");
 
+        $j = 0;
         for($i=0;$i<count($r->input('title'));$i++) {
-            $p = [
-                "title" => $r->input('title')[$i],
-                "description" => $r->input('description')[$i],
-                // "fee_type" => $r->input('fee_type')[$i],
-                "fee_currency" => $r->input('fee_currency')[$i],
-                "fee_amount" => $r->input('fee_amount')[$i],
-                "fee_style" => $r->input('fee_style')[$i],
-            ];
-            $event->packages()->create($p);
+            if($r->input('title')[$i] != ""){
+                $j++;
+                $p = [
+                    "title" => $r->input('title')[$i],
+                    "description" => $r->input('description')[$i],
+                    // "fee_type" => $r->input('fee_type')[$i],
+                    "fee_currency" => $r->input('fee_currency')[$i],
+                    "fee_amount" => $r->input('fee_amount')[$i],
+                    "fee_style" => $r->input('fee_style')[$i],
+                ];
+                $event->packages()->create($p);
+            }
         }
 
-        M::flash("Packages successfully added to your event");
+        if($j > 0){
+            M::flash("Packages successfully added to your event");
+        }else{
+            M::flash("No package was added to the event");
+        }
         return redirect('events/create/awards');
     }
 
@@ -407,39 +416,47 @@ class EventsController extends Controller
     {
         $event = session("event");
 
+        // dd($r->all());
+        $j = 0;
         for($i=0;$i<count($r->input('title'));$i++) {
-            $a = [
-                "title" => $r->input('title')[$i],
-                "description" => $r->input('description')[$i],
-                // "fee_type" => $r->input('fee_type')[$i],
-                "enable_registration" => $r->input('enable_registration')[$i],
-                "enable_voting" => isset($r->input('enable_voting')[$i]) ?: $r->input('enable_voting')[$i] = 'off',
-                "voting_end_date" => $r->input('voting_end_date')[$i],
-            ];
-            $award = $event->awards()->create($a);
-
-            for($j=0;$j<count($r->input('cName_'.$i));$j++) {
-                // dd($r->file());
-                if (isset($r->file('cFile_'.$i)[$j]) && $r->file('cFile_'.$i)[$j]->isValid()) {
-                    $destinationPath = 'uploads/contestants/'; // upload path
-                    $extension = $r->file('cFile_'.$i)[$j]->getClientOriginalExtension(); // getting image extension
-                    $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
-                    $r->file('cFile_'.$i)[$j]->move($destinationPath, $fileName); // uploading file to given path
-                }else{
-                    $fileName = "uploads/contestants/unknown.jpg";
-                }
-
-                $c = [
-                    'name' => $r->input('cName_'.$i)[$j],
-                    'description' => $r->input('cDesc_'.$i)[$j],
-                    'image' => $fileName
+            if($r->input('title')[$i] != ""){
+                $j++;
+                $a = [
+                    "title" => $r->input('title')[$i],
+                    "description" => $r->input('description')[$i],
+                    // "fee_type" => $r->input('fee_type')[$i],
+                    "enable_registration" => $r->input('enable_registration')[$i],
+                    "enable_voting" => isset($r->input('enable_voting')[$i]) ?: $r->input('enable_voting')[$i] = 'off',
+                    "voting_end_date" => $r->input('voting_end_date')[$i],
                 ];
+                $award = $event->awards()->create($a);
 
-                $award->contestants()->create($c);
+                for($j=0;$j<count($r->input('cName_'.$i));$j++) {
+                    // dd($r->file());
+                    if (isset($r->file('cFile_'.$i)[$j]) && $r->file('cFile_'.$i)[$j]->isValid()) {
+                        $destinationPath = 'uploads/contestants/'; // upload path
+                        $extension = $r->file('cFile_'.$i)[$j]->getClientOriginalExtension(); // getting image extension
+                        $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
+                        $r->file('cFile_'.$i)[$j]->move($destinationPath, $fileName); // uploading file to given path
+                    }else{
+                        $fileName = "uploads/contestants/unknown.jpg";
+                    }
+
+                    $c = [
+                        'name' => $r->input('cName_'.$i)[$j],
+                        'description' => $r->input('cDesc_'.$i)[$j],
+                        'image' => $fileName
+                    ];
+
+                    $award->contestants()->create($c);
+                }
             }
         }
-
-        M::flash("Award(s) successfully added to your event");
+        if($j > 0){
+            M::flash("Award(s) successfully added to your event");
+        }else{
+            M::flash("No award was added to the event");
+        }
         return redirect('events/create/sponsors');
     }
 
@@ -452,26 +469,33 @@ class EventsController extends Controller
     {
         $event = session("event");
 
+        $j = 0;
         for($i=0;$i<count($r->input('name'));$i++) {
+            if($r->input('name')[$i] != ""){
+                $j++;
+                if (isset($r->file('file')[$i]) && $r->file('file')[$i]->isValid()) {
+                    $destinationPath = 'uploads/sponsors/'; // upload path
+                    $extension = $r->file('file')[$i]->getClientOriginalExtension(); // getting image extension
+                    $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
+                    $r->file('file')[$i]->move($destinationPath, $fileName); // uploading file to given path
+                }else{
+                    $fileName = "unknown.jpg";
+                }
 
-            if (isset($r->file('file')[$i]) && $r->file('file')[$i]->isValid()) {
-                $destinationPath = 'uploads/sponsors/'; // upload path
-                $extension = $r->file('file')[$i]->getClientOriginalExtension(); // getting image extension
-                $fileName = $destinationPath.abs(rand(1000000,1111000000010)).'.'.$extension; // renameing image
-                $r->file('file')[$i]->move($destinationPath, $fileName); // uploading file to given path
-            }else{
-                $fileName = "unknown.jpg";
+                $p = [
+                    "name" => $r->input('name')[$i],
+                    "link" => $r->input('link')[$i],
+                    "logo" => $fileName
+                ];
+                $event->sponsors()->create($p);
             }
-
-            $p = [
-                "name" => $r->input('name')[$i],
-                "link" => $r->input('link')[$i],
-                "logo" => $fileName
-            ];
-            $event->sponsors()->create($p);
         }
 
-        M::flash("Sponsors have been successfully added to your event");
+        if($j > 0){
+            M::flash("Sponsors have been successfully added to your event");
+        }else{
+            M::flash("No Sponsors were added tot he event");
+        }
         return redirect('events/preview');
     }
 

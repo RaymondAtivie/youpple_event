@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="container" style="text-align: center; padding: 20px 0px">
+        <hr />
         <h2>Thank you for registering</h2>
         <hr />
         <h1>{{$event->title}}</h1>

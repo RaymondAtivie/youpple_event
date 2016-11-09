@@ -49,12 +49,12 @@
                             <hr />
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Package Title</label>
-                                <input type="text" class="form-control" required name="title[]" placeholder="Title">
+                                <input type="text" class="form-control" name="title[]" placeholder="Title">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Package Description</label>
-                                <textarea class="form-control" required name="description[]" placeholder="Description" rows="3" style="resize: none; border: 0px; border-bottom: 2px solid silver; "></textarea>
+                                <textarea class="form-control" name="description[]" placeholder="Description" rows="3" style="resize: none; border: 0px; border-bottom: 2px solid silver; "></textarea>
                             </div>
 
                             <div class="form-group">
@@ -82,17 +82,17 @@
                                     <div class="col-md-4">
                                         <select class="form-control" name="fee_currency[]">
                                             <option>Naira</option>
-                                            <option>CFA</option>
+                                            <!--<option>CFA</option>
                                             <option>USD</option>
                                             <option>Cedi</option>
                                             <option>Euro</option>
                                             <option>GBP</option>
                                             <option>SAR</option>
-                                            <option>Yuan</option>
+                                            <option>Yuan</option>-->
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="number" required name="fee_amount[]" class="form-control" placeholder="amount">
+                                        <input type="number" name="fee_amount[]" class="form-control" placeholder="amount">
                                     </div>
                                     <div class="col-md-4">
                                         <select class="form-control" name="fee_style[]">
