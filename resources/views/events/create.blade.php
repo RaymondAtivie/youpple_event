@@ -282,8 +282,8 @@
 
     function initialize() {
         var myOptions = {
-            center: new google.maps.LatLng(36.835769, 10.247693 ),
-            zoom: 15,
+            center: new google.maps.LatLng(9.3776355,7.48409),
+            zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -296,6 +296,7 @@
                     lng: position.coords.longitude
                 };
                 map.setCenter(pos);
+                map.setZoom(15);
                 placeMarker(pos);
             });
         }
@@ -313,8 +314,8 @@
                     map: map
                 });
             }
-            document.getElementById('lat').value = location.lat();
-            document.getElementById('lng').value = location.lng();
+            document.getElementById('lat').value = location.lat;
+            document.getElementById('lng').value = location.lng;
             getAddress(location);
         }
 

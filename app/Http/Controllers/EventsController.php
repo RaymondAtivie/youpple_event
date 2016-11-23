@@ -343,33 +343,56 @@ class EventsController extends Controller
         return redirect('events/create/package');
     }
 
-    public function showCreatePackage()
+    public function showCreatePackage(Request $request)
     {
-        return view('events.createPackage');
+        $event = session("event");
+        $packs = \App\Models\Event::find($event->id)->packages;
+
+        $pnum = intval($request->get("pnum"));
+
+        return view('events.createPackage', compact('pnum', 'packs'));
     }
 
     public function storePackage(Request $r)
     {
         $event = session("event");
 
+        // dd($r->all());
+
+        $packs = $r->get('pack');
         $j = 0;
-        for($i=0;$i<count($r->input('title'));$i++) {
-            if($r->input('title')[$i] != ""){
-                $j++;
-                $p = [
-                    "title" => $r->input('title')[$i],
-                    "description" => $r->input('description')[$i],
-                    // "fee_type" => $r->input('fee_type')[$i],
-                    "fee_currency" => $r->input('fee_currency')[$i],
-                    "fee_amount" => $r->input('fee_amount')[$i],
-                    "fee_style" => $r->input('fee_style')[$i],
-                ];
-                $event->packages()->create($p);
+        if($packs){
+            foreach ($packs as $pack) {
+                if(trim($pack['title']) != ""){
+                    $j++;
+                    $p = [
+                        "title" => $pack['title'],
+                        "description" =>  $pack['description'],
+                        "fee_type" =>  $pack['fee_type'],
+                    ];
+
+                    if(!isset($pack['free'])){
+                        if(isset($pack['early_amount']) && $pack['early_amount'] != ""){
+                            $p['early_amount'] = $pack['early_amount'];
+                            $p['early_currency'] = $pack['early_currency'];
+                        }
+                        if(isset($pack['late_amount']) && $pack['late_amount'] != ""){
+                            $p['late_amount'] = $pack['late_amount'];
+                            $p['late_currency'] = $pack['late_currency'];
+                        }
+                        if(isset($pack['startdate_amount']) && $pack['startdate_amount'] != ""){
+                            $p['startdate_amount'] = $pack['startdate_amount'];
+                            $p['startdate_currency'] = $pack['startdate_currency'];
+                        }
+                    }else{
+                        $p['free'] = true;
+                    }
+                    $event->packages()->create($p);
+                }
             }
         }
-
         if($j > 0){
-            M::flash("Packages successfully added to your event");
+            M::flash("Package(s) successfully added to your event");
         }else{
             M::flash("No package was added to the event");
         }

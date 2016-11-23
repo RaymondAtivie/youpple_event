@@ -488,8 +488,10 @@
         var timeinterval = setInterval(updateClock, 1000);
     }
 
-    var dt = "{{$event->datetime->toDateTimeString()}}";
+    var dt = "{{$event->datetime->format('Y-m-d H:i:s')}}";
+    console.log(dt);
     var deadline = new Date(Date.parse(dt));
+    console.log(deadline);
     initializeClock('clockdiv', deadline);
     </script>
 @endsection
