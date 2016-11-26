@@ -24,14 +24,14 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <h4>{{$package->title}}</h4>
-                                    <p>{{$package->description}}</p>
+                                    <h4>{{$package->package->title}}</h4>
+                                    <p>{{$package->package->description}}</p>
                                 </div>
                                 <div class="col-md-3" style="text-align: right">
-                                    <h3>
-                                        {{$package->fee_currency}} {{number_format($package->fee_amount)}}
+                                    <h3 title="N{{$package->calcNaira($package->amount)}}">
+                                        {{$package->currencyObj()->symbol}} {{number_format($package->amount)}}
                                         <br />
-                                        <small>{{$package->fee_style}}</small>
+                                        <small>{{$package->name}}</small>
                                     </h3>
                                 </div>
                             </div>

@@ -23,7 +23,7 @@
   <body class="login-body">
 
       <div class="login-logo">
-          <img src="{{ url('images/event/event_logo_small.png') }}"/>
+          <img style="width: 250px" src="{{ url('images/main/main_normal.png') }}"/>
       </div>
 
       <h2 class="form-heading">login</h2>

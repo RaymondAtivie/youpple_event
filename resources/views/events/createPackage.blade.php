@@ -40,7 +40,6 @@
             @include('inc/chips', ['page'=>'packages'])
 
             <div class="row pd-tb60">
-
                 <div class="col-md-6 col-md-offset-3">
                     @include('inc/flash')
 
@@ -48,118 +47,69 @@
                     <hr />
                     <?php $i = 0;?>
                     @foreach($packs as $pack)
-                        <h3 ng-init="pBox{{$pack->id}} = false">{{$pack->title}} - <button class="btn btn-link" ng-click="pBox{{$pack->id}} = !pBox{{$pack->id}}">edit</button></h3>
+                        <h3  type="button" ng-init="pBox{{$pack->id}} = false">{{$pack->title}} - <button class="btn btn-link" ng-click="pBox{{$pack->id}} = !pBox{{$pack->id}}">view</button></h3>
                         <div class="row" style="border: 2px solid #7c246d; padding: 35px 20px; margin-bottom: 40px; margin-top: 10px" ng-show="pBox{{$pack->id}}">
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="input-field">
-                                        <input type="text" name="opack[{{$i}}][title]" value="{{$pack->title}}" required>
-                                        <label>Package Title</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="input-field">
-                                        <textarea required name="opack[{{$i}}][description]" requied row="2" style="height: 60px">{{$pack->description}}</textarea>
-                                        <label>Package Description</label>
+                                        <!--<input type="text" name="opack[{{$i}}][title]" value="{{$pack->title}}" required>-->
+                                        <!--<label>Package Title</label>-->
+                                        <div><b>Package Title</b></div>
+                                        <div>{{$pack->title}}</div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label style="font-weight: normal">Fee type</label>
-                                    <div class="input-field" style="margin-bottom: 20px;">
-                                        <select required name="opack[{{$i}}][fee_type]" class="form-control">
-                                            <option>{{$pack->fee_type}}</option>
-                                            <option value="">--SELECT--</option>
-                                            <option>Booth Fee</option>
-                                            <option>Exhibition Fee</option>
-                                            <option>Runway Fee</option>
-                                            <option>Entrance Fee</option>
-                                            <option>Partnership/Sponsorship Fee</option>
-                                            <option>Advert Fee</option>
-                                            <option>Training Fee</option>
-                                            <option>Participation Fee</option>
-                                            <option>Seminar Fee</option>
-                                            <option>Workshop Fee</option>
-                                            <option>Conference Fee</option>
-                                            <option>Modelling Fee</option>
-                                            <option>Contest Fee</option>
-                                            <option>Others</option>
-                                        </select>
+                                    <div class="input-field">
+                                        <!--<textarea required name="opack[{{$i}}][description]" requied row="2" style="height: 60px">{{$pack->description}}</textarea>
+                                        <label>Package Description</label>-->
+                                        <div><b>Package Description</b></div>
+                                        <div>{{$pack->description}}</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="input-field">
-                                        <label style="cursor: pointer" @if($pack->free) ng-init="ofreeP{{$i}} = true" @endif>
-                                            <input type="checkbox" name="opack[{{$i}}][free]" ng-model="ofreeP{{$i}}" />
-                                            This package is free
-                                        </label>
-                                    </div>
+                                    <div><b>Fee Type</b></div>
+                                    <div>{{$pack->fee_type}}</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    @if($pack->free)
+                                    <div ng-init="ofreeP{{$i}} = true">This package is free</div>
+                                    @endif
                                 </div>
                             </div>
-                            <br />
                             <br />
                             <div class="row" ng-if="!ofreeP{{$i}}">
                                 <div class="col-md-12">
                                     <table class="table table-bordered table-condensed">
                                         <tbody>
-                                            <tr ng-class="{strike: oearlyB{{$i}} }">
-                                                <td>Early bird</td>
-                                                <td>
-                                                    <input required type="number" value="{{$pack->early_amount}}" ng-if="!oearlyB{{$i}}" placeholder="amount" pattern="\d*" name="opack[{{$i}}][early_amount]" />
-                                                </td>
-                                                <td>
-                                                    <select ng-if="!oearlyB{{$i}}" name="opack[{{$i}}][early_currency]" class="form-control">
-                                                        <option>Naira</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label style="cursor: pointer; font-weight: normal" @if(!$pack->early_amount) ng-init="oearlyB{{$i}} = true" @endif>
-                                                        <input type="checkbox" ng-model="oearlyB{{$i}}" />
-                                                        does not apply
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr ng-class="{strike: olateB{{$i}} }">
-                                                <td>Late bird</td>
-                                                <td>
-                                                    <input required type="number" ng-if="!olateB{{$i}}" placeholder="amount" value="{{$pack->late_amount}}" pattern="\d*" name="opack[{{$i}}][late_amount]" />
-                                                </td>
-                                                <td>
-                                                    <select ng-if="!olateB{{$i}}" name="opack[{{$i}}][late_currency]" class="form-control">
-                                                        <option>Naira</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label style="cursor: pointer; font-weight: normal" @if(!$pack->late_amount) ng-init="olateB{{$i}} = true" @endif>
-                                                        <input type="checkbox" ng-model="olateB{{$i}}" />
-                                                        does not apply
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr ng-class="{strike: ostartD{{$i}} }">
-                                                <td>On Start date</td>
-                                                <td>
-                                                    <input required type="number" ng-if="!ostartD{{$i}}" placeholder="amount" pattern="\d*" value="{{$pack->startdate_amount}}" name="opack[{{$i}}][startdate_amount]" />
-                                                </td>
-                                                <td>
-                                                    <select ng-if="!ostartD{{$i}}" name="opack[{{$i}}][startdate_currency]" class="form-control">
-                                                        <option>Naira</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label style="cursor: pointer; font-weight: normal" @if(!$pack->startdate_amount) ng-init="ostartD{{$i}} = true" @endif>
-                                                        <input type="checkbox" ng-model="ostartD{{$i}}" />
-                                                        does not apply
-                                                    </label>
-                                                </td>
-                                            </tr>
+                                            @foreach($pack->packs as $pp)
+                                                    <tr>
+                                                        <td>
+                                                            {{$pp->name}}
+                                                        </td>
+                                                        <td>
+                                                            {{$pp->amount}}
+                                                        </td>
+                                                        <td>
+                                                            {{$pp->currency}}
+                                                        </td>
+                                                    </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="{{url('events/delete/package/'.$pack->id)}}"
+                                    onclick="return confirm('Are you sure you want to delete this package?')"
+                                    class="btn btn-danger">DELETE THIS PACKAGE</a>
                                 </div>
                             </div>
 
@@ -263,7 +213,9 @@
                                                         </td>
                                                         <td>
                                                             <select ng-if="!earlyB{{$i}}" name="pack[{{$i}}][early_currency]" class="form-control">
-                                                                <option>Naira</option>
+                                                                @foreach($currs as $curr)
+                                                                    <option value="{{$curr->id}}">{{$curr->name}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
                                                         <td>
@@ -280,7 +232,9 @@
                                                         </td>
                                                         <td>
                                                             <select ng-if="!lateB{{$i}}" name="pack[{{$i}}][late_currency]" class="form-control">
-                                                                <option>Naira</option>
+                                                                @foreach($currs as $curr)
+                                                                    <option value="{{$curr->id}}">{{$curr->name}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
                                                         <td>
@@ -297,7 +251,9 @@
                                                         </td>
                                                         <td>
                                                             <select ng-if="!startD{{$i}}" name="pack[{{$i}}][startdate_currency]" class="form-control">
-                                                                <option>Naira</option>
+                                                                @foreach($currs as $curr)
+                                                                    <option value="{{$curr->id}}">{{$curr->name}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
                                                         <td>

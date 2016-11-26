@@ -12,6 +12,7 @@ class ServiceOrder extends Model
 
     protected $casts = [
         'event_services' => 'array',
+        'event_type' => 'array',
         'history' => 'array'
     ];
 
@@ -21,7 +22,8 @@ class ServiceOrder extends Model
             "order_id" => $this->id,
             "user_id" => $this->user_id,
             "provider_id" => $this->provider_id,
-            "amount" => $this->budget
+            "amount" => $this->budget,
+            "currency" => $this->currency
         ];
 
         $ph = PaymentHistory::create($params);

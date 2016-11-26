@@ -20,6 +20,8 @@
     <link href="{{ url('') }}/assets/admin/css/style.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/admin/css/style-responsive.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/admin/css/custom.css" rel="stylesheet">
+    <link href="{{ url('css/sweetalert.css') }}" rel="stylesheet">
+
     @yield('styles')
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -142,6 +144,8 @@
 
 <!--common scripts for all pages-->
 <script src="{{ url('') }}/assets/admin/js/scripts.js"></script>
+<script src="{{ url('js/sweetalert.min.js') }}"></script>
+
 @yield('scripts')
 
 <script>

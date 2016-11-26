@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use DB;
 use App\Models\EventType;
+use App\Models\Currency;
 use App\Models\ServiceOptions;
 use App\Models\ServiceList;
 /**
@@ -48,6 +49,29 @@ class M
         }
         // dd($list);
         return $list;
+        // return ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
+        // 'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
+        // 'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',
+        // 'Award Ceremony', 'Road Trip', 'Naming Ceremony', 'Birthday Party', 'Contest', 'Coronation',
+        // 'Ordination', 'Cookout'];
+    }
+
+
+    static function getCurrencies($all=""){
+        if($all == ""){
+            $data = Currency::where('visible', 1)->get();
+        }else{
+            $data = Currency::get();
+        }
+
+        return $data;
+
+        // $list = [];
+        // foreach($data as $d){
+        //     $list[$d->id] = $d->name;
+        // }
+        // // dd($list);
+        // return $list;
         // return ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',
         // 'Seminar', 'Corporate Party', 'Tourism', 'Dinner Party', 'Pool Party', 'Carnival', 'Wedding Ceremony',
         // 'Burial Ceremony', 'Engagement Party', 'Proposal Party', 'Convention', 'Sport Competition',

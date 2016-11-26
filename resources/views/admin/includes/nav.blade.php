@@ -109,9 +109,14 @@
                 <i class="fa fa-users"></i><span>Payments Due (SP)</span>
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ url('admin/payments/history') }}">
                 <i class="fa fa-users"></i><span>Payments History</span>
+            </a>
+        </li> --}}
+        <li>
+            <a href="{{ url('admin/payments/rates') }}">
+                <i class="fa fa-money"></i><span>Currency Rates</span>
             </a>
         </li>
     @endif

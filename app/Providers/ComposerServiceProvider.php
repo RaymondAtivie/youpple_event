@@ -22,6 +22,8 @@ class ComposerServiceProvider extends ServiceProvider
             $services = M::getServices();
             $intrests = M::getIntrests();
             $countries = M::getCountries();
+            $currencies = M::getCurrencies();
+            $currObj =  \App\Models\Currency::class;
 
             $view->with([
                 'intrests'=>$intrests,
@@ -29,7 +31,9 @@ class ComposerServiceProvider extends ServiceProvider
                 'user'=>Auth::user(),
                 'isLoggedIn'=>Auth::check(),
                 'social_links'=>$socials,
-                'countries'=>$countries
+                'countries'=>$countries,
+                'currs' => $currencies,
+                'currObj' => $currObj
             ]);
         });
         View::composer('auth.*', function($view){

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EventFormRequest;
 use Carbon\Carbon;
+use App\Models\Package;
+use App\Models\Award;
+use App\Models\Sponsor;
 use App\Models\EventType;
 use Validator;
 use App\Slim;
@@ -357,37 +360,65 @@ class EventsController extends Controller
     {
         $event = session("event");
 
-        // dd($r->all());
-
-        $packs = $r->get('pack');
+        $packages = $r->get('pack');
         $j = 0;
-        if($packs){
-            foreach ($packs as $pack) {
-                if(trim($pack['title']) != ""){
+        if($packages){
+            foreach ($packages as $package) {
+                if(trim($package['title']) != ""){
                     $j++;
                     $p = [
-                        "title" => $pack['title'],
-                        "description" =>  $pack['description'],
-                        "fee_type" =>  $pack['fee_type'],
+                        "title" => $package['title'],
+                        "description" =>  $package['description'],
+                        "fee_type" =>  $package['fee_type'],
                     ];
-
-                    if(!isset($pack['free'])){
-                        if(isset($pack['early_amount']) && $pack['early_amount'] != ""){
-                            $p['early_amount'] = $pack['early_amount'];
-                            $p['early_currency'] = $pack['early_currency'];
-                        }
-                        if(isset($pack['late_amount']) && $pack['late_amount'] != ""){
-                            $p['late_amount'] = $pack['late_amount'];
-                            $p['late_currency'] = $pack['late_currency'];
-                        }
-                        if(isset($pack['startdate_amount']) && $pack['startdate_amount'] != ""){
-                            $p['startdate_amount'] = $pack['startdate_amount'];
-                            $p['startdate_currency'] = $pack['startdate_currency'];
-                        }
-                    }else{
+                    if(isset($package['free'])){
                         $p['free'] = true;
                     }
-                    $event->packages()->create($p);
+                    $newPackage = $event->packages()->create($p);
+
+                    if(!isset($package['free'])){
+                        if(isset($package['early_amount']) && $package['early_amount'] != ""){
+                            $e = [
+                                'event_id'=>$event->id,
+                                'name'=>'early',
+                                'amount'=>$package['early_amount'],
+                                'currency'=>$package['early_currency'],
+                            ];
+                            $newPackage->packs()->create($e);
+                            // $p['early_amount'] = $package['early_amount'];
+                            // $p['early_currency'] = $package['early_currency'];
+                        }
+                        if(isset($package['late_amount']) && $package['late_amount'] != ""){
+                            $e = [
+                                'event_id'=>$event->id,
+                                'name'=>'late',
+                                'amount'=>$package['late_amount'],
+                                'currency'=>$package['late_currency'],
+                            ];
+                            $newPackage->packs()->create($e);
+                            // $p['late_amount'] = $package['late_amount'];
+                            // $p['late_currency'] = $package['late_currency'];
+                        }
+                        if(isset($package['startdate_amount']) && $package['startdate_amount'] != ""){
+                            $e = [
+                                'event_id'=>$event->id,
+                                'name'=>'startdate',
+                                'amount'=>$package['startdate_amount'],
+                                'currency'=>$package['startdate_currency'],
+                            ];
+                            $newPackage->packs()->create($e);
+                            // $p['startdate_amount'] = $package['startdate_amount'];
+                            // $p['startdate_currency'] = $package['startdate_currency'];
+                        }
+                    }else{
+                        $e = [
+                            'event_id'=>$event->id,
+                            'name'=>'free',
+                            'amount'=>0,
+                            'currency'=>"Naira",
+                        ];
+                        $newPackage->packs()->create($e);
+                    }
                 }
             }
         }
@@ -397,6 +428,13 @@ class EventsController extends Controller
             M::flash("No package was added to the event");
         }
         return redirect('events/create/awards');
+    }
+    public function deletePackage(Package $package){
+        $package->forceDelete();
+
+        M::flash("Successfully deleted the package", "danger");
+
+        return Redirect::back();
     }
 
     public function showCreateMedia()
@@ -432,7 +470,10 @@ class EventsController extends Controller
 
     public function showCreateAwards()
     {
-        return view('events.createAwards');
+        $event = session("event");
+        $awards = \App\Models\Event::find($event->id)->awards;
+
+        return view('events.createAwards', compact("awards"));
     }
 
     public function storeAwards(Request $r)
@@ -449,9 +490,12 @@ class EventsController extends Controller
                     "description" => $r->input('description')[$i],
                     // "fee_type" => $r->input('fee_type')[$i],
                     "enable_registration" => $r->input('enable_registration')[$i],
-                    "enable_voting" => isset($r->input('enable_voting')[$i]) ?: $r->input('enable_voting')[$i] = 'off',
-                    "voting_end_date" => $r->input('voting_end_date')[$i],
+                    "enable_voting" => isset($r->input('enable_voting')[$i]) ?: $r->input('enable_voting')[$i] = 'off'
                 ];
+
+                if(isset($r->input('enable_voting')[$i])){
+                    $a["voting_end_date"] = $r->input('voting_end_date')[$i];
+                }
                 $award = $event->awards()->create($a);
 
                 for($j=0;$j<count($r->input('cName_'.$i));$j++) {
@@ -482,10 +526,20 @@ class EventsController extends Controller
         }
         return redirect('events/create/sponsors');
     }
+    public function deleteAward(Award $award){
+        $award->forceDelete();
+
+        M::flash("Successfully deleted the award", "danger");
+
+        return Redirect::back();
+    }
 
     public function showCreateSponsors()
     {
-        return view('events.createSponsors');
+        $event = session("event");
+        $sponsors = \App\Models\Event::find($event->id)->sponsors;
+
+        return view('events.createSponsors', compact("sponsors"));
     }
 
     public function storeSponsors(Request $r)
@@ -520,6 +574,13 @@ class EventsController extends Controller
             M::flash("No Sponsors were added tot he event");
         }
         return redirect('events/preview');
+    }
+    public function deleteSponsor(Sponsor $sponsor){
+        $sponsor->forceDelete();
+
+        M::flash("Successfully deleted this partner", "danger");
+
+        return Redirect::back();
     }
 
     public function showPreview()

@@ -1,6 +1,6 @@
 @extends('admin.layout.default')
 @section('title')
-    Featured Events
+    Due Payments
 @stop
 @section('main')
     <!-- Slider -->
@@ -28,7 +28,8 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Service Providers Payments
+                        Service Providers Payments<br />
+                        <small>All currencies have been converted to Naira</small>
                     </header>
                     <div class="panel-body">
                         <table class="table convert-data-table data-table"  id="sample_1">
@@ -42,6 +43,9 @@
                                     </th>
                                     <th>
                                         Amount Made
+                                    </th>
+                                    <th>
+                                        Amount Confirmed
                                     </th>
                                     <th>
                                         Amount Paid
@@ -59,19 +63,26 @@
                                     @foreach($lists as $list)
                                         <tr class="odd gradeX">
                                             <td>
-                                                {{ $list['provider']->name }}
+                                                @if($list['provider']->info->business_name)
+                                                    {{ $list['provider']->info->business_name }}
+                                                @else
+                                                    {{ $list['provider']->name }}
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ $list['provider']->info->user_type }}
                                             </td>
                                             <td>
-                                                {{ $list['amount'] }}
+                                                &#8358;<b>{{ number_format($list['made']) }}</b>
                                             </td>
                                             <td>
-                                                {{ $list['amount'] }}
+                                                &#8358;<b>{{ number_format($list['confirmed']) }}</b>
                                             </td>
-                                            <td class="col-sm-3">
-
+                                            <td>
+                                                &#8358;<b>{{ number_format($list['paid']) }}</b>
+                                            </td>
+                                            <td>
+                                                &#8358;<b>{{ number_format($list['due']) }}</b>
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-info"

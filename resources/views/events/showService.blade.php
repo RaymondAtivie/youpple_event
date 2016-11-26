@@ -14,7 +14,7 @@
     {{$provider->info->description}}
 @endsection
 @section("pageImage")
-    {{ url("userPhotos/".$provider->info->picture) }}
+    {{ url("userPhotos/".$provider->picture) }}
 @endsection
 
 @section("addThis")
@@ -190,7 +190,7 @@
                                                         @foreach($intrests as $in)
                                                             <div class="col-sm-4">
                                                                 <label style="font-weight: 100">
-                                                                    <input type="radio" required name="event_type" value="{{$in}}" />
+                                                                    <input type="checkbox" name="event_type[]" value="{{$in}}" />
                                                                     {{$in}}
                                                                 </label>
                                                             </div>
@@ -234,7 +234,9 @@
                                                     <div class="col-sm-3">
                                                         <label>Currency</label>
                                                         <select name="currency" required class="form-control col-sm-3">
-                                                            <option>Naira</option>
+                                                            @foreach($currs as $curr)
+                                                                <option value="{{$curr->id}}">{{$curr->name}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>

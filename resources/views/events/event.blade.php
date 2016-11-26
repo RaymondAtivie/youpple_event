@@ -10,7 +10,12 @@
                     <div class="row" style="margin-bottom: 10px">
                         <div class="col-sm-5">
                             <div class="dropdown">
-                                <h3>{{UCFirst($key)}} <span class="dropbtn"></span></h3>
+                                <h3 style="margin-bottom: 20px">
+                                    <span style="border-bottom: 2px solid purple; padding-bottom: 10px">{{UCFirst($key)}}</span>
+                                    <span class="dropdown dropbtn">
+                                        <i class="fa fa-caret-down"></i>
+                                    </span>
+                                </h3>
                                 <div class="dropdown-content">
                                     <div class="row">
                                         @foreach($rest as $link)
@@ -38,12 +43,13 @@
                                             data-toggle="popover"
                                             data-trigger="hover"
                                             data-placement="bottom"
-                                            data-content="
+                                            data-content="<?php $i=0; ?>
                                             @foreach($p->event_services as $value)
-                                                {{$value}},
+                                                <?php $i++; ?>
+                                                {{$value}}@if($i != count($p->event_services)), @else. @endif
                                             @endforeach
                                             ">
-                                            <h3>
+                                            <h4>
                                                 @if($p->verified)
                                                     <span style="color: purple; padding-right: 10px" title="Verified by Youpple">
                                                         <i class="fa fa-certificate"></i>
@@ -54,7 +60,7 @@
                                                 @else
                                                     {{$p->user->name}}
                                                 @endif
-                                            </h3>
+                                            </h4>
                                         </a>
 
                                     </div>

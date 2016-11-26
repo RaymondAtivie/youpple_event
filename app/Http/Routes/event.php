@@ -92,12 +92,15 @@ Route::group([
     ], function(){
         Route::get('/create/package', 'EventsController@showCreatePackage');
         Route::post('/create/package', 'EventsController@storePackage');
+        Route::any('/delete/package/{package}', 'EventsController@deletePackage');
 
         Route::get('/create/awards', 'EventsController@showCreateAwards');
         Route::post('/create/awards', 'EventsController@storeAwards');
+        Route::any('/delete/award/{award}', 'EventsController@deleteAward');
 
         Route::get('/create/sponsors', 'EventsController@showCreateSponsors');
         Route::post('/create/sponsors', 'EventsController@storeSponsors');
+        Route::any('/delete/sponsor/{sponsor}', 'EventsController@deleteSponsor');
 
         Route::get('preview', 'EventsController@showPreview');
         Route::get('publish', 'EventsController@publishEvent');

@@ -6,9 +6,9 @@
     <!-- Slider -->
     <div class="page-head">
         <h3>
-            Service Orders made to Service Providers
+            Paid Service Orders
         </h3>
-        <span class="sub-title">Manage your Service Orders</span>
+        <span class="sub-title">Manage Service Orders that you have paid for</span>
     </div>
 
     <div class="wrapper">
@@ -21,7 +21,7 @@
             @if(count($orders) < 1)
                 <div class="col-sm-12">
                     <div class="alert alert-info">
-                        <h3>You have not ordered a service event &nbsp; &nbsp;
+                        <h3>You have not paid for a service order &nbsp; &nbsp;
                             <a href="{{ url("events/order") }}" class="btn btn-primary">Order Event Service</a>
                         </h3>
                     </div>
@@ -30,7 +30,7 @@
                 <div class="col-sm-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            All My Service Orders ({{count($orders)}})
+                            All My Paid Service Orders ({{count($orders)}})
                         </header>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -71,7 +71,9 @@
                                             @foreach($orders as $order)
                                                 <tr class="odd gradeX">
                                                     <td>
-                                                        {{ $order['event_type'] }}
+                                                        @foreach($order->event_type as $s)
+                                                            {{$s}},
+                                                        @endforeach
                                                     </td>
                                                     <td>
                                                         @if($order->provider->info->user_type == "Business")
@@ -90,8 +92,8 @@
                                                             @endforeach
                                                         </small>
                                                     </td>
-                                                    <td class="col-sm-1">
-                                                        {{number_format($order->budget)}} {{$order->currency}}
+                                                    <td class="col-sm-1" title="N{{$currObj::find($order->currency)->calcNaira($order->budget)}}">
+                                                        {{$currObj::find($order->currency)->symbol}}{{number_format($order->budget)}}
                                                     </td>
                                                     <td title="{{$order->paymentDetails['created_at']}}">
                                                         <small>{{ $order->paymentDetails['created_at']->diffForHumans() }}</small>

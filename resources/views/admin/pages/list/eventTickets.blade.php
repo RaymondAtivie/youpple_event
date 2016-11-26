@@ -133,15 +133,15 @@
                                                     @foreach($ticket->getPackages() as $package)
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <b>{{$package->title}}</b>
+                                                                <b>{{$package->package->title}}</b>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                {{$package->description}}
+                                                                {{$package->package->description}}
                                                             </div>
-                                                            <div class="col-sm-3">
-                                                                <b>N{{number_format($package->fee_amount)}}</b>
+                                                            <div class="col-sm-3" title="N{{$package->calcNaira()}}">
+                                                                <b>{{$package->currencyObj()->symbol}}{{number_format($package->amount)}}</b>
                                                                 <br />
-                                                                <small>{{$package->fee_style}}</small>
+                                                                <small>{{$package->name}}</small>
                                                             </div>
                                                         </div>
                                                     @endforeach

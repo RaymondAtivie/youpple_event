@@ -18,8 +18,8 @@ class TicketController extends Controller
         //Calculate the total amount
         $total = 0;
         foreach ($input['packages'] as $p) {
-            $pack = \App\Models\Package::find($p);
-            $total += $pack->fee_amount;
+            $pack = \App\Models\Pack::find($p);
+            $total += $pack->calcNaira();
             $packages[] = $pack;
         }
 

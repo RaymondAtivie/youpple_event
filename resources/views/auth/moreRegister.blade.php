@@ -141,8 +141,9 @@
                 <div class="col-md-5"><label>Currency Prefrence:</label></div>
                 <div class="col-md-5">
                     <select class="form-control" name="currency">
-                        <option>Naira</option>
-                        {{-- <option>US Dollars</option> --}}
+                        @foreach($currs as $curr)
+                            <option value="{{$curr->id}}">{{$curr->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

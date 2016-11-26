@@ -65,7 +65,9 @@
                                             @endif
                                             ">
                                             <td>
-                                                {{ $order['event_type'] }}
+                                                @foreach($order->event_type as $s)
+                                                    {{$s}},
+                                                @endforeach
                                             </td>
                                             <td class="col-sm-2">
                                                 {{$order->comment}}
@@ -79,8 +81,8 @@
                                                     @endforeach
                                                 </small>
                                             </td>
-                                            <td class="col-sm-1">
-                                                {{number_format($order->budget)}} {{$order->currency}}
+                                            <td class="col-sm-1" title="N{{$currObj::find($order->currency)->calcNaira($order->budget)}}">
+                                                {{$currObj::find($order->currency)->symbol}}{{number_format($order->budget)}}
                                             </td>
                                             <td title="{{$order['created_at']}}">
                                                 <small>{{ $order['created_at']->diffForHumans() }}</small>
@@ -219,7 +221,7 @@
                                             <h4 class="modal-title" id="myModalLabel">Owner of this Offer</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <img class="img-rounded" src="{{url('userPhotos/'.$order->owner->info->picture)}}" style="width: 100px" />
+                                            <img class="img-rounded" src="{{url('userPhotos/'.$order->owner->picture)}}" style="width: 100px" />
                                             <h3>{{$order->owner->name}}</h3>
                                             <h3>{{$order->owner->email}}</h3>
                                             <h3>{{$order->owner->phone}}</h3>

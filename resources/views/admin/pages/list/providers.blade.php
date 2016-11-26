@@ -154,7 +154,11 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-4 bold">Prefered currency</div>
-                                                <div class="col-sm-8">{{$user->info->currency}}</div>
+                                                <div class="col-sm-8">
+                                                    @if($user->info->currency)
+                                                        {{$currObj::find($user->info->currency)->name}}
+                                                    @endif
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-4 bold"><i class="fa fa-twitter"></i> Twitter</div>

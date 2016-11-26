@@ -54,7 +54,7 @@
                                 @foreach($intrests as $in)
                                     <div class="col-sm-4">
                                         <label style="font-weight: 100">
-                                            <input type="radio" name="event_type" value="{{$in}}" />
+                                            <input type="checkbox" name="event_type[]" value="{{$in}}" />
                                             {{$in}}
                                         </label>
                                     </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label>Event Address</label>
-                            <textarea name="address" rows="3" style="resize: none"  class="form-control">{{ old('title') }}</textarea>
+                            <textarea name="address" rows="3" required style="resize: none"  class="form-control">{{ old('title') }}</textarea>
                             @if($errors->has('address'))
                                 {!! $errors->first('address', "<p class='text-danger help'>:message</p>") !!}
                             @endif
@@ -94,7 +94,7 @@
                         </div>
                         <div class="form-group">
                             <label>Event Service Description (Message / Comment)</label>
-                            <textarea name="comment" rows="3" style="resize: none"  class="form-control">{{ old('comment') }}</textarea>
+                            <textarea name="comment" rows="3" required style="resize: none"  class="form-control">{{ old('comment') }}</textarea>
                             @if($errors->has('comment'))
                                 {!! $errors->first('comment', "<p class='text-danger help'>:message</p>") !!}
                             @endif
@@ -102,12 +102,14 @@
                         <div class="row form-group">
                             <div class="col-sm-9">
                                 <label>Budget</label>
-                                <input type="number" name="budget"  value="{{ old('budget') }}"  class="form-control col-sm-9">
+                                <input type="number" name="budget" required value="{{ old('budget') }}"  class="form-control col-sm-9">
                             </div>
                             <div class="col-sm-3">
                                 <label>Currency</label>
                                 <select name="currency" class="form-control col-sm-3">
-                                    <option>Naira</option>
+                                    @foreach($currs as $curr)
+                                        <option value="{{$curr->id}}">{{$curr->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             @if($errors->has('budget'))

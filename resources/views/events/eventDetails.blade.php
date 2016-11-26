@@ -21,7 +21,9 @@
     @if (Request::path() == 'events/preview')
         <hr style="clear: both" />
         <div class="alert alert-info" style="text-align: center; margin: 20px">
-            <p>Your Event is ready to be published. Please Click this button to confirm</p><br />
+            <p>Your Event is ready to be published</p><br />
+            <a class="btn btn-default" href="{{ url("events/create/package") }}">Edit</a>
+            <a class="btn btn-danger" href="{{ url("events/create/package") }}">Delete</a>
             <a class="btn btn-primary" href="{{ url("events/publish") }}">Publish</a>
         </div>
     @endif
@@ -224,204 +226,219 @@
                                         @foreach($event->packages->chunk(2) as $chunk)
                                             <div class="row">
                                                 @foreach($chunk as $package)
-                                                    <label class="col-md-6" style="margin-bottom: 20px">
-                                                        <div class="col-md-1">
-                                                            <input type="checkbox" name="packages[]" value="{{$package->id}}" />
-                                                        </div>
-                                                        <div class='col-md-11'>
-                                                            <span style="font-size: 18px; color: black">
-                                                                {{$package->title}} &middot;
-                                                                <i>{{$package->packageFeeTypes->first()['name']}}</i>
-                                                            </span>
-                                                            <p style="font-weight: lighter; margin-bottom: 0px;">{{$package->description}}</p>
-                                                            <span style="font-weight: lighter;"><b style="font-size: 18px; color: black">
-                                                                {{$package->fee_currency}} {{number_format($package->fee_amount)}}</b>  &nbsp; &middot; &nbsp; <i>{{$package->fee_style}}</i>
-                                                            </span>
-                                                        </div>
-                                                    </label>
-                                                @endforeach
-                                            </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="inner-holder cp-btn-holder">
-                                        <button type="submit" class="btn-submit" value="Submit" name="submit2">Register</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!--Form Box End-->
-                @endif
-                <br style="clear: both" />
-                <hr style="clear: both" />
-
-                <div style="padding-top: 20px">
-                    @if(count($event->awards) > 0)
-                        <h2><i class="fa fa-trophy"></i> Awards</h2>
-                    @endif
-                    <!-- Events Listing Start -->
-                    <ul class="cp-events-listing" style="margin-top: 20px">
-                        @foreach($event->awards as $award)
-                            <li class="col-md-12 col-sm-12">
-                                <!--Events Box Start-->
-                                <div class="cp-events-box">
-                                    <div class="cp-text">
-                                        <div class="cp-event-content">
-                                            <h3>{{$award->title}}</h3>
-                                            <p>{{$award->description}}</p>
-                                        </div>
-                                        <div class="row">
-                                            @if($award->enable_registration == "true")
-                                                <button class="btn btn-lg btn-default col-md-2" data-toggle="modal" data-target="#myModalReg{{$award->id}}">Register</button>
-                                                <div class="col-md-1"></div>
-                                            @endif
-                                            <button class="btn btn-lg btn-submit col-md-3" data-toggle="modal" data-target="#myModal{{$award->id}}">View Contestants</button>
-                                        </div>
-                                        <!-- Voting Modal -->
-                                        <div class="modal fade" id="myModal{{$award->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Contestants for <b>{{$award->title}}</b></h4>
-                                                    </div>
-                                                    <div class="modal-body" style="padding: 0px">
-                                                        @if($award->votingActive())
-                                                            <div class="alert alert-info" style="text-align: center; margin-bottom: 0px">
-                                                                Voting would end <span style="font-weight: bold" title="{{ $award->voting_end_date->format("d-M-Y h:i a")}}">{{$award->voting_end_date->diffForHumans()}}</span>
-                                                            </div>
-                                                        @else
-                                                            <div class="alert alert-warning" style="text-align: center; margin-bottom: 0px">
-                                                                Voting has ended for this award
-                                                            </div>
-                                                        @endif
-                                                        <table class="table table-hover">
-                                                            <tr>
-                                                                <th></th>
-                                                                <th>Name</th>
-                                                                <th>Description</th>
-                                                                <th></th>
-                                                            </tr>
-
-                                                            @foreach($award->contestants->sortByDesc('vote') as $con)
-                                                                <tr>
-                                                                    <td>
-                                                                        <img style="width: 50px; border-radius: 50%" src="{{ url($con->image) }}" />
-                                                                    </td>
-                                                                    <td>{{$con->name}}</td>
-                                                                    <td><small>{{$con->description}}</small></td>
-                                                                    <td>
-                                                                        @if($award->enable_voting == "true")
-                                                                            @if($award->votingActive())
-                                                                                <div class="label hidden award{{$award->id}} label-info">{{$con->votingPercentage()}}%</div>
-                                                                                <button class="btn btn-small voteButton vAward{{$award->id}}" rel="{{$con->id}}" award="{{$award->id}}">Vote</button>
-                                                                            @else
-                                                                                <div class="label label-info">{{$con->votingPercentage()}}%</div>
-                                                                            @endif
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </table>
+                                                    <div class="col-md-6" style="margin-bottom: 20px">
+                                                        {{-- <div class="col-md-1">
+                                                        <input type="checkbox" name="packages[]" value="{{$package->id}}" />
+                                                    </div> --}}
+                                                    <div class='col-md-11'>
+                                                        <span style="font-size: 18px; color: black">
+                                                            {{$package->title}} &middot;
+                                                            <i>{{$package->fee_type}}</i>
+                                                        </span>
+                                                        <p style="font-weight: lighter; margin-bottom: 0px;">{{$package->description}}</p>
+                                                        <hr />
+                                                        @foreach($package->packs as $pp)
+                                                            <label class="row" style="display: block">
+                                                                <div class="col-sm-1">
+                                                                    <input type="checkbox" name="packages[]" value="{{$pp->id}}" />
+                                                                </div>
+                                                                <div class="col-sm-10">
+                                                                    <div style="font-weight: lighter">
+                                                                        <b style="font-size: 18px; color: black">
+                                                                            {{$pp->currencyObj()->symbol}}
+                                                                            {{number_format(intval($pp->amount))}}
+                                                                        </b>
+                                                                        &nbsp; &middot; &nbsp;
+                                                                        <i>{{$pp->name}}</i>
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        @endforeach
                                                     </div>
                                                 </div>
-                                            </div>
-
+                                            @endforeach
                                         </div>
-                                        <!-------->
+                                    @endforeach
 
-                                        <!-- Registration Modal -->
-                                        <div class="modal fade" id="myModalReg{{$award->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Register for this award: <b>{{$award->title}}</b></h4>
-                                                    </div>
-                                                    <form>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Full Name</label>
-                                                                <input type="email" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="exampleInputPassword1">Description</label>
-                                                                <textarea name="description" class="form-control"></textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="exampleInputFile">Your Picture</label>
-                                                                <input type="file">
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Register</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <!-------->
-                                    </div>
                                 </div>
-
-                                <!--Events Box End-->
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <hr style="clear: both" />
-
-                @if(count($event->sponsors) > 0)
-                    <!-- Creative Content Start-->
-                    <section class="cp-creative-section pd-tb60">
-                        <div class="container">
-                            <div class="cp-section-title">
-                                <h2>Partners</h2>
-                                <strong>Partners for this event</strong>
-                                {{-- {{$event->sponsors}} --}}
                             </div>
-                            <div class="row" style="text-align: center">
-                                @foreach($event->sponsors as $sp)
-                                    <div class="col-md-3 col-sm-6" style="padding: 10px">
-                                        <a href="http://{{$sp->link}}" target="_blank">
-                                            <img style="width: 150px" src="{{$sp->logo}}" />
-                                        </a>
-                                    </div>
-                                @endforeach
+                            <div class="col-md-12 col-sm-12">
+                                <div class="inner-holder cp-btn-holder">
+                                    <button type="submit" class="btn-submit" value="Submit" name="submit2">Register</button>
+                                </div>
                             </div>
                         </div>
-                    </section><!-- Creative Content End-->
-                @endif
+                    </form>
+                </div><!--Form Box End-->
+            @endif
+            <br style="clear: both" />
+            <hr style="clear: both" />
 
+            <div style="padding-top: 20px">
+                @if(count($event->awards) > 0)
+                    <h2><i class="fa fa-trophy"></i> Awards</h2>
+                @endif
+                <!-- Events Listing Start -->
+                <ul class="cp-events-listing" style="margin-top: 20px">
+                    @foreach($event->awards as $award)
+                        <li class="col-md-12 col-sm-12">
+                            <!--Events Box Start-->
+                            <div class="cp-events-box">
+                                <div class="cp-text">
+                                    <div class="cp-event-content">
+                                        <h3>{{$award->title}}</h3>
+                                        <p>{{$award->description}}</p>
+                                    </div>
+                                    <div class="row">
+                                        @if($award->enable_registration == "true")
+                                            <button class="btn btn-lg btn-default col-md-2" data-toggle="modal" data-target="#myModalReg{{$award->id}}">Register</button>
+                                            <div class="col-md-1"></div>
+                                        @endif
+                                        <button class="btn btn-lg btn-submit col-md-3" data-toggle="modal" data-target="#myModal{{$award->id}}">View Contestants</button>
+                                    </div>
+                                    <!-- Voting Modal -->
+                                    <div class="modal fade" id="myModal{{$award->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Contestants for <b>{{$award->title}}</b></h4>
+                                                </div>
+                                                <div class="modal-body" style="padding: 0px">
+                                                    @if($award->votingActive())
+                                                        <div class="alert alert-info" style="text-align: center; margin-bottom: 0px">
+                                                            Voting would end <span style="font-weight: bold" title="{{ $award->voting_end_date->format("d-M-Y h:i a")}}">{{$award->voting_end_date->diffForHumans()}}</span>
+                                                        </div>
+                                                    @else
+                                                        <div class="alert alert-warning" style="text-align: center; margin-bottom: 0px">
+                                                            Voting has ended for this award
+                                                        </div>
+                                                    @endif
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Name</th>
+                                                            <th>Description</th>
+                                                            <th></th>
+                                                        </tr>
+
+                                                        @foreach($award->contestants->sortByDesc('vote') as $con)
+                                                            <tr>
+                                                                <td>
+                                                                    <img style="width: 50px; border-radius: 50%" src="{{ url($con->image) }}" />
+                                                                </td>
+                                                                <td>{{$con->name}}</td>
+                                                                <td><small>{{$con->description}}</small></td>
+                                                                <td>
+                                                                    @if($award->enable_voting == "true")
+                                                                        @if($award->votingActive())
+                                                                            <div class="label hidden award{{$award->id}} label-info">{{$con->votingPercentage()}}%</div>
+                                                                            <button class="btn btn-small voteButton vAward{{$award->id}}" rel="{{$con->id}}" award="{{$award->id}}">Vote</button>
+                                                                        @else
+                                                                            <div class="label label-info">{{$con->votingPercentage()}}%</div>
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-------->
+
+                                    <!-- Registration Modal -->
+                                    <div class="modal fade" id="myModalReg{{$award->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Register for this award: <b>{{$award->title}}</b></h4>
+                                                </div>
+                                                <form>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Full Name</label>
+                                                            <input type="email" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Description</label>
+                                                            <textarea name="description" class="form-control"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputFile">Your Picture</label>
+                                                            <input type="file">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Register</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-------->
+                                </div>
+                            </div>
+
+                            <!--Events Box End-->
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <hr style="clear: both" />
+
+            @if(count($event->sponsors) > 0)
                 <!-- Creative Content Start-->
                 <section class="cp-creative-section pd-tb60">
                     <div class="container">
                         <div class="cp-section-title">
-                            <!--<h2>Sponsors</h2>-->
-                            <strong>Powered by Youpple</strong>
+                            <h2>Partners</h2>
+                            <strong>Partners for this event</strong>
+                            {{-- {{$event->sponsors}} --}}
                         </div>
                         <div class="row" style="text-align: center">
-                            <?php for($i=1;$i<=6;$i++){ ?>
-                                <div class="col-md-2 col-xs-4" style="padding: 10px">
-                                    <img style="height: inherit;" class="img-responsive" src="{{ url('images/logos/small_'.$i.'.png') }}" />
+                            @foreach($event->sponsors as $sp)
+                                <div class="col-md-3 col-sm-6" style="padding: 10px">
+                                    <a href="http://{{$sp->link}}" target="_blank">
+                                        <img style="width: 150px" src="{{$sp->logo}}" />
+                                    </a>
                                 </div>
-                                <?php } ?>
-                            </div>
+                            @endforeach
                         </div>
-                    </section><!-- Creative Content End-->
-                </div>
+                    </div>
+                </section><!-- Creative Content End-->
+            @endif
 
-                <!-- Blog Item End -->
-
+            <!-- Creative Content Start-->
+            <section class="cp-creative-section pd-tb60">
+                <div class="container">
+                    <div class="cp-section-title">
+                        <!--<h2>Sponsors</h2>-->
+                        <strong>Powered by Youpple</strong>
+                    </div>
+                    <div class="row" style="text-align: center">
+                        <?php for($i=1;$i<=6;$i++){ ?>
+                            <div class="col-md-2 col-xs-4" style="padding: 10px">
+                                <img style="height: inherit;" class="img-responsive" src="{{ url('images/logos/small_'.$i.'.png') }}" />
+                            </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </section><!-- Creative Content End-->
             </div>
 
+            <!-- Blog Item End -->
+
         </div>
-    </section><!-- Up Coming Events Start -->
+
+    </div>
+</section><!-- Up Coming Events Start -->
 </div>
 <!-- Main Content End -->
 @endsection

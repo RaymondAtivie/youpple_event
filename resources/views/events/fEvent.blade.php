@@ -139,58 +139,60 @@
                                     {{$p->user->name}}
                                 @endif
                             </h3>
-                            <small>
+                            <small>                                
+                                <?php $i=0; ?>
                                 @foreach($p->event_services as $value)
-                                    {{$value}},
-                                @endforeach
-                            </small>
-                            <br />
-                            <a href="{{ url("events/view/service/".$p->user->id) }}"
-                                class="btn btn-lg btn-primary btn-link">HIRE</a>
-                            </div>
-                        @endforeach
+                                    <?php $i++; ?>
+                                    {{$value}}@if($i != count($p->event_services)), @else. @endif
+                                    @endforeach
+                                </small>
+                                <br />
+                                <a href="{{ url("events/view/service/".$p->user->id) }}"
+                                    class="btn btn-lg btn-primary btn-link">HIRE</a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
+
+                <hr />
+                <style>
+                .padding-5{
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+                </style>
+
+                @yield('eventBody')
+
             </div>
-
-            <hr />
-            <style>
-            .padding-5{
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-            </style>
-
-            @yield('eventBody')
-
         </div>
-    </div>
-    <!-- Main Content End -->
-@endsection
+        <!-- Main Content End -->
+    @endsection
 
-@section("footer_scripts")
-    <script>
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : false, // Show next and prev buttons
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            autoPlay: true,
-            stopOnHover: true,
-            pagination: true,
-            singleItem:true
+    @section("footer_scripts")
+        <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+        $(document).ready(function() {
+            $("#owl-demo").owlCarousel({
+                navigation : false, // Show next and prev buttons
+                slideSpeed : 300,
+                paginationSpeed : 400,
+                autoPlay: true,
+                stopOnHover: true,
+                pagination: true,
+                singleItem:true
+            });
+
+            $("#owl-vert").owlCarousel({
+                autoPlay: true,
+                singleItem : true,
+                stopOnHover: true,
+                transitionStyle : "slideDown"
+            });
+
         });
-
-        $("#owl-vert").owlCarousel({
-            autoPlay: true,
-            singleItem : true,
-            stopOnHover: true,
-            transitionStyle : "slideDown"
-        });
-
-    });
-    </script>
-@endsection
+        </script>
+    @endsection

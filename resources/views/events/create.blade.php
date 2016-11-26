@@ -62,7 +62,7 @@
                                     data-label="Your events main picture"
                                     data-size="950,400"
                                     data-ratio="19:8">
-                                    <input type="file" required name="picture"></div>
+                                    <input type="file" name="picture"></div>
                                 </div>
                             </div>
                         </div>
@@ -92,6 +92,8 @@
                         </div>
 
                         <div id="map_canvas" style="width: 100%; height: 400px;"></div>
+                        <button type="button" class="btn btn-default" id="myLocation">Go to my location</button>
+                        <br />
                         <br />
 
                         <div class="form-group">
@@ -289,17 +291,55 @@
 
         geocoder = new google.maps.Geocoder();
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                map.setCenter(pos);
-                map.setZoom(15);
-                placeMarker(pos);
-            });
+        
+        function gotoMylocation(){
+             if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    map.setCenter(pos);
+                    map.setZoom(15);
+                    placeMarker(pos);
+                });
+            }
         }
+
+        gotoMylocation();
+
+        $("#myLocation").click(function(){
+            console.log("going to my location");
+            gotoMylocation();
+        });
+         var addressComp = false;
+        $("#address").blur(function() {
+            var addy = $(this).val();
+
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+addy+"&key=AIzaSyAiyFQLOKpaCO39ybQVoxy63dzbdvtSXd8";
+            $.ajax({
+                url: url,
+                success: function(result){
+                    console.log(result);
+                    var status = result.status;
+                    var loca;
+                    if(status == "OK"){
+                        loca = result.results[0].geometry.location;
+                        console.log("change location on map");
+                        map.setCenter(loca);
+                        map.setZoom(15);
+                        placeMarker(loca);
+                        addressComp = true;
+                    }else{
+                        toastr.info('Couldnt find this plae on the map');
+                    }
+                    console.log(loca);
+                },
+                dataType: "json"
+            });
+            console.log(addy);
+        });       
+
         google.maps.event.addListener(map, 'click', function(event) {
             placeMarker(event.latLng);
         });
@@ -328,9 +368,20 @@
                         var ads = results[0].address_components;
                         var num = ads.length;
 
-                        var state, country;
+                        var state, country, lga, zip;
                         for(var i=1;i<num;i++){
-                            console.log(ads[num-i]);
+                            if(ads[num-i].types[0] == "locality"){
+                                lga = ads[num-i].long_name;
+                                break;
+                            }
+                        }
+                        for(var i=1;i<num;i++){
+                            if(ads[num-i].types[0] == "postal_code"){
+                                zip = ads[num-i].long_name;
+                                break;
+                            }
+                        }
+                        for(var i=1;i<num;i++){
                             if(ads[num-i].types[0] == "country"){
                                 country = ads[num-i].long_name;
                                 break;
@@ -343,7 +394,11 @@
                             }
                         }
                         // console.log(ads);
-                        document.getElementById("address").value = results[0].formatted_address;
+                        if(addressComp){
+                            addressComp = false;
+                        }else{
+                            document.getElementById("address").value = results[0].formatted_address;
+                        }
                         document.getElementById("state").value = state;
                         document.getElementById("country").value = country;
                     }

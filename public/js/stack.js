@@ -53,15 +53,21 @@ $(document).ready(function(){
                                 $btn.html('Paid');
                             },
                             error: function (error) {
-                                alert("Something wrong happened");
+                                // alert("Something wrong happened");
+                                swal({
+                                  title: "Error!",
+                                  text: "Something went wrong!",
+                                  type: "error",
+                                  confirmButtonText: "Okay"
+                                });
                                 $btn.html('Pay Now');
                                 $btn.prop('disabled', false);
                             }
                         });
                     },
                     onClose: function(){
-                        alert('No payment has been made');
-
+                        // alert('No payment has been made');
+                        swal("Cancelled!", "No payment was made");
                         $btn.html('Pay Now');
                         $btn.prop('disabled', false);
                     }

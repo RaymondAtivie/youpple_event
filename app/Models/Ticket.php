@@ -28,7 +28,7 @@ class Ticket extends Model
     public function getPackages()
     {
         foreach ($this->packages as $pid) {
-            $p = \App\Models\Package::find($pid);
+            $p = \App\Models\Pack::find($pid);
             $packs[] = $p;
         }
 
@@ -38,7 +38,7 @@ class Ticket extends Model
     public function getTotalPrice(){
         $sum = 0;
         foreach ($this->getPackages() as $pack) {
-            $sum += $pack->fee_amount;
+            $sum += $pack->calcNaira();
         }
 
         return $sum;

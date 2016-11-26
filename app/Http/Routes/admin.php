@@ -106,6 +106,12 @@ Route::group([
     Route::get('/payments/due', "PaymentController@showDuePayments");
     Route::get('/payments/due/{provider}', "PaymentController@showProviderDuePayments");
     Route::get('/payments/due/{payment}/transfer', "PaymentController@confirmMoneyTransfer");
+
+    Route::get('/payments/rates', "PaymentController@showCurrencyRates");
+    Route::post('/payments/rates/add', "PaymentController@addCurrency");
+    Route::any('/payments/rates/{currency}/update', "PaymentController@updateCurrencyRates");
+    Route::any('/payments/rates/{currency}/enable', "PaymentController@enableCurrency");
+    Route::any('/payments/rates/{currency}/disable', "PaymentController@disableCurrency");
 });
 
 Route::get('/admin/login', 'AdminController@loginpage');

@@ -35,4 +35,9 @@ class Package extends Model
     {
         return $this->belongsToMany("App\Models\PackageFeeType")->withTimestamps();
     }
+
+    public function packs()
+    {
+        return $this->hasMany("App\Models\Pack");
+    }
 }
