@@ -42,6 +42,7 @@
 
     {{-- <link href="{{ elixir('css/all.css') }}" rel="stylesheet"> --}}
     <link href="{{ url('css/all.css') }}" rel="stylesheet">
+    <link href="{{ url('css/custom.css') }}" rel="stylesheet">
 
 
     <!--Font Family Css Start-->

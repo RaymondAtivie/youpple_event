@@ -45,8 +45,14 @@ class M
 
         $list = [];
         foreach($data as $d){
-            $list[$d->id] = $d->name;
+            if(strtolower($d->name) == "others"){
+                $oid = $d->id;
+                $oname = $d->name;
+            }else{
+                $list[$d->id] = $d->name;
+            }
         }
+        $list[$oid] = $oname;
         // dd($list);
         return $list;
         // return ['Fashion Show', 'Trade Fair', 'Career Fair', 'Talent Hunt', 'Talk Show', 'Training', 'Workshop',

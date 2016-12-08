@@ -36,7 +36,7 @@
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
-    color: purple;
+    color: #f6891f;
 }
 
 .dropdown:hover .dropdown-content {
@@ -139,7 +139,7 @@
                                     {{$p->user->name}}
                                 @endif
                             </h3>
-                            <small>                                
+                            <small>
                                 <?php $i=0; ?>
                                 @foreach($p->event_services as $value)
                                     <?php $i++; ?>
@@ -148,7 +148,7 @@
                                 </small>
                                 <br />
                                 <a href="{{ url("events/view/service/".$p->user->id) }}"
-                                    class="btn btn-lg btn-primary btn-link">HIRE</a>
+                                    class="btn btn-lg btn-link">HIRE</a>
                                 </div>
                             @endforeach
                         </div>

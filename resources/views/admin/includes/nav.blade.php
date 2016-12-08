@@ -5,7 +5,7 @@
     </li>
     <li>
         <a href="{{ url('admin') }}">
-            <i class="fa fa-home"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
 
@@ -14,15 +14,15 @@
     </li>
     <li class="menu-list">
         <a href="#">
-            <i class="fa fa-file-text-o"></i><span>Home Page</span>
+            </i><i class="fa fa-file-text-o"></i><span>Home Page</span>
         </a>
         <ul class="child-list">
             <li><a href="{{ url('admin/home/logo') }}">Logos</a></li>
             <li><a href="{{ url('admin/home/social') }}">Social Links</a></li>
             <li><a href="{{ url('admin/home/privacy') }}">Privacy Policy</a></li>
             <li><a href="{{ url('admin/home/faq') }}">FAQ</a></li>
-            <li><a href="{{ url('admin/home/advert') }}">Advertising partners</a></li>
-            <li><a href="{{ url('admin/home/termsofuse') }}">How it works</a></li>
+            <li><a href="{{ url('admin/home/advert') }}">Advertising Partners</a></li>
+            <li><a href="{{ url('admin/home/termsofuse') }}">How it Works</a></li>
             <li><a href="{{ url('admin/home/terms') }}">Terms & Condition</a></li>
         </ul>
     </li>
@@ -49,7 +49,7 @@
     </li>
     <li>
         <a href="{{ url('admin/eventtypes') }}">
-            <i class="fa fa-users"></i><span>Manage Event types</span>
+            <i class="fa fa-cogs"></i><span>Manage Event Types</span>
         </a>
     </li>
 
@@ -68,7 +68,7 @@
     </li>
     <li>
         <a href="{{ url('admin/list/providers') }}">
-            <i class="fa fa-briefcase"></i><span>Service Providers</span>
+            <i class="fa fa-user-circle-o"></i><span>Service Providers</span>
         </a>
     </li>
     <li>
@@ -97,7 +97,7 @@
             </li>
             <li>
                 <a href="{{ url('admin/admin') }}">
-                    <i class="fa fa-star"></i><span>User Management</span>
+                    <i class="fa fa-user-plus"></i><span>User Management</span>
                 </a>
             </li>
         @endif
@@ -106,7 +106,7 @@
         </li>
         <li>
             <a href="{{ url('admin/payments/due') }}">
-                <i class="fa fa-users"></i><span>Payments Due (SP)</span>
+                <i class="fa fa-credit-card-alt"></i><span>Payments Due (SP)</span>
             </a>
         </li>
         {{-- <li>

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Helpers\M;
 use Auth;
 use Mail;
+use Redirect;
 use App\Slim;
 use Socialite;
 use App\Models\SocialLogins;
@@ -48,6 +49,16 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), [
             'except' => ['logout', 'moreReg', 'saveUserInfo', 'getSocialRedirect', 'getSocialHandle']
         ]);
+    }
+
+    protected function authenticated(Request $request, User $user){
+        if(!Auth::user()->verify){
+            Auth::logout();
+            M::flash("Oops! You need to verified your account to be able to login", "warning");
+            return Redirect::back();
+        }
+
+        return redirect()->intended($this->redirectPath());
     }
 
     /**

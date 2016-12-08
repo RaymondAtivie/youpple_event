@@ -183,10 +183,10 @@
                 @endif
 
                 @if($event->lat)
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div id="eventMap">
-                                <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=900x300&markers={{$event->lat}},{{$event->lng}}&key=AIzaSyAiyFQLOKpaCO39ybQVoxy63dzbdvtSXd8" />
+                    <div class="row" style="margin-bottom: 50px">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div id="eventMap" style="height: 300px">
+                                {{-- <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=900x300&markers={{$event->lat}},{{$event->lng}}&key=AIzaSyAiyFQLOKpaCO39ybQVoxy63dzbdvtSXd8" /> --}}
                             </div>
                         </div>
                     </div>
@@ -446,6 +446,22 @@
 @section('footer_scripts')
     <script src="{{ url('js/audio-player.js') }}"></script>
     <script>
+    function initMap() {
+        var myLatLng = {lat: {{$event->lat}}, lng: {{$event->lng}}};
+
+        var map = new google.maps.Map(document.getElementById('eventMap'), {
+            zoom: 14,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: '{{$event->title}}'
+        });
+    }
+    initMap();
+
     $(".voteButton").click(function(){
         var con = $(this).attr("rel");
         var award = $(this).attr("award");

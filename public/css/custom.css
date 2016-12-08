@@ -1,0 +1,26 @@
+
+.btn-primary{
+    background-color: #f6891f;
+    border-color: #cb7623;
+}
+.btn-primary:hover{
+    background-color: #cb7623;
+    border-color: #cb7623;
+}
+.btn-primary:active, .btn-primary:focus{
+    background-color: #cb7623;
+    border-color: #f6891f;
+}
+.btn-link, a{
+    color: #f6891f;
+}
+.btn-link:hover, a:hover{
+    color: #cb7623;
+}
+.nav-wizard>li.active>a, .nav-wizard>li.active>a:hover, .nav-wizard>li.active>a:focus {
+    color: #fff;
+    background-color: #7c246d !important;
+}
+.nav-wizard>li.active>a:after {
+    border-left-color: #7c246d !important;
+}

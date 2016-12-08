@@ -97,6 +97,45 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Bank Name</label>
+                                    <input class="form-control" type="text" name="bank_name" value="{{$user->info->bank_name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Bank Address</label>
+                                    <input class="form-control" type="text" name="bank_address" value="{{$user->info->bank_address}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Bank Sort</label>
+                                    <input class="form-control" type="text" name="bank_sort" value="{{$user->info->bank_sort}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Bank Account Number</label>
+                                    <input class="form-control" type="text" name="bank_account_number" value="{{$user->info->bank_account_number}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Bank Account Name</label>
+                                    <input class="form-control" type="text" name="bank_account_name" value="{{$user->info->bank_account_name}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-1">
                                 <label ng-show="RM.mode == 'c'">CV</label>
                                 <label ng-show="RM.mode == 'p'">Company Profile</label>

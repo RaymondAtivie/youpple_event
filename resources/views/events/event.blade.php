@@ -10,8 +10,8 @@
                     <div class="row" style="margin-bottom: 10px">
                         <div class="col-sm-5">
                             <div class="dropdown">
-                                <h3 style="margin-bottom: 20px">
-                                    <span style="border-bottom: 2px solid purple; padding-bottom: 10px">{{UCFirst($key)}}</span>
+                                <h3>
+                                    <span style="border-bottom: 2px solid #f6891f; padding-bottom: 10px">{{UCFirst($key)}}</span>
                                     <span class="dropdown dropbtn">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
@@ -29,9 +29,9 @@
                         </div>
                     </div>
 
-                    <div class="row">
-
+                    <div class="row" style="margin-top: 25px">
                         <?php $i=0; foreach($providers as $p){
+                            if(is_array($p->event_services)){
                             $AI = array_intersect($rest, $p->event_services);?>
                             <?php if(count($AI) > 0){ $cp++; ?>
                                 <a href="{{ url("events/view/service/".$p->user->id) }}">
@@ -68,6 +68,7 @@
                             </a>
                             <?php if($i == "3"){break;} ?>
                             <?php $i++; } ?>
+                            <?php } ?>
                                 <?php } ?>
 
                                 @if($cp == 0)

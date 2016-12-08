@@ -415,7 +415,7 @@ class EventsController extends Controller
                             'event_id'=>$event->id,
                             'name'=>'free',
                             'amount'=>0,
-                            'currency'=>"Naira",
+                            'currency'=>1,
                         ];
                         $newPackage->packs()->create($e);
                     }

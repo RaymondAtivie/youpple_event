@@ -20,6 +20,7 @@
     <link href="{{ url('') }}/assets/admin/css/style.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/admin/css/style-responsive.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/admin/css/custom.css" rel="stylesheet">
+    <link href="{{ url('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ url('css/sweetalert.css') }}" rel="stylesheet">
 
     @yield('styles')

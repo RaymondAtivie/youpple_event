@@ -163,13 +163,14 @@
 
                         <div class="row form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <div class="col-md-12">
+
+                                <label>
+                                    <i class="fa fa-compass"></i> Address
+                                </label>
                                 <div class="input-field">
                                     <textarea name="address" id="address" requied>{{ old('address') }}</textarea>
                                     <input type="hidden" id="lat" class="form-control" name="lat" />
                                     <input type="hidden" id="lng" class="form-control" name="lng" />
-                                    <label>
-                                        <i class="fa fa-compass"></i> Address
-                                    </label>
                                     @if ($errors->has('address'))
                                         <span class="help-block">
                                             <strong class="danger">{{ $errors->first('address') }}</strong>
@@ -181,10 +182,12 @@
 
                         <div class="row form-group{{ $errors->has('lga') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <div class="input-field">
+                                <label>
                                     <i class="fa fa-map-marker prefix"></i>
+                                    LGA / County
+                                </label>
+                                <div class="input-field">
                                     <input type="text" name="lga" id="lga" requied value="{{ old('lga') }}">
-                                    <label>LGA / County</label>
                                     @if ($errors->has('lga'))
                                         <span class="help-block">
                                             <strong class="danger">{{ $errors->first('lga') }}</strong>
@@ -196,10 +199,12 @@
 
                         <div class="row form-group{{ $errors->has('state') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <div class="input-field">
+                                <label>
                                     <i class="fa fa-map-marker prefix"></i>
+                                    State / Province
+                                </label>
+                                <div class="input-field">
                                     <input type="text" name="state" id="state" requied value="{{ old('state') }}">
-                                    <label>State / Province</label>
                                     @if ($errors->has('state'))
                                         <span class="help-block">
                                             <strong class="danger">{{ $errors->first('state') }}</strong>
@@ -234,10 +239,12 @@
 
                         <div class="row form-group{{ $errors->has('zipcode') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <div class="input-field">
+                                <label>
                                     <i class="fa fa-file-o prefix"></i>
+                                    Zip Code
+                                </label>
+                                <div class="input-field">
                                     <input type="number" name="zipcode" id="zip" value="{{ old('zipcode') }}">
-                                    <label>Zip Code</label>
                                     @if ($errors->has('zipcode'))
                                         <span class="help-block">
                                             <strong class="danger">{{ $errors->first('zipcode') }}</strong>
@@ -339,7 +346,7 @@
 
         geocoder = new google.maps.Geocoder();
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        
+
         function gotoMylocation(){
              if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -384,7 +391,7 @@
             });
             console.log(addy);
         });
-       
+
 
         google.maps.event.addListener(map, 'click', function(event) {
             placeMarker(event.latLng);

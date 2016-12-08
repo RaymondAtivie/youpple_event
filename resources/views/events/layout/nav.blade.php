@@ -10,20 +10,26 @@
     @if($user->info)
         <li>
             <a href="{{ url('events/myprofile') }}">
-                <i class="fa fa-user"></i> <span>Advance Information</span>
+                <i class="fa fa-address-card-o"></i> <span>Advance Information</span>
             </a>
         </li>
     @endif
     <li class="menu-list">
         <a href="">
-            <i class="fa fa-file-text-o"></i><span>Service Orders</span>
+            <i class="fa fa-briefcase"></i><span>Service Orders</span>
         </a>
         <ul class="child-list">
-            <li><a href="{{ url('events/myorders') }}">Made to Youpple</a></li>
-            <li><a href="{{ url('events/myorders/others') }}">Made to Service Providers</a></li>
             @if($user->info)
-                <li><a href="{{ url('events/myorders/me') }}">Made to me</a></li>
+                <li><a href="{{ url('events/myorders/me') }}">
+                    @if($user->info->business_name)
+                        {{$user->info->business_name}}
+                    @else
+                        {{$user->name}}
+                    @endif
+                </a></li>
             @endif
+            <li><a href="{{ url('events/myorders') }}">Youpple</a></li>
+            <li><a href="{{ url('events/myorders/others') }}">Others</a></li>
             @if(count($user->getPaidOrders()) > 0)
                 <li><a href="{{ url('events/myorders/paid') }}">Paid Orders</a></li>
             @endif
@@ -32,7 +38,7 @@
 
     <li>
         <a href="{{ url('events/myevent') }}">
-            <i class="fa fa-tag"></i> <span>My Events</span>
+            <i class="fa fa-calendar"></i> <span>My Events</span>
         </a>
     </li>
     <br />

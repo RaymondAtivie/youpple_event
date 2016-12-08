@@ -97,19 +97,27 @@
                         <br />
 
                         <div class="form-group">
-                            <label>Event Venue</label>
+                            <label>Event Venue <i id="addspinner" class="hidden fa fa-circle-o-notch fa-spin" style="color: #f6891f"></i> </label>
                             <textarea class="form-control" id="address" required name="venue"></textarea>
-                            <p class="info">Seperate multiple addresses with a column "<b>;</b>"</p>
+                            {{-- <p class="info">Seperate multiple addresses with a column "<b>;</b>"</p> --}}
                             @if($errors->has('venue'))
                                 <p class='text-danger help'>At least one venue is needed</p>
                             @endif
                         </div>
 
+
+                        <div class="form-group col-sm-6">
+                            <label>Longitude</label>
+                            <input type="text" id="lng" class="form-control" name="lng" />
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Latitude</label>
+                            <input type="text" id="lat" class="form-control" name="lat" />
+                        </div>
+
                         <div class="form-group">
                             <label>State / Province</label>
                             <input type="text" id="state" required class="form-control" name="state" />
-                            <input type="hidden" id="lat" class="form-control" name="lat" />
-                            <input type="hidden" id="lng" class="form-control" name="lng" />
                             @if($errors->has('state'))
                                 <p class='text-danger help'>Please add a state/province</p>
                             @endif
@@ -291,9 +299,9 @@
 
         geocoder = new google.maps.Geocoder();
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        
+
         function gotoMylocation(){
-             if (navigator.geolocation) {
+            if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var pos = {
                         lat: position.coords.latitude,
@@ -312,20 +320,39 @@
             console.log("going to my location");
             gotoMylocation();
         });
-         var addressComp = false;
+        var addressComp = false;
+
+        $("#lng, #lat").blur(function(){
+            console.log("blur");
+            var lat = $("#lat").val();
+            var lng = $("#lng").val();
+            var loca = {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
+            }
+            map.setCenter(loca);
+            map.setZoom(15);
+            placeMarker(loca);
+        });
+
         $("#address").blur(function() {
+            $("#addspinner").removeClass("hidden");
+
             var addy = $(this).val();
 
             var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+addy+"&key=AIzaSyAiyFQLOKpaCO39ybQVoxy63dzbdvtSXd8";
             $.ajax({
                 url: url,
                 success: function(result){
+                    $("#addspinner").addClass("hidden");
+
                     console.log(result);
                     var status = result.status;
                     var loca;
                     if(status == "OK"){
                         loca = result.results[0].geometry.location;
                         console.log("change location on map");
+                        console.log(loca);
                         map.setCenter(loca);
                         map.setZoom(15);
                         placeMarker(loca);
@@ -338,7 +365,7 @@
                 dataType: "json"
             });
             console.log(addy);
-        });       
+        });
 
         google.maps.event.addListener(map, 'click', function(event) {
             placeMarker(event.latLng);
