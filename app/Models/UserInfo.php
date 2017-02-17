@@ -9,11 +9,14 @@ class UserInfo extends Model
     protected $table = "users_info";
     protected $guarded = ['id'];
 
+<<<<<<< HEAD
     protected $attributes = array(
         'intrests' => '[]',
         'event_services' => '[]'
     );
 
+=======
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
     protected $casts = [
         'intrests' => 'array',
         'event_services' => 'array',
@@ -22,6 +25,10 @@ class UserInfo extends Model
         'verified' => 'boolean',
     ];
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
     public function user()
     {
         return $this->belongsTo("App\User", "user_id");

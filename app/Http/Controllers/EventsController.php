@@ -178,9 +178,12 @@ class EventsController extends Controller
 
     public function updateExtraPics(){
         $images = Slim::getImages('dPicture');
+<<<<<<< HEAD
 
         $oldImages = Auth::user()->info->dPicture;
 
+=======
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
         $files = [];
         foreach ($images as $image) {
             $lExt = $image['input']['ext'];
@@ -197,9 +200,13 @@ class EventsController extends Controller
             $files[] = $filename;
         }
 
+<<<<<<< HEAD
         $allImages = array_merge($oldImages, $files);
 
         Auth::user()->info->dPicture = $allImages;
+=======
+        Auth::user()->info->dPicture = $files;
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
         Auth::user()->info->save();
 
         M::flash("Successfully Uploaded the extra pictures", "success");
@@ -207,6 +214,7 @@ class EventsController extends Controller
         return Redirect::back();
     }
 
+<<<<<<< HEAD
     public function removeExtraPic(Request $request){
         $posts = $request->all();
         $im = $posts['image'];
@@ -228,6 +236,8 @@ class EventsController extends Controller
         return Redirect::back();
     }
 
+=======
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
     public function updateBio(Request $request){
         $posts = $request->all();
 

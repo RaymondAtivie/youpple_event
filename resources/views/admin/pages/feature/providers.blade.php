@@ -131,8 +131,13 @@
                                                     <div class="row">
                                                         <div class="col-sm-4 bold">Prefered currency</div>
                                                         <div class="col-sm-8">
+<<<<<<< HEAD
                                                             @if($provider->info->currency)
                                                                 {{$currObj::find($provider->info->currency)->name}}
+=======
+                                                            @if($user->info->currency)
+                                                                {{$currObj::find($user->info->currency)->name}}
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
                                                             @endif
                                                         </div>
                                                     </div>

@@ -411,10 +411,37 @@
 </div>
 
 <div class="col-sm-4">
+<<<<<<< HEAD
 
 <section class="panel">
     <header class="panel-heading">
         Upload Wall Pictures
+=======
+    {{-- <section class="panel">
+    <header class="panel-heading">
+    My Display Picture
+</header>
+<div class="panel-body">
+<div class="row">
+<div class="col-md-12">
+<div class="col-sm-6 col-sm-offset-3">
+<div class="slim"
+data-label="Drop your display picture here"
+data-service="{{url('events/myprofile/uploadDP')}}"
+data-size="200,200"
+data-ratio="1:1">
+<img src="{{url('userPhotos/'.$user->info->picture)}}" alt=""/>
+<input type="file" name="picture"></div>
+</div>
+</div>
+</div>
+</div>
+</section> --}}
+
+<section class="panel">
+    <header class="panel-heading">
+        Upload Extra Images
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
     </header>
     <div class="panel-body">
         <form action="{{url('events/myprofile/uploadExtraPics')}}" method="post" enctype="multipart/form-data">
@@ -446,12 +473,17 @@
 
 <section class="panel">
     <header class="panel-heading">
+<<<<<<< HEAD
         Wall Pictures
+=======
+        Current Images
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
     </header>
     <div class="panel-body">
 
         @foreach($user->info->dPicture as $pic)
             <div class="row">
+<<<<<<< HEAD
                 <div class="col-sm-12 text-right">
                     <img src="{{url('userPhotos/'.$pic)}}" class="img-responsive img-thumbnail" />
                     <br />
@@ -459,6 +491,12 @@
                 </div>
             </div>
             <hr />
+=======
+                <div class="col-sm-12">
+                    <img src="{{url('userPhotos/'.$pic)}}" class="img-responsive img-thumbnail" />
+                </div>
+            </div>
+>>>>>>> 297e37cc14531d31e1bcdde7c40b4b965ccd1be1
         @endforeach
 
     </div>
