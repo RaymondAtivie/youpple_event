@@ -452,10 +452,13 @@
 
         @foreach($user->info->dPicture as $pic)
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-right">
                     <img src="{{url('userPhotos/'.$pic)}}" class="img-responsive img-thumbnail" />
+                    <br />
+                    <a onclick="return confirm('Are you sure you want to remove this picture?')" href="myprofile/removeExtraPics?image={{$pic}}" class="btn btn-danger">Remove</a>
                 </div>
             </div>
+            <hr />
         @endforeach
 
     </div>

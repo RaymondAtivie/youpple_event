@@ -207,6 +207,27 @@ class EventsController extends Controller
         return Redirect::back();
     }
 
+    public function removeExtraPic(Request $request){
+        $posts = $request->all();
+        $im = $posts['image'];
+
+        $oldImages = Auth::user()->info->dPicture;
+
+        $nIms = [];
+        foreach ($oldImages as $image) {
+            if($im != $image){
+                $nIms[] = $image;
+            }
+        }
+
+        Auth::user()->info->dPicture = $nIms;
+        Auth::user()->info->save();
+
+        M::flash("Successfully removed the picture", "success");
+
+        return Redirect::back();
+    }
+
     public function updateBio(Request $request){
         $posts = $request->all();
 

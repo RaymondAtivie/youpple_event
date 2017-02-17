@@ -67,6 +67,7 @@ Route::group([
     Route::get('/myprofile', 'EventsController@showUserProfile');
     Route::any('/myprofile/uploadDP', 'EventsController@updateDP');
     Route::post('/myprofile/uploadExtraPics', 'EventsController@updateExtraPics');
+    Route::any('/myprofile/removeExtraPics', 'EventsController@removeExtraPic');
     Route::any('/myprofile/updateBio', 'EventsController@updateBio');
     Route::post('/myprofile/updateProfile', 'EventsController@updateProfile');
     Route::post('/myprofile/updateProfilePassword', 'EventsController@updateProfilePassword');
