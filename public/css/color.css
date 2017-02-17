@@ -1,0 +1,63 @@
+/**************************************************
+	Background Color Start
+**************************************************/
+.quote-btn,#homev1-slider .owl-controls .owl-dot.active span,.cp-slider-content a:hover:after,.cp-nav-logo-bar .navbar-default .navbar-nav > .open > a, 
+.cp-nav-logo-bar .navbar-default .navbar-nav > .open > a:hover, .cp-nav-logo-bar .navbar-default .navbar-nav > .open > a:focus,
+.cp-nav-logo-bar .dropdown-menu > li > a:hover, .read-more:hover,.read-more:after,.cp-Our-experties .owl-carousel.owl-theme .owl-nav div:hover, .cp-Our-experties .owl-carousel.owl-theme .owl-nav div:hover,
+.cp-Our-experties .slide:hover .cp-ex-title,.cp-newsletter-holder .btn.btn-default,.btn-submit,
+.cp-upcoming-events .countdown-section,.cp-events-slider .owl-carousel.owl-theme .owl-nav div:hover,.cp-events-slider .bx-wrapper .bx-next:hover,.portfolio-item .cp-caption a
+,#cp-testimonial-slider .owl-controls .owl-dot.active span,#cp-testimonial-slider2 .owl-controls .owl-dot.active span,#cp-team-slider .owl-nav div:hover,.cp-ft-box .left,.cp-footer .cp-social-links li a:hover,.cp-btn-style2:before
+,#homev2-slider .owl-controls .owl-nav [class*="owl-"]:hover,.cp-btn-style1:before,.cp-creative-listed .cp-text h3:before,.cp-process-box:hover .cp-icon-box,.cp-price-box .cp-title a,.cp-price-box:hover
+,.pagination-box .pagination > li > a:hover, .pagination-box .pagination > li > span:hover, .pagination-box .pagination > li > a:focus, .pagination-box .pagination > li > span:focus,.pagination-box .pagination > li.active a,.widget-search .btn-submit
+,.widget_tag_cloud .tagcloud a,.cp-form-box .inner-holder .btn-submit,#cp-blog-slider_v2 .owl-controls .owl-nav [class*="owl-"]:hover,.cp-gallery-item .cp-caption a,.cp-team-item2:hover .cp-text,.cp-error-inner form .btn-submit
+,.cp-header .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,.cp-header .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,#homev4-slider .owl-controls .owl-nav [class*="owl-"],.navbar .cart-box a.btn-checkout
+,.cp-events-box .cp-caption a,.cp-blog-item .cp-caption a,.slide .cp-caption a,.cp-nav-logo-bar .dropdown-menu ul li:hover a{
+ 	background-color:#449232; 
+ 	color:#fff;
+ }
+/**************************************************
+			Text Color Start
+**************************************************/
+.cp-slider-content a,.quote-btn:hover,.social-links a:hover,.cp-nav-logo-bar .navbar-default .navbar-nav > li > a:hover,
+.read-more,.cp-Our-experties .bx-wrapper .bx-prev:after,.cp-Our-experties .bx-wrapper .bx-next:after,.cp-events-slider .bx-wrapper .bx-prev:after,.cp-ft-box .cp-text .fa,.cp-ft-box .cp-text span:hover,.cp-ft-box .cp-text a:hover,
+.cp-events-slider .bx-wrapper .bx-next:after,.post-meta li,.portfolioFilter a:hover,.portfolioFilter a.current,.cp-clients-inner span,.cp-social-links li:hover a,.cp-team-item .cp-text span,.widget-listed ul li:hover a,.widget-listed ul li:hover:before
+,.input-field .prefix.active,#homev2-slider .owl-controls .owl-nav .owl-prev:before,#homev2-slider .owl-controls .owl-nav .owl-next:before,.cp-btn-style1,.cp-counter-item .counter,.post-meta li a,.cp-text p a,.read-more2:hover
+,#cp-blog-slider .owl-controls .owl-nav [class*="owl-"]:hover:before,.cp-about-listed li:before,.cp-process-box .cp-icon-box,.cp-creative-listed .cp-text h3:hover,#cp-team-slider .owl-nav .owl-next:after,.login-btn a,.login-btn
+,#cp-team-slider .owl-nav .owl-prev:after,.cp-price-box .cp-title em,.cp-price-box:hover .cp-btn-style1,.cp-price-box:hover .cp-title a,.pagination-box .pagination > li:first-child > a:hover,.pagination-box .pagination > li:last-child > a:hover
+,.widget-archive > ul > li:hover,.widget-archive > ul > li:hover a,.widget_tag_cloud .tagcloud a:hover,.cp-blockquote:before,.cp-form-box .inner-holder .btn-submit:hover,.cp-text .read-btn:hover,#cp-blog-slider_v2 .owl-controls .owl-nav [class*="owl-"]
+,.cp-error-title,.cp-contact-info ul li:hover,.cp-contact-info ul li:hover a,.cp-shop-box .cp-text h3 a:hover,.cp-pro-meta .discount-price,.cp-pro-meta .icon .fa,.cp-rating .fa,.cp-Our-experties .owl-prev:after,.cp-upcoming-events .owl-prev:after
+,.cp-Our-experties .owl-next:after,.cp-upcoming-events .owl-next:after,.navbar .cart-box .cart-row .text-box strong.amount,.navbar .cart-box strong.title a,.cp-blog-item .cp-text h3:hover a,.cp-events-box .cp-text h3:hover a,.cp-team-item .cp-text h3:hover
+,.slide .cp-event-content h3:hover a{
+	color:#449232;
+}
+/**************************************************
+			Border Color Start
+**************************************************/
+#homev1-slider .cp-slider-content a,#homev1-slider.owl-theme .owl-controls .owl-page span,.social-links a:hover,
+.nav.navbar-nav.navbar-right.cp-search-basket > li a,.cp-nav-logo-bar .nav.navbar-nav.navbar-right.cp-search-basket .dropdown-menu,.read-more,.cp-process-box:hover .cp-icon-box:before,.cp-process-box:hover .cp-icon-box:after,.cp-slider-content a,
+.cp-Our-experties .bx-wrapper .bx-prev,.cp-Our-experties .bx-wrapper .bx-next,.cp-clients-inner,#cp-testimonial-slider.owl-theme .owl-controls .owl-dot.active span,#cp-testimonial-slider2.owl-theme .owl-controls .owl-dot.active span,.cp-team-item .cp-text,.cp-footer
+,#homev2-slider .owl-controls .owl-nav [class*="owl-"],.cp-btn-style1,.cp-blog-inner .cp-text,.quote-btn,.cp-inner-banner-outer h2:after,.cp-process-box:hover .cp-icon-box,.cp-btn-style2,.cp-services-listed .cp-icon-box:before,.cp-services-listed .cp-icon-box:after
+,.cp-events-listing .cp-events-box .cp-text,.widget_tag_cloud .tagcloud a,.cp-blockquote,.cp-form-box .inner-holder .btn-submit,#cp-blog-slider_v2 .owl-controls .owl-nav [class*="owl-"],.cp-shop-box,.cp-pro-detail-info .cp-thumb
+,#homev4-slider .owl-controls .owl-nav [class*="owl-"],#homev3-slider .cp-slider-content a:hover,.cp-tab-box .tabs-inner-text span,.cp-tab-box .tabs-inner-text h5:hover a
+{ 
+	border-color:#449232;
+}
+
+
+#homev2-slider .cp-slider-content:before{
+	border-top-color: #449232;
+}
+.cp-tab-box .nav-tabs > li.active > a, .cp-tab-box.nav-tabs > li.active > a:hover, .cp-tab-box .nav-tabs > li.active > a:focus, .cp-tab-box .nav-tabs > li a:hover,.cp-tab-box .nav-tabs > li.active > a,.cp-tab-box .nav-tabs > li.active > a:hover,.cp-tab-box .nav-tabs > li.active > a:focus{
+	border-bottom-color: #449232;
+}
+/*#homev3-slider .cp-slider-content::before{
+	border-right-color: #449232;
+}
+#homev3-slider .cp-slider-content::after{
+	border-right-color: #449232;
+}*/
+
+
+
+
+
